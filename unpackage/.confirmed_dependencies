@@ -82,7 +82,8 @@
 			"html/home/security.html",
 			"html/home/smart.html",
 			"html/home/Equipment.html",
-			"html/Equipment/Equipment.html"
+			"html/Equipment/Equipment.html",
+			"html/home/securityAlarm.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -532,6 +533,15 @@
 			"css/mui.min.css",
 			"image/icon-3.png",
 			"css/add.css"
+		]
+	},
+	"html/home/securityAlarm.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/template.js"
 		]
 	}
 }
