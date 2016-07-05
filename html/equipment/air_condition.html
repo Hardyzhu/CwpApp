@@ -215,7 +215,7 @@
 		<script id="realTimeTmpl" type="text/html">
 			<ul class="mui-table-view">
 				{{each beans}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media">
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media realTime">
 						<a class="mui-navigate-right" href="javascript:;">
 							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
 							<div class="mui-media-body">
@@ -233,7 +233,7 @@
 		<script id="alarmTmpl" type="text/html">
 			<ul class="mui-table-view">
 				{{each beans}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media">
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media alarm">
 						<a class="mui-navigate-right" href="javascript:;">
 							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
 							<div class="mui-media-body">
@@ -251,7 +251,7 @@
 		<script id="analysisTmpl" type="text/html">
 			<ul class="mui-table-view">
 				{{each beans}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media">
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media analysis">
 						<a class="mui-navigate-right" href="javascript:;">
 							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
 							<div class="mui-media-body">
@@ -427,6 +427,26 @@
 					}
 				});
 			};
+			//实时点击查看详情
+			mui('.mui-content').on('tap','.realTime',function(){
+				//打开页面
+				mui.openWindow({
+				  url:'./air_subdir/subReal.html',
+				  id:'subReal',
+				  waiting: {
+					autoShow: false
+				  }
+				});
+			});
+			//告警点击查看详情
+			mui('.mui-content').on('tap','.alarm',function(){
+				console.log(2);
+			});
+			//分析点击查看详情
+			mui('.mui-content').on('tap','.analysis',function(){
+				console.log(3);
+			});
+			
 		</script>
 	</body>
 

@@ -493,6 +493,9 @@
 			"image/icon-3.png",
 			"js/template.js",
 			"html/equipment/json/realTime.json"
+		],
+		"refer": [
+			"html/equipment/air_subdir/subReal.html"
 		]
 	},
 	"html/equipment/monitoring.html": {

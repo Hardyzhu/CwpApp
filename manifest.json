@@ -704,7 +704,9 @@
 					"js/template.js",
 					"html/equipment/json/realTime.json"
 				],
-				"refer": [],
+				"refer": [
+					"html/equipment/air_subdir/subReal.html"
+				],
 				"priority": 0
 			},
 			"html/equipment/monitoring.html": {

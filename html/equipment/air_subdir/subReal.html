@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>空调</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+        	.onTimeDetail ul{
+        		float: right;
+        		display: flex;
+        		justify-content: space-between;
+        	}
+        	.onTimeDetail li{
+				display: flex;justify-content: space-between;align-items:center;margin-right: 4px;
+        	}
+        	.onTimeDetail li .status{
+        		width: 7px;height: 7px;display: block;float: left;margin-right: 5px;
+        	}
+        	.onTimeDetail .gray{
+        		background: #DFDFDF;
+        	}
+        	.onTimeDetail .blue{
+        		background: #0680CB;
+        	}
+        	.onTimeDetail .small-problem{
+        		background: #FFC000;
+        	}
+        	.onTimeDetail .big-problem{
+        		background: #CA0607;
+        	}
+        	.onTimeDetail .buttons-group{
+        		display: flex;flex-wrap: wrap;margin-top: 20px;
+        	}
+        	.onTimeDetail .buttons-group p{
+        		width:100%;display: flex;flex-direction: row-reverse;
+        	}
+        	.onTimeDetail .buttons-group p span.icon{
+        		display: block;width:20px;height: 20px;background: url(../);
+        	}
+        	.onTimeDetail .buttons-group a{
+        		display: block;border-radius: 2px;color: #fff;text-align: center;margin-right: 3%;margin-top: 20px;
+        	}
+        </style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav topColor">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color:#FFF;">设备监控</h1>
+		</header>
+		<div class="mui-content">
+			<div class="onTimeDetail mui-table-view-cell">	
+				<div class="onTimetitle mui-table">
+					<span>CC-1</span>
+					<ul class="ul-flex mui-table-cell mui-col-xs-9">
+						<li>
+							<span class="status gray"></span>
+							<span class="word">关闭</span>
+						</li>
+						<li>
+							<span class="status blue"></span>
+							<span class="word">正常运行</span>
+						</li>
+						<li>
+							<span class="status small-problem"></span>
+							<span class="word">小故障</span>
+						</li>
+						<li>
+							<span class="status big-problem"></span>
+							<span class="word">严重故障</span>
+						</li>
+					</ul>
+					<div class="buttons-group">
+						<p><span>点击查看设备详情</span><span class="icon"></span></p>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 big-problem">aaa</a>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 small-problem">aaa</a>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 blue">aaa</a>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 gray">aaa</a>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 gray">aaa</a>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 big-problem">aaa</a>
+						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 small-problem">aaa</a>
+					</div>
+				</div>						
+			</div>	
+		</div>
+		<script id="realTimeTmpl" type="text/html">
+			<ul class="mui-table-view">
+				{{each beans}}
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media realTime">
+						<a class="mui-navigate-right" href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+							<div class="mui-media-body">
+								CC-1{{$value.devicePositionCode}}
+								<p class='mui-ellipsis'>
+									<span>数量:</span>
+									<span>{{$value.guarantee}}台</span>
+								</p>
+							</div>
+						</a>
+					</li>
+				{{/each}}
+			</ul>
+		</script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/echarts-all.js"></script>
+		<script src="../../js/template.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function(){
+				var resHeight = window.innerHeight - 84;
+				mui('.mui-control-content').each(function(){
+					this.setAttribute("style","min-height:"+resHeight+"px;");
+					var isActive = this.classList.contains('mui-active') ? true : false;
+					if(isActive){
+						var state = this.getAttribute('data-state');
+						if(state == 'realTime'){
+						    setTimeout(function() {
+								getrealTime();
+							}, 500);
+						}
+					}
+					
+				});
+			    mui('.mui-scroll-wrapper').scroll({
+			        indicators: true //是否显示滚动条
+			    });
+			});
+			//获取实时数据
+			function getrealTime() { //获取工单列表
+				var count = 1;
+				mui.ajax({
+					url:'./json/realTime.json',
+					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					type: "get",
+					async: true,
+					data: {
+						uid: 'i002',
+						pageSize:'5',
+						dictValue:'', 
+						eventProcessStatus:'',
+						eventType:3
+					},
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {
+						var realTimelist = document.getElementById("realTimelist");
+						var html = template('realTimeTmpl', data);
+						if(count==1){
+							realTimelist.innerHTML = html;
+						}else{
+							realTimelist.innerHTML += html;
+						}
+						count++;
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('数据加载失败!');
+							return;
+						}
+					}
+				});
+			};
+	
+			//实时点击查看详情
+			mui('.mui-content').on('tap','.realTime',function(){
+				console.log(1);
+			});			
+		</script>
+	</body>
+</html>
