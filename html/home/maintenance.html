@@ -38,7 +38,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">安防预警列表</h1>
+			<h1 class="mui-title">维修工单列表</h1>
 		</header>
 		<!--内容部分-->
 		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
@@ -114,8 +114,8 @@
 					}
 				},
 				preloadPages:[{                      //预加载页面
-				    id:'securityAlarmDetail',
-				    url:'../task/securityAlarmDetail.html'
+				    id:'maintenanceDetail',
+				    url:'../task/maintenanceDetail.html'
 				}]
 			});
 			mui.plusReady(function() {
@@ -138,7 +138,7 @@
 					var warningCategoryId = this.getAttribute("data-uid");
 					//判断是否有这个页面
 					if(!detailPage){
-					    detailPage = plus.webview.getWebviewById('securityAlarmDetail');
+					    detailPage = plus.webview.getWebviewById('maintenanceDetail');
 					}
 					//自定义事件
 					plus.nativeUI.showWaiting();
@@ -151,7 +151,7 @@
 					}, 200);
 					//打开页面
 					mui.openWindow({
-					  id:'securityAlarmDetail',
+					  id:'maintenanceDetail',
 					  waiting: {
 						autoShow: false
 					  }
@@ -174,7 +174,7 @@
 						pageSize:'5',
 						dictValue:'', 
 						eventProcessStatus:'',
-						eventType:2
+						eventType:3
 					},
 					dataType: "json",
 					timeout: 10000,

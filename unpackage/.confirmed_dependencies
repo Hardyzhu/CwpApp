@@ -83,7 +83,8 @@
 			"html/home/smart.html",
 			"html/home/Equipment.html",
 			"html/Equipment/Equipment.html",
-			"html/home/securityAlarm.html"
+			"html/home/securityAlarm.html",
+			"html/home/maintenance.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -542,6 +543,41 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/template.js"
+		],
+		"refer": [
+			"html/task/securityAlarmDetail.html"
+		]
+	},
+	"html/task/securityReport.html": {
+		"refer": [
+			"html/main/message.html"
+		]
+	},
+	"html/task/securityAlarmDetail.html": {
+		"refer": [
+			"html/task/securityReport.html"
+		]
+	},
+	"html/home/maintenance.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/template.js"
+		],
+		"refer": [
+			"html/task/maintenanceDetail.html"
+		]
+	},
+	"html/task/maintenanceReport.html": {
+		"refer": [
+			"html/main/message.html"
+		]
+	},
+	"html/task/maintenanceDetail.html": {
+		"refer": [
+			"html/task/maintenanceReport.html"
 		]
 	}
 }
