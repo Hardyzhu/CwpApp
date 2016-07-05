@@ -1,0 +1,155 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-28
+	描述：维修任务列表详情
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>处理</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.barNav{
+				list-style: none;
+				background: #FFFFFF;
+				padding:5px 0;
+				margin-bottom:10px;
+				border-top:1px solid #DEDEDE;
+				border-bottom:1px solid #DEDEDE;
+			}
+			.barNav li{
+				float:left;
+				border-right:1px solid #DEDEDE;
+				padding:4px 0;
+				font-size:1.4rem;
+				color:#9C9C9C;
+				text-align:center;
+			}
+			.mui-icon{
+				font-size:1.4rem;
+			}
+			.searchData{
+				margin: 15px 15px 0;
+			}
+			.fault{
+				background:#FFF;
+				padding:15px;
+			}
+			.faulter{
+				padding:0 30px;
+				list-style:none;
+			}
+			.deal{
+				padding:0px 15px;
+				background:#FFF;
+				line-height:23px;
+			}
+			.dealer{
+				font-size:1.4rem;
+				font-weight:500;
+				color:#222222;
+			}
+			.accepter{
+				background:#DEDEDE !important;
+				border-color:#DEDEDE !important;
+				color:#FFF !important;
+			}
+			.mui-button-row {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">处理</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-col-xs-12 mb5 dataList">
+				<div class="mui-col-xs-12" id="dealTmpl">
+					<!--头部详情部分-->
+				</div>
+				<div class="mui-col-xs-12"style="background:#FFF;">
+					<div class="mui-col-xs-12">
+						
+						<ul class="mui-table-view dealer">
+							<li class="mui-table-view-cell" >
+								<div class="mui-table">
+								    <div class="mui-table-cell mui-col-xs-10">
+								    	<div style="display: inline;float: left;">
+								    		<h4 class="mui-ellipsis-2">空调</h4>
+						                 </div>
+						                 <div style="display: inline;float:right;margin-right: 20px;">
+						                	低
+					                   	</div>
+					                   	
+					                    <hr width="100%"/>
+					                    <div>
+					                		<div style="display: block;">地点：CC-1第一层101会议室A100
+					                		</div>
+						                </div>
+						                <hr width="100%"/>		
+						                <div>
+					                		<div style="display: block;">问题描述：
+					                		</div>
+						                </div>
+					                	<div style="display: block;">室内机定时灯快闪、外机点检内机台数减少或变化不定，某些室内机不制冷等。</div> 
+					                </div>            
+					            </div>    
+							</li>
+						</ul>
+						<div class="dealer" style="padding:11px 15px;">
+							<!--描述部分-->
+							<div class="mui-input-row">
+								<div class="mb5">处理说明:</div>
+								<textarea id="textarea" rows="5" class="dealer" placeholder="请输入描述"></textarea>
+							</div>
+							
+						</div>
+					</div>
+					<div class="mui-button-row" >
+						<button class="mui-btn mui-btn-red" id="subit" type="button">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--信息部分-->
+		<script id="dealTmp" type="text/html">
+			<h3>{{deviceName}}
+				<span class="emergency mui-pull-right">
+					{{if warningLevel == 0}}
+					    <span class="scile scileLow"></span>
+						<span class="sileSize sileLow">低</span>
+					{{else if warningLevel == 2}}
+					    <span class="scile scileMiddle"></span>
+						<span class="scile scileMiddle"></span>
+						<span class="sileSize sileMiddle">中</span>
+					{{else}}
+					    <span class="scile scileHeight"></span>
+						<span class="scile scileHeight"></span>
+						<span class="scile scileHeight"></span>
+						<span class="sileSize sileHeight">高</span>
+					{{/if}}
+				</span>
+			</h3>
+			<div class="mui-col-xs-12 muiDetail">
+				<span class="detailTitle">
+					地点：
+				</span>
+				{{buildingName}}
+			</div>
+			<div class="mui-col-xs-12 muiMark detailTitle">
+				问题描述：
+			</div>
+			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
+				{{eventDescribe}}
+			</div>
+		</script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/template.js"></script>
+		
+	</body>
+</html>
