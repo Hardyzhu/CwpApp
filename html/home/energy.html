@@ -13,19 +13,20 @@
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<!-- App自定义的css -->
 		<!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
-		
 		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
 	</head>
 
 	<body>
 		<style>
-			.mui-control-content {
-				background-color: white;
-				min-height: 800px;
-			}
-			.mui-control-content .mui-loading {
-				margin-top: 50px;
-			}
+			.mui-control-content {background-color: white;min-height: 800px;}
+			.mui-control-content .mui-loading {margin-top: 50px;}
+			.top{background:#f1f1f1}/*设置历史情况背景颜色*/
+			.history{padding:10px;font-size: 14px;color:#aeaeae} /*历史情况*/
+			.history .tbn{float: right;background-color: #fff;font-size: 12px;padding: 0 3px;border:1px solid #d4d4d4;border-radius: 3px;} /*历史数据button*/
+			.today{display: block;padding:0 10px 10px 10px;font-size: 14px;color: #3d3d3d;} /*今日耗电量*/
+			.mui-slider .mui-slider-group{margin-top: 0;}  /*调整头部间距*/
+			.right{position: absolute;top: 25px;right: 10px;font-family: "黑体";font-weight: 900;color: #3d3d3d;font-size: 16px;}/*“》”详情按钮*/
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border-top: none}/*去掉头部边界限*/
 		</style>
 		
 		<header class="mui-bar mui-bar-nav">
@@ -43,49 +44,52 @@
 					</a>
 				</div>
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+
 				<div class="mui-slider-group">
 					<div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="top">
+								<div class="history">
+									周三 2016-07-05 18:04
+									<span class="tbn">历史数据</span><br>
+								</div>
+								<span class="today">今日总耗电量：347.9kws</span>
+							</div>
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="air_condition_ss">
+								<ul class="mui-table-view" id="energy_ss">
 									<li class="mui-table-view-cell" >
 										<div class="mui-table">
 										    <div class="mui-table-cell mui-col-xs-10">
-							                    <h4 class="mui-ellipsis-2">CC-1</h4>						        
-							                	<div style="display: inline;">数量：</div> 
-							                	<div style="display: inline;">23台</div>
-							                	<div style="display: inline; margin-left: 25px;">ON：</div>
-							                	<div style="display: inline;">18</div>
-							                	<div style="display: inline; margin-left: 25px;">OFF：</div>
-							                	<div style="display: inline;">5</div>
+							                    <h4 class="mui-ellipsis-2">CC-1</h4>
+							                	<div style="display: inline;color:#aeaeae">耗电量：</div>
+							                	<div style="display: inline;color:#aeaeae">98.3kwh</div>
+							                	<!--<div style="display: inline; margin-left: 25px;">ON：</div>-->
+							                	<!--<div style="display: inline;">18</div>-->
+							                	<!--<div style="display: inline; margin-left: 25px;">OFF：</div>-->
+							                	<!--<div style="display: inline;">5</div>-->
 										    </div>
 							            </div>
+										<span class="right">></span>
 							        </li>
 									<li class="mui-table-view-cell">
 										<div class="mui-table">
 										    <div class="mui-table-cell mui-col-xs-10">
-							                    <h4 class="mui-ellipsis-2">CC-2</h4>						        
-							                	<div style="display: inline;">数量：</div> 
-							                	<div style="display: inline;">23台</div>
-							                	<div style="display: inline; margin-left: 25px;">ON：</div>
-							                	<div style="display: inline;">18</div>
-							                	<div style="display: inline; margin-left: 25px;">OFF：</div>
-							                	<div style="display: inline;">5</div>
+							                    <h4 class="mui-ellipsis-2">CC-2</h4>
+												<div style="display: inline;color:#aeaeae">耗电量：</div>
+												<div style="display: inline;color:#aeaeae">98.3kwh</div>
 										    </div>
 							            </div>
+										<span class="right">></span>
 									</li>
 									<li class="mui-table-view-cell">
 										<div class="mui-table">
 										    <div class="mui-table-cell mui-col-xs-10">
-							                    <h4 class="mui-ellipsis-2">CC-3</h4>						        
-							                	<div style="display: inline;">数量：</div> 
-							                	<div style="display: inline;">23台</div>
-							                	<div style="display: inline; margin-left: 25px;">ON：</div>
-							                	<div style="display: inline;">18</div>
-							                	<div style="display: inline; margin-left: 25px;">OFF：</div>
-							                	<div style="display: inline;">5</div>
-										    </div>							                
+							                    <h4 class="mui-ellipsis-2">CC-3</h4>
+												<div style="display: inline;color:#aeaeae">耗电量：</div>
+												<div style="display: inline;color:#aeaeae">98.3kwh</div>
+										    </div>
 							            </div>
+										<span class="right">></span>
 									</li>
 								</ul>
 							</div>
@@ -94,8 +98,8 @@
                             	时间：2016-06-02
                             	描述：展示
                             -->
-							<div>								
-							</div>							
+							<div>
+							</div>
 						</div>
 					</div>
 					
@@ -192,7 +196,7 @@
 		<script>
 				var getOption = function(chartType) {
 					var chartOption = chartType == 'pie' ? {
-						calculable: false,
+						calculable: false
 					} : {
 						legend: {
 							data: ['故障统计']
@@ -256,7 +260,7 @@
 			<script>
 				var getOption1= function(chartType) {
 					var chartOption = chartType== 'pie' ? {
-						calculable: false,
+						calculable: false
 					} : {
 						legend: {
 							data: ['耗电量统计']

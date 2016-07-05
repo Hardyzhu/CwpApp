@@ -54,9 +54,15 @@ a.mui-action-back{
 	background-size: 36px 36px;
 	padding: 11px 6px 11px 50px;
 }
-
+/*能耗图片 实时*/
 #air_condition_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
 	background: url(../image/icon-1.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+/*能耗图片 实时 END*/
+#energy_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/home-4.png) 10px center no-repeat #fff;
 	background-size: 36px 36px;
 	padding: 11px 6px 11px 50px;
 }
