@@ -235,7 +235,7 @@
 					"html/home/security.html",
 					"html/home/smart.html",
 					"html/home/Equipment.html",
-					"html/Equipment/Equipment.html"
+					"html/Equipment/Equipment.html",
 					"html/home/securityAlarm.html"
 				],
 				"priority": 0
