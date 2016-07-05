@@ -236,7 +236,9 @@
 					"html/home/smart.html",
 					"html/home/Equipment.html",
 					"html/Equipment/Equipment.html",
-					"html/home/securityAlarm.html"
+					"html/home/securityAlarm.html",
+					"html/home/maintenance.html",
+					"html/home/energy.html"
 				],
 				"priority": 0
 			},
@@ -598,7 +600,8 @@
 					"html/equipment/air_condition.html",
 					"html/equipment/monitoring.html",
 					"html/equipment/guard.html",
-					"html/equipment/sewage.html"
+					"html/equipment/sewage.html",
+					"html/equipment/fresh_air.html"
 				],
 				"priority": 0
 			},
@@ -759,6 +762,89 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js"
+				],
+				"refer": [
+					"html/task/securityAlarmDetail.html"
+				],
+				"priority": 0
+			},
+			"html/equipment/air_subdir/subReal.html": {
+				"resources": [
+					"js/echarts-all.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/home/maintenance.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js"
+				],
+				"refer": [
+					"html/task/maintenanceDetail.html"
+				],
+				"priority": 0
+			},
+			"html/task/maintenanceDetail.html": {
+				"resources": [],
+				"refer": [
+					"html/task/maintenanceReport.html"
+				],
+				"priority": 0
+			},
+			"html/home/energy.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/echarts-all.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"image/icon-1.png",
+					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/task/securityAlarmDetail.html": {
+				"resources": [],
+				"refer": [
+					"html/task/securityReport.html"
+				],
+				"priority": 0
+			},
+			"html/task/securityReport.html": {
+				"resources": [],
+				"refer": [
+					"html/main/message.html"
+				],
+				"priority": 0
+			},
+			"html/task/maintenanceReport.html": {
+				"resources": [],
+				"refer": [
+					"html/main/message.html"
+				],
+				"priority": 0
+			},
+			"html/equipment/fresh_air.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/echarts-all.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"image/paifengji.png",
+					"css/mui.min.css",
+					"css/add.css"
 				],
 				"refer": [],
 				"priority": 0

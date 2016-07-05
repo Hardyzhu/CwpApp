@@ -84,7 +84,8 @@
 			"html/home/Equipment.html",
 			"html/Equipment/Equipment.html",
 			"html/home/securityAlarm.html",
-			"html/home/maintenance.html"
+			"html/home/maintenance.html",
+			"html/home/energy.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -396,7 +397,8 @@
 			"html/equipment/air_condition.html",
 			"html/equipment/monitoring.html",
 			"html/equipment/guard.html",
-			"html/equipment/sewage.html"
+			"html/equipment/sewage.html",
+			"html/equipment/fresh_air.html"
 		]
 	},
 	"html/Equipment/Equipment.html": {
@@ -591,6 +593,40 @@
 	"html/task/maintenanceDetail.html": {
 		"refer": [
 			"html/task/maintenanceReport.html"
+		]
+	},
+	"html/equipment/air_subdir/subReal.html": {
+		"resources": [
+			"js/echarts-all.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/template.js"
+		]
+	},
+	"html/home/energy.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"js/echarts-all.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"image/icon-1.png",
+			"css/add.css"
+		]
+	},
+	"html/equipment/fresh_air.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"js/echarts-all.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"image/paifengji.png",
+			"css/mui.min.css",
+			"css/add.css"
 		]
 	}
 }

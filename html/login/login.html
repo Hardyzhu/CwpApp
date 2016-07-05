@@ -105,19 +105,9 @@
 				/**
 				 * 测试用
 				 */
-				mui.openWindow({
-					url: "../main/main.html",
-					id: "main",
-					waiting: {
-						autoShow: false
-					},
-					extras: {
-						entrance: "login"
-					}
-				});
 				mui.ajax({
 					type: "get",
-					url: "http://192.168.92.199:28090/cwp/front/sh/login!login",
+					url: "http://192.168.92.201:28090/cwp/front/sh/login!login",
 					async: true,
 					data: {
 						uid:'L001',
