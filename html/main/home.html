@@ -1,0 +1,314 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-24
+	描述：首页主窗口
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>智慧园区</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" href="../../css/home.css" />
+	</head>
+	
+	<body>
+		<!--轮播-->
+		<div id="slider" class="mui-slider" >
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<div class="autoSilder">
+					
+					</div>
+				</div>
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<div class="chart" id="lineChart"></div>
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<div class="autoSilder">
+						
+					</div>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item">
+					<div class="autoSilder">
+						
+					</div>
+				</div>
+				<!-- 第四张 -->
+				<div class="mui-slider-item">
+					<div class="autoSilder">
+						
+					</div>
+				</div>
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<div class="autoSilder">
+						
+					</div>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<!--内容-->
+		<div class="mui-col-xs-12 facility">
+			设备
+		</div>
+		<div class="mui-col-xs-12 mui-text-center clearfix classify">
+			<div data-url="air_condition.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div data-url="security.html" class="mui-col-xs-6 fl tabList">
+						<img src="../../image/home-1.png" width="50" alt="空调" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>安防预警</span>
+					</div>
+				</div>
+			</div>	
+			<div data-url="security.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/home-2.png" width="50" alt="空调" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>故障告警</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/home-3.png" width="50" alt="空调" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>维修工单</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="air_condition.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/home-4.png" width="50" alt="空调" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>能耗</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="Equipment.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-1.png" width="50" alt="空调" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>设备监控</span>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!--<div data-url="air_condition.html" class="mui-col-xs-4 fl subClassify tabList">
+				
+			</div>-->
+			<!--<div data-url="fresh_air.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-2.png" width="50" alt="新风" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>新风</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="sewage.html" class="mui-col-xs-4 fl subClassif tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-1.png" width="50" alt="排污泵" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>排污泵</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="lighting.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-4.png" width="50" alt="智能照明" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>智能照明</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="monitoring.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-5.png" width="50" alt="视频监控" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>视频监控</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="guard.html" class="mui-col-xs-4 fl subClassif tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icn-6.png" width="50" alt="门禁" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>门禁</span>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<!--安防调度-->
+		<!--<div class="mui-col-xs-12 clearfix Security">
+			<div data-url="smart.html" class="mui-col-xs-6 fl tabList">
+				<img src="../../image/icon-9.png" alt="智能调度" />
+			</div>
+			<div data-url="security.html" class="mui-col-xs-6 fl tabList">
+				<img src="../../image/icon-10.png" alt="安防告警" />
+			</div>
+		</div>-->
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/echarts-all.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				gotoDetail();   //跳转
+			});
+			
+			//轮播
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			var slider = mui("#slider");
+			slider.slider({
+				interval: 8000
+			});
+			
+			//跳转
+			
+			//质量报表
+			var getOption = function(chartType) {
+				var chartOption = chartType == 'pie' ? {
+					calculable: false,
+					series: [{
+						name: '访问来源',
+						type: 'pie',
+						radius: '65%',
+						center: ['50%', '50%'],
+						data: [{
+							value: 335,
+							name: '直接访问'
+						}, {
+							value: 310,
+							name: '邮件营销'
+						}, {
+							value: 234,
+							name: '联盟广告'
+						}, {
+							value: 135,
+							name: '视频广告'
+						}, {
+							value: 1548,
+							name: '搜索引擎'
+						}]
+					}]
+				} : {
+					legend: {
+						data: ['蒸发量', '降水量']
+					},
+					grid: {
+						x: 35,
+						x2: 10,
+						y: 30,
+						y2: 25
+					},
+					toolbox: {
+						show: false,
+						feature: {
+							mark: {
+								show: true
+							},
+							dataView: {
+								show: true,
+								readOnly: false
+							},
+							magicType: {
+								show: true,
+								type: ['line', 'bar']
+							},
+							restore: {
+								show: true
+							},
+							saveAsImage: {
+								show: true
+							}
+						}
+					},
+					calculable: false,
+					xAxis: [{
+						type: 'category',
+						data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+					}],
+					yAxis: [{
+						type: 'value',
+						splitArea: {
+							show: true
+						}
+					}],
+					series: [{
+						name: '蒸发量',
+						type: chartType,
+						data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+					}, {
+						name: '降水量',
+						type: chartType,
+						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+					}]
+				};
+				return chartOption;
+			};
+			var byId = function(id) {
+				return document.getElementById(id);
+			};
+			var lineChart = echarts.init(byId('lineChart'));
+			lineChart.setOption(getOption('line'));
+			/*byId("echarts").addEventListener('tap',function(){
+				var url = this.getAttribute('data-url');
+				plus.runtime.openURL(url);
+			},false);*/
+			
+			/**
+			 * 点击事件
+			 */
+			function gotoDetail() {
+				var list = document.getElementsByClassName("tabList");
+				var homeUrl = "";
+				for (var i = 0, len = list.length; i < len; i++) {
+					list[i].addEventListener("tap", function() {
+						homeUrl = this.getAttribute("data-url");
+						mui.openWindow({
+							url: "../home/"+homeUrl,
+							id: homeUrl,
+							waiting: {
+								autoShow: false
+							}
+						});
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

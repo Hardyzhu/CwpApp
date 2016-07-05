@@ -1,0 +1,39 @@
+.autoSilder{
+	height:225px;
+}
+#lineChart{
+	height:200px;
+}
+.facility{
+	padding:6px 15px;
+	color:#ACACAC;
+	font-weight:500;
+	background:#F1F1F1;
+	line-height:1.412;
+}
+.classify{
+	border-top:1px solid #DEDEDE;
+	font-size:14px;color:#222222;
+	background:#F8F8F8;
+}
+.subClassif{
+	border-bottom:1px solid #DEDEDE;
+}
+.subClassify{
+	border-bottom:1px solid #DEDEDE;
+	border-right: 1px solid #DEDEDE;
+}
+.subClassify > .mui-col-xs-12,
+.subClassif > .mui-col-xs-12{
+	padding:15px 0;
+}
+.subClassify > .mui-col-xs-12 > .mui-text-left > span,
+.subClassif > .mui-col-xs-12 > .mui-text-left > span{
+	line-height:50px;
+}
+.Security{
+	padding-top:35px;
+}
+.Security img{
+	display:block;width:100%;
+}

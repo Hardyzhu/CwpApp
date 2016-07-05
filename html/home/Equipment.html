@@ -1,0 +1,119 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-24
+	描述：首页主窗口
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>智慧园区</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" href="../../css/home.css" />
+		<link rel="stylesheet" href="../../css/add.css" />
+	</head>
+	<body class='has-footer'>
+		<header class="mui-bar mui-bar-nav topColor">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">设备监控</h1>
+		</header>
+		<!--按钮-->
+		<div id="progress-btn">
+			<p><a href="" class="unok">未处理</a></p>
+			<p><a href="" class="ok">已处理</a></p>
+		</div>
+		
+		<!--内容-->
+		<div class="mui-col-xs-12 facility">
+			设备
+		</div>
+		<div class="mui-col-xs-12 mui-text-center clearfix classify">
+			<div data-url="air_condition.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-1.png" width="50" alt="空调" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>空调</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="fresh_air.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-2.png" width="50" alt="新风" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>新风</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="sewage.html" class="mui-col-xs-4 fl subClassif tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-1.png" width="50" alt="排污泵" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>排污泵</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="lighting.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-4.png" width="50" alt="智能照明" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>智能照明</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="monitoring.html" class="mui-col-xs-4 fl subClassify tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icon-5.png" width="50" alt="视频监控" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>视频监控</span>
+					</div>
+				</div>
+			</div>
+			<div data-url="guard.html" class="mui-col-xs-4 fl subClassif tabList">
+				<div class="mui-col-xs-12 fl">
+					<div class="mui-col-xs-6 fl">
+						<img src="../../image/icn-6.png" width="50" alt="门禁" />
+					</div>
+					<div class="mui-col-xs-6 mui-text-left fl">
+						<span>门禁</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/echarts-all.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				gotoDetail();   //跳转
+			});
+			function gotoDetail() {
+				var list = document.getElementsByClassName("tabList");
+				var EquipmentUrl = "";
+				for (var i = 0, len = list.length; i < len; i++) {
+					list[i].addEventListener("tap", function() {
+						EquipmentUrl = this.getAttribute("data-url");
+						mui.openWindow({
+							url: "../equipment/"+EquipmentUrl,
+							id: EquipmentUrl,
+							waiting: {
+								autoShow: false
+							}
+						});
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

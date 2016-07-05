@@ -1,0 +1,352 @@
+html,body{
+	min-height: 100%;
+	height: auto;
+}
+body.has-footer{
+	padding:0 0 80px;
+}
+body.header-nav{
+	padding: 50px 0 0;
+}
+header.mui-bar{
+	background-color: #0680cb;
+	height: 50px;
+}
+.mui-title{
+	color: #fff;
+}
+.mui-title{
+	line-height: 50px;
+	font-size: 20px;
+}
+a.mui-action-back{
+	color: #0680cb;
+	background: url(../image/icon-11-3.png) 16px center no-repeat;
+	width: 42px;
+	height: 50px;
+	background-size: 25px 25px;
+}
+.mui-bar .mui-icon{
+	font-size: 0;
+}
+.mui-bar-nav~.mui-content{
+	padding-top: 50px;
+}
+.mui-segmented-control .mui-control-item{
+	color: #868686;
+	border-left:0;
+	line-height: 55px;
+	font-size: 16px;
+}
+#ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/icon-1.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+/*xupeng start */
+#fresh_air_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/paifengji.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+#lighting_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/icon-4.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+
+#air_condition_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/icon-1.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+#guard_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/icn-6.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+#monitoring_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/icon-5.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+#sewage_ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
+	background: url(../image/icon-3.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 50px;
+}
+
+/*xupeng end*/
+
+
+#sliderSegmentedControl{
+	background: #f7f7f7;
+	border-bottom:1px solid #dedede;
+	height:55px;
+}
+/* xupeng start*/
+#sliderSegmentedControl a{
+	color:#454545;
+	line-height: 55px;
+}
+/* xupeng end*/
+.mui-slider .mui-slider-group{
+	background: #fff;
+	margin-top: 20px;
+	height: auto!important;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+	border-top:1px solid #dedede;
+	border-bottom:0;
+}
+.mui-ellipsis-2{
+	color: #222;
+	font-weight: normal;
+}
+.mui-table-cell{
+	color: #5c5c5c;
+}
+.mui-table-cell h4{
+	font-size:15px;
+}
+#ss .mui-table{
+	background: url(../image/icon-prev.png) center right no-repeat;
+	background-size: 18px 18px;
+}
+
+.mui-ellipsis-2 .bj-jb{
+	color:#df0001;
+	float: right;
+	font-size:16px;
+	line-height: 17px;
+}
+.gj-title .mui-table-view-cell{
+	margin-bottom: 20px;
+	border-bottom:1px solid #dedede;
+}
+#handle{
+	margin-top: 30px;
+	position: relative;
+
+}
+#handle ul{
+	padding: 0 0 20px;
+}
+.handle-line{
+	position: absolute;
+	width: 1px;
+	background: #dedede;
+	left: 10px;
+	height: 100%;
+	top:20px;
+	z-index: 5;
+}
+.handle-end{
+	position: absolute;
+	bottom:-10px;
+	left: -9px;
+	width: 40px;
+	height: 20px;
+	color: #dadada;
+	line-height: 16px;
+	font-size: 14px;
+	text-align: center;
+	background: #e2e6e7;
+	border-radius: 20px;
+	border: 1px solid #dadada;
+	font-weight: normal;
+	z-index: 6;
+}
+#handle span{
+	position: absolute;
+	left: 0;
+	top:10px;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	line-height: 16px;
+	font-size: 14px;
+	text-align: center;
+	background: #1f95dd;
+	border-radius: 50%;
+	border: 1px solid #0681c7;
+	font-weight: normal;
+	z-index: 6;
+
+}
+#handle h3{
+	position: relative;
+	border-top: 0;
+	border-bottom: 0;
+	padding: 10px 0 15px 30px;
+	line-height: 20px;
+
+}
+#handle div p{
+	padding:0 30px;
+	line-height: 30px;
+	font-size: 16px;
+	color: #454545;
+}
+
+.mui-segmented-control{
+	border:none;
+	border-bottom:1px solid #dedede;
+	background: #fff;
+}
+.mui-segmented-control .mui-control-item.mui-active{
+	background: #fff;
+	color: #0680cb;
+}
+/* xupeng start 此文件使用了三次.mui-segmented-control .mui-control-item，已经合并
+// .mui-segmented-control .mui-control-item{
+// 	color: #868686;
+// }
+
+// .mui-segmented-control .mui-control-item{
+// 	border-left:0;
+// }
+// xupeng end */
+
+#footer-nav{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 60px;
+	width: 100%;
+	background: #fff;
+	border-top: 1px solid #dedede;
+}
+#footer-nav a{
+	display: block;
+	width: 33.33%;
+	float: left;
+	padding:36px 0 0;
+	text-align: center;
+	color: #929292;
+}
+#footer-nav a p{
+	line-height: 24px;
+}
+#footer-nav a.message{
+	background: url(../image/icon-6.png) center 8px no-repeat;
+	background-size: 26px 26px;
+}
+#footer-nav a.message.current{
+	background: url(../image/icon-6-1.png) center 8px no-repeat;
+	background-size: 26px 26px;
+}
+#footer-nav a.work{
+	background: url(../image/icon-7.png) center 8px no-repeat;
+	background-size: 26px 26px;
+}
+#footer-nav a.work.current{
+	background: url(../image/icon-7-1.png) center 8px no-repeat;
+	background-size: 26px 26px;
+}
+#footer-nav a.mine{
+	background: url(../image/icon-8.png) center 8px no-repeat;
+	background-size: 26px 26px;
+}
+#footer-nav a.mine.current{
+	background: url(../image/icon-8-1.png) center 8px no-repeat;
+	background-size: 26px 26px;
+}
+#slider{
+	// margin: 50px 0 0;
+}
+
+.mui-slider .mui-slider-group .mui-slider-item,.mui-slider-indicator,.classify{
+	background: #fff;
+}
+
+#progress-btn{
+
+	width: 100%;
+	padding: 80px 0 30px;
+	height: 160px;
+	background: #fff;
+}
+#progress-btn p{
+	width: 50%;
+	float: left;
+}
+#progress-btn p a{
+	display: block;
+	width: 70%;
+	margin: 0 auto;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	background-color: #0680cb;
+	border-radius: 25px;
+	font-size: 16px;
+}
+
+.work-list{
+	width: 100%;
+}
+.work-list ul li{
+	background: #fff;
+	border-top:1px solid #dedede;
+	border-bottom:1px solid #dedede;
+	margin: 5px 0;
+	padding: 0 0 10px;
+}
+.work-list ul li h2{
+	font-size: 18px;
+	line-height: 40px;
+	border-bottom: 1px solid #dedede;
+	padding:0 10px;
+
+}
+.work-list ul li p{
+	line-height: 24px;
+	padding:10px 10px 20px;
+	font-size: 14px;
+}
+.work-list ul li h4{
+	font-weight: normal;
+	color: #8f8f94;
+	font-size: 15px;
+	padding: 0 10px;
+	line-height: 20px;
+
+}
+.work-list ul li h4 span{
+	display: inline-block;
+	width: 60px;
+	text-align: center;
+	line-height: 20px;
+	border-radius: 5px;
+	color: #fff;
+	margin: 0 10px 0 0;
+}
+.work-list ul li h4 span.has-un{
+	background: #dd0000;
+}
+.work-list ul li h4 span.has-ok{
+	background: #90c31c;
+}
+.work-list ul li h4 span.has-ing{
+	background: #0680cb;
+}
+.work-list ul li h4 a{
+	float: right;
+	padding: 0 20px 0 0;
+	background: url(../image/icon-prev.png) center right no-repeat;
+	background-size: 16px 16px;
+
+}
+
+/*xupeng start*/
+#scroll2{
+	background: #F1F1F1;
+}
+#scroll2 .mui-table-view{
+	background: #f1f1f1;
+}
+#scroll2 .mui-table-view-cell{
+	margin-bottom: 10px;background: #fff;
+}

@@ -1,0 +1,41 @@
+.headerBox{
+	width:100%;
+	min-width:320px;
+	height:280px;
+	background:#299CEF;
+	position: relative;
+	margin-bottom:15px;
+}
+.headerTitle{
+	color:#FFF;
+	font-size:20px;
+	text-align:center;
+	padding-top:8%;
+}
+.headerUser{
+	position: absolute;
+	left:50%;
+	top:50%;
+	-webkit-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	display:inline-block;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.loginInp{
+	width:85% !important;
+}
+label.loginLab{
+	width:15% !important;
+}
+#loginApp{
+	width:90%;
+	border-radius:none;
+	padding:12px;
+	background:#299CEF;
+}
+.botLog{
+	padding-top:50px;
+}

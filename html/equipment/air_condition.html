@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>空调</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<style>
+			.mui-slider-indicator.mui-segmented-control.mui-segmented-control-inverted{
+				border-bottom:2px solid #c8c7cc;
+			}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+				border:none;
+			}
+			.mui-control-content {
+				background-color: white;
+				min-height: 345px;
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+		</style>	
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav topColor">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color:#FFF;">设备监控</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#realTime">实时</a>
+					<a class="mui-control-item" href="#alarm">告警</a>
+					<a class="mui-control-item" href="#analysis">统计分析</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div id="realTimelist" class="mui-scroll">
+								<div class='mui-loading'>
+									<div class='mui-spinner'></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="alarm" data-state="alarm" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div id="alarmlist" class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="analysis" data-state="analysis" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div id="analysislist" class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item" href="#air_real_time">
+						实时
+					</a>
+					<a class="mui-control-item" href="#air_alarm">
+						告警
+					</a>
+					<a class="mui-control-item" href="#air_statistical_analysis">
+						统计分析
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="air_condition_ss">
+									<li class="mui-table-view-cell" >
+										<div class="mui-table mui-navigate-right">
+										    <div class="mui-table-cell mui-col-xs-10">
+							                    <h4 class="mui-ellipsis-2">CC-1</h4>						        
+							                	<div style="display: inline;">数量：</div> 
+							                	<div style="display: inline;">23台</div>
+							                	<div style="display: inline; margin-left: 25px;">ON：</div>
+							                	<div style="display: inline;">18</div>
+							                	<div style="display: inline; margin-left: 25px;">OFF：</div>
+							                	<div style="display: inline;">5</div>
+										    </div>
+							           </div>
+									</li>
+								</ul>
+							</div>		
+						</div>
+					</div>
+					<div id="air_alarm" class="mui-slider-item mui-control-content">						
+						<div id="scroll2" class="mui-scroll-wrapper">							
+							<div class="mui-scroll clearfix">
+								<div>
+									<div class="mui-content-padded searchData">
+										<div class="mui-input-row mui-search">
+											<input type="search" class="mui-input-clear" placeholder="请输入关键字" />
+										</div>
+									</div>
+									<ul class="mui-col-xs-12 barNav clearfix">
+										<li class="mui-col-xs-3">排序
+											<span class="mui-icon mui-icon-arrowdown"></span>
+										</li>
+										<li class="mui-col-xs-3">未处理
+											<span class="mui-icon mui-icon-arrowdown"></span>
+										</li>
+										<li class="mui-col-xs-3" style="border:none;">与我相关
+											<span class="mui-icon mui-icon-arrowdown"></span>
+										</li>
+									</ul>
+								</div>
+								<div>
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-col-xs-12" >
+											<div class="mui-table">
+											    <div class="mui-table-cell mui-col-xs-10">
+											    	<div style="display: inline;float: left;">
+											    		<h4 class="mui-ellipsis-2">CC-1 2-01</h4>
+									                </div>
+									                <div style="display: inline;float:right;margin-right: 20px;">
+									                	低
+								                   	</div>							                   	
+								                    <hr width="100%"/>
+								                	<div style="display: block;">室内机定时灯快闪、外机点检内机台数减少或变化不定，某些室内机不制冷等。</div> 
+								                	<div>
+									                	<div class="yj" style="display: inline; background:#DC0000;color: white;text-align:center;line-height:30px;float: left;"">未处理</div>
+									                	<div style="display: inline; margin-left: 25px;float:left;line-height:30px;">2016-04-25 13:01</div>
+									                	<div style="display: inline; margin-left: 25px;color:#2589CE;line-height:30px;float: right;">查看详情</div>
+											    	</div>
+								                </div>							                
+								          	</div>    
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div style="height: auto; margin-top: -15px;margin-bottom:80px;float: inherit;">
+								<ul class="test_ul" style="text-align: left;">
+									<li>
+										<button style="width: auto;" id='start_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择开始时间</button>
+									</li>
+									<li>
+										<button style="width: auto;" id='end_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择结束时间</button>
+									</li>
+								</ul>
+							</div>
+							<div class="mui-content">
+								<div style="padding: 10px 10px;">
+									<div id="segmentedControl" class="mui-segmented-control">
+										<a class="mui-control-item mui-active" href="#item1">
+											故障统计
+										</a>
+										<a class="mui-control-item" href="#item2">
+											耗电量统计
+										</a>
+									</div>									
+								</div>								
+							</div>
+							
+							<div style="margin-top: 50px;">
+								<div id="item1" class="mui-control-content mui-active">
+									<div id="scroll" class="mui-scroll-wrapper">
+										<div class="mui-scroll">
+											<div class="mui-content" style="margin-top: 0px;">
+												<div >
+													<div class="chart" id="lineChart">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>					
+								</div>
+								
+								<div id="item2" class="mui-control-content mui-active">
+									<div id="scroll" class="mui-scroll-wrapper">
+										<div class="mui-scroll">
+											<div class="mui-content" style="margin-top: 0px;">
+												<div>
+													<div class="chart" id="lineChart2">
+														
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<script id="realTimeTmpl" type="text/html">
+			<ul class="mui-table-view">
+				{{each beans}}
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media">
+						<a class="mui-navigate-right" href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+							<div class="mui-media-body">
+								CC-1{{$value.devicePositionCode}}
+								<p class='mui-ellipsis'>
+									<span>数量:</span>
+									<span>{{$value.guarantee}}台</span>
+								</p>
+							</div>
+						</a>
+					</li>
+				{{/each}}
+			</ul>
+		</script>
+		<script id="alarmTmpl" type="text/html">
+			<ul class="mui-table-view">
+				{{each beans}}
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media">
+						<a class="mui-navigate-right" href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+							<div class="mui-media-body">
+								CC-1{{$value.devicePositionCode}}
+								<p class='mui-ellipsis'>
+									<span>数量:</span>
+									<span>{{$value.guarantee}}台</span>
+								</p>
+							</div>
+						</a>
+					</li>
+				{{/each}}
+			</ul>
+		</script>
+		<script id="analysisTmpl" type="text/html">
+			<ul class="mui-table-view">
+				{{each beans}}
+					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media">
+						<a class="mui-navigate-right" href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+							<div class="mui-media-body">
+								{{$value.devicePositionCode}}
+								<p class='mui-ellipsis'>
+									<span>数量:</span>
+									<span>{{$value.guarantee}}台</span>
+								</p>
+							</div>
+						</a>
+					</li>
+				{{/each}}
+			</ul>
+		</script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/echarts-all.js"></script>
+		<script src="../../js/template.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function(){
+				var resHeight = window.innerHeight - 84;
+				mui('.mui-control-content').each(function(){
+					this.setAttribute("style","min-height:"+resHeight+"px;");
+					var isActive = this.classList.contains('mui-active') ? true : false;
+					if(isActive){
+						var state = this.getAttribute('data-state');
+						if(state == 'realTime'){
+						    setTimeout(function() {
+								getrealTime();
+							}, 500);
+						}else if(state == 'alarm'){
+							setTimeout(function() {
+								getalarmTime();
+							}, 500);
+						}else{
+							setTimeout(function() {
+								getanalysisTime();
+							}, 500);
+						}
+					}
+					
+				});
+				var alarm = document.getElementById('alarm');
+				var analysis = document.getElementById('analysis');
+				document.getElementById('slider').addEventListener('slide', function(e) {
+					if (e.detail.slideNumber === 1) {
+						if (alarm.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								getalarmTime();
+							}, 500);
+						}
+					} else if (e.detail.slideNumber === 2) {
+						if (analysis.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								getanalysisTime();
+							}, 500);
+						}
+					}
+				});
+				
+			    mui('.mui-scroll-wrapper').scroll({
+			        indicators: true //是否显示滚动条
+			    });
+			});
+			//获取实时数据
+			function getrealTime() { //获取工单列表
+				var count = 1;
+				mui.ajax({
+					url:'./json/realTime.json',
+					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					type: "get",
+					async: true,
+					data: {
+						uid: 'i002',
+						pageSize:'5',
+						dictValue:'', 
+						eventProcessStatus:'',
+						eventType:3
+					},
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {
+						var realTimelist = document.getElementById("realTimelist");
+						var html = template('realTimeTmpl', data);
+						if(count==1){
+							realTimelist.innerHTML = html;
+						}else{
+							realTimelist.innerHTML += html;
+						}
+						count++;
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('数据加载失败!');
+							return;
+						}
+					}
+				});
+			};
+			//获取警告数据
+			function getalarmTime() { //获取工单列表
+				var count = 1;
+				mui.ajax({
+					url:'./json/realTime.json',
+					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					type: "get",
+					async: true,
+					data: {
+						uid: 'i002',
+						pageSize:'5',
+						dictValue:'', 
+						eventProcessStatus:'',
+						eventType:3
+					},
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {
+						var getalarmlist = document.getElementById("alarmlist");
+						var html = template('alarmTmpl', data);
+						if(count==1){
+							getalarmlist.innerHTML = html;
+						}else{
+							getalarmlist.innerHTML += html;
+						}
+						count++;
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('数据加载失败!');
+							return;
+						}
+					}
+				});
+			};
+			//获取统计分析数据
+			function getanalysisTime() { //获取工单列表
+				var count = 1;
+				mui.ajax({
+					url:'./json/realTime.json',
+					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					type: "get",
+					async: true,
+					data: {
+						uid: 'i002',
+						pageSize:'5',
+						dictValue:'', 
+						eventProcessStatus:'',
+						eventType:3
+					},
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {
+						var getanalysislist = document.getElementById("analysislist");
+						var html = template('analysisTmpl', data);
+						if(count==1){
+							getanalysislist.innerHTML = html;
+						}else{
+							getanalysislist.innerHTML += html;
+						}
+						count++;
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('数据加载失败!');
+							return;
+						}
+					}
+				});
+			};
+		</script>
+	</body>
+
+</html>

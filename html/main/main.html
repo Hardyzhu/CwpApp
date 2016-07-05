@@ -1,0 +1,104 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-24
+	描述：首页主窗体
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>智慧园区</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	</head>
+
+	<body>
+		<!--顶部栏-->
+		<header class="mui-bar mui-bar-nav topColor">
+			<h1 class="mui-title" style="color:#FFF;">智慧园区</h1>
+		</header>
+		<!--底部选项栏-->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item" data-href="message.html">
+				<span class="mui-icon mui-icon-email"></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item mui-active" data-href="home.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" data-href="user.html">
+				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			// 主窗口和侧滑窗口
+			var main = null,
+				menu = null;
+			mui.init();
+			mui.plusReady(function() {
+				main = plus.webview.currentWebview();
+				var title = document.querySelector(".mui-title");
+				// 将子窗口的地址存在数组中，方便进行遍历，创建子窗口；
+				var subpageArr = ["message.html", "home.html", "user.html"];
+				/**
+				 * 设置子窗口的样式，顶部默认44px，底部默认50px，并且设置窗口无滚动条；
+				 */
+				var subStyles = {
+					top: "45px",
+					bottom: "50px",
+					scrollIndicator: "none"
+				};
+				// 生成三个子窗口，并添加至主窗口；
+				var subpage = null;
+				for (var i = 0, subLength = subpageArr.length; i < subLength; i++) {
+					subpage = plus.webview.create(subpageArr[i], subpageArr[i], subStyles);
+					if (i != 1) {
+						subpage.hide("none");
+					}
+					main.append(subpage);
+				}
+				/**
+				 * 子页面切换
+				 */
+				var tabs = document.querySelectorAll(".mui-tab-item");
+				// 设置中间变量，用于存储当前处于展示状态窗口的标识（这里用的标识是窗口的相对地址），默认是第一个窗口；
+				var activeTab = subpageArr[1];
+				var targetTab = "";
+				for (var j = 0, tabLength = tabs.length; j < tabLength; j++) {
+					tabs[j].addEventListener("tap", function() {
+						targetTab = this.getAttribute("data-href");
+						if (targetTab === activeTab) {
+							return;
+						}
+						// 改变顶部栏的文字
+						title.innerHTML = this.querySelector(".mui-tab-label").innerHTML;
+						plus.webview.show(targetTab, "fade-in", 300);
+						plus.webview.hide(activeTab);
+						activeTab = targetTab;
+					});
+				}
+			});
+			
+			//退出
+			var first = null;
+			mui.back = function() {
+				if (!first) {
+					first = new Date().getTime();
+					plus.nativeUI.toast("再按一次退出应用");
+					setTimeout(function() {
+						first = null;
+					}, 1000);
+				} else {
+					if (new Date().getTime() - first < 1000) {
+						plus.runtime.quit();
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

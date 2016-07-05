@@ -1,0 +1,47 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-24
+	描述：APP入口
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>智慧园区</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				// 仅支持竖屏显示
+				plus.screen.lockOrientation("portrait-primary");
+				var first = plus.storage.getItem("IsFrist");
+				if (first) {
+					//跳转到main页面
+					mui.openWindow({
+						url: "html/main/main.html",
+						id: "main",
+						waiting: {
+							autoShow: false
+						}
+					});
+				} else {
+					//加载app动画
+					mui.openWindow({
+						url: "guide.html",
+						id: "guide",
+						waiting: {
+							autoShow: false
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

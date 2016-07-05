@@ -1,0 +1,193 @@
+<!--
+	作者：yeshengqiang
+	时间：2015-12-21
+	描述：登录页面
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>智慧园区</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/login.css" />
+	</head>
+	<body>
+		<!--userLogo-->
+		<div class="headerBox">
+			<p class="headerTitle">智慧园区</p>
+			<span class="headerUser">
+				<img src="../../image/user.jpg" width="130"/>
+			</span>
+		</div>
+		<!--登录框-->
+		<div class="mui-content-padded" style="margin:0;">
+			<div class="mui-input-group mb15">
+				<div class="mui-input-row" >
+					<label class="loginLab"><span class="mui-icon mui-icon-contact"></span></label>
+					<input class="loginInp" id="userPhone" type="text" placeholder="请输入用户名...">
+				</div>
+			</div>
+			<div class="mui-input-group mb15">
+				<div class="mui-input-row mui-password">
+					<label class="loginLab"><span style="color:#000;" class="mui-icon mui-icon-locked"></span></label>
+					<input class="loginInp" id="userPassword" type="password"  class="mui-input-password" placeholder="请输入用户名...">
+				</div>
+			</div>
+			<div class="mui-text-right mb15">
+				<a style="color:#289CEF;" href="javascript:void(0);">忘记密码？</a>
+			</div>
+			<div class="mui-button-row">
+				<button type="button" id="loginApp" class="mui-btn mui-btn-primary">确认</button>
+			</div>
+			<div class="mui-text-center botLog">
+				<img src="../../image/logobottom.jpg" alt="logo" />
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				preloadPages:[{                      //预加载页面
+				    id:'message',
+				    url:'../main/message.html'           
+				}]
+			});
+			mui.plusReady(function() {                
+				var self = plus.webview.currentWebview();
+				var entrance = self.entrance;
+				var wvs = plus.webview.all();
+				var fristWv = plus.webview.getLaunchWebview();
+				// 关闭除当前页以及入口页面外所有页面
+				for (var i = 0; i < wvs.length; i++) {
+					if (wvs[i].getURL() == self.getURL() || wvs[i].getURL() == fristWv.getURL()) {
+						continue;
+					}
+					wvs[i].close("none");
+				}
+				var first = null;
+				mui.back = function() {
+					if (!first) {
+						first = new Date().getTime();
+						plus.nativeUI.toast("再按一次退出应用");
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if (new Date().getTime() - first < 1000) {
+							plus.runtime.quit();
+						}
+					}
+				};
+				//}
+				/**
+				 * 点击登录按钮，进行登录；
+				 */
+				document.getElementById("loginApp").addEventListener("tap", function() {
+					var uphone = document.getElementById("userPhone").value.trim();
+					var upwd = document.getElementById("userPassword").value.trim();
+					if(uphone==''||uphone==null){
+						mui.toast('请输入用户名');
+						return
+					}else if(upwd==''||upwd==null){
+						mui.toast('请输入密码');
+						return
+					}
+					loginByPhone(uphone, upwd);
+				});
+			});
+
+			function loginByPhone(uphone, upwd) { //调用登录接口
+				var message = null;
+				var self = null;
+				
+				/**
+				 * 测试用
+				 */
+				mui.openWindow({
+					url: "../main/main.html",
+					id: "main",
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						entrance: "login"
+					}
+				});
+				/*mui.ajax({
+					type: "get",
+					url: "http://192.168.92.199:28090/cwp/front/sh/login!login",
+					async: true,
+					data: {
+						uid:'L001',
+						loginName:uphone,
+						loginPwd:upwd
+					},
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {
+						if (data.returnCode == "0") {
+							mui.toast('登录成功!');
+							var obj = data.object;
+							var str = JSON.stringify(obj);
+							plus.storage.setItem("userInfo", str);
+							if(!self){
+								self = plus.webview.currentWebview();
+							}
+							if(!message)
+							{
+								message = plus.webview.getWebviewById('message');
+							}
+							// 根据入口不同，进行的操作也不同，具体参数在两个入口处都有区分；
+							if (self.entrance === "user") {
+								mui.openWindow({
+									url: "../user/user.html",
+									id: "user",
+									waiting: {
+										autoShow: false
+									},
+									extras: {
+										entrance: "login"
+									}
+								});
+							} else {
+								mui.openWindow({
+									url: "../main/main.html",
+									id: "main",
+									waiting: {
+										autoShow: false
+									},
+									extras: {
+										entrance: "login"
+									}
+								});
+							}
+							plus.nativeUI.showWaiting();
+							mui.fire(message, "getMessage", {
+								isLogin:str
+							});
+							setTimeout(function() {
+								plus.nativeUI.closeWaiting();
+							}, 200);
+						}else if(data.returnCode == "1"){
+							mui.toast('该用户不存在!');
+							return;
+						}
+						
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('登录失败!');
+							return;
+						}
+						
+					}
+				});*/
+			}
+		</script>
+	</body>
+
+</html>
