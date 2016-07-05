@@ -556,6 +556,12 @@
 	"html/task/securityAlarmDetail.html": {
 		"refer": [
 			"html/task/securityReport.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		]
 	},
 	"html/home/maintenance.html": {
@@ -573,6 +579,13 @@
 	"html/task/maintenanceReport.html": {
 		"refer": [
 			"html/main/message.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/template.js"
 		]
 	},
 	"html/task/maintenanceDetail.html": {
