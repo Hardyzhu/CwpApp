@@ -8,85 +8,97 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!--标准mui.css-->
-		<link rel="stylesheet" href="../../css/mui.min.css">
-		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css"/>
 		<style>
-        	.onTimeDetail ul{
-        		float: right;
-        		display: flex;
-        		justify-content: space-between;
+			.headerBarBox{
+				background:#FFF;
+				padding-top:10px;
+			}
+			.headBar{
+				padding:15px;
+				background:#F1F1F1;
+				font-size:1.6rem;
+				font-weight: 600;
+				color: #9C9C9C;
+				border-top:1px solid #DEDEDE;
+				border-bottom:1px solid #DEDEDE;
+			}
+        	.comul li{
+        		float:right;
+        		margin-left:10px;
         	}
-        	.onTimeDetail li{
-				display: flex;justify-content: space-between;align-items:center;margin-right: 4px;
+        	.comul li span{
+				font-size:1.3rem;
+				color:#BFBFBF;
         	}
-        	.onTimeDetail li .status{
-        		width: 7px;height: 7px;display: block;float: left;margin-right: 5px;
+        	.comul li span.quire{
+        		display:inline-block;
+        		vertical-align: 2px;
+        		width:7px;
+        		height:7px;		
+        		overflow: hidden;
         	}
-        	.onTimeDetail .gray{
-        		background: #DFDFDF;
+        	.colorgray{
+        		background:#BFBFBF;
         	}
-        	.onTimeDetail .blue{
-        		background: #0680CB;
+        	.colorblue{
+        		background:#0581CB;
         	}
-        	.onTimeDetail .small-problem{
-        		background: #FFC000;
+        	.coloryellow{
+        		background:#FFC000;
         	}
-        	.onTimeDetail .big-problem{
-        		background: #CA0607;
-        	}
-        	.onTimeDetail .buttons-group{
-        		display: flex;flex-wrap: wrap;margin-top: 20px;
-        	}
-        	.onTimeDetail .buttons-group p{
-        		width:100%;display: flex;flex-direction: row-reverse;
-        	}
-        	.onTimeDetail .buttons-group p span.icon{
-        		display: block;width:20px;height: 20px;background: url(../);
-        	}
-        	.onTimeDetail .buttons-group a{
-        		display: block;border-radius: 2px;color: #fff;text-align: center;margin-right: 3%;margin-top: 20px;
+        	.colorred{
+        		background:#CA0607;
         	}
         </style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav topColor">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title" style="color:#FFF;">设备监控</h1>
+			<h1 class="mui-title" style="color:#FFF;">实时</h1>
 		</header>
 		<div class="mui-content">
-			<div class="onTimeDetail mui-table-view-cell">	
-				<div class="onTimetitle mui-table">
-					<span>CC-1</span>
-					<ul class="ul-flex mui-table-cell mui-col-xs-9">
+			<div class="mui-col-xs-12 headerBarBox">
+				<div class="mui-col-xs-12 clearfix headBar">
+					<span class="fl">cc-1c</span>
+					<ul class="comul fr">
 						<li>
-							<span class="status gray"></span>
-							<span class="word">关闭</span>
+							<span class="quire colorred"></span>
+							<span>严重故障</span>
 						</li>
 						<li>
-							<span class="status blue"></span>
-							<span class="word">正常运行</span>
+							<span class="quire coloryellow"></span>
+							<span>小故障</span>
 						</li>
 						<li>
-							<span class="status small-problem"></span>
-							<span class="word">小故障</span>
+							<span class="quire colorblue"></span>
+							<span>正常运行</span>
 						</li>
 						<li>
-							<span class="status big-problem"></span>
-							<span class="word">严重故障</span>
+							<span class="quire colorgray"></span>
+							<span>关闭</span>
 						</li>
 					</ul>
-					<div class="buttons-group">
-						<p><span>点击查看设备详情</span><span class="icon"></span></p>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 big-problem">aaa</a>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 small-problem">aaa</a>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 blue">aaa</a>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 gray">aaa</a>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 gray">aaa</a>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 big-problem">aaa</a>
-						<a href="javascript:;" onclick="showDetail()" class="mui-col-xs-2 small-problem">aaa</a>
+				</div>
+			</div>
+			<div class="mui-col-xs-12">
+				<div style="margin-bottom:5px;background:#FFF;">
+					<div class="mui-col-xs-12" style="padding:15px;">
+						<span style="color:#222222;">第一层</span>
+						<span class="mui-pull-right" style="font-size:1.4rem;color:#6C6C6C;">
+							<span class="mui-icon mui-icon-info" style="font-size:1.5rem;vertical-align: 1px;"></span>点击查看设备详情
+						</span>
 					</div>
-				</div>						
-			</div>	
+					<div class="mui-text-center" style="padding:0 15px 13px 15px;">
+						<span class="colorblue" style="color:#FFF;display:inline-block;width:68px;height:30px;margin-bottom:4px;line-height:30px;text-align:center;">A101</span>
+						<span class="coloryellow" style="color:#FFF;display:inline-block;width:68px;height:30px;margin-bottom:4px;line-height:30px;text-align:center;">A101</span>
+						<span class="colorgray" style="color:#FFF;display:inline-block;width:68px;height:30px;margin-bottom:4px;line-height:30px;text-align:center;">A101</span>
+						<span class="colorred" style="color:#FFF;display:inline-block;width:68px;height:30px;margin-bottom:4px;line-height:30px;text-align:center;">A101</span>
+						<span class="colorred" style="color:#FFF;display:inline-block;width:68px;height:30px;margin-bottom:4px;line-height:30px;text-align:center;">A101</span>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script id="realTimeTmpl" type="text/html">
 			<ul class="mui-table-view">
@@ -106,29 +118,13 @@
 				{{/each}}
 			</ul>
 		</script>
-		<script src="../../js/mui.min.js"></script>
-		<script src="../../js/echarts-all.js"></script>
-		<script src="../../js/template.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/echarts-all.js"></script>
+		<script src="../../../js/template.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function(){
-				var resHeight = window.innerHeight - 84;
-				mui('.mui-control-content').each(function(){
-					this.setAttribute("style","min-height:"+resHeight+"px;");
-					var isActive = this.classList.contains('mui-active') ? true : false;
-					if(isActive){
-						var state = this.getAttribute('data-state');
-						if(state == 'realTime'){
-						    setTimeout(function() {
-								getrealTime();
-							}, 500);
-						}
-					}
-					
-				});
-			    mui('.mui-scroll-wrapper').scroll({
-			        indicators: true //是否显示滚动条
-			    });
+				
 			});
 			//获取实时数据
 			function getrealTime() { //获取工单列表
