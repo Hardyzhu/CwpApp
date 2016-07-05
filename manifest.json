@@ -762,6 +762,27 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"html/task/securityAlarmDetail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/task/maintenanceReport.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"index": {
