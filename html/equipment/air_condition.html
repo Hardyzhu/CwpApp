@@ -244,18 +244,20 @@
 		<script id="realTimeTmpl" type="text/html">
 			<ul class="mui-table-view">
 				{{each beans}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media realTime">
+					{{if $value.deviceNum!=0}}
+					<li data-id="{{$value.buildingId}}" class="mui-table-view-cell mui-media realTime">
 						<a class="mui-navigate-right" href="javascript:;">
 							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
 							<div class="mui-media-body">
-								CC-1{{$value.devicePositionCode}}
+								{{$value.buildingDesc}}
 								<p class='mui-ellipsis'>
 									<span>数量:</span>
-									<span>{{$value.guarantee}}台</span>
+									<span>{{$value.deviceNum}}台</span>
 								</p>
 							</div>
 						</a>
 					</li>
+					{{/if}}
 				{{/each}}
 			</ul>
 		</script>
@@ -350,16 +352,12 @@
 			function getrealTime() { //获取工单列表
 				var count = 1;
 				mui.ajax({
-					url:'./json/realTime.json',
-					//url: http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
+					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
 					type: "get",
 					async: true,
 					data: {
-						uid: 'i002',
-						pageSize:'5',
-						dictValue:'', 
-						eventProcessStatus:'',
-						eventType:3
+						uid: 'i0011',
+						deviceTypeCode:'1003185'
 					},
 					dataType: "json",
 					timeout: 10000,
