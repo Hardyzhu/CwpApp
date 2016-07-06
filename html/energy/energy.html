@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>能耗</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+		<!-- App自定义的css -->
+		<!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+	</head>
+
+	<body>
+		<style>
+			.mui-control-content {background-color: white;min-height: 800px;}
+			.mui-control-content .mui-loading {margin-top: 50px;}
+			.top{background:#f1f1f1}/*设置历史情况背景颜色*/
+			.history{padding:10px;font-size: 14px;color:#aeaeae} /*历史情况*/
+			.history .tbn{float: right;background-color: #fff;font-size: 12px;padding: 0 3px;border:1px solid #d4d4d4;border-radius: 3px;} /*历史数据button*/
+			.today{display: block;padding:0 10px 10px 10px;font-size: 14px;color: #3d3d3d;} /*今日耗电量*/
+			.mui-slider .mui-slider-group{margin-top: 0;}  /*调整头部间距*/
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border-top: none}/*去掉头部边界限*/
+		</style>
+		
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">能耗</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item" href="#air_real_time">
+						实时
+					</a>					
+					<a class="mui-control-item" href="#air_statistical_analysis">
+						统计分析
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+
+				<div class="mui-slider-group">
+					<div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="top">
+								<div class="history">
+									周三 2016-07-05 18:04
+									<span class="tbn">历史数据</span><br>
+								</div>
+								<span class="today">今日总耗电量：347.9kws</span>
+							</div>
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="energy_ss">
+									<li class="mui-table-view-cell" >
+										<div class="mui-table">
+										    <div class="mui-table-cell mui-col-xs-10 mui-navigate-right">
+							                    <h4 class="mui-ellipsis-2">CC-1</h4>
+							                	<div style="display: inline;color:#aeaeae">耗电量：</div>
+							                	<div style="display: inline;color:#aeaeae">98.3kwh</div>
+										    </div>
+							            </div>
+							        </li>
+									<li class="mui-table-view-cell">
+										<div class="mui-table">
+										    <div class="mui-table-cell mui-col-xs-10 mui-navigate-right">
+							                    <h4 class="mui-ellipsis-2">CC-2</h4>
+												<div style="display: inline;color:#aeaeae">耗电量：</div>
+												<div style="display: inline;color:#aeaeae">98.3kwh</div>
+										    </div>
+							            </div>
+									</li>
+									<li class="mui-table-view-cell">
+										<div class="mui-table">
+										    <div class="mui-table-cell mui-col-xs-10 mui-navigate-right">
+							                    <h4 class="mui-ellipsis-2">CC-3</h4>
+												<div style="display: inline;color:#aeaeae">耗电量：</div>
+												<div style="display: inline;color:#aeaeae">98.3kwh</div>
+										    </div>
+							            </div>
+									</li>
+								</ul>
+							</div>
+							<!--
+                            	作者：offline
+                            	时间：2016-06-02
+                            	描述：展示
+                            -->
+							<div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="air_statistical_analysis" class="mui-slider-item mui-control-content"></div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+		<script src="../../js/mui.min.js"></script>
+
+
+
+
+			
+	</body>
+
+</html>

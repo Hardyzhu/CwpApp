@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>能耗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="../../css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+    <!-- App自定义的css -->
+    <!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+</head>
+
+<body>
+<style>
+    .mui-control-content {background-color: white;min-height: 800px;}
+    /*.mui-control-content .mui-loading {margin-top: 50px;}*/
+    .top{background:#f1f1f1}/*设置历史情况背景颜色*/
+    .history{padding:10px;font-size: 14px;color:#aeaeae} /*历史情况*/
+    .history .tbn{float: right;background-color: #fff;font-size: 12px;padding: 0 3px;border:1px solid #d4d4d4;border-radius: 3px;} /*历史数据button*/
+    /*.today{display: block;padding:0 10px 10px 10px;font-size: 14px;color: #3d3d3d;} *//*今日耗电量*/
+    .mui-slider .mui-slider-group{margin-top: 0;background: transparent}  /*调整头部间距及颜色*/
+    .mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border-top: none}/*去掉头部边界限*/
+    .mui-slider .mui-slider-group .mui-slider-item, .mui-slider-indicator, .classify{background: transparent} /*设置背景颜色为透明*/
+    .mui-control-content{background: transparent} /*设置背景颜色为透明*/
+    /*.mui-table{padding:10px;background-color: #FFFFFF;margin-bottom: 10px}*//*楼层容器*/
+    /*.color-block{background-color: #007aff;line-height: 30px;padding: 0 20px;color: #FFFFFF;}*//*设备容器*/
+    /*.col-float{float: left;padding:5px}*//*设备容器 浮动*/
+    /*.mui-ellipsis-2{padding: 0 5px}*//*标题padding*/
+    .mui-ellipsis-2 .data{padding-left: 10px;color: #000}/*标题数据间距*/
+    /*.see{font-size: 14px;float: right;color: #aeaeae;}*//*查看详情样式*/
+    .right-time{font-size: 14px;right: 35px;top:12px;color: #aeaeae;position: absolute}/*查看详情样式*/
+    .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding-right: 5px}/*查看详情“！”样式*/
+    .calendar-box{padding: 15px 10px}
+    .calendar-input{width:42%;height:30px;padding: 5px 10px;font-size: 14px;;border: 1px solid #CCC;background:#FFFFFF url(../../image/icon-003.png) no-repeat right 3px;border-radius: 3px;position: relative}
+    .calendar-btn{width:14%;height: 30px;padding: 5px;background-color:#007aff;border-radius: 3px;text-align: center;float: right;}
+    .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding: 2px;}
+</style>
+
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">能耗</h1>
+</header>
+<div class="mui-content">
+    <div id="slider" class="mui-slider">
+        <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+            <a class="mui-control-item" href="#air_real_time">
+                实时
+            </a>
+            <a class="mui-control-item" href="#air_statistical_analysis">
+                统计分析
+            </a>
+        </div>
+        <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+
+        <div class="mui-slider-group">
+            <div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
+                <div id="scroll1" class="mui-scroll-wrapper">
+                    <div class="calendar-box">
+                        <input class="calendar-input"placeholder="请选择开始时间"/>
+                        <input class="calendar-input"placeholder="请选择结束时间"/>
+                        <span type="button" class="calendar-btn"><img src="../../image/icon-002.png"></span>
+                    </div>
+                    <ul class="mui-table-view" id="info">
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="javascript:;">总耗电量：347.8kws</a>
+                            <span class="right-time">2016-07-06</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="javascript:;">总耗电量：347.8kws</a>
+                            <span class="right-time">2016-07-06</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="javascript:;">总耗电量：347.8kws</a>
+                            <span class="right-time">2016-07-06</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="javascript:;">总耗电量：347.8kws</a>
+                            <span class="right-time">2016-07-06</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="javascript:;">总耗电量：347.8kws</a>
+                            <span class="right-time">2016-07-06</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="javascript:;">总耗电量：347.8kws</a>
+                            <span class="right-time">2016-07-06</span>
+                        </li>
+                    </ul>
+                    <div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
+                <div class="mui-content">
+                    <div class="mui-content-padded">
+                        <p style="text-indent: 22px;">
+                            这是mui集成百度ECharts的图表示例，ECharts的详细用法及 API 请参考其官方网站: <a id="echarts" data-url="http://echarts.baidu.com">http://echarts.baidu.com</a>
+                        </p>
+                    </div>
+                    <div class="mui-content-padded">
+                        <h5>柱图示例</h5>
+                        <div class="chart" id="barChart" style="height: 100px"></div>
+                        <h5>线图示例</h5>
+                        <div class="chart" id="lineChart"style="height: 100px"></div>
+                        <h5>饼图示例</h5>
+                        <div class="chart" id="pieChart"style="height: 100px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/echarts-all.js"></script>
+<script>
+    var getOption = function(chartType) {
+        var chartOption = chartType == 'pie' ? {
+            calculable: false,
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
+                data: [{
+                    value: 335,
+                    name: '直接访问'
+                }, {
+                    value: 310,
+                    name: '邮件营销'
+                }, {
+                    value: 234,
+                    name: '联盟广告'
+                }, {
+                    value: 135,
+                    name: '视频广告'
+                }, {
+                    value: 1548,
+                    name: '搜索引擎'
+                }]
+            }]
+        } : {
+            legend: {
+                data: ['蒸发量', '降水量']
+            },
+            grid: {
+                x: 35,
+                x2: 10,
+                y: 30,
+                y2: 25
+            },
+            toolbox: {
+                show: false,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['line', 'bar']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: false,
+            xAxis: [{
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }],
+            yAxis: [{
+                type: 'value',
+                splitArea: {
+                    show: true
+                }
+            }],
+            series: [{
+                name: '蒸发量',
+                type: chartType,
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+            }, {
+                name: '降水量',
+                type: chartType,
+                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+            }]
+        };
+        return chartOption;
+    };
+    var byId = function(id) {
+        return document.getElementById(id);
+    };
+    var barChart = echarts.init(byId('barChart'));
+    barChart.setOption(getOption('bar'));
+    var lineChart = echarts.init(byId('lineChart'));
+    lineChart.setOption(getOption('line'));
+    var pieChart = echarts.init(byId('pieChart'));
+    pieChart.setOption(getOption('pie'));
+    byId("echarts").addEventListener('tap',function(){
+        var url = this.getAttribute('data-url');
+        plus.runtime.openURL(url);
+    },false);
+</script>
+
+</body>
+
+</html>

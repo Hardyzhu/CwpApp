@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>能耗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="../../css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+    <!-- App自定义的css -->
+    <!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+</head>
+
+<body>
+<style>
+    .mui-control-content {background-color: white;min-height: 800px;}
+    /*.mui-control-content .mui-loading {margin-top: 50px;}*/
+    .top{background:#f1f1f1}/*设置历史情况背景颜色*/
+    .history{padding:10px;font-size: 14px;color:#aeaeae} /*历史情况*/
+    .history .tbn{float: right;background-color: #fff;font-size: 12px;padding: 0 3px;border:1px solid #d4d4d4;border-radius: 3px;} /*历史数据button*/
+    /*.today{display: block;padding:0 10px 10px 10px;font-size: 14px;color: #3d3d3d;} *//*今日耗电量*/
+    .mui-slider .mui-slider-group{margin-top: 0;background: transparent}  /*调整头部间距及颜色*/
+    .mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border-top: none}/*去掉头部边界限*/
+    .mui-slider .mui-slider-group .mui-slider-item, .mui-slider-indicator, .classify{background: transparent} /*设置背景颜色为透明*/
+    .mui-control-content{background: transparent} /*设置背景颜色为透明*/
+    .mui-table{padding:10px;background-color: #FFFFFF;margin-bottom: 10px}/*楼层容器*/
+    .color-block{background-color: #007aff;line-height: 30px;padding: 0 20px;color: #FFFFFF;}/*设备容器*/
+    .col-float{float: left;padding:5px}/*设备容器 浮动*/
+    .mui-ellipsis-2{padding: 0 5px}/*标题padding*/
+    .mui-ellipsis-2 .data{padding-left: 10px;color: #000}/*标题数据间距*/
+    .see{font-size: 14px;float: right;color: #aeaeae;}/*查看详情样式*/
+    .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding-right: 5px}/*查看详情“！”样式*/
+</style>
+
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">能耗</h1>
+</header>
+<div class="mui-content">
+    <div id="slider" class="mui-slider">
+        <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+            <a class="mui-control-item" href="#air_real_time">
+                实时
+            </a>
+            <a class="mui-control-item" href="#air_statistical_analysis">
+                统计分析
+            </a>
+        </div>
+        <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+
+        <div class="mui-slider-group">
+            <div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
+                <div id="scroll1" class="mui-scroll-wrapper">
+                    <div class="top">
+                        <div class="history">
+                           CC-01
+                        </div>
+                    </div>
+                    <div class="mui-scroll">
+                        <div class="mui-table">
+                            <div class="mui-table-cell mui-col-xs-10">
+                                <h4 class="mui-ellipsis-2">第一层<a class="data">12.3kws</a><a class="see"><img src="../../image/icon-001.png">点击查看设备详情</a></h4>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">空调：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">新风：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">排水：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">照明：8.9kwh</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mui-table">
+                            <div class="mui-table-cell mui-col-xs-10">
+                                <h4 class="mui-ellipsis-2">第二层<a class="data">12.3kws</a><a class="see"><img src="../../image/icon-001.png">点击查看设备详情</a></h4>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">空调：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">新风：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">排水：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">照明：8.9kwh</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mui-table">
+                            <div class="mui-table-cell mui-col-xs-10">
+                                <h4 class="mui-ellipsis-2">第三层<a class="data">12.3kws</a><a class="see"><img src="../../image/icon-001.png">点击查看设备详情</a></h4>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">空调：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">新风：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">排水：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">照明：8.9kwh</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mui-table">
+                            <div class="mui-table-cell mui-col-xs-10">
+                                <h4 class="mui-ellipsis-2">第一层<a class="data">12.3kws</a><a class="see"><img src="../../image/icon-001.png">点击查看设备详情</a></h4>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">空调：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">新风：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">排水：8.9kwh</div>
+                                </div>
+                                <div class="mui-col-xs-6 col-float">
+                                    <div class="color-block">照明：8.9kwh</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                        作者：offline
+                        时间：2016-06-02
+                        描述：展示
+                    -->
+                    <div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
+                <!--<div id="scroll3" class="mui-scroll-wrapper">-->
+                    <!--<div class="mui-content">-->
+                        <!--<div style="padding: 10px 10px;">-->
+                            <!--<div id="segmentedControl" class="mui-segmented-control">-->
+                                <!--<a class="mui-control-item mui-active" href="#item1">-->
+                                    <!--用电趋势-->
+                                <!--</a>-->
+                                <!--<a class="mui-control-item" href="#item2">-->
+                                    <!--分类用电量-->
+                                <!--</a>-->
+                                <!--<a class="mui-control-item" href="#item3">-->
+                                    <!--电费-->
+                                <!--</a>-->
+                                <!--<a class="mui-control-item" href="#item4">-->
+                                    <!--区域用电量-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<script src="../../js/mui.min.js"></script>
+
+
+
+</body>
+
+</html>
