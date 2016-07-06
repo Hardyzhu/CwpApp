@@ -6,7 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="../../css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
@@ -24,6 +23,28 @@
 			}
 			.mui-control-content .mui-loading {
 				margin-top: 50px;
+			}
+			.barNav{
+				list-style: none;
+				background: #FFFFFF;
+				padding:5px 0;
+				margin-bottom:10px;
+				border-top:1px solid #DEDEDE;
+				border-bottom:1px solid #DEDEDE;
+			}
+			.barNav li{
+				float:left;
+				border-right:1px solid #DEDEDE;
+				padding:4px 0;
+				font-size:1.4rem;
+				color:#9C9C9C;
+				text-align:center;
+			}
+			.mui-icon{
+				font-size:1.4rem;
+			}
+			.searchData{
+				margin: 15px 15px 0;
 			}
 		</style>	
 	</head>
@@ -51,10 +72,23 @@
 						</div>
 					</div>
 					<div id="alarm" data-state="alarm" class="mui-slider-item mui-control-content">
-						<div id="scroll2" class="mui-scroll-wrapper">
-							<div id="alarmlist" class="mui-scroll">
-								<div class="mui-loading">
-									<div class="mui-spinner"></div>
+						<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+							<div class="mui-scroll">
+								<ul class="mui-col-xs-12 barNav clearfix">
+									<li class="mui-col-xs-3">排序
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+									<li class="mui-col-xs-3">未处理
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+									<li class="mui-col-xs-3" style="border:none;">与我相关
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+								</ul>
+								<div class="mui-col-xs-12" id="alarmlist">
+									<div class="mui-loading">
+										<div class="mui-spinner"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -62,9 +96,9 @@
 					<div id="analysis" data-state="analysis" class="mui-slider-item mui-control-content">
 						<div id="scroll3" class="mui-scroll-wrapper">
 							<div id="analysislist" class="mui-scroll">
-								<div class="mui-loading">
+								<!--<div class="mui-loading">
 									<div class="mui-spinner"></div>
-								</div>
+								</div>-->
 							</div>
 						</div>
 					</div>
@@ -152,7 +186,6 @@
 							</div>
 						</div>
 					</div>
-					
 					<div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
 						<div id="scroll3" class="mui-scroll-wrapper">
 							<div style="height: auto; margin-top: -15px;margin-bottom:80px;float: inherit;">
@@ -174,10 +207,9 @@
 										<a class="mui-control-item" href="#item2">
 											耗电量统计
 										</a>
-									</div>									
-								</div>								
+									</div>
+								</div>
 							</div>
-							
 							<div style="margin-top: 50px;">
 								<div id="item1" class="mui-control-content mui-active">
 									<div id="scroll" class="mui-scroll-wrapper">
@@ -189,23 +221,20 @@
 												</div>
 											</div>
 										</div>
-									</div>					
+									</div>
 								</div>
-								
 								<div id="item2" class="mui-control-content mui-active">
 									<div id="scroll" class="mui-scroll-wrapper">
 										<div class="mui-scroll">
 											<div class="mui-content" style="margin-top: 0px;">
 												<div>
 													<div class="chart" id="lineChart2">
-														
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>	
 								</div>
-								
 							</div>
 						</div>
 					</div>
@@ -231,46 +260,59 @@
 			</ul>
 		</script>
 		<script id="alarmTmpl" type="text/html">
-			<ul class="mui-table-view">
-				{{each beans}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media alarm">
-						<a class="mui-navigate-right" href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
-							<div class="mui-media-body">
-								CC-1{{$value.devicePositionCode}}
-								<p class='mui-ellipsis'>
-									<span>数量:</span>
-									<span>{{$value.guarantee}}台</span>
-								</p>
-							</div>
+			{{each beans}}
+				<div class="mui-col-xs-12 mb5 dataList">
+					<h3>{{$value.deviceName}}
+						<span class="emergency mui-pull-right">
+							{{if $value.warningLevel == 0}}
+							    <span class="scile scileLow"></span>
+								<span class="sileSize sileLow">低</span>
+							{{else if $value.warningLevel == 2}}
+							    <span class="scile scileMiddle"></span>
+								<span class="scile scileMiddle"></span>
+								<span class="sileSize sileMiddle">中</span>
+							{{else}}
+							    <span class="scile scileHeight"></span>
+								<span class="scile scileHeight"></span>
+								<span class="scile scileHeight"></span>
+								<span class="sileSize sileHeight">高</span>
+							{{/if}}
+						</span>
+					</h3>
+					<div class="mui-col-xs-12 muiDetail">
+						{{$value.eventDescribe}}
+					</div>
+					<div class="mui-col-xs-12 muiDetail">
+					    {{if $value.eventProcessStatus == 1}}
+						    <span class="btnState redColor">未恢复</span>
+						{{else if $value.eventProcessStatus == 2}}
+						    <span class="btnState blueColor">处理中</span>
+						{{else}}
+						    <span class="btnState greenColor">已恢复</span>
+						{{/if}}
+						<span class="Timecolor">{{$value.applyTime}}</span>
+						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel" href="javascript:void(0);">
+							查看详情
+							<span class="mui-icon mui-icon-arrowright"></span>
 						</a>
-					</li>
-				{{/each}}
-			</ul>
+					</div>
+				</div>
+		    {{/each}}
 		</script>
 		<script id="analysisTmpl" type="text/html">
-			<ul class="mui-table-view">
-				{{each beans}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media analysis">
-						<a class="mui-navigate-right" href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
-							<div class="mui-media-body">
-								{{$value.devicePositionCode}}
-								<p class='mui-ellipsis'>
-									<span>数量:</span>
-									<span>{{$value.guarantee}}台</span>
-								</p>
-							</div>
-						</a>
-					</li>
-				{{/each}}
-			</ul>
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/template.js"></script>
 		<script>
-			mui.init();
+			mui.init(/*{
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						callback: pullupRefresh
+					}
+				}
+			}*/);
 			mui.plusReady(function(){
 				var resHeight = window.innerHeight - 84;
 				mui('.mui-control-content').each(function(){
@@ -279,39 +321,27 @@
 					if(isActive){
 						var state = this.getAttribute('data-state');
 						if(state == 'realTime'){
-						    setTimeout(function() {
-								getrealTime();
-							}, 500);
+							getrealTime();
 						}else if(state == 'alarm'){
-							setTimeout(function() {
-								getalarmTime();
-							}, 500);
+							getalarmTime();
 						}else{
-							setTimeout(function() {
-								getanalysisTime();
-							}, 500);
+							getanalysisTime();
 						}
 					}
-					
 				});
 				var alarm = document.getElementById('alarm');
 				var analysis = document.getElementById('analysis');
 				document.getElementById('slider').addEventListener('slide', function(e) {
 					if (e.detail.slideNumber === 1) {
 						if (alarm.querySelector('.mui-loading')) {
-							setTimeout(function() {
-								getalarmTime();
-							}, 500);
+							getalarmTime();
 						}
 					} else if (e.detail.slideNumber === 2) {
 						if (analysis.querySelector('.mui-loading')) {
-							setTimeout(function() {
-								getanalysisTime();
-							}, 500);
+							//getanalysisTime();
 						}
 					}
 				});
-				
 			    mui('.mui-scroll-wrapper').scroll({
 			        indicators: true //是否显示滚动条
 			    });
@@ -357,8 +387,8 @@
 			function getalarmTime() { //获取工单列表
 				var count = 1;
 				mui.ajax({
-					url:'./json/realTime.json',
-					//url: http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
+					url:'./json/alerm.json',
+					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
 					type: "get",
 					async: true,
 					data: {
@@ -371,6 +401,7 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
+						console.log(data);
 						var getalarmlist = document.getElementById("alarmlist");
 						var html = template('alarmTmpl', data);
 						if(count==1){
@@ -446,7 +477,28 @@
 			mui('.mui-content').on('tap','.analysis',function(){
 				console.log(3);
 			});
-			
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			/*function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					page++;
+					getProductList();
+				}, 1500);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1000);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}*/
 		</script>
 	</body>
 
