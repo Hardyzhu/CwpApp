@@ -706,8 +706,7 @@
 					"css/add.css",
 					"image/icon-3.png",
 					"js/template.js",
-					"html/equipment/json/realTime.json",
-					"html/equipment/json/alerm.json"
+					"html/equipment/json/realTime.json"
 				],
 				"refer": [
 					"html/equipment/air_subdir/subReal.html"
@@ -816,12 +815,7 @@
 				"priority": 0
 			},
 			"html/task/securityAlarmDetail.html": {
-				"resources": [
-					"js/mui.min.js",
-					"css/common.css",
-					"fonts/mui.ttf",
-					"css/mui.min.css"
-				],
+				"resources": [],
 				"refer": [
 					"html/task/securityReport.html"
 				],
@@ -835,14 +829,10 @@
 				"priority": 0
 			},
 			"html/task/maintenanceReport.html": {
-				"resources": [
-					"js/mui.min.js",
-					"css/common.css",
-					"fonts/mui.ttf",
-					"css/mui.min.css",
-					"js/template.js"
+				"resources": [],
+				"refer": [
+					"html/main/message.html"
 				],
-				"refer": [],
 				"priority": 0
 			},
 			"html/equipment/fresh_air.html": {
@@ -855,6 +845,27 @@
 					"image/paifengji.png",
 					"css/mui.min.css",
 					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/task/securityAlarmDetail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/task/maintenanceReport.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js"
 				],
 				"refer": [],
 				"priority": 0
