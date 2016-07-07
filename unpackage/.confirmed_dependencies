@@ -603,7 +603,8 @@
 			"css/common.css",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/template.js"
+			"js/template.js",
+			"html/equipment/json/alerm.json"
 		]
 	},
 	"html/home/energy.html": {
@@ -615,13 +616,7 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"image/icon-1.png",
-			"css/add.css",
-			"image/icon-003.png",
-			"image/icon-002.png",
-			"image/home-4.png"
-		],
-		"refer": [
-			"html/energy/energyBuilding.html"
+			"css/add.css"
 		]
 	},
 	"html/equipment/fresh_air.html": {
@@ -634,11 +629,6 @@
 			"image/paifengji.png",
 			"css/mui.min.css",
 			"css/add.css"
-		]
-	},
-	"html/energy/energyBuilding.html": {
-		"resources": [
-			"image/icon-001.png"
 		]
 	}
 }
