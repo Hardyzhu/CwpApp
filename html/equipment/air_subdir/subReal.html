@@ -172,28 +172,11 @@
 					</ul>
 				</div>
 			</div>
-			<div class="mui-col-xs-12" id="levelList">
-				<div class="levelBox">
-				<div class="mui-col-xs-12">
-					<span class="level">第一层</span>
-					<span class="mui-pull-right levelInfo">
-						<span class="mui-icon mui-icon-info"></span>点击查看设备详情
-					</span>
-				</div>
-				<div class="mui-text-center detailf">
-					<a class="goDetail colorblue">A101</a>
-					<a class="goDetail coloryellow">A101</a>
-					<a class="goDetail colorgray">A101</a>
-					<a class="goDetail colorred">A101</a>
-					<a class="goDetail colorred">A101</a>
-				</div>
-			</div>
+			<div class="mui-col-xs-12" id="levelList"></div>
 			</div>
 		</div>
 		<!-- 弹出层 -->
-		<div id="pop" class="mui-col-xs-10">
-			
-		</div>
+		<div id="pop" class="mui-col-xs-10"></div>
 		<!-- 弹出部分 -->
 		<script id="popTmpl" type="text/html">
 			{{ if bean.runnerRunningState ==1}}    <!--1代表正常，0代表异常-->
@@ -234,40 +217,29 @@
 				</div>
 			</div>
 		</script>
-		<script id="popTmpl" type="text/html">
-			<ul class="mui-table-view">
-				{{each bean}}
-					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media realTime">
-						<a class="mui-navigate-right" href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
-							<div class="mui-media-body">
-								CC-1{{$value.devicePositionCode}}
-								<p class='mui-ellipsis'>
-									<span>数量:</span>
-									<span>{{$value.guarantee}}台</span>
-								</p>
-							</div>
-						</a>
-					</li>
-				{{/each}}
-			</ul>
-		</script>
 		<script id="levelTmpl" type="text/html">
-			<div class="levelBox">
-				<div class="mui-col-xs-12">
-					<span class="level">第一层</span>
-					<span class="mui-pull-right levelInfo">
-						<span class="mui-icon mui-icon-info"></span>点击查看设备详情
-					</span>
+			{{each layerd}}
+		        <div class="levelBox">
+					<div class="mui-col-xs-12">
+						<span class="level">第{{$value.floor}}</span>
+						<span class="mui-pull-right levelInfo">
+							{{if $index==0}}
+								<span class="mui-icon mui-icon-info"></span>点击查看设备详情
+							{{/if}}
+						</span>
+					</div>
+					<div class="mui-text-center detailf">
+						<!--{{include 'subLevelList' $value}}-->
+						{{each $value.details as value}}
+							{{if value.deviceState == 1}}
+								<a data-hid="{{value.deviceId}}" class="goDetail colorblue">{{value.devicePositionCode}}</a>
+							{{else}}
+								<a data-hid="{{value.deviceId}}" class="goDetail colorred">{{value.devicePositionCode}}</a>
+							{{/if}}
+						{{/each}}	
+					</div>
 				</div>
-				<div class="mui-text-center detailf">
-					<a class="goDetail colorblue">A101</a>
-					<a class="goDetail coloryellow">A101</a>
-					<a class="goDetail colorgray">A101</a>
-					<a class="goDetail colorred">A101</a>
-					<a class="goDetail colorred">A101</a>
-				</div>
-			</div>
+		    {{/each}}
 		</script>
 		<script src="../../../js/mui.min.js"></script>
 		<script src="../../../js/echarts-all.js"></script>
@@ -277,6 +249,7 @@
 				swipeBack: true //启用右滑关闭功能
 			});
 			mui.plusReady(function(){
+				getrealTime();
 				var pop = document.getElementById('pop');
 				var mask = mui.createMask(function (){
 				    setCss(pop,'none');
@@ -319,20 +292,15 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
-						/*for(var i=0;i<data.beans.length;i++){
-							if(data.beans[i].floor == '一层'){
-								
-							}else{
-								
-							}
-						}*/
-						
-						var realTimelist = document.getElementById("realTimelist");
-						var html = template('realTimeTmpl', data);
+						console.log(data.beans);
+						var tempData = restruct(data);
+						console.log(tempData.layerd);
+						var levelList = document.getElementById("levelList");
+						var html = template('levelTmpl', tempData);
 						if(count==1){
-							realTimelist.innerHTML = html;
+							levelList.innerHTML = html;
 						}else{
-							realTimelist.innerHTML += html;
+							levelList.innerHTML += html;
 						}
 						count++;
 					},
@@ -361,11 +329,8 @@
 					timeout: 10000,
 					success: function(data) {	
 						var poplist = document.getElementById("pop");
-						console.log(template.Helper);
 						var html = template('popTmpl', data);
-						
 						poplist.innerHTML = html;
-						console.log(mask);
 						// 显示遮罩层
 						mask.show();
 						setCss(pop,'block');
@@ -380,6 +345,84 @@
 					}
 				});
 			};
+			
+			//组装数据
+			function restruct(data)
+			{
+				var temp = data.beans;
+				var temp1 = [];   //临时数组
+				var tempObj = {};
+				for(var i=0;i<temp.length;i++){
+					var oob = {details:[]};
+					oob.floorSort = temp[i].floorSort;
+					oob.floor = temp[i].floor;
+					temp1.push(oob);
+				}
+				var a = unique(temp1);
+				for(var i=0;i<a.length;i++){
+					for(var j=0;j<temp.length;j++){
+						var obj = {};
+						if(a[i].floorSort==temp[j].floorSort){
+							obj.deviceId = temp[j].deviceId;
+							obj.deviceState = temp[j].deviceState;
+							obj.devicePositionCode = temp[j].devicePositionCode;
+							a[i].details.push(obj);
+						}
+					}
+				}
+				var tmp = [];
+				var b = a.sort(compare('floorSort'));
+				for(var i=0;i<b.length;i++){
+					tmp = b[i].details;
+					b[i].details = [];
+					for(var j=0;j<tmp.length;j++){
+						b[i].details = tmp.sort(compare1('devicePositionCode'));
+					}
+				}
+				tempObj.layerd = b;
+				return tempObj;
+			}
+			//数组对象去重
+			function unique(arr) {
+			    var result = [], hash = {};
+			    for (var i = 0, elem; arr[i] != null; i++) {
+					elem = arr[i].floorSort;
+			        if (!hash[elem]) {
+			            result.push(arr[i]);
+			            hash[elem] = true;
+			        }
+			    }
+			    return result;
+			}
+			//排序
+			function compare(propertyName) { 
+				return function compile(obj1,obj2){
+					var value1 = obj1[propertyName];
+					var value2 = obj2[propertyName];
+					if(value1>value2){
+						return 1;
+					}else if(value1<value2){
+						return -1;
+					}else{
+						return 0;
+					}
+				}
+			}
+			//排序1
+			function compare1(propertyName) { 
+				var property = propertyName.substring(1);
+				return function compile(obj1,obj2){
+					var value1 = obj1[property];
+					var value2 = obj2[property];
+					if(value1>value2){
+						return 1;
+					}else if(value1<value2){
+						return -1;
+					}else{
+						return 0;
+					}
+				}
+			}
 		</script>
 	</body>
 </html>
