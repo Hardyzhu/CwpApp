@@ -776,7 +776,8 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"html/equipment/json/alerm.json"
 				],
 				"refer": [],
 				"priority": 0
@@ -810,9 +811,14 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"image/icon-1.png",
-					"css/add.css"
+					"css/add.css",
+					"image/icon-003.png",
+					"image/icon-002.png",
+					"image/home-4.png"
 				],
-				"refer": [],
+				"refer": [
+					"html/energy/energyBuilding.html"
+				],
 				"priority": 0
 			},
 			"html/task/securityAlarmDetail.html": {
@@ -822,7 +828,9 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css"
 				],
-				"refer": [],
+				"refer": [
+					"html/task/securityReport.html"
+				],
 				"priority": 0
 			},
 			"html/task/securityReport.html": {
@@ -853,6 +861,13 @@
 					"image/paifengji.png",
 					"css/mui.min.css",
 					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/energy/energyBuilding.html": {
+				"resources": [
+					"image/icon-001.png"
 				],
 				"refer": [],
 				"priority": 0
