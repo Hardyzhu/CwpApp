@@ -65,9 +65,51 @@
 					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div id="realTimelist" class="mui-scroll">
-								<div class='mui-loading'>
+								<!--<div class='mui-loading'>
 									<div class='mui-spinner'></div>
-								</div>
+								</div>-->
+								<ul class="mui-table-view">
+									<li data-id="2" class="mui-table-view-cell mui-media realTime">
+										<a class="mui-navigate-right" href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+											<div class="mui-media-body">
+												31321
+												<p class='mui-ellipsis'>
+													<span>数量:</span>
+													<span>25台</span>
+												</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<ul class="mui-table-view">
+									<li data-id="2" class="mui-table-view-cell mui-media realTime">
+										<a class="mui-navigate-right" href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+											<div class="mui-media-body">
+												31321
+												<p class='mui-ellipsis'>
+													<span>数量:</span>
+													<span>25台</span>
+												</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<ul class="mui-table-view">
+									<li data-id="2" class="mui-table-view-cell mui-media realTime">
+										<a class="mui-navigate-right" href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
+											<div class="mui-media-body">
+												31321
+												<p class='mui-ellipsis'>
+													<span>数量:</span>
+													<span>25台</span>
+												</p>
+											</div>
+										</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -235,7 +277,7 @@
 					if(isActive){
 						var state = this.getAttribute('data-state');
 						if(state == 'realTime'){
-							getrealTime();
+							//getrealTime();
 						}else if(state == 'alarm'){
 							getalarmTime();
 						}else{

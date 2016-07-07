@@ -82,7 +82,7 @@
 				top:-2px;
 			}
 			.topTitle{
-				padding:10px;
+				padding:10px !important;
 				border-top-left-radius:4px !important;
 				border-top-right-radius:4px !important;
 				color:#FFF;
@@ -196,28 +196,47 @@
 		</div>
 		<!-- 弹出部分 -->
 		<script id="popTmpl" type="text/html">
-			<div class="mui-col-xs-12 topTitle colorblue">
-				{{if bean.deviceRunningState==0}}
-					<span>正常运行</span>
-					<span>关闭</span>
-					<span>小故障</span>
-					<span>严重故障</span>
-				{{/if}}
-				<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
-			</div>
+			{{ if bean.runnerRunningState ==1}}    <!--1代表正常，0代表异常-->
+				<div class="mui-col-xs-12 topTitle colorblue">
+					<span class="colorRit">运行正常</span>
+					<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
+				</div>
+			{{else}}
+				<div class="mui-col-xs-12 topTitle colorred">
+					<span class="colorRit">故障</span>
+					<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
+				</div>
+			{{/if}}
 			<div class="mui-col-xs-12">
 				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix mui-text-center">
+						<!--提示信息-->
+						<span style="color:#f00;">提示:提示信息</span>
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
 					<div class="mui-col-xs-12 clearfix">
-						<span class="mui-pull-left">位置</span>
+						<span class="mui-pull-left">设备位置</span>
 						<span class="mui-pull-right">cc-1 第一会议室101</span>
 					</div>
-				</div>				
-			</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">水管温度</span>
+						<span class="mui-pull-right">{{bean.waterTemperature}}</span>
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">水管压力</span>
+						<span class="mui-pull-right">{{bean.waterPipePressure}}</span>
+					</div>
+				</div>
 			</div>
 		</script>
-		<script id="realTimeTmpl" type="text/html">
+		<script id="popTmpl" type="text/html">
 			<ul class="mui-table-view">
-				{{each beans}}
+				{{each bean}}
 					<li data-id="{{$value.deviceId}}" class="mui-table-view-cell mui-media realTime">
 						<a class="mui-navigate-right" href="javascript:;">
 							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
@@ -264,9 +283,7 @@
 				});
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
-					// 显示遮罩层
-					mask.show();
-					setCss(pop,'block');
+					getPop(mask);
 				});
 				//关闭
 				mui('.main').on('tap','#closed',function(){
@@ -318,6 +335,40 @@
 							realTimelist.innerHTML += html;
 						}
 						count++;
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('数据加载失败!');
+							return;
+						}
+					}
+				});
+			};
+			//获取弹出层的数据 通过uid,及设备id
+			function getPop(mask) {
+				mui.ajax({
+					url:'../json/alerm.json',
+					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					type: "post",
+					async: true,
+					data: {
+						uid: 'i002',
+						//设备id
+					},
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {	
+						var poplist = document.getElementById("pop");
+						console.log(template.Helper);
+						var html = template('popTmpl', data);
+						
+						poplist.innerHTML = html;
+						console.log(mask);
+						// 显示遮罩层
+						mask.show();
+						setCss(pop,'block');
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){

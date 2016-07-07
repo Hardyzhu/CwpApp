@@ -281,13 +281,23 @@
 				for (var i = 0, len = list.length; i < len; i++) {
 					list[i].addEventListener("tap", function() {
 						homeUrl = this.getAttribute("data-url");
-						mui.openWindow({
-							url: "../home/"+homeUrl,
-							id: homeUrl,
-							waiting: {
-								autoShow: false
-							}
-						});
+						if(homeUrl=='energy.html'){
+							mui.openWindow({
+								url: "../energy/"+homeUrl,
+								id: homeUrl,
+								waiting: {
+									autoShow: false
+								}
+							});
+						}else{
+							mui.openWindow({
+								url: "../home/"+homeUrl,
+								id: homeUrl,
+								waiting: {
+									autoShow: false
+								}
+							});
+						}
 					});
 				}
 			}

@@ -105,7 +105,18 @@
 				/**
 				 * 测试用
 				 */
-				mui.ajax({
+				mui.openWindow({
+					url: "../main/main.html",
+					id: "main",
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						entrance: "login"
+					}
+				});
+				
+				/*mui.ajax({
 					type: "get",
 					url: "http://192.168.92.201:28090/cwp/front/sh/login!login",
 					async: true,
@@ -175,7 +186,7 @@
 						}
 						
 					}
-				});
+				});*/
 			}
 		</script>
 	</body>

@@ -514,7 +514,7 @@
 			"css/mui.min.css",
 			"css/add.css"
 		]
-	},
+  	},
 	"html/equipment/guard.html": {
 		"resources": [
 			"image/icon-11-3.png",
