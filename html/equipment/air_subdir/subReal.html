@@ -229,17 +229,19 @@
 						</span>
 					</div>
 					<div class="mui-text-center detailf">
-						<!--{{include 'subLevelList' $value}}-->
-						{{each $value.details as value}}
-							{{if value.deviceState == 1}}
-								<a data-hid="{{value.deviceId}}" class="goDetail colorblue">{{value.devicePositionCode}}</a>
-							{{else}}
-								<a data-hid="{{value.deviceId}}" class="goDetail colorred">{{value.devicePositionCode}}</a>
-							{{/if}}
-						{{/each}}	
+						{{include 'subLevel' $value}}	
 					</div>
 				</div>
 		    {{/each}}
+		</script>
+		<script id="subLevel" type="text/html">
+			{{each details}}
+				{{if $value.deviceState == 1}}
+					<a data-hid="{{$value.deviceId}}" class="goDetail colorblue">{{$value.devicePositionCode}}</a>
+				{{else}}
+					<a data-hid="{{$value.deviceId}}" class="goDetail colorred">{{$value.devicePositionCode}}</a>
+				{{/if}}
+			{{/each}}
 		</script>
 		<script src="../../../js/mui.min.js"></script>
 		<script src="../../../js/echarts-all.js"></script>
@@ -292,9 +294,7 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
-						console.log(data.beans);
 						var tempData = restruct(data);
-						console.log(tempData.layerd);
 						var levelList = document.getElementById("levelList");
 						var html = template('levelTmpl', tempData);
 						if(count==1){

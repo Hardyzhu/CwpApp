@@ -777,7 +777,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js",
-					"html/equipment/json/alerm.json"
+					"html/equipment/json/alerm.json",
+					"html/equipment/json/realDeail.json"
 				],
 				"refer": [],
 				"priority": 0
