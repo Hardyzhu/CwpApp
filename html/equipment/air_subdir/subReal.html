@@ -258,6 +258,8 @@
 				});
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
+					//获取uid
+					var uId = this.getAttribute('data-uid')
 					getPop(mask);
 				});
 				//关闭
