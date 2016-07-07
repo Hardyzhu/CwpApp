@@ -67,7 +67,7 @@
 				position: absolute;
 				z-index: 9999;
 				left:50%;
-				top:20%;
+				top:15%;
 				transform: translateX(-50%);
 				-webkit-transform: translateX(-50%);
 			    -webkit-border-radius: 4px !important;
@@ -172,28 +172,37 @@
 					</ul>
 				</div>
 			</div>
-			<div class="mui-col-xs-12">
+			<div class="mui-col-xs-12" id="levelList">
 				<div class="levelBox">
-					<div class="mui-col-xs-12">
-						<span class="level">第一层</span>
-						<span class="mui-pull-right levelInfo">
-							<span class="mui-icon mui-icon-info"></span>点击查看设备详情
-						</span>
-					</div>
-					<div class="mui-text-center detailf">
-						<a class="goDetail colorblue">A101</a>
-						<a class="goDetail coloryellow">A101</a>
-						<a class="goDetail colorgray">A101</a>
-						<a class="goDetail colorred">A101</a>
-						<a class="goDetail colorred">A101</a>
-					</div>
+				<div class="mui-col-xs-12">
+					<span class="level">第一层</span>
+					<span class="mui-pull-right levelInfo">
+						<span class="mui-icon mui-icon-info"></span>点击查看设备详情
+					</span>
 				</div>
+				<div class="mui-text-center detailf">
+					<a class="goDetail colorblue">A101</a>
+					<a class="goDetail coloryellow">A101</a>
+					<a class="goDetail colorgray">A101</a>
+					<a class="goDetail colorred">A101</a>
+					<a class="goDetail colorred">A101</a>
+				</div>
+			</div>
 			</div>
 		</div>
 		<!-- 弹出层 -->
 		<div id="pop" class="mui-col-xs-10">
+			
+		</div>
+		<!-- 弹出部分 -->
+		<script id="popTmpl" type="text/html">
 			<div class="mui-col-xs-12 topTitle colorblue">
-				<span>头部</span>
+				{{if bean.deviceRunningState==0}}
+					<span>正常运行</span>
+					<span>关闭</span>
+					<span>小故障</span>
+					<span>严重故障</span>
+				{{/if}}
 				<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
 			</div>
 			<div class="mui-col-xs-12">
@@ -204,7 +213,8 @@
 					</div>
 				</div>				
 			</div>
-		</div>
+			</div>
+		</script>
 		<script id="realTimeTmpl" type="text/html">
 			<ul class="mui-table-view">
 				{{each beans}}
@@ -222,6 +232,23 @@
 					</li>
 				{{/each}}
 			</ul>
+		</script>
+		<script id="levelTmpl" type="text/html">
+			<div class="levelBox">
+				<div class="mui-col-xs-12">
+					<span class="level">第一层</span>
+					<span class="mui-pull-right levelInfo">
+						<span class="mui-icon mui-icon-info"></span>点击查看设备详情
+					</span>
+				</div>
+				<div class="mui-text-center detailf">
+					<a class="goDetail colorblue">A101</a>
+					<a class="goDetail coloryellow">A101</a>
+					<a class="goDetail colorgray">A101</a>
+					<a class="goDetail colorred">A101</a>
+					<a class="goDetail colorred">A101</a>
+				</div>
+			</div>
 		</script>
 		<script src="../../../js/mui.min.js"></script>
 		<script src="../../../js/echarts-all.js"></script>
@@ -275,6 +302,14 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
+						/*for(var i=0;i<data.beans.length;i++){
+							if(data.beans[i].floor == '一层'){
+								
+							}else{
+								
+							}
+						}*/
+						
 						var realTimelist = document.getElementById("realTimelist");
 						var html = template('realTimeTmpl', data);
 						if(count==1){

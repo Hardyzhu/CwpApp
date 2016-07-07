@@ -99,147 +99,59 @@
 								<!--<div class="mui-loading">
 									<div class="mui-spinner"></div>
 								</div>-->
+								<div style="height: auto; margin-top: -15px;margin-bottom:80px;">
+									<ul class="test_ul" style="text-align: left;">
+										<li>
+											<button style="width: auto;" id='start_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择开始时间</button>
+										</li>
+										<li>
+											<button style="width: auto;" id='end_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择结束时间</button>
+										</li>
+									</ul>
+								</div>
+								<div class="mui-content">
+									<div style="padding: 10px 10px;">
+										<div id="segmentedControl" class="mui-segmented-control">
+											<a class="mui-control-item mui-active" href="#item1">
+												故障统计
+											</a>
+											<a class="mui-control-item" href="#item2">
+												耗电量统计
+											</a>
+										</div>
+									</div>
+								</div>
+								<div style="margin-top: 50px;">
+									<div id="item1" class="mui-control-content mui-active">
+										<div id="scroll" class="mui-scroll-wrapper">
+											<div class="mui-scroll">
+												<div class="mui-content" style="margin-top: 0px;">
+													<div >
+														<div class="chart" id="lineChart">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="item2" class="mui-control-content mui-active">
+										<div id="scroll" class="mui-scroll-wrapper">
+											<div class="mui-scroll">
+												<div class="mui-content" style="margin-top: 0px;">
+													<div>
+														<div class="chart" id="lineChart2">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>	
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!--<div id="slider" class="mui-slider">
-				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item" href="#air_real_time">
-						实时
-					</a>
-					<a class="mui-control-item" href="#air_alarm">
-						告警
-					</a>
-					<a class="mui-control-item" href="#air_statistical_analysis">
-						统计分析
-					</a>
-				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
-				<div class="mui-slider-group">
-					<div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view" id="air_condition_ss">
-									<li class="mui-table-view-cell" >
-										<div class="mui-table mui-navigate-right">
-										    <div class="mui-table-cell mui-col-xs-10">
-							                    <h4 class="mui-ellipsis-2">CC-1</h4>						        
-							                	<div style="display: inline;">数量：</div> 
-							                	<div style="display: inline;">23台</div>
-							                	<div style="display: inline; margin-left: 25px;">ON：</div>
-							                	<div style="display: inline;">18</div>
-							                	<div style="display: inline; margin-left: 25px;">OFF：</div>
-							                	<div style="display: inline;">5</div>
-										    </div>
-							           </div>
-									</li>
-								</ul>
-							</div>		
-						</div>
-					</div>
-					<div id="air_alarm" class="mui-slider-item mui-control-content">						
-						<div id="scroll2" class="mui-scroll-wrapper">							
-							<div class="mui-scroll clearfix">
-								<div>
-									<div class="mui-content-padded searchData">
-										<div class="mui-input-row mui-search">
-											<input type="search" class="mui-input-clear" placeholder="请输入关键字" />
-										</div>
-									</div>
-									<ul class="mui-col-xs-12 barNav clearfix">
-										<li class="mui-col-xs-3">排序
-											<span class="mui-icon mui-icon-arrowdown"></span>
-										</li>
-										<li class="mui-col-xs-3">未处理
-											<span class="mui-icon mui-icon-arrowdown"></span>
-										</li>
-										<li class="mui-col-xs-3" style="border:none;">与我相关
-											<span class="mui-icon mui-icon-arrowdown"></span>
-										</li>
-									</ul>
-								</div>
-								<div>
-									<ul class="mui-table-view">
-										<li class="mui-table-view-cell mui-col-xs-12" >
-											<div class="mui-table">
-											    <div class="mui-table-cell mui-col-xs-10">
-											    	<div style="display: inline;float: left;">
-											    		<h4 class="mui-ellipsis-2">CC-1 2-01</h4>
-									                </div>
-									                <div style="display: inline;float:right;margin-right: 20px;">
-									                	低
-								                   	</div>							                   	
-								                    <hr width="100%"/>
-								                	<div style="display: block;">室内机定时灯快闪、外机点检内机台数减少或变化不定，某些室内机不制冷等。</div> 
-								                	<div>
-									                	<div class="yj" style="display: inline; background:#DC0000;color: white;text-align:center;line-height:30px;float: left;"">未处理</div>
-									                	<div style="display: inline; margin-left: 25px;float:left;line-height:30px;">2016-04-25 13:01</div>
-									                	<div style="display: inline; margin-left: 25px;color:#2589CE;line-height:30px;float: right;">查看详情</div>
-											    	</div>
-								                </div>							                
-								          	</div>    
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">
-							<div style="height: auto; margin-top: -15px;margin-bottom:80px;float: inherit;">
-								<ul class="test_ul" style="text-align: left;">
-									<li>
-										<button style="width: auto;" id='start_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择开始时间</button>
-									</li>
-									<li>
-										<button style="width: auto;" id='end_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择结束时间</button>
-									</li>
-								</ul>
-							</div>
-							<div class="mui-content">
-								<div style="padding: 10px 10px;">
-									<div id="segmentedControl" class="mui-segmented-control">
-										<a class="mui-control-item mui-active" href="#item1">
-											故障统计
-										</a>
-										<a class="mui-control-item" href="#item2">
-											耗电量统计
-										</a>
-									</div>
-								</div>
-							</div>
-							<div style="margin-top: 50px;">
-								<div id="item1" class="mui-control-content mui-active">
-									<div id="scroll" class="mui-scroll-wrapper">
-										<div class="mui-scroll">
-											<div class="mui-content" style="margin-top: 0px;">
-												<div >
-													<div class="chart" id="lineChart">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="item2" class="mui-control-content mui-active">
-									<div id="scroll" class="mui-scroll-wrapper">
-										<div class="mui-scroll">
-											<div class="mui-content" style="margin-top: 0px;">
-												<div>
-													<div class="chart" id="lineChart2">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>	
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>-->
 		</div>
 		<script id="realTimeTmpl" type="text/html">
 			<ul class="mui-table-view">
@@ -301,8 +213,6 @@
 				</div>
 		    {{/each}}
 		</script>
-		<script id="analysisTmpl" type="text/html">
-		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/template.js"></script>
@@ -316,6 +226,8 @@
 				}
 			}*/);
 			mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				console.log(self.bstate);
 				var resHeight = window.innerHeight - 84;
 				mui('.mui-control-content').each(function(){
 					this.setAttribute("style","min-height:"+resHeight+"px;");
@@ -340,7 +252,7 @@
 						}
 					} else if (e.detail.slideNumber === 2) {
 						if (analysis.querySelector('.mui-loading')) {
-							//getanalysisTime();
+							getanalysisTime();
 						}
 					}
 				});
@@ -399,7 +311,6 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
-						console.log(data);
 						var getalarmlist = document.getElementById("alarmlist");
 						var html = template('alarmTmpl', data);
 						if(count==1){
@@ -438,13 +349,6 @@
 					timeout: 10000,
 					success: function(data) {
 						var getanalysislist = document.getElementById("analysislist");
-						var html = template('analysisTmpl', data);
-						if(count==1){
-							getanalysislist.innerHTML = html;
-						}else{
-							getanalysislist.innerHTML += html;
-						}
-						count++;
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){

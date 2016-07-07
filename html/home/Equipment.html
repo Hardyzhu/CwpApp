@@ -13,6 +13,11 @@
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" href="../../css/home.css" />
 		<link rel="stylesheet" href="../../css/add.css" />
+		<style>
+			.isActive{
+				background:red !important;
+			}
+		</style>
 	</head>
 	<body class='has-footer'>
 		<header class="mui-bar mui-bar-nav topColor">
@@ -21,8 +26,8 @@
 		</header>
 		<!--按钮-->
 		<div id="progress-btn">
-			<p><a href="" class="unok">未处理</a></p>
-			<p><a href="" class="ok">已处理</a></p>
+			<p><a href="javascript:void(0)" data-state="0" class="isActive">未处理</a></p>
+			<p><a href="javascript:void(0)" data-state="1" >已处理</a></p>
 		</div>
 		
 		<!--内容-->
@@ -98,17 +103,56 @@
 			mui.plusReady(function() {
 				gotoDetail();   //跳转
 			});
+			//未处理已处理限制
+			var now = 0;
+			mui('#progress-btn a').each(function(index) { 
+				var _this = this;
+				_this.setAttribute('index',index);
+				_this.addEventListener('tap', function(event) {
+					var bList = document.querySelectorAll('#progress-btn a');
+					if(now == this.getAttribute('index'))return;
+					now = this.getAttribute('index');
+					for(var i = 0;i<bList.length;i++){
+						bList[i].className = '';
+					}
+					bList[now].className = 'isActive';
+				});
+			});
+			
+			function getState(){
+				var bdata;
+				mui('#progress-btn a').each(function() { 
+					var state = this.classList.contains('isActive') ? true : false;
+					if(state){
+						bdata = this.getAttribute('data-state');
+					}
+				});
+				if(bdata!=undefined){
+					return bdata;
+				}else{
+					return -1;
+				}
+			}
+			//跳转
 			function gotoDetail() {
 				var list = document.getElementsByClassName("tabList");
 				var EquipmentUrl = "";
 				for (var i = 0, len = list.length; i < len; i++) {
 					list[i].addEventListener("tap", function() {
+						var state = getState();
+						if(state==-1){
+							mui.toast('请选择处理状态！');
+							return;
+						}
 						EquipmentUrl = this.getAttribute("data-url");
 						mui.openWindow({
 							url: "../equipment/"+EquipmentUrl,
 							id: EquipmentUrl,
 							waiting: {
 								autoShow: false
+							},
+							extras: {
+								bstate: state
 							}
 						});
 					});
