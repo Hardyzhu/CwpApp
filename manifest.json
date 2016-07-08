@@ -707,7 +707,8 @@
 					"image/icon-3.png",
 					"js/template.js",
 					"html/equipment/json/realTime.json",
-					"html/equipment/json/alerm.json"
+					"html/equipment/json/alerm.json",
+					"js/analysisEcharts.js"
 				],
 				"refer": [
 					"html/equipment/air_subdir/subReal.html",

@@ -9,7 +9,8 @@
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="../../css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+
 		<style>
 			.mui-slider-indicator.mui-segmented-control.mui-segmented-control-inverted{
 				border-bottom:2px solid #c8c7cc;
@@ -45,6 +46,58 @@
 			}
 			.searchData{
 				margin: 15px 15px 0;
+			}
+			
+				.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+			
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			
+			.oa-contact-content {
+				width: 100%;
+			}
+			
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			
+			.oa-contact-name,
+			oa-contact-position {
+				float: left;
+			}
+			
+			.chart {
+				height: 200px;
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			h5 {
+				margin-top: 30px;
+				font-weight: bold;
+			}
+			
+			h5:first-child {
+				margin-top: 15px;
 			}
 		</style>	
 	</head>
@@ -135,63 +188,54 @@
 							</div>
 						</div>
 					</div>
-					<div id="analysis" data-state="analysis" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">
-							<div id="analysislist" class="mui-scroll">
-								<!--<div class="mui-loading">
-									<div class="mui-spinner"></div>
-								</div>-->
-								<div style="height: auto; margin-top: -15px;margin-bottom:80px;">
-									<ul class="test_ul" style="text-align: left;">
-										<li>
-											<button style="width: auto;" id='start_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择开始时间</button>
-										</li>
-										<li>
-											<button style="width: auto;" id='end_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择结束时间</button>
-										</li>
-									</ul>
-								</div>
-								<div class="mui-content">
-									<div style="padding: 10px 10px;">
-										<div id="segmentedControl" class="mui-segmented-control">
-											<a class="mui-control-item mui-active" href="#item1">
-												故障统计
-											</a>
-											<a class="mui-control-item" href="#item2">
-												耗电量统计
-											</a>
-										</div>
-									</div>
-								</div>
-								<div style="margin-top: 50px;">
-									<div id="item1" class="mui-control-content mui-active">
-										<div id="scroll" class="mui-scroll-wrapper">
-											<div class="mui-scroll">
-												<div class="mui-content" style="margin-top: 0px;">
-													<div >
-														<div class="chart" id="lineChart">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div id="item2" class="mui-control-content mui-active">
-										<div id="scroll" class="mui-scroll-wrapper">
-											<div class="mui-scroll">
-												<div class="mui-content" style="margin-top: 0px;">
-													<div>
-														<div class="chart" id="lineChart2">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>	
-									</div>
-								</div>
+			
+					<div id="analysis" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">                            
+							<div class="mui-content">
+								<div style="padding: 10px 10px;">
+									<div id="segmentedControl" class="mui-segmented-control">
+										<a class="mui-control-item mui-active" href="#item1">
+											故障统计
+										</a>
+										<a class="mui-control-item" href="#item2">
+											耗电量统计
+										</a>
+									</div>									
+								</div>								
 							</div>
+							
+							<div style="margin-top: 50px;">
+								<div id="item1" class="mui-control-content mui-active">
+									<div id="scroll" class="mui-scroll-wrapper">
+										<div class="mui-scroll">
+											<div class="mui-content" style="margin-top: 0px;">
+												<div >
+													<div class="chart" id="lineChart">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>					
+								</div>
+								
+								<div id="item2" class="mui-control-content mui-active">
+									<div id="scroll" class="mui-scroll-wrapper">
+										<div class="mui-scroll">
+											<div class="mui-content" style="margin-top: 0px;">
+												<div>
+													<div class="chart" id="lineChart2">
+														
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+								
+							</div>	
 						</div>
 					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -258,6 +302,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/analysisEcharts.js"></script>
 		<script>
 			mui.init({
 				pullRefresh: {

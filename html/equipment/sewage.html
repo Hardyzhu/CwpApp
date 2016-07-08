@@ -293,24 +293,7 @@
 					</div>
 					
 					<div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">
-							<!--<div style="height: auto; margin-top: -15px;margin-bottom:80px;float: inherit;">
-								<ul class="test_ul" style="text-align: left;">
-									<li>
-										<button style="width: auto;" id='start_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择开始时间</button>
-									</li>
-									<li>
-										<button style="width: auto;" id='end_time' data-options='{"value":"2015-10-10 10:10","beginYear":2010,"endYear":2020}' class="btn mui-btn mui-btn-block">请选择结束时间</button>
-									</li>
-								</ul>
-							</div>-->
-							
-							<!--
-                            	作者：jldaii@qq.com
-                            	时间：2016-06-06
-                            	描述：左右栏位
-                            -->
-                            
+						<div id="scroll3" class="mui-scroll-wrapper">                            
 							<div class="mui-content">
 								<div style="padding: 10px 10px;">
 									<div id="segmentedControl" class="mui-segmented-control">
@@ -364,131 +347,7 @@
 		</div>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/echarts-all.js"></script>
-		<script>
-				var getOption = function(chartType) {
-					var chartOption = chartType == 'pie' ? {
-						calculable: false,
-					} : {
-						legend: {
-							data: ['故障统计']
-						},
-						grid: {
-							x: 35,
-							x2: 10,
-							y: 30,
-							y2: 25
-						},
-						toolbox: {
-							show: false,
-							feature: {
-								mark: {
-									show: true
-								},
-								dataView: {
-									show: true,
-									readOnly: false
-								},
-								magicType: {
-									show: true,
-									type: ['line', 'bar']
-								},
-								restore: {
-									show: true
-								},
-								saveAsImage: {
-									show: true
-								}
-							}
-						},
-						calculable: false,
-						xAxis: [{
-							type: 'category',
-							data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-						}],
-						yAxis: [{
-							type: 'value',
-							splitArea: {
-								show: true
-							}
-						}],
-						series: [{
-							name: '故障统计',
-							type: chartType,
-							data: [31, 35, 24, 26, 50, 75, 65, 56, 43, 27, 20, 28]
-						}]
-					};
-					return chartOption;
-				};
-				var byId = function(id) {
-					return document.getElementById(id);
-				};
-				var lineChart = echarts.init(byId('lineChart'));
-				lineChart.setOption(getOption('line'));
-				
-			</script>
-			
-			<!--第二个；列表展示-->
-			<script>
-				var getOption1= function(chartType) {
-					var chartOption = chartType== 'pie' ? {
-						calculable: false,
-					} : {
-						legend: {
-							data: ['耗电量统计']
-						},
-						grid: {
-							x: 35,
-							x2: 10,
-							y: 30,
-							y2: 25
-						},
-						toolbox: {
-							show: false,
-							feature: {
-								mark: {
-									show: true
-								},
-								dataView: {
-									show: true,
-									readOnly: false
-								},
-								magicType: {
-									show: true,
-									type: ['line', 'bar']
-								},
-								restore: {
-									show: true
-								},
-								saveAsImage: {
-									show: true
-								}
-							}
-						},
-						calculable: false,
-						xAxis: [{
-							type: 'category',
-							data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-						}],
-						yAxis: [{
-							type: 'value',
-							splitArea: {
-								show: true
-							}
-						}],
-						series: [{
-							name: '耗电量统计',
-							type: chartType,
-							data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-						}]
-					};
-					return chartOption;
-				};
-				var byId = function(id) {
-					return document.getElementById(id);
-				};
-				var lineChart = echarts.init(byId('lineChart2'));
-				lineChart.setOption(getOption1('line'));
-			</script>
+		<script src="../../js/analysisEcharts.js"></script>
 			
 		
 			<script src="../js/mui.picker.min.js"></script>

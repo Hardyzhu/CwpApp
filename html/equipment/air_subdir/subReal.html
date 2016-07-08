@@ -180,7 +180,7 @@
 		<div id="pop" class="mui-col-xs-10"></div>
 		<!-- 弹出部分 -->
 		<script id="popTmpl" type="text/html">
-			{{ if bean.runnerRunningState ==1}}    <!--1代表正常，0代表异常-->
+			{{ if bean.runnerRunningState ==0}}    <!--0代表正常，1代表异常-->
 				<div class="mui-col-xs-12 topTitle colorblue">
 					<span class="colorRit">运行正常</span>
 					<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
@@ -237,7 +237,7 @@
 		</script>
 		<script id="subLevel" type="text/html">
 			{{each details}}
-				{{if $value.deviceState == 1}}
+				{{if $value.deviceState ==0}}
 					<a data-hid="{{$value.deviceId}}" class="goDetail colorblue">{{$value.devicePositionCode}}</a>
 				{{else}}
 					<a data-hid="{{$value.deviceId}}" class="goDetail colorred">{{$value.devicePositionCode}}</a>
@@ -283,12 +283,12 @@
 			function getrealTime() { //获取工单列表
 				var count = 1;
 				mui.ajax({
-					url:'../json/realDeail.json',
-					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+//					url:'../json/realDeail.json',
+					url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
 					type: "post",
 					async: true,
 					data: {
-						uid: 'i002',
+						uid: 'i001',
 						pageSize:'5',
 						dictValue:'', 
 						eventProcessStatus:'',
