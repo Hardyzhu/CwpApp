@@ -243,7 +243,7 @@
 			<ul class="mui-table-view">
 				{{each beans}}
 					{{if $value.deviceNum!=0}}
-					<li data-id="{{$value.buildingId}}" class="mui-table-view-cell mui-media realTime">
+					<li data-id="{{$value.buildingId}}" data-name="{{$value.buildingDesc}}" class="mui-table-view-cell mui-media realTime">
 						<a class="mui-navigate-right" href="javascript:;">
 							<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
 							<div class="mui-media-body">
@@ -457,14 +457,20 @@
 					}
 				});
 			};
+			
+			
 			//实时点击查看详情
 			mui('.mui-content').on('tap','.realTime',function(){
+				var name = this.getAttribute('data-name');
 				//打开页面
 				mui.openWindow({
 					url: "air_subdir/subReal.html",
 					id: "subReal",
 					waiting: {
 						autoShow: false
+					},
+					extras:{
+						name:name//获取data-name中的值？
 					}
 				});
 			});

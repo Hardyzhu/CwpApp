@@ -147,12 +147,12 @@
 	<body class="main">
 		<header class="mui-bar mui-bar-nav topColor">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title colorRit">空调-实时</h1>
+			<h1 class="mui-title colorRit">实时</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 headerBarBox">
 				<div class="mui-col-xs-12 clearfix headBar">
-					<span class="fl">cc-1c</span>
+					<span id="bulidName" class="fl"></span>
 					<ul class="comul fr">
 						<li>
 							<span class="quire colorred"></span>
@@ -252,6 +252,8 @@
 				swipeBack: true //启用右滑关闭功能
 			});
 			mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				document.getElementById('bulidName').innerHTML = self.name;
 				getrealTime();
 				var pop = document.getElementById('pop');
 				var mask = mui.createMask(function (){
