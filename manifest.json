@@ -859,12 +859,9 @@
 			},
 			"html/equipment/fresh_air.html": {
 				"resources": [
-					"image/icon-11-3.png",
-					"js/echarts-all.js",
 					"js/mui.min.js",
 					"css/common.css",
 					"fonts/mui.ttf",
-					"image/paifengji.png",
 					"css/mui.min.css",
 					"css/add.css"
 				],
@@ -912,13 +909,14 @@
 				"refer": [],
 				"priority": 0
 			},
-			"html/equipment/lighting.html": {
+			"html/equipment/fresh_air.html": {
 				"resources": [
 					"image/icon-11-3.png",
 					"js/echarts-all.js",
 					"js/mui.min.js",
 					"css/common.css",
 					"fonts/mui.ttf",
+					"image/paifengji.png",
 					"css/mui.min.css",
 					"image/icon-4.png",
 					"css/add.css"
