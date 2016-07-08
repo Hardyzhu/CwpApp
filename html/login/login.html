@@ -48,23 +48,25 @@
 		</div>
 		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			mui.init({
+			mui.init(/*{
 				preloadPages:[{                      //预加载页面
 				    id:'message',
 				    url:'../main/message.html'           
 				}]
-			});
+			}*/);
 			mui.plusReady(function() {                
 				var self = plus.webview.currentWebview();
 				var entrance = self.entrance;
-				var wvs = plus.webview.all();
-				var fristWv = plus.webview.getLaunchWebview();
-				// 关闭除当前页以及入口页面外所有页面
-				for (var i = 0; i < wvs.length; i++) {
-					if (wvs[i].getURL() == self.getURL() || wvs[i].getURL() == fristWv.getURL()) {
-						continue;
+				if(entrance === 'user'){
+					var wvs = plus.webview.all();
+					var fristWv = plus.webview.getLaunchWebview();
+					// 关闭除当前页以及入口页面外所有页面
+					for (var i = 0; i < wvs.length; i++) {
+						if (wvs[i].getURL() == self.getURL() || wvs[i].getURL() == fristWv.getURL()) {
+							continue;
+						}
+						wvs[i].close("none");
 					}
-					wvs[i].close("none");
 				}
 				var first = null;
 				mui.back = function() {
@@ -117,6 +119,12 @@
 							mui.toast('登录成功!');
 							var obj = data.object;
 							var str = JSON.stringify(obj);
+							//预加载
+							var message = null,messagePage;
+							if(!messagePage){
+								messagePage = plus.webview.create('../main/message.html','message',{});
+							}
+
 							plus.storage.setItem("userInfo", str);
 							if(!self){
 								self = plus.webview.currentWebview();
@@ -125,30 +133,18 @@
 							{
 								message = plus.webview.getWebviewById('message');
 							}
+							console.log(message);
 							// 根据入口不同，进行的操作也不同，具体参数在两个入口处都有区分；
-							if (self.entrance === "user") {
-								mui.openWindow({
-									url: "../user/user.html",
-									id: "user",
-									waiting: {
-										autoShow: false
-									},
-									extras: {
-										entrance: "login"
-									}
-								});
-							} else {
-								mui.openWindow({
-									url: "../main/main.html",
-									id: "main",
-									waiting: {
-										autoShow: false
-									},
-									extras: {
-										entrance: "login"
-									}
-								});
-							}
+							mui.openWindow({
+								url: "../main/main.html",
+								id: "main",
+								waiting: {
+									autoShow: false
+								},
+								extras: {
+									entrance: "login"
+								}
+							});
 							plus.nativeUI.showWaiting();
 							mui.fire(message, "getMessage", {
 								isLogin:str
@@ -164,6 +160,7 @@
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){
+							console.log(1);
 							mui.toast('请求超时:请检查网络!');
 						}else {
 							mui.toast('登录失败!');

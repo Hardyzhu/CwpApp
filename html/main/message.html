@@ -154,6 +154,7 @@
 				 */
 				window.addEventListener("getMessage",function(event){
 					userId = event.detail.isLogin.userId;
+					console.log(userId);
 					getProductList(userId);
 				});
 			});
@@ -164,7 +165,7 @@
 			//渲染数据
 			function getProductList(userId) { //获取工单列表
 				mui.ajax({
-					url: "http://192.168.92.20101:28090/cwp/front/sh/warningEvent!execute",
+					url: "http://192.168.92.201:28090/cwp/front/sh/warningEvent!execute",
 					type: "post",
 					async: true,
 					data: {
@@ -185,6 +186,7 @@
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){
+							console.log('message');
 							mui.toast('请求超时:请检查网络!');
 						}else {
 							mui.toast('数据加载失败');
@@ -220,3 +222,4 @@
 		</script>
 	</body>
 </html>
+
