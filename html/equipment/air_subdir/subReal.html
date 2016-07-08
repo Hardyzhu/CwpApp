@@ -111,11 +111,12 @@
 			.goDetail{
 				color:#FFF;
 				display:inline-block;
-				width:68px;
+				width:88px;
 				height:30px;
 				margin-bottom:4px;
 				line-height:30px;
 				text-align:center;
+				/*padding: 0 16px;*/
 			}
 			.detailf{
 				padding:0 15px 13px 15px;
@@ -155,15 +156,15 @@
 					<ul class="comul fr">
 						<li>
 							<span class="quire colorred"></span>
-							<span>严重故障</span>
+							<span>故障</span>
 						</li>
-						<li>
+						<li style="display: none;">
 							<span class="quire coloryellow"></span>
 							<span>小故障</span>
 						</li>
 						<li>
 							<span class="quire colorblue"></span>
-							<span>正常运行</span>
+							<span>正常</span>
 						</li>
 						<li>
 							<span class="quire colorgray"></span>
@@ -228,7 +229,7 @@
 							{{/if}}
 						</span>
 					</div>
-					<div class="mui-text-center detailf">
+					<div class="mui-text-left detailf">
 						{{include 'subLevel' $value}}	
 					</div>
 				</div>

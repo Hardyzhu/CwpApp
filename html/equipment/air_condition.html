@@ -65,10 +65,10 @@
 					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div id="realTimelist" class="mui-scroll">
-								<!--<div class='mui-loading'>
+								<div class='mui-loading'>
 									<div class='mui-spinner'></div>
-								</div>-->
-								<ul class="mui-table-view">
+								</div>
+								<ul class="mui-table-view" style="display: none;">
 									<li data-id="2" class="mui-table-view-cell mui-media realTime">
 										<a class="mui-navigate-right" href="javascript:;">
 											<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
@@ -82,7 +82,7 @@
 										</a>
 									</li>
 								</ul>
-								<ul class="mui-table-view">
+								<ul class="mui-table-view" style="display: none;">
 									<li data-id="2" class="mui-table-view-cell mui-media realTime">
 										<a class="mui-navigate-right" href="javascript:;">
 											<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
@@ -96,7 +96,7 @@
 										</a>
 									</li>
 								</ul>
-								<ul class="mui-table-view">
+								<ul class="mui-table-view" style="display: none;">
 									<li data-id="2" class="mui-table-view-cell mui-media realTime">
 										<a class="mui-navigate-right" href="javascript:;">
 											<img class="mui-media-object mui-pull-left" src="../../image/icon-3.png">
@@ -128,9 +128,9 @@
 									</li>
 								</ul>
 								<div class="mui-col-xs-12" id="alarmlist">
-									<div class="mui-loading">
+									<!--<div class="mui-loading">
 										<div class="mui-spinner"></div>
-									</div>
+									</div>-->
 								</div>
 							</div>
 						</div>
@@ -259,17 +259,24 @@
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/template.js"></script>
 		<script>
-			mui.init(/*{
+			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
 					up: {
 						callback: pullupRefresh
 					}
-				}
-			}*/);
+				},
+				preloadPages:[{                      //预加载页面
+				    id:'securityDetail',
+				    url:'../task/securityDetail.html'
+				}]
+			});
 			mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
+				var isLogin = plus.storage.getItem('userInfo');
+				console.log(isLogin);
 				console.log(self.bstate);
+				//这边这个self.bstate是上一个视图选择已处理和未处理过来的数据要查询的
 				var resHeight = window.innerHeight - 84;
 				mui('.mui-control-content').each(function(){
 					this.setAttribute("style","min-height:"+resHeight+"px;");
@@ -277,7 +284,7 @@
 					if(isActive){
 						var state = this.getAttribute('data-state');
 						if(state == 'realTime'){
-							//getrealTime();
+							getrealTime();//第一次进来加载第一页数据
 						}else if(state == 'alarm'){
 							getalarmTime();
 						}else{
@@ -302,9 +309,11 @@
 			        indicators: true //是否显示滚动条
 			    });
 			});
+			var alarmCount = 1;
+			var alarmPage=1;
 			//获取实时数据
 			function getrealTime() { //获取工单列表
-				var count = 1;
+				var count = 1
 				mui.ajax({
 					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
 					type: "get",
@@ -337,30 +346,31 @@
 			};
 			//获取警告数据
 			function getalarmTime() { //获取工单列表
-				var count = 1;
+				alarmCount = 1;
+				alarmPage=1;
 				mui.ajax({
-					url:'./json/alerm.json',
-					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					url: "http://192.168.92.199:28090/cwp/front/sh/warningEvent!execute",
 					type: "get",
 					async: true,
 					data: {
-						uid: 'i002',
+						uid: 'c001',
+						currentPage:alarmPage,
 						pageSize:'5',
-						dictValue:'', 
+						dictValue:'1003185', 
 						eventProcessStatus:'',
-						eventType:3
+						eventType:1
 					},
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
 						var getalarmlist = document.getElementById("alarmlist");
 						var html = template('alarmTmpl', data);
-						if(count==1){
+						if(alarmCount==1){
 							getalarmlist.innerHTML = html;
 						}else{
 							getalarmlist.innerHTML += html;
 						}
-						count++;
+						alarmCount++;
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){
@@ -414,8 +424,34 @@
 				});
 			});
 			//告警点击查看详情
-			mui('.mui-content').on('tap','.alarm',function(){
-				console.log(2);
+			/**
+			 * 加载数据
+			 */
+			var detailPage = null;
+			mui('.mui-content').on('tap','.goToDel',function(){
+				//console.log(abData);
+					var warningEventId = this.getAttribute("data-id");
+					var warningCategoryId = this.getAttribute("data-uid");
+					//判断是否有这个页面
+					if(!detailPage){
+					    detailPage = plus.webview.getWebviewById('securityDetail');
+					}
+					//自定义事件
+					plus.nativeUI.showWaiting();
+					mui.fire(detailPage,'detailId',{
+					    warningEventId:warningEventId,
+					    warningCategoryId:warningCategoryId
+					});
+					setTimeout(function() {
+						plus.nativeUI.closeWaiting();
+					}, 200);
+					//打开页面
+					mui.openWindow({
+					  id:'securityDetail',
+					  waiting: {
+						autoShow: false
+					  }
+					});
 			});
 			//分析点击查看详情
 			mui('.mui-content').on('tap','.analysis',function(){
@@ -424,11 +460,11 @@
 			/**
 			 * 上拉加载具体业务实现
 			 */
-			/*function pullupRefresh() {
+			function pullupRefresh() {
 				setTimeout(function() {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-					page++;
-					getProductList();
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++alarmCount > 2)); //参数为true代表没有更多数据了。
+					alarmPage++;
+					getalarmTime() ;
 				}, 1500);
 			}
 			if (mui.os.plus) {
@@ -442,7 +478,7 @@
 				mui.ready(function() {
 					mui('#pullrefresh').pullRefresh().pullupLoading();
 				});
-			}*/
+			}
 		</script>
 	</body>
 

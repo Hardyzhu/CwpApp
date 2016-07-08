@@ -710,7 +710,8 @@
 					"html/equipment/json/alerm.json"
 				],
 				"refer": [
-					"html/equipment/air_subdir/subReal.html"
+					"html/equipment/air_subdir/subReal.html",
+					"html/task/securityDetail.html"
 				],
 				"priority": 0
 			},
@@ -849,7 +850,9 @@
 					"css/mui.min.css",
 					"js/template.js"
 				],
-				"refer": [],
+				"refer": [
+					"html/main/message.html"
+				],
 				"priority": 0
 			},
 			"html/equipment/fresh_air.html": {

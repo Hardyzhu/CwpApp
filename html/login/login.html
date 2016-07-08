@@ -101,22 +101,7 @@
 			function loginByPhone(uphone, upwd) { //调用登录接口
 				var message = null;
 				var self = null;
-				
-				/**
-				 * 测试用
-				 */
-				mui.openWindow({
-					url: "../main/main.html",
-					id: "main",
-					waiting: {
-						autoShow: false
-					},
-					extras: {
-						entrance: "login"
-					}
-				});
-				
-				/*mui.ajax({
+				mui.ajax({
 					type: "get",
 					url: "http://192.168.92.201:28090/cwp/front/sh/login!login",
 					async: true,
@@ -186,7 +171,7 @@
 						}
 						
 					}
-				});*/
+				});
 			}
 		</script>
 	</body>
