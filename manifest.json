@@ -238,7 +238,8 @@
 					"html/Equipment/Equipment.html",
 					"html/home/securityAlarm.html",
 					"html/home/maintenance.html",
-					"html/home/energy.html"
+					"html/home/energy.html",
+					"html/energy/energy.html"
 				],
 				"priority": 0
 			},
@@ -873,6 +874,19 @@
 			"html/energy/energyBuilding.html": {
 				"resources": [
 					"image/icon-001.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/energy/energy.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"image/home-4.png",
+					"css/add.css"
 				],
 				"refer": [],
 				"priority": 0

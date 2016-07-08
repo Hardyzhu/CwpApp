@@ -147,7 +147,7 @@
 	<body class="main">
 		<header class="mui-bar mui-bar-nav topColor">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title colorRit">实时</h1>
+			<h1 class="mui-title colorRit">空调-实时</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 headerBarBox">
@@ -260,8 +260,8 @@
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
 					//获取uid
-					var uId = this.getAttribute('data-uid')
-					getPop(mask);
+					var dId = this.getAttribute('data-uid')
+					getPop(mask,dId);
 				});
 				//关闭
 				mui('.main').on('tap','#closed',function(){
@@ -283,20 +283,19 @@
 			function getrealTime() { //获取工单列表
 				var count = 1;
 				mui.ajax({
-//					url:'../json/realDeail.json',
-					url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
 					type: "post",
 					async: true,
 					data: {
-						uid: 'i001',
+						uid: 'i0010',
 						pageSize:'5',
-						dictValue:'', 
-						eventProcessStatus:'',
-						eventType:3
+						deviceTypeCode:'1003185', 
+						buildingId:'1'
 					},
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
+						console.log(data);
 						var tempData = restruct(data);
 						var levelList = document.getElementById("levelList");
 						var html = template('levelTmpl', tempData);
@@ -318,15 +317,15 @@
 				});
 			};
 			//获取弹出层的数据 通过uid,及设备id
-			function getPop(mask) {
-				mui.ajax({
-					url:'../json/alerm.json',
-					//url: "http://192.168.92.199:28090/cwp/front/sh/intebuilding!execute",
+			function getPop(mask,dId) {
+				console.log(dId);
+				mui.ajax({					
+					url: "http://192.168.92.195:28090/cwp/front/sh/device!execute",
 					type: "post",
 					async: true,
 					data: {
-						uid: 'i002',
-						//设备id
+						uid: 'd006',
+						deviceId:dId
 					},
 					dataType: "json",
 					timeout: 10000,

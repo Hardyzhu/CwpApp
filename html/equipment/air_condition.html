@@ -192,7 +192,7 @@
 					<div id="analysis" class="mui-slider-item mui-control-content">
 						<div id="scroll3" class="mui-scroll-wrapper">                            
 							<div class="mui-content">
-								<div style="padding: 10px 10px;">
+								<div>
 									<div id="segmentedControl" class="mui-segmented-control">
 										<a class="mui-control-item mui-active" href="#item1">
 											故障统计
@@ -394,7 +394,7 @@
 				alarmCount = 1;
 				alarmPage=1;
 				mui.ajax({
-					url: "http://192.168.92.199:28090/cwp/front/sh/warningEvent!execute",
+					url: "http://192.168.92.201:28090/cwp/front/sh/warningEvent!execute",
 					type: "get",
 					async: true,
 					data: {
