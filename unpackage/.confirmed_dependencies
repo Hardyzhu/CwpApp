@@ -85,7 +85,8 @@
 			"html/Equipment/Equipment.html",
 			"html/home/securityAlarm.html",
 			"html/home/maintenance.html",
-			"html/home/energy.html"
+			"html/home/energy.html",
+			"html/energy/energy.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -398,7 +399,8 @@
 			"html/equipment/monitoring.html",
 			"html/equipment/guard.html",
 			"html/equipment/sewage.html",
-			"html/equipment/fresh_air.html"
+			"html/equipment/fresh_air.html",
+			"html/equipment/lighting.html"
 		]
 	},
 	"html/Equipment/Equipment.html": {
@@ -651,5 +653,28 @@
 			"image/icon-001.png"
 		],
 		"refer": []
+	},
+	"html/energy/energy.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"image/home-4.png",
+			"css/add.css"
+		]
+	},
+	"html/equipment/lighting.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"js/echarts-all.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"image/icon-4.png",
+			"css/add.css"
+		]
 	}
 }

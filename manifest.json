@@ -898,6 +898,33 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"html/energy/energy.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"image/home-4.png",
+					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/equipment/lighting.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/echarts-all.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"image/icon-4.png",
+					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"index": {
