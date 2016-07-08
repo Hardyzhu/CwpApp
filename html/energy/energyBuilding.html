@@ -61,7 +61,7 @@
                            CC-01
                         </div>
                     </div>
-                    <div class="mui-scroll">
+                    <div id="energyList" class="mui-scroll">
                         <div class="mui-table">
                             <div class="mui-table-cell mui-col-xs-10">
                                 <h4 class="mui-ellipsis-2">第一层<a class="data">12.3kws</a><a class="see"><img src="../../image/icon-001.png">点击查看设备详情</a></h4>
@@ -140,8 +140,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
                 <!--<div id="scroll3" class="mui-scroll-wrapper">-->
                     <!--<div class="mui-content">-->
@@ -167,13 +165,25 @@
             </div>
         </div>
     </div>
-
-
-
-
 </div>
 <script src="../../js/mui.min.js"></script>
-
+<script>
+	mui.init();
+	mui.plusReady(function(){
+		mui('#energyList').on('tap','.see',function(){
+			mui.openWindow({
+				url: "./energyFloor.html",
+				id: "energyFloor",
+				waiting: {
+					autoShow: false
+				},
+				extras: {
+					entrance: "energyFloor"
+				}
+			});
+		});
+	});
+</script>
 
 
 </body>

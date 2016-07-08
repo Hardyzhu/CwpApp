@@ -97,11 +97,23 @@
 			</div>
 		</div>
 		<script src="../../js/mui.min.js"></script>
-
-
-
-
-			
+		<script>
+			mui.init();
+			mui.plusReady(function(){
+				mui('#energy_ss').on('tap',' .mui-table',function(){
+					mui.openWindow({
+						url: "./energyBuilding.html",
+						id: "energyBuilding",
+						waiting: {
+							autoShow: false
+						},
+						extras: {
+							entrance: "energyBuilding"
+						}
+					});
+				});
+			});
+		</script>	
 	</body>
 
 </html>
