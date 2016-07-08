@@ -238,8 +238,7 @@
 					"html/Equipment/Equipment.html",
 					"html/home/securityAlarm.html",
 					"html/home/maintenance.html",
-					"html/home/energy.html",
-					"html/energy/energy.html"
+					"html/home/energy.html"
 				],
 				"priority": 0
 			},
@@ -602,8 +601,7 @@
 					"html/equipment/monitoring.html",
 					"html/equipment/guard.html",
 					"html/equipment/sewage.html",
-					"html/equipment/fresh_air.html",
-					"html/equipment/lighting.html"
+					"html/equipment/fresh_air.html"
 				],
 				"priority": 0
 			},
@@ -859,9 +857,12 @@
 			},
 			"html/equipment/fresh_air.html": {
 				"resources": [
+					"image/icon-11-3.png",
+					"js/echarts-all.js",
 					"js/mui.min.js",
 					"css/common.css",
 					"fonts/mui.ttf",
+					"image/paifengji.png",
 					"css/mui.min.css",
 					"css/add.css"
 				],
@@ -871,55 +872,6 @@
 			"html/energy/energyBuilding.html": {
 				"resources": [
 					"image/icon-001.png"
-				],
-				"refer": [
-					"html/energy/energyFloor.html"
-				],
-				"priority": 0
-			},
-			"html/energy/energy.html": {
-				"resources": [
-					"image/icon-11-3.png",
-					"css/add.css",
-					"image/home-4.png"
-				],
-				"refer": [
-					"html/energy/energyBuilding.html"
-				],
-				"priority": 0
-			},
-			"html/energy/energyFloor.html": {
-				"resources": [
-					"image/icon-003.png",
-					"image/icon-002.png"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/energy/energy.html": {
-				"resources": [
-					"image/icon-11-3.png",
-					"js/mui.min.js",
-					"css/common.css",
-					"fonts/mui.ttf",
-					"css/mui.min.css",
-					"image/home-4.png",
-					"css/add.css"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/equipment/fresh_air.html": {
-				"resources": [
-					"image/icon-11-3.png",
-					"js/echarts-all.js",
-					"js/mui.min.js",
-					"css/common.css",
-					"fonts/mui.ttf",
-					"image/paifengji.png",
-					"css/mui.min.css",
-					"image/icon-4.png",
-					"css/add.css"
 				],
 				"refer": [],
 				"priority": 0
