@@ -253,7 +253,7 @@
 			});
 			mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
-				document.getElementById('bulidName').innerHTML = self.name;
+				document.getElementById('bulidName').innerHTML = self.bDesc;
 				getrealTime();
 				var pop = document.getElementById('pop');
 				var mask = mui.createMask(function (){
@@ -283,7 +283,8 @@
 			};
 			//获取实时数据
 			function getrealTime() { //获取工单列表
-				var count = 1;
+				var self = plus.webview.currentWebview();
+				var count = 1;				
 				mui.ajax({
 					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
 					type: "post",
@@ -292,7 +293,7 @@
 						uid: 'i0010',
 						pageSize:'5',
 						deviceTypeCode:'1003185', 
-						buildingId:'1'
+						buildingId:self.bId
 					},
 					dataType: "json",
 					timeout: 10000,

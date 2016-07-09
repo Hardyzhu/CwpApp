@@ -284,6 +284,7 @@
 			//获取实时数据
 			function getrealTime() { //获取工单列表
 				var count = 1;
+				var self = plus.webview.currentWebview();
 				mui.ajax({
 					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
 					type: "post",
@@ -292,7 +293,7 @@
 						uid: 'i0010',
 						pageSize:'5',
 						deviceTypeCode:'1003186', 
-						buildingId:'1'
+						buildingId:self.bId
 					},
 					dataType: "json",
 					timeout: 10000,

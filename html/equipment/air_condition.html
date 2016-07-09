@@ -414,7 +414,9 @@
 			
 			//实时点击查看详情
 			mui('.mui-content').on('tap','.realTime',function(){
-				var name = this.getAttribute('data-name');
+				//楼栋描述
+				var buildingDesc = this.getAttribute('data-name');
+				var buildingId = this.getAttribute('data-id');
 				//打开页面
 				mui.openWindow({
 					url: "air_subdir/subReal.html",
@@ -423,7 +425,8 @@
 						autoShow: false
 					},
 					extras:{
-						name:name//获取data-name中的值？
+						bDesc:buildingDesc,
+						bId:buildingId
 					}
 				});
 			});
