@@ -180,17 +180,10 @@
 		<div id="pop" class="mui-col-xs-10"></div>
 		<!-- 弹出部分 -->
 		<script id="popTmpl" type="text/html">
-			{{ if bean.runnerRunningState ==0}}    <!--0代表正常，1代表异常-->
-				<div class="mui-col-xs-12 topTitle colorblue">
-					<span class="colorRit">运行正常</span>
-					<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
-				</div>
-			{{else}}
-				<div class="mui-col-xs-12 topTitle colorred">
-					<span class="colorRit">故障</span>
-					<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
-				</div>
-			{{/if}}
+			<div class="mui-col-xs-12 topTitle colorblue">
+				<span class="colorRit">运行正常</span>
+				<a id="closed" class="mui-icon mui-icon-close mui-pull-right"></a>
+			</div>
 			<div class="mui-col-xs-12">
 				<div class="mui-col-xs-12 bot_bot">
 					<div class="mui-col-xs-12 clearfix mui-text-center">
@@ -262,9 +255,9 @@
 		<script id="subLevel" type="text/html">
 			{{each details}}
 				{{if $value.deviceState ==0}}
-					<a data-hid="{{$value.deviceId}}" class="goDetail colorblue">{{$value.devicePositionCode}}</a>
+					<a data-hid="{{$value.deviceId}}" data-status="0" class="goDetail colorblue">{{$value.devicePositionCode}}</a>
 				{{else}}
-					<a data-hid="{{$value.deviceId}}" class="goDetail colorred">{{$value.devicePositionCode}}</a>
+					<a data-hid="{{$value.deviceId}}" data-status="1" class="goDetail colorred">{{$value.devicePositionCode}}</a>
 				{{/if}}
 			{{/each}}
 		</script>
@@ -286,8 +279,9 @@
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
 					//获取uid
-					var dId = this.getAttribute('data-hid')
-					getPop(mask,dId);
+					var dId = this.getAttribute('data-hid');
+					var deviceStatus=this.getAttribute('data-status');
+					getPop(mask,dId,deviceStatus);
 				});
 				//关闭
 				mui('.main').on('tap','#closed',function(){
@@ -343,7 +337,7 @@
 				});
 			};
 			//获取弹出层的数据 通过uid,及设备id
-			function getPop(mask,dId) {
+			function getPop(mask,dId,deviceStatus) {
 				console.log(dId);
 				mui.ajax({					
 					url: "http://192.168.92.195:28090/cwp/front/sh/intebuilding!execute",
@@ -356,13 +350,15 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {	
-						console.log(data.bean);
+						console.log(deviceStatus);
 						var poplist = document.getElementById("pop");
 						var html = template('popTmpl', data);
 						poplist.innerHTML = html;
 						// 显示遮罩层
 						mask.show();
 						setCss(pop,'block');
+
+
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){
