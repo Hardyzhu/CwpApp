@@ -111,12 +111,12 @@
 			.goDetail{
 				color:#FFF;
 				display:inline-block;
-				width:88px;
+				min-width:88px;
 				height:30px;
 				margin-bottom:4px;
 				line-height:30px;
 				text-align:center;
-				/*padding: 0 16px;*/
+				padding: 0 10px;
 			}
 			.detailf{
 				padding:0 15px 13px 15px;
@@ -206,14 +206,38 @@
 				</div>
 				<div class="mui-col-xs-12 bot_bot">
 					<div class="mui-col-xs-12 clearfix">
-						<span class="mui-pull-left">水管温度</span>
-						<span class="mui-pull-right">{{bean.waterTemperature}}</span>
+						<span class="mui-pull-left">控制器名称</span>
+						<span class="mui-pull-right">{{bean.controllerNames}}</span>
 					</div>
 				</div>
 				<div class="mui-col-xs-12 bot_bot">
 					<div class="mui-col-xs-12 clearfix">
-						<span class="mui-pull-left">水管压力</span>
-						<span class="mui-pull-right">{{bean.waterPipePressure}}</span>
+						<span class="mui-pull-left">读卡器名称</span>
+						<span class="mui-pull-right">{{bean.cardReaderName}}</span>
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">事件名称</span>
+						<span class="mui-pull-right">{{bean.eventName}}</span>
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">IO消息推送</span>
+						<span class="mui-pull-right">{{bean.ioMessage}}</span>
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">卡号</span>
+						<span class="mui-pull-right">{{bean.cardId}}</span>
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">人员工号</span>
+						<span class="mui-pull-right">{{bean.staffNo}}</span>
 					</div>
 				</div>
 			</div>
@@ -262,7 +286,7 @@
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
 					//获取uid
-					var dId = this.getAttribute('data-uid')
+					var dId = this.getAttribute('data-hid')
 					getPop(mask,dId);
 				});
 				//关闭
@@ -292,13 +316,12 @@
 					data: {
 						uid: 'i0010',
 						pageSize:'5',
-						deviceTypeCode:'1003185', 
+						deviceTypeCode:'1004001', 
 						buildingId:self.bId
 					},
 					dataType: "json",
 					timeout: 10000,
-					success: function(data) {
-						console.log(data);
+					success: function(data) {						
 						var tempData = restruct(data);
 						var levelList = document.getElementById("levelList");
 						var html = template('levelTmpl', tempData);
@@ -321,7 +344,6 @@
 			};
 			//获取弹出层的数据 通过uid,及设备id
 			function getPop(mask,dId) {
-				console.log(dId);
 				mui.ajax({					
 					url: "http://192.168.92.195:28090/cwp/front/sh/device!execute",
 					type: "post",
@@ -333,6 +355,7 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {	
+						console.log(data.bean);
 						var poplist = document.getElementById("pop");
 						var html = template('popTmpl', data);
 						poplist.innerHTML = html;

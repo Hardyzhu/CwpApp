@@ -111,12 +111,12 @@
 			.goDetail{
 				color:#FFF;
 				display:inline-block;
-				width:88px;
+				min-width:88px;
 				height:30px;
 				margin-bottom:4px;
 				line-height:30px;
 				text-align:center;
-				/*padding: 0 16px;*/
+				padding: 0 10px;
 			}
 			.detailf{
 				padding:0 15px 13px 15px;
@@ -206,14 +206,44 @@
 				</div>
 				<div class="mui-col-xs-12 bot_bot">
 					<div class="mui-col-xs-12 clearfix">
-						<span class="mui-pull-left">水管温度</span>
-						<span class="mui-pull-right">{{bean.waterTemperature}}</span>
+						<span class="mui-pull-left">设备运行状态</span>
+						{{if bean.deviceRunningState==0}}
+							<span class="mui-pull-right">正常</span>
+						{{else}}
+							<span class="mui-pull-right">故障</span>
+						{{/if}}
 					</div>
 				</div>
 				<div class="mui-col-xs-12 bot_bot">
 					<div class="mui-col-xs-12 clearfix">
-						<span class="mui-pull-left">水管压力</span>
-						<span class="mui-pull-right">{{bean.waterPipePressure}}</span>
+						<span class="mui-pull-left">设备故障告警</span>
+						{{if bean.deviceFaultAlarm==0}}
+							<span class="mui-pull-right">无</span>
+						{{else}}
+							<span class="mui-pull-right">{{bean.deviceFaultAlarm}}</span>
+						{{/if}}
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">超高液位报警</span>
+						{{if bean.deviceFaultAlarm==0}}
+							<span class="mui-pull-right">无</span>
+						{{else}}
+							<span class="mui-pull-right">{{bean.deviceFaultAlarm}}</span>
+						{{/if}}
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">高液位指示</span>					
+						<span class="mui-pull-right">{{bean.highIndicator}}</span>						
+					</div>
+				</div>
+				<div class="mui-col-xs-12 bot_bot">
+					<div class="mui-col-xs-12 clearfix">
+						<span class="mui-pull-left">低液位指示</span>
+						<span class="mui-pull-right">{{bean.lowIndicator}}</span>					
 					</div>
 				</div>
 			</div>
@@ -262,7 +292,7 @@
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
 					//获取uid
-					var dId = this.getAttribute('data-uid')
+					var dId = this.getAttribute('data-hid');	
 					getPop(mask,dId);
 				});
 				//关闭
@@ -292,7 +322,7 @@
 					data: {
 						uid: 'i0010',
 						pageSize:'5',
-						deviceTypeCode:'1003185', 
+						deviceTypeCode:'1003187', 
 						buildingId:self.bId
 					},
 					dataType: "json",
@@ -321,7 +351,6 @@
 			};
 			//获取弹出层的数据 通过uid,及设备id
 			function getPop(mask,dId) {
-				console.log(dId);
 				mui.ajax({					
 					url: "http://192.168.92.195:28090/cwp/front/sh/device!execute",
 					type: "post",

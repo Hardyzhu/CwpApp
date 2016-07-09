@@ -111,12 +111,12 @@
 			.goDetail{
 				color:#FFF;
 				display:inline-block;
-				width:88px;
+				min-width:88px;
 				height:30px;
 				margin-bottom:4px;
 				line-height:30px;
 				text-align:center;
-				/*padding: 0 16px;*/
+				padding: 0 10px;
 			}
 			.detailf{
 				padding:0 15px 13px 15px;
@@ -262,7 +262,7 @@
 				//实时点击查看详情
 				mui('.mui-content').on('tap','.goDetail',function(){
 					//获取uid
-					var dId = this.getAttribute('data-uid')
+					var dId = this.getAttribute('data-hid');
 					getPop(mask,dId);
 				});
 				//关闭

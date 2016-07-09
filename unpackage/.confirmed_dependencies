@@ -536,7 +536,8 @@
 			"js/analysisEcharts.js"
 		],
 		"refer": [
-			"html/equipment/guard_subdir/subReal.html"
+			"html/equipment/guard_subdir/subReal.html",
+			"html/task/securityDetail.html"
 		]
 	},
 	"html/equipment/sewage.html": {
@@ -665,7 +666,8 @@
 		],
 		"refer": [
 			"html/equipment/sewage_subdir/subReal.html",
-			"html/task/securityDetail.html"
+			"html/task/securityDetail.html",
+			"html/equipment/fresh_air_subdir/subReal.html"
 		]
 	},
 	"html/energy/energyBuilding.html": {
@@ -708,6 +710,26 @@
 		"refer": []
 	},
 	"html/equipment/sewage_subdir/subReal.html": {
+		"resources": [
+			"js/echarts-all.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/template.js"
+		]
+	},
+	"html/equipment/guard_subdir/subReal.html": {
+		"resources": [
+			"js/echarts-all.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/template.js"
+		]
+	},
+	"html/equipment/fresh_air_subdir/subReal.html": {
 		"resources": [
 			"js/echarts-all.js",
 			"js/mui.min.js",
