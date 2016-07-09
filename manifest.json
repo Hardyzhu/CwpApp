@@ -589,7 +589,8 @@
 					"image/icon-1.png",
 					"html/home/monitoring.html",
 					"html/home/air_condition.html",
-					"html/home/guard.html"
+					"html/home/guard.html",
+					"image/icon-3.png"
 				],
 				"refer": [
 					"html/Equipment/air_condition.html",
@@ -740,9 +741,14 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/add.css"
+					"css/add.css",
+					"html/equipment/json/realTime.json",
+					"js/template.js",
+					"js/analysisEcharts.js"
 				],
-				"refer": [],
+				"refer": [
+					"html/equipment/guard_subdir/subReal.html"
+				],
 				"priority": 0
 			},
 			"html/equipment/sewage.html": {
@@ -754,9 +760,15 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"image/icon-3.png",
-					"css/add.css"
+					"css/add.css",
+					"html/equipment/json/realTime.json",
+					"js/analysisEcharts.js",
+					"js/template.js"
 				],
-				"refer": [],
+				"refer": [
+					"html/task/securityDetail.html",
+					"html/equipment/sewage_subdir/subReal.html"
+				],
 				"priority": 0
 			},
 			"html/home/securityAlarm.html": {
@@ -887,6 +899,18 @@
 					"css/mui.min.css",
 					"image/home-4.png",
 					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/equipment/sewage_subdir/subReal.html": {
+				"resources": [
+					"js/echarts-all.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js"
 				],
 				"refer": [],
 				"priority": 0
