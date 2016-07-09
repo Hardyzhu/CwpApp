@@ -878,9 +878,16 @@
 					"fonts/mui.ttf",
 					"image/paifengji.png",
 					"css/mui.min.css",
-					"css/add.css"
+					"css/add.css",
+					"html/equipment/json/realTime.json",
+					"image/icon-3.png",
+					"js/template.js",
+					"js/analysisEcharts.js"
 				],
-				"refer": [],
+				"refer": [
+					"html/equipment/sewage_subdir/subReal.html",
+					"html/task/securityDetail.html"
+				],
 				"priority": 0
 			},
 			"html/energy/energyBuilding.html": {

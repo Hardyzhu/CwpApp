@@ -274,9 +274,6 @@
 			mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var isLogin = plus.storage.getItem('userInfo');
-				console.log(isLogin);
-				console.log(self.bstate);
-				//这边这个self.bstate是上一个视图选择已处理和未处理过来的数据要查询的
 				var resHeight = window.innerHeight - 84;
 				mui('.mui-control-content').each(function(){
 					this.setAttribute("style","min-height:"+resHeight+"px;");
@@ -346,6 +343,7 @@
 			};
 			//获取警告数据
 			function getalarmTime() { //获取工单列表
+				var self = plus.webview.currentWebview();
 				alarmCount = 1;
 				alarmPage=1;
 				mui.ajax({
@@ -357,7 +355,7 @@
 						currentPage:alarmPage,
 						pageSize:'5',
 						dictValue:'1004001', 
-						eventProcessStatus:'',
+						eventProcessStatus:self.bstate,
 						eventType:2
 					},
 					dataType: "json",
