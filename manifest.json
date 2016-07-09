@@ -338,7 +338,8 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/checkValue.js"
+					"js/checkValue.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/login/login.html"
@@ -413,7 +414,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"html/main/home1.html",
-					"html/main/message.html"
+					"html/main/message.html",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/main/energy.html",
@@ -537,7 +539,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"css/common.css",
-					"js/template.js"
+					"js/template.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/task/securityDetail.html"
@@ -590,7 +593,8 @@
 					"html/home/monitoring.html",
 					"html/home/air_condition.html",
 					"html/home/guard.html",
-					"image/icon-3.png"
+					"image/icon-3.png",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/Equipment/air_condition.html",
@@ -727,7 +731,8 @@
 					"image/icon-5.png",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/add.css"
+					"css/add.css",
+					"js/mui.conf.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -744,7 +749,8 @@
 					"css/add.css",
 					"html/equipment/json/realTime.json",
 					"js/template.js",
-					"js/analysisEcharts.js"
+					"js/analysisEcharts.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/equipment/guard_subdir/subReal.html",
@@ -764,7 +770,8 @@
 					"css/add.css",
 					"html/equipment/json/realTime.json",
 					"js/analysisEcharts.js",
-					"js/template.js"
+					"js/template.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/task/securityDetail.html",
@@ -778,7 +785,8 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html"
@@ -794,7 +802,8 @@
 					"css/mui.min.css",
 					"js/template.js",
 					"html/equipment/json/alerm.json",
-					"html/equipment/json/realDeail.json"
+					"html/equipment/json/realDeail.json",
+					"js/mui.conf.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -883,7 +892,8 @@
 					"html/equipment/json/realTime.json",
 					"image/icon-3.png",
 					"js/template.js",
-					"js/analysisEcharts.js"
+					"js/analysisEcharts.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/equipment/sewage_subdir/subReal.html",
@@ -909,7 +919,9 @@
 					"image/home-4.png",
 					"css/add.css"
 				],
-				"refer": [],
+				"refer": [
+					"html/energy/energyBuilding.html"
+				],
 				"priority": 0
 			},
 			"html/equipment/sewage_subdir/subReal.html": {

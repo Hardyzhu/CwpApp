@@ -105,6 +105,7 @@
 		</div>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mui.conf.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
 				pullRefresh: {
@@ -165,7 +166,7 @@
 			//渲染数据
 			function getProductList() { //获取工单列表
 				mui.ajax({
-					url: "http://192.168.92.201:28090/cwp/front/sh/warningEvent!execute",
+					url: global_url+"/cwp/front/sh/warningEvent!execute",
 					type: "post",
 					async: true,
 					data: {

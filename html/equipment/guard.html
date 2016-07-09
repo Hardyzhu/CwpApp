@@ -258,6 +258,7 @@
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/analysisEcharts.js"></script>
+		<script src="../../js/mui.conf.js"></script>
 		<script>
 			mui.init({
 				pullRefresh: {
@@ -312,7 +313,7 @@
 			function getrealTime() { //获取工单列表
 				var count = 1
 				mui.ajax({
-					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
+					url: global_url+"/cwp/front/sh/intebuilding!execute",
 					type: "get",
 					async: true,
 					data: {
@@ -347,7 +348,7 @@
 				alarmCount = 1;
 				alarmPage=1;
 				mui.ajax({
-					url: "http://192.168.92.201:28090/cwp/front/sh/warningEvent!execute",
+					url: global_url+"/cwp/front/sh/warningEvent!execute",
 					type: "get",
 					async: true,
 					data: {
@@ -385,7 +386,7 @@
 				var count = 1;
 				mui.ajax({
 					url:'./json/realTime.json',
-					//url: http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
+					//url: global_url+"/cwp/front/sh/intebuilding!execute",
 					type: "get",
 					async: true,
 					data: {

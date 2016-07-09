@@ -277,6 +277,7 @@
 		<script src="../../../js/mui.min.js"></script>
 		<script src="../../../js/echarts-all.js"></script>
 		<script src="../../../js/template.js"></script>
+		<script src="../../../js/mui.conf.js"></script>
 		<script>
 			mui.init({
 				swipeBack: true //启用右滑关闭功能
@@ -316,7 +317,7 @@
 				var count = 1;
 				var self = plus.webview.currentWebview();
 				mui.ajax({
-					url: "http://192.168.92.201:28090/cwp/front/sh/intebuilding!execute",
+					url: global_url+"/cwp/front/sh/intebuilding!execute",
 					type: "post",
 					async: true,
 					data: {
@@ -352,7 +353,7 @@
 			//获取弹出层的数据 通过uid,及设备id
 			function getPop(mask,dId) {
 				mui.ajax({					
-					url: "http://192.168.92.195:28090/cwp/front/sh/device!execute",
+					url: global_url+"/cwp/front/sh/device!execute",
 					type: "post",
 					async: true,
 					data: {
