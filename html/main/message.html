@@ -112,16 +112,19 @@
 					up: {
 						callback: pullupRefresh
 					}
-				},
-				preloadPages:[{                      //预加载页面
-				    id:'messagedetail',
-				    url:'../task/messagedetail.html'           
-				}]
+				}
 			});
 			var userId;
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
-				
+				//预加载
+				var messagedetail = null;
+				if(!messagedetail){
+					messagedetail = mui.preload({
+					     url:"../task/messagedetail.html",
+					     id:"messagedetail"
+					});
+				}
 				var isLogin = plus.storage.getItem("userInfo");
 				if(isLogin){
 					userId = JSON.parse(isLogin).userId;
@@ -135,12 +138,8 @@
 					//console.log(abData);
 					var warningEventId = this.getAttribute("data-id");
 					var warningCategoryId = this.getAttribute("data-uid");
-					//判断是否有这个页面
-					if(!detailPage){
-					    detailPage = plus.webview.getWebviewById('messagedetail');
-					}
 					//自定义事件
-					mui.fire(detailPage,'detailId',{
+					mui.fire(messagedetail,'detailId',{
 					    warningEventId:warningEventId,
 					    warningCategoryId:warningCategoryId
 					});

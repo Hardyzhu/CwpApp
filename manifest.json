@@ -369,7 +369,8 @@
 					"fonts/mui.ttf",
 					"image/logobottom.jpg",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/main/home.html",
@@ -554,7 +555,8 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/task/report.html"
@@ -608,7 +610,8 @@
 					"html/equipment/monitoring.html",
 					"html/equipment/guard.html",
 					"html/equipment/sewage.html",
-					"html/equipment/fresh_air.html"
+					"html/equipment/fresh_air.html",
+					"html/equipment/lighting.html"
 				],
 				"priority": 0
 			},
@@ -945,7 +948,8 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/main/message.html",
@@ -959,6 +963,22 @@
 					"html/task/messageReport.html",
 					"html/task/newdeal.html"
 				],
+				"priority": 0
+			},
+			"html/equipment/lighting.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/echarts-all.js",
+					"js/mui.conf.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"image/icon-4.png",
+					"js/analysisEcharts.js",
+					"css/add.css"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

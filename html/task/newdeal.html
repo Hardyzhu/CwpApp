@@ -65,7 +65,9 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">新增处理</h1>
+			<h1 class="mui-title">
+				<!-- 动态添加标头 -->
+			</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 mb5 dataList">
@@ -73,18 +75,7 @@
 					<!--头部详情部分-->
 				</div>
 				<div id="newTmpl" class="mui-col-xs-12"style="background:#FFF;">
-					<div class="mui-col-xs-12">
-						<div class="dealer" style="padding:11px 15px;">
-							<!--描述部分-->
-							<div class="mui-input-row">
-								<div class="mb5">处理描述:</div>
-								<textarea id="textarea" rows="5" class="dealer" placeholder="请输入描述"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="mui-button-row" >
-						<button class="mui-btn mui-btn-red subit" type="button">提交</button>
-					</div>
+					<!-- 查看及提交部分 -->
 				</div>
 			</div>
 		</div>
@@ -126,23 +117,27 @@
 					<!--描述部分-->
 					<div class="mui-input-row">
 						<div class="mb5">处理描述:</div>
-						<div rows="5" class="dealer">{{handleOpinion}}</div>
+						{{if eventProgress==4}}
+							<div class="dealer">{{handleOpinion}}</div>
+						{{else if eventProgress==3}}
+							<textarea id="textarea" rows="5" class="dealer" placeholder="请输入描述"></textarea>
+						{{/if}}
 					</div>
 				</div>
 			</div>
 			<div class="mui-button-row" >
-				<button class="mui-btn mui-btn-red subit" type="button">确定</button>
+				<button class="mui-btn mui-btn-red subit" type="button">{{eventProgress | sChag}}</button>
 			</div>
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mui.conf.js"></script>
 		<script>
 			mui.init({
 				swipeBack:true 
 			});
 			
 			mui.plusReady(function(){
-				
 				//预加载
 				var messagePage = null;
 				if(!messagePage){
@@ -159,7 +154,6 @@
 					});
 				}
 				//获取登录信息
-				var oTextarea = document.getElementById('textarea');
 				var isLogin = plus.storage.getItem("userInfo");
 				var warningEventId,
 				    eventProgress,
@@ -170,29 +164,39 @@
 						warningEventId = event.detail.result.warningEventId;
 						warningCategoryId = event.detail.result.warningCategoryId;
 						eventProgress = event.detail.result.eventProgress;
-						var oDeal = document.getElementById('dealTmpl');
-						var dealHtml = template('dealTmp', event.detail.result);
-						oDeal.innerHTML = dealHtml;
-						
+						var Title = document.querySelector('.mui-title');
+						console.log(eventProgress);
 						if(eventProgress == '4'){
-							console.log(13);
-							var oNew = document.getElementById('newTmpl');
-							var newHtml = template('newTmp', event.detail.result);
-							oNew.innerHTML = newHtml;
+							Title.innerHTML = '查看处理报告';
+						}else{
+							Title.innerHTML = '新增处理报告';
 						}
+						var oDeal = document.getElementById('dealTmpl');
+						var oNew = document.getElementById('newTmpl');
+						template.helper('sChag',function(inp){
+							if(inp == 4){
+								return '确定';
+							}else{
+								return '提交';
+							}
+						});
+						var dealHtml = template('dealTmp', event.detail.result);
+						var newHtml = template('newTmp', event.detail.result);
+						oDeal.innerHTML = dealHtml;
+						oNew.innerHTML = newHtml;	
 					});
 				}
 				//新增或者查看
 				mui('.mui-content').on('tap','.subit',function(){
-					console.log(1);
 					if(eventProgress=='4'){
-						console.log(2);
 						plus.nativeUI.showWaiting();
 						setTimeout(function() {
 							plus.nativeUI.closeWaiting();
 							mui.back();
 						}, 200);
 					}else{
+						var oTextarea = document.getElementById('textarea');
+						console.log(oTextarea);
 						if(oTextarea!=null){
 							liveDescribe = oTextarea.value;
 						}
@@ -200,14 +204,13 @@
 							mui.toast('请输入处理报告');
 							return
 						}
-						console.log(3);
 						subup();
 					}
 				});
 				function subup(){
 					mui.ajax({
 						type: "post",
-						url: "http://192.168.92.199:28090/cwp/front/sh/warningEvent!execute",
+						url: global_url+"/cwp/front/sh/warningEvent!execute",
 						async: true,
 						data: {
 							uid:"c017",
@@ -219,7 +222,7 @@
 						dataType: "json",
 						timeout: 10000,
 						success: function(data) {
-							mui.toast('查询成功!');
+							mui.toast('新增成功!');
 							//预加载子页面
 							plus.nativeUI.showWaiting();
 							mui.fire(detailPage, 'detailId', {

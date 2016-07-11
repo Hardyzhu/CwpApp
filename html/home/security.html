@@ -63,7 +63,13 @@
 				<div class="mui-col-xs-12" id="list"></div>
 				<script id="detailTmpl" type="text/html">
 					{{each beans}}
-						<div class="mui-col-xs-12 mb5 dataList">
+						{{if $value.eventProcessStatus == 1}}
+						    <div class="mui-col-xs-12 mb5 dataList" style="background:#FFFAFA !important;">
+						{{else if $value.eventProcessStatus == 2}}
+							<div class="mui-col-xs-12 mb5 dataList" style="background:#F3FBFE !important;">
+						{{else}}
+						    <div class="mui-col-xs-12 mb5 dataList" style="background:#FFF !important;;">
+						{{/if}}
 							<h3>{{$value.deviceName}}
 								<span class="emergency mui-pull-right">
 									{{if $value.warningLevel == 0}}
