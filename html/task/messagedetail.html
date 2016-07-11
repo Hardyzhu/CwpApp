@@ -1,0 +1,340 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-28
+	描述：维修任务列表详情
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>任务列表详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.barNav{
+				list-style: none;
+				background: #FFFFFF;
+				padding:5px 0;
+				margin-bottom:10px;
+				border-top:1px solid #DEDEDE;
+				border-bottom:1px solid #DEDEDE;
+			}
+			.barNav li{
+				float:left;
+				border-right:1px solid #DEDEDE;
+				padding:4px 0;
+				font-size:1.4rem;
+				color:#9C9C9C;
+				text-align:center;
+			}
+			.mui-icon{
+				font-size:1.4rem;
+			}
+			.searchData{
+				margin: 15px 15px 0;
+			}
+			#accept,
+			#goReport{
+				padding:2px 4px 0;
+				background:#299CEF;
+				border-color:#299CEF;
+				-webkit-transition: all 0.5s;
+				transition: all 0.5s;
+			}
+			.fault{
+				background:#FFF;
+				padding:15px;
+			}
+			.faulter{
+				padding:0 30px;
+				list-style:none;
+			}
+			.deal{
+				padding:0px 15px;
+				background:#FFF;
+				line-height:23px;
+			}
+			.dealer{
+				font-size:1.4rem;
+				font-weight:500;
+				color:#222222;
+			}
+			.accepter{
+				background:#DEDEDE !important;
+				border-color:#DEDEDE !important;
+				color:#FFF !important;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">维修任务列表详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-col-xs-12 mb5 dataList">
+				<div class="mui-col-xs-12" id="dealTmpl">
+					<!--头部详情部分-->
+				</div>
+				<div class="mui-col-xs-12 fault">
+					<ul class="mui-col-xs-12 faulter" id="dataDault">
+						<!--流程部分-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--信息部分-->
+		<script id="dealTmp" type="text/html">
+			<h3>{{deviceName}}
+				<span class="emergency mui-pull-right">
+					{{if warningLevel == 0}}
+					    <span class="scile scileLow"></span>
+						<span class="sileSize sileLow">低</span>
+					{{else if warningLevel == 2}}
+					    <span class="scile scileMiddle"></span>
+						<span class="scile scileMiddle"></span>
+						<span class="sileSize sileMiddle">中</span>
+					{{else}}
+					    <span class="scile scileHeight"></span>
+						<span class="scile scileHeight"></span>
+						<span class="scile scileHeight"></span>
+						<span class="sileSize sileHeight">高</span>
+					{{/if}}
+				</span>
+			</h3>
+			<div class="mui-col-xs-12 muiDetail">
+				<span class="detailTitle">
+					地点：
+				</span>
+				{{buildingName}}
+			</div>
+			<div class="mui-col-xs-12 muiMark detailTitle">
+				问题描述：
+			</div>
+			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
+				{{eventDescribe}}
+			</div>
+			<div class="mui-col-xs-12 deal clearfix">
+				<div class="mui-col-xs-6 dealer fl">
+					故障处理
+				</div>
+				<div class="mui-col-xs-6 mui-text-right fl">
+					<button class="mui-btn mui-btn-red" id="goReport" type="button">勘察报告</button>
+					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="newdeal" type="button"></button>
+				</div>
+			</div>
+		</script>
+		<!--流程部分-->
+		<script id="dataTmpl" type="text/html">
+		    <li>
+				<h4>
+					<span></span>
+					通知
+				</h4>
+				<div class="mui-col-xs-12 faultBox">
+					{{include 'noticeList' value}} 
+				</div>
+			</li>
+			<li>
+				<h4>
+					<span></span>
+					确认
+				</h4>
+				<div class="mui-col-xs-12 faultBox">
+					{{include 'confimList' value}} 
+				</div>
+			</li>
+			<li>
+				<h4>
+					<span></span>
+					处理
+				</h4>
+				<div class="mui-col-xs-12 faultBox">
+					{{include 'dealList' value}} 
+				</div>
+			</li>
+		</script>
+		<script type="text/html" id="noticeList">
+	     	{{each notice}}
+				<div class="mui-col-xs-12 faultUser">
+					{{if $value.roleName==''||$value.roleName==null}}
+						<span>暂无记录！</span>
+					{{else}}
+						<span>
+							{{$value.roleName}}:
+						</span>
+						<span>
+							{{$value.appPush}}
+						</span>
+					{{/if}}
+				</div>
+			{{/each}}
+	    </script>
+	    <script type="text/html" id="confimList">
+	     	{{each confim}}
+				<div class="mui-col-xs-12 faultUser">
+					{{if $value.roleName==''||$value.roleName==null}}
+						<span>暂无记录！</span>
+					{{else}}
+						<span>
+							{{$value.roleName}}:
+						</span>
+						<span>
+							{{$value.appPush}}
+						</span>
+					{{/if}}
+				</div>
+			{{/each}}
+	    </script>
+	    <script type="text/html" id="dealList">
+	     	{{each deal}}
+				<div class="mui-col-xs-12 faultUser">
+					{{if $value.appPush ==''||$value.appPush == null}}
+						<span>暂无记录！</span>
+					{{else}}
+						<span>
+							{{$value.roleName}}:
+						</span>
+						<span>
+							{{$value.appPush}}
+						</span>
+					{{/if}}
+				</div>
+			{{/each}}
+	    </script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/template.js"></script>
+		<script>
+			mui.init();
+			
+			mui.plusReady(function(){
+				//获取登录信息
+				var isLogin = plus.storage.getItem("userInfo");
+				//预加载
+				var reportPage = null;
+				if(!reportPage){
+					reportPage = mui.preload({
+					     url:"messageReport.html",
+					     id:"messageReport"
+					});
+				}
+				var dealPage = null;
+				if(!dealPage){
+					dealPage = mui.preload({
+					     url:"newdeal.html",
+					     id:"newdeal"
+					});
+				}
+				var warningEventId;
+				var warningCategoryId;
+				//添加newId自定义事件监听
+				window.addEventListener('detailId',function(event){
+					warningEventId = event.detail.warningEventId;
+					console.log(warningEventId);
+					warningCategoryId = event.detail.warningCategoryId;
+					//信息部分
+				 	res(warningEventId,warningCategoryId,1,4);
+				});
+				//渲染刷新部分
+				/**
+				 * eventProgress  3代表接受 ，1
+				 * updateOrDetail 1，详情，2，接受
+				 */
+				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+					mui.ajax({
+						type: "post",
+						url: "http://192.168.92.199:28090/cwp/front/sh/warningEvent!execute",
+						async: true,
+						data: {
+							uid:"c017",
+							warningEventId:warningEventId,
+							warningCategoryId:warningCategoryId,
+							updateOrDetail:updateOrDetail,
+							responseOfficerId:JSON.parse(isLogin).userId,
+							eventProgress:eventProgress
+						},
+						dataType: "json",
+						timeout: 10000,
+						success: function(data) {
+							if(updateOrDetail==1){
+								mui.toast('查询成功!');
+							}else{
+								mui.toast('接受成功!');
+							}
+							var oDeal = document.getElementById('dealTmpl');
+							var oDault = document.getElementById('dataDault');
+							var dealHtml = template('dealTmp', data.bean);
+							oDeal.innerHTML = dealHtml;
+							//数据重组
+							var tempObj = {}; 
+							var notice = [];   //通知
+							var confim = [];   //确认
+							var deal = [];     //处理
+							if(data.beans.length!=0){
+								for(var i=0;i<data.beans.length;i++){
+									if(data.beans[i].personType==1){
+										//通知
+										notice.push(data.beans[i]);
+									}else if(data.beans[i].personType==2){
+										//确认
+										confim.push(data.beans[i]);
+									}else{
+										//处理
+										deal.push(data.beans[i]);
+									}
+								}
+							}
+							tempObj.notice = notice;
+							tempObj.confim = confim;
+							tempObj.deal = deal;
+							var daultHtml = template('dataTmpl', tempObj);
+							oDault.innerHTML = daultHtml;
+							//预加载子页面
+							plus.nativeUI.showWaiting();
+							mui.fire(reportPage, 'getReport', {
+							    result:data.bean
+							});
+							mui.fire(dealPage, 'newdeal', {
+							    result:data.bean
+							});
+							setTimeout(function() {
+								plus.nativeUI.closeWaiting();
+							}, 200);
+							
+						},
+						error: function(xhr, type, errorThrown) {
+							if(type=='timeout'){
+								mui.toast('请求超时:请检查网络!');
+							}else if(updateOrDetail==1){
+								mui.toast('查询失败!');
+							}else{
+								mui.toast('接受失败!');
+							}
+							return;
+						}
+					});
+				}
+				//跳转勘察报告
+				
+				mui('.mui-content').on('tap', '#goReport', function(e) {
+					mui.openWindow({
+						id: "messageReport",
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+				//新增处理
+				mui('.mui-content').on('tap', '#newdeal', function(e) {
+					mui.openWindow({
+						id: "newdeal",
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

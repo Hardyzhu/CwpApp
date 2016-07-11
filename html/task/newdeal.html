@@ -1,0 +1,249 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-28
+	描述：新增处理
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新增处理</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.barNav{
+				list-style: none;
+				background: #FFFFFF;
+				padding:5px 0;
+				margin-bottom:10px;
+				border-top:1px solid #DEDEDE;
+				border-bottom:1px solid #DEDEDE;
+			}
+			.barNav li{
+				float:left;
+				border-right:1px solid #DEDEDE;
+				padding:4px 0;
+				font-size:1.4rem;
+				color:#9C9C9C;
+				text-align:center;
+			}
+			.mui-icon{
+				font-size:1.4rem;
+			}
+			.searchData{
+				margin: 15px 15px 0;
+			}
+			.fault{
+				background:#FFF;
+				padding:15px;
+			}
+			.faulter{
+				padding:0 30px;
+				list-style:none;
+			}
+			.deal{
+				padding:0px 15px;
+				background:#FFF;
+				line-height:23px;
+			}
+			.dealer{
+				font-size:1.4rem;
+				font-weight:500;
+				color:#222222;
+			}
+			.accepter{
+				background:#DEDEDE !important;
+				border-color:#DEDEDE !important;
+				color:#FFF !important;
+			}
+			.mui-button-row {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">新增处理</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-col-xs-12 mb5 dataList">
+				<div class="mui-col-xs-12" id="dealTmpl">
+					<!--头部详情部分-->
+				</div>
+				<div id="newTmpl" class="mui-col-xs-12"style="background:#FFF;">
+					<div class="mui-col-xs-12">
+						<div class="dealer" style="padding:11px 15px;">
+							<!--描述部分-->
+							<div class="mui-input-row">
+								<div class="mb5">处理描述:</div>
+								<textarea id="textarea" rows="5" class="dealer" placeholder="请输入描述"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="mui-button-row" >
+						<button class="mui-btn mui-btn-red subit" type="button">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--信息部分-->
+		<script id="dealTmp" type="text/html">
+			<h3>{{deviceName}}
+				<span class="emergency mui-pull-right">
+					{{if warningLevel == 0}}
+					    <span class="scile scileLow"></span>
+						<span class="sileSize sileLow">低</span>
+					{{else if warningLevel == 2}}
+					    <span class="scile scileMiddle"></span>
+						<span class="scile scileMiddle"></span>
+						<span class="sileSize sileMiddle">中</span>
+					{{else}}
+					    <span class="scile scileHeight"></span>
+						<span class="scile scileHeight"></span>
+						<span class="scile scileHeight"></span>
+						<span class="sileSize sileHeight">高</span>
+					{{/if}}
+				</span>
+			</h3>
+			<div class="mui-col-xs-12 muiDetail">
+				<span class="detailTitle">
+					地点：
+				</span>
+				{{buildingName}}
+			</div>
+			<div class="mui-col-xs-12 muiMark detailTitle">
+				问题描述：
+			</div>
+			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
+				{{eventDescribe}}
+			</div>
+		</script>
+		<script id="newTmp" type="text/html">
+			<div class="mui-col-xs-12">
+				<div class="dealer" style="padding:11px 15px;">
+					<!--描述部分-->
+					<div class="mui-input-row">
+						<div class="mb5">处理描述:</div>
+						<div rows="5" class="dealer">{{handleOpinion}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-button-row" >
+				<button class="mui-btn mui-btn-red subit" type="button">确定</button>
+			</div>
+		</script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/template.js"></script>
+		<script>
+			mui.init({
+				swipeBack:true 
+			});
+			
+			mui.plusReady(function(){
+				
+				//预加载
+				var messagePage = null;
+				if(!messagePage){
+					messagePage = mui.preload({
+					     url:"../main/message.html",
+					     id:"message"
+					});
+				}
+				var detailPage = null;
+				if(!detailPage){
+					detailPage = mui.preload({
+					     url:"./messagedetail.html",
+					     id:"messagedetail"
+					});
+				}
+				//获取登录信息
+				var oTextarea = document.getElementById('textarea');
+				var isLogin = plus.storage.getItem("userInfo");
+				var warningEventId,
+				    eventProgress,
+				    liveDescribe,
+					warningCategoryId;
+				if(isLogin){
+					window.addEventListener('newdeal',function(event){			
+						warningEventId = event.detail.result.warningEventId;
+						warningCategoryId = event.detail.result.warningCategoryId;
+						eventProgress = event.detail.result.eventProgress;
+						var oDeal = document.getElementById('dealTmpl');
+						var dealHtml = template('dealTmp', event.detail.result);
+						oDeal.innerHTML = dealHtml;
+						
+						if(eventProgress == '4'){
+							console.log(13);
+							var oNew = document.getElementById('newTmpl');
+							var newHtml = template('newTmp', event.detail.result);
+							oNew.innerHTML = newHtml;
+						}
+					});
+				}
+				//新增或者查看
+				mui('.mui-content').on('tap','.subit',function(){
+					console.log(1);
+					if(eventProgress=='4'){
+						console.log(2);
+						plus.nativeUI.showWaiting();
+						setTimeout(function() {
+							plus.nativeUI.closeWaiting();
+							mui.back();
+						}, 200);
+					}else{
+						if(oTextarea!=null){
+							liveDescribe = oTextarea.value;
+						}
+						if(liveDescribe==''||liveDescribe==null){
+							mui.toast('请输入处理报告');
+							return
+						}
+						console.log(3);
+						subup();
+					}
+				});
+				function subup(){
+					mui.ajax({
+						type: "post",
+						url: "http://192.168.92.199:28090/cwp/front/sh/warningEvent!execute",
+						async: true,
+						data: {
+							uid:"c017",
+							warningEventId:warningEventId, 
+							eventProgress:"4",
+							handleOpinion: liveDescribe,
+							handleId:JSON.parse(isLogin).userId
+						},
+						dataType: "json",
+						timeout: 10000,
+						success: function(data) {
+							mui.toast('查询成功!');
+							//预加载子页面
+							plus.nativeUI.showWaiting();
+							mui.fire(detailPage, 'detailId', {
+								warningEventId:warningEventId,
+					    		warningCategoryId:warningCategoryId
+							});
+							mui.fire(messagePage, 'getMessage', {
+								isLogin:JSON.parse(isLogin)
+							});
+							setTimeout(function() {
+								plus.nativeUI.closeWaiting();
+								mui.back();
+							}, 200);
+						},
+						error: function(xhr, type, errorThrown) {
+							if(type=='timeout'){
+								mui.toast('提交超时:请检查网络!');
+							}else{
+								mui.toast('提交失败!');
+							}
+						}
+					});
+				};
+			});
+		</script>
+	</body>
+</html>
