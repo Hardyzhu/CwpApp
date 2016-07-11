@@ -35,6 +35,7 @@
     .mui-ellipsis-2 .data{padding-left: 10px;color: #000}/*标题数据间距*/
     .see{font-size: 14px;float: right;color: #aeaeae;}/*查看详情样式*/
     .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding-right: 5px}/*查看详情“！”样式*/
+    .chart {height: 200px;margin: 0px;padding: 0px;}
 </style>
 
 <header class="mui-bar mui-bar-nav">
@@ -141,32 +142,58 @@
                 </div>
             </div>
             <div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
-                <!--<div id="scroll3" class="mui-scroll-wrapper">-->
-                    <!--<div class="mui-content">-->
-                        <!--<div style="padding: 10px 10px;">-->
-                            <!--<div id="segmentedControl" class="mui-segmented-control">-->
-                                <!--<a class="mui-control-item mui-active" href="#item1">-->
-                                    <!--用电趋势-->
-                                <!--</a>-->
-                                <!--<a class="mui-control-item" href="#item2">-->
-                                    <!--分类用电量-->
-                                <!--</a>-->
-                                <!--<a class="mui-control-item" href="#item3">-->
-                                    <!--电费-->
-                                <!--</a>-->
-                                <!--<a class="mui-control-item" href="#item4">-->
-                                    <!--区域用电量-->
-                                <!--</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                <!--</div>-->
+                <div class="mui-content">
+            		 <div class="calendar-box">
+                        <input class="calendar-input"placeholder="请选择开始时间"/>
+                        <input class="calendar-input"placeholder="请选择结束时间"/>
+                        <span type="button" class="calendar-btn"><img src="../../image/icon-002.png"></span>
+                    </div>
+					<div>
+						<div id="segmentedControl" class="mui-segmented-control">
+							<a class="mui-control-item mui-active" href="#item1">
+								用电趋势
+							</a>
+							<a class="mui-control-item" href="#item2">
+								分类用电量
+							</a>
+						</div>									
+					</div>								
+				</div>
+				
+				<div style="margin-top: 50px;">
+					<div id="item1" class="mui-control-content mui-active">
+						<div id="scroll" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-content" style="margin-top: 0px;">
+									<div >
+										<div class="chart" id="lineChart">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>					
+					</div>
+					
+					<div id="item2" class="mui-control-content mui-active">
+						<div id="scroll" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-content" style="margin-top: 0px;">
+									<div>
+										<div class="chart" id="pieChart">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
             </div>
         </div>
     </div>
 </div>
 <script src="../../js/mui.min.js"></script>
+<script src="../../js/echarts-all.js"></script>
 <script>
 	mui.init();
 	mui.plusReady(function(){
@@ -184,7 +211,89 @@
 		});
 	});
 </script>
-
+<script>
+    var getOption = function(chartType) {
+        var chartOption = chartType == 'pie' ? {
+            calculable: false,
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius:[ '50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:49.2, name:'空调：49.2%'},
+                    {value:37.3, name:'照明：37.3%'},
+                    {value:12.7, name:'排水：12.7%'},
+                    {value:7.1, name:'新风：7.1%'}
+                ]
+            }]
+        } :
+        {
+            color:['#007aff'],
+            grid: {
+                x: 60,
+                x2: 30,
+                y: 35,
+                y2: 30
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : ['一月','二月','三月','四月','五月','六月']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'耗电量',
+                    type:'line',
+                    smooth:true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data:[31, 35, 24, 26, 50, 75]
+                }
+            ]
+        };
+        return chartOption;
+    };
+    var byId = function(id) {
+        return document.getElementById(id);
+    };
+    var lineChart = echarts.init(byId('lineChart'));
+    lineChart.setOption(getOption('line'));
+    var pieChart = echarts.init(byId('pieChart'));
+    pieChart.setOption(getOption('pie'));
+    /*byId("echarts").addEventListener('tap',function(){
+        var url = this.getAttribute('data-url');
+        plus.runtime.openURL(url);
+    },false);*/
+</script>
 
 </body>
 
