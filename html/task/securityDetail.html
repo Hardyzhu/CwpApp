@@ -126,6 +126,7 @@
 						<button class="mui-btn mui-btn-red accepter" id="accept" type="button">已接受</button>
 					{{/if}}
 					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="goReport" type="button">勘察报告</button>
+					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="newdeal" type="button"></button>
 				</div>
 			</div>
 		</script>
@@ -325,7 +326,20 @@
 						}
 					});
 				});
-				
+				//新增处理
+				mui('.mui-content').on('tap', '#newdeal', function(e) {
+					var state = this.getAttribute('data-state');
+					if(state==''||state==null){
+						mui.toast('请先接受工单!');
+						return;
+					}
+					mui.openWindow({
+						id: "report",
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
 				//接受工单
 				mui('.mui-content').on('tap', '#accept', function(e) {
 					var dataHtml = this.innerHTML;

@@ -195,7 +195,8 @@
 			"js/template.js"
 		],
 		"refer": [
-			"html/task/securityDetail.html"
+			"html/task/securityDetail.html",
+			"html/task/messagedetail.html"
 		]
 	},
 	"html/main/main.html": {
@@ -729,9 +730,12 @@
 			"js/template.js"
 		]
 	},
-	"html/equipment/guard_subdir/subReal.html": {
+	"html/task/newdeal.html": {
+		"refer": [
+			"html/main/message.html",
+			"html/task/messagedetail.html"
+		],
 		"resources": [
-			"js/echarts-all.js",
 			"js/mui.min.js",
 			"css/common.css",
 			"fonts/mui.ttf",
@@ -739,14 +743,10 @@
 			"js/template.js"
 		]
 	},
-	"html/equipment/fresh_air_subdir/subReal.html": {
-		"resources": [
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js"
+	"html/task/messagedetail.html": {
+		"refer": [
+			"html/task/messageReport.html",
+			"html/task/newdeal.html"
 		]
 	}
 }
