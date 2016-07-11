@@ -918,7 +918,9 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"image/home-4.png",
-					"css/add.css"
+					"css/add.css",
+					"image/icon-003.png",
+					"image/icon-002.png"
 				],
 				"refer": [
 					"html/energy/energyBuilding.html"
@@ -937,12 +939,6 @@
 				"refer": [],
 				"priority": 0
 			},
-					"js/mui.min.js",
-					"css/common.css",
-					"fonts/mui.ttf",
-					"css/mui.min.css",
-					"js/template.js"
-				],
 			"html/task/newdeal.html": {
 				"resources": [
 					"js/mui.min.js",
