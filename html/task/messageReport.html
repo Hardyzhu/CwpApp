@@ -125,7 +125,9 @@
 					<!--描述部分-->
 					<div class="mui-input-row">
 						<div class="mb5">情况描述:</div>
-						<div class="dealer">{{liveDescribe}}</div>
+						<div class="dealer">							
+							{{liveDescribe | toNull}}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -154,6 +156,13 @@
 								return '已生成'
 							}else{
 								return '未生成'
+							}
+						});
+						template.helper('toNull',function(inp){
+							if(inp == ''||inp == null){
+								return '暂无记录！';
+							}else{
+								return inp;
 							}
 						});
 						var dealHtml = template('dealTmp', event.detail.result);

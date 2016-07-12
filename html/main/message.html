@@ -65,8 +65,8 @@
 		</div>
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
-				<div class="mui-col-xs-12 mb5 dataList">
-					<h3>{{$value.deviceName}}
+				<div class="mui-col-xs-12 mb5 dataList list-pannel">
+					<h3 class="list-title">{{$value.deviceName}}
 						<span class="emergency mui-pull-right">
 							{{if $value.warningLevel == 0}}
 							    <span class="scile scileLow"></span>
@@ -83,7 +83,7 @@
 							{{/if}}
 						</span>
 					</h3>
-					<div class="mui-col-xs-12 muiDetail">
+					<div class="mui-col-xs-12 muiDetail list-body">
 						{{$value.eventDescribe}}
 					</div>
 					<div class="mui-col-xs-12 muiDetail">				
@@ -94,8 +94,8 @@
 						{{else}}
 						    <span class="btnState greenColor">已恢复</span>
 						{{/if}}
-						<span class="Timecolor">{{$value.applyTime}}</span>
-						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel" href="javascript:void(0);">
+						<span class="Timecolor font1rem">{{$value.applyTime}}</span>
+						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
 							查看详情
 							<span class="mui-icon mui-icon-arrowright"></span>
 						</a>
