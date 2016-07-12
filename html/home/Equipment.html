@@ -13,9 +13,11 @@
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" href="../../css/home.css" />
 		<link rel="stylesheet" href="../../css/add.css" />
+		<link rel="stylesheet" href="../../css/new.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css">
 		<style>
 			.isActive{
-				background:red !important;
+				background:#90c31c !important;
 			}
 		</style>
 	</head>
@@ -25,9 +27,19 @@
 			<h1 class="mui-title">设备监控</h1>
 		</header>
 		<!--按钮-->
-		<div id="progress-btn">
-			<p><a href="javascript:void(0)" data-state="1" class="isActive">未处理</a></p>
-			<p><a href="javascript:void(0)" data-state="3" >已处理</a></p>
+		<div id="progress-btn" class="table-bar-btn clearfix">
+			<span>				
+				<a href="javascript:void(0)" data-state="1" class="isActive">
+					<i class="icon iconfont">&#xe620;</i>
+					<span>未处理</span>
+				</a>
+			</span>
+			<span>
+				<a href="javascript:void(0)" data-state="3">
+					<i class="icon iconfont">&#xe61f;</i>
+					<span>已处理</span>
+				</a>
+			</span>
 		</div>
 		
 		<!--内容-->

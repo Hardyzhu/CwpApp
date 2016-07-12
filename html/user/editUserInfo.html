@@ -12,6 +12,8 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>修改密码</title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+		<link href="../../css/new.css" rel="stylesheet" />
 		<style>
 			#edit {
 				color: #299CEF;
@@ -24,7 +26,7 @@
 			
 			.mui-btn-block {
 				padding: 10px;
-			}
+			}			
 		</style>
 	</head>
 
@@ -34,20 +36,22 @@
 			<h1 class="mui-title">修改密码</h1>
 		</header>
 		<div class="mui-content">
-			<div class="mui-input-row mui-password">
-				<label>原始密码：</label>
-				<input class="mui-input-clear" id="pwd" type="password" placeholder="请输入密码" class="mui-input-password" />
-			</div>
-			<div class="mui-input-row mui-password">
-				<label>新密码：</label>
-				<input class="mui-input-clear" id="newPwd" type="password" placeholder="请输入密码" class="mui-input-password" />
-			</div>
-			<div class="mui-input-row mui-password">
-				<label>重复密码：</label>
-				<input class="mui-input-clear" id="repeatPwd" type="password" placeholder="请输入密码" class="mui-input-password"/>
-			</div>
+			<div class="mui-input-group form-group-pannel">
+				<div class="mui-input-row mui-password">
+					<label style="font-size: 1.1rem;">原始密码</label>
+					<input class="mui-input-clear mui-input-password" id="pwd" type="password" placeholder="请输入密码"/>
+				</div>
+				<div class="mui-input-row mui-password">
+					<label style="font-size: 1.1rem;">新密码</label>
+					<input class="mui-input-clear mui-input-password" id="newPwd" type="password" placeholder="请输入密码" />
+				</div>
+				<div class="mui-input-row mui-password">
+					<label style="font-size: 1.1rem;">重复密码</label>
+					<input class="mui-input-clear mui-input-password" id="repeatPwd" type="password" placeholder="请输入密码"/>
+				</div>				
+			</div>	
 			<div class="mui-button-row" >
-				<button class="mui-btn mui-btn-red mui-btn-block" id="exit" type="button">确认修改</button>
+					<button class="mui-btn mui-btn-red mui-btn-block" id="exit" type="button">确认修改</button>
 			</div>
 		</div>
 		<script src="../../js/mui.min.js"></script>

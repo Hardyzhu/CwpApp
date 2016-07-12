@@ -14,6 +14,8 @@
     <!-- App自定义的css -->
     <!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
     <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/new.css" />
+    <link rel="stylesheet" href="../../fonts/iconfont.css">
 </head>
 
 <body>
@@ -35,6 +37,9 @@
     .mui-ellipsis-2 .data{padding-left: 10px;color: #000}/*标题数据间距*/
     .see{font-size: 14px;float: right;color: #aeaeae;}/*查看详情样式*/
     .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding-right: 5px}/*查看详情“！”样式*/
+   .calendar-box{padding: 15px 10px}
+		    .calendar-input{width:42%;height:30px;padding: 5px 10px;font-size: 14px;;border: 1px solid #CCC;background:#FFFFFF url(../../image/icon-003.png) no-repeat right 3px;border-radius: 3px;position: relative}
+		    .calendar-btn{width:14%;height: 30px;padding: 5px;background-color:#007aff;border-radius: 3px;text-align: center;float: right;}
     .chart {height: 200px;margin: 0px;padding: 0px;}
 </style>
 
@@ -146,9 +151,9 @@
             		 <div class="calendar-box">
                         <input class="calendar-input"placeholder="请选择开始时间"/>
                         <input class="calendar-input"placeholder="请选择结束时间"/>
-                        <span type="button" class="calendar-btn"><img src="../../image/icon-002.png"></span>
+                        <span type="button" class="calendar-btn"><i class="icon iconfont icon-btn-white">&#xe618;</i></span>
                     </div>
-					<div>
+					<div class="chart-pannel-border">
 						<div id="segmentedControl" class="mui-segmented-control">
 							<a class="mui-control-item mui-active" href="#item1">
 								用电趋势
@@ -160,12 +165,12 @@
 					</div>								
 				</div>
 				
-				<div style="margin-top: 50px;">
+				<div>
 					<div id="item1" class="mui-control-content mui-active">
 						<div id="scroll" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<div class="mui-content" style="margin-top: 0px;">
-									<div >
+								<div class="mui-content">
+									<div class="chart-pannel">
 										<div class="chart" id="lineChart">
 										</div>
 									</div>
@@ -177,8 +182,8 @@
 					<div id="item2" class="mui-control-content mui-active">
 						<div id="scroll" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<div class="mui-content" style="margin-top: 0px;">
-									<div>
+								<div class="mui-content">
+									<div class="chart-pannel">
 										<div class="chart" id="pieChart">
 											
 										</div>

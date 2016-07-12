@@ -266,28 +266,33 @@ a.mui-action-back{
 	background: #fff;
 }
 
-#progress-btn{
-
-	width: 100%;
-	padding: 80px 0 30px;
-	height: 160px;
-	background: #fff;
+.table-bar-btn{
+	padding: 65px 10px 15px 0px;
 }
-#progress-btn p{
+.table-bar-btn>span{
+	display: block;
 	width: 50%;
 	float: left;
+	padding-left: 10px;
 }
-#progress-btn p a{
+.table-bar-btn>span>a{
 	display: block;
-	width: 70%;
-	margin: 0 auto;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
+	width: 100%;
 	color: #fff;
 	background-color: #0680cb;
-	border-radius: 25px;
-	font-size: 16px;
+	border-radius: 5px;
+	text-align: center;
+	padding:5px 0;
+}
+.table-bar-btn>span>a>i{
+	display: block;
+	font-size: 3.5rem;
+	line-height: 50px;
+}
+.table-bar-btn>span>a>span{
+	display: block;
+	font-size: 1.3rem;
+	line-height: 20px;
 }
 
 .work-list{
