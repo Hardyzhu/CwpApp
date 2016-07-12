@@ -1,13 +1,13 @@
 <!--
 	作者：yeshengqiang
 	时间：2016-06-28
-	描述：维修任务列表详情
+	描述：告警信息详情
 -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>任务列表详情</title>
+		<title>告警信息详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
@@ -70,7 +70,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">维修任务列表详情</h1>
+			<h1 class="mui-title">告警信息详情</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 mb5 dataList">
@@ -126,7 +126,6 @@
 						<button class="mui-btn mui-btn-red accepter" id="accept" type="button">已接受</button>
 					{{/if}}
 					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="goReport" type="button">勘察报告</button>
-					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="newdeal" type="button"></button>
 				</div>
 			</div>
 		</script>
@@ -138,7 +137,7 @@
 					通知
 				</h4>
 				<div class="mui-col-xs-12 faultBox">
-					{{include 'noticeList' value}} 
+					{{include 'noticeList' $value}} 
 				</div>
 			</li>
 			<li>
@@ -147,7 +146,7 @@
 					确认
 				</h4>
 				<div class="mui-col-xs-12 faultBox">
-					{{include 'confimList' value}} 
+					{{include 'confimList' $value}} 
 				</div>
 			</li>
 			<li>
@@ -156,14 +155,14 @@
 					处理
 				</h4>
 				<div class="mui-col-xs-12 faultBox">
-					{{include 'dealList' value}} 
+					{{include 'dealList' $value}} 
 				</div>
 			</li>
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.roleName==''||$value.roleName==null}}
+					{{if $value.appPush==''||$value.appPush==null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
@@ -179,7 +178,7 @@
 	    <script type="text/html" id="confimList">
 	     	{{each confim}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.roleName==''||$value.roleName==null}}
+					{{if $value.appPush==''||$value.appPush==null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
@@ -230,6 +229,7 @@
 				//添加newId自定义事件监听
 				window.addEventListener('detailId',function(event){
 					warningEventId = event.detail.warningEventId;
+					console.log(warningEventId);
 					warningCategoryId = event.detail.warningCategoryId;
 					//信息部分
 				 	res(warningEventId,warningCategoryId,1,1);
@@ -314,20 +314,6 @@
 				//跳转勘察报告
 				
 				mui('.mui-content').on('tap', '#goReport', function(e) {
-					var state = this.getAttribute('data-state');
-					if(state==''||state==null){
-						mui.toast('请先接受工单!');
-						return;
-					}
-					mui.openWindow({
-						id: "report",
-						waiting: {
-							autoShow: false
-						}
-					});
-				});
-				//新增处理
-				mui('.mui-content').on('tap', '#newdeal', function(e) {
 					var state = this.getAttribute('data-state');
 					if(state==''||state==null){
 						mui.toast('请先接受工单!');

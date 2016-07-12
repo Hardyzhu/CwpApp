@@ -60,48 +60,48 @@
 					</li>
 				</ul>
 				<div class="mui-col-xs-12" id="list"></div>
-				<script id="detailTmpl" type="text/html">
-					{{each beans}}
-						<div class="mui-col-xs-12 mb5 dataList">
-							<h3>{{$value.deviceName}}
-								<span class="emergency mui-pull-right">
-									{{if $value.warningLevel == 0}}
-									    <span class="scile scileLow"></span>
-										<span class="sileSize sileLow">低</span>
-									{{else if $value.warningLevel == 2}}
-									    <span class="scile scileMiddle"></span>
-										<span class="scile scileMiddle"></span>
-										<span class="sileSize sileMiddle">中</span>
-									{{else}}
-									    <span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="sileSize sileHeight">高</span>
-									{{/if}}
-								</span>
-							</h3>
-							<div class="mui-col-xs-12 muiDetail">
-								{{$value.eventDescribe}}
-							</div>
-							<div class="mui-col-xs-12 muiDetail">				
-							    {{if $value.eventProcessStatus == 1}}
-								    <span class="btnState redColor">未恢复</span>
-								{{else if $value.eventProcessStatus == 2}}
-								    <span class="btnState blueColor">处理中</span>
-								{{else}}
-								    <span class="btnState greenColor">已恢复</span>
-								{{/if}}
-								<span class="Timecolor">{{$value.applyTime}}</span>
-								<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel" href="javascript:void(0);">
-									查看详情
-									<span class="mui-icon mui-icon-arrowright"></span>
-								</a>
-							</div>
-						</div>
-				    {{/each}}		
-				</script>
 			</div>
 		</div>
+		<script id="detailTmpl" type="text/html">
+			{{each beans}}
+				<div class="mui-col-xs-12 mb5 dataList">
+					<h3>{{$value.deviceName}}
+						<span class="emergency mui-pull-right">
+							{{if $value.warningLevel == 0}}
+							    <span class="scile scileLow"></span>
+								<span class="sileSize sileLow">低</span>
+							{{else if $value.warningLevel == 2}}
+							    <span class="scile scileMiddle"></span>
+								<span class="scile scileMiddle"></span>
+								<span class="sileSize sileMiddle">中</span>
+							{{else}}
+							    <span class="scile scileHeight"></span>
+								<span class="scile scileHeight"></span>
+								<span class="scile scileHeight"></span>
+								<span class="sileSize sileHeight">高</span>
+							{{/if}}
+						</span>
+					</h3>
+					<div class="mui-col-xs-12 muiDetail">
+						{{$value.eventDescribe}}
+					</div>
+					<div class="mui-col-xs-12 muiDetail">				
+					    {{if $value.eventProcessStatus == 1}}
+						    <span class="btnState redColor">未恢复</span>
+						{{else if $value.eventProcessStatus == 2}}
+						    <span class="btnState blueColor">处理中</span>
+						{{else}}
+						    <span class="btnState greenColor">已恢复</span>
+						{{/if}}
+						<span class="Timecolor">{{$value.applyTime}}</span>
+						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel" href="javascript:void(0);">
+							查看详情
+							<span class="mui-icon mui-icon-arrowright"></span>
+						</a>
+					</div>
+				</div>
+		    {{/each}}		
+		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/mui.conf.js"></script>

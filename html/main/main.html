@@ -63,6 +63,8 @@
 					}
 					main.append(subpage);
 				}
+				
+				
 				/**
 				 * 子页面切换
 				 */
@@ -70,8 +72,32 @@
 				// 设置中间变量，用于存储当前处于展示状态窗口的标识（这里用的标识是窗口的相对地址），默认是第一个窗口；
 				var activeTab = subpageArr[1];
 				var targetTab = "";
+				//监听点击事件
+				window.addEventListener('changePage',function(event){
+					console.log(activeTab);
+					console.log(targetTab);
+					var target = event.detail.target;
+					var active = event.detail.active;
+					var tabTitle = event.detail.title;
+					console.log(tabTitle);
+					var tabs = document.querySelectorAll(".mui-tab-item");
+					activeTab = target;
+					targetTab = active;
+					title.innerHTML = tabTitle;
+					for (var i = 0, tabLength = tabs.length; i < tabLength; i++) {
+						tabs[i].className = 'mui-tab-item';
+					}
+					tabs[0].className = 'mui-tab-item mui-active';
+					plus.webview.show(targetTab, "fade-in", 300);
+					plus.webview.hide(activeTab);
+					activeTab = targetTab;
+				});
+				//列表切换
 				for (var j = 0, tabLength = tabs.length; j < tabLength; j++) {
 					tabs[j].addEventListener("tap", function() {
+						console.log(1);
+						console.log(activeTab);
+						console.log(targetTab);
 						targetTab = this.getAttribute("data-href");
 						if (targetTab === activeTab) {
 							return;
