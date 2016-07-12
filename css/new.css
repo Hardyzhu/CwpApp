@@ -132,10 +132,11 @@
 	background: #38d1d1;
 	border-radius: 20px;
 	margin-right: 10px;
+	font-size: 1rem;
 	text-align: center;
 	line-height: 40px;
-	color: #fff;
-	font-size:3rem;
+	color: #fff;	
+	font-style: normal;
 }
 .message-info-group{
 	float: left;
@@ -176,11 +177,12 @@
 }
 .process-list-pannel{
 	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 .porcess-pannel-list{
 	list-style: none; 
-	position: relative; 
-	padding:0 22px;
+	position: relative; 	
 }
 .porcess-title-icon{
 	width: 14px; 
@@ -189,8 +191,9 @@
 	background: blue; 
 	color: #fff; 	
 	text-align:center; 
-	position: absolute; top: 0px; 
-	left: 15px; 
+	position: absolute; 
+	top: 0px; 
+	left: -7px; 
 	z-index: 1;
 	background: #1f95dd;
 	border: 1px solid #0680ca;

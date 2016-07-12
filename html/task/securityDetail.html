@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+			<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<style>
 			.barNav{
 				list-style: none;
@@ -56,11 +57,11 @@
 				background:#FFF;
 				line-height:23px;
 			}
-			.dealer{
+			/*.dealer{
 				font-size:1.4rem;
 				font-weight:500;
 				color:#222222;
-			}
+			}*/
 			.accepter{
 				background:#DEDEDE !important;
 				border-color:#DEDEDE !important;
@@ -87,7 +88,39 @@
 		</div>
 		<!--信息部分-->
 		<script id="dealTmp" type="text/html">
-			<h3>{{deviceName}}
+			<div class="message-top-pannel">
+				<div class="message-top-box">
+					<div class="message-padding clearfix">
+						<i class="icon iconfont messgae-icon-title" style=""><!--&#xe61c;-->{{deviceName}}</i>
+						<div class="message-info-group">
+							<div class="message-info-list">
+								<div class="message-add">
+									{{buildingName}}
+								</div>
+								<span class="message-level">
+									{{if warningLevel == 0}}
+									    <span class="scile scileLow"></span>
+										<span class="sileSize sileLow">低</span>
+									{{else if warningLevel == 2}}
+									    <span class="scile scileMiddle"></span>
+										<span class="scile scileMiddle"></span>
+										<span class="sileSize sileMiddle">中</span>
+									{{else}}
+									    <span class="scile scileHeight"></span>
+										<span class="scile scileHeight"></span>
+										<span class="scile scileHeight"></span>
+										<span class="sileSize sileHeight">高</span>
+									{{/if}}
+								</span>
+							</div>
+							<div class="message-info-box">
+								{{eventDescribe}}
+							</div>
+						</div>
+					</div>					
+				</div>	
+			</div>
+			<!--<h3>{{deviceName}}
 				<span class="emergency mui-pull-right">
 					{{if warningLevel == 0}}
 					    <span class="scile scileLow"></span>
@@ -103,8 +136,8 @@
 						<span class="sileSize sileHeight">高</span>
 					{{/if}}
 				</span>
-			</h3>
-			<div class="mui-col-xs-12 muiDetail">
+			</h3>-->
+			<!--<div class="mui-col-xs-12 muiDetail">
 				<span class="detailTitle">
 					地点：
 				</span>
@@ -115,7 +148,8 @@
 			</div>
 			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
 				{{eventDescribe}}
-			</div>
+			</div>-->
+			<div class="fault-pannel">
 			<div class="mui-col-xs-12 deal clearfix">
 				<div class="mui-col-xs-6 dealer fl">
 					故障处理
@@ -129,10 +163,50 @@
 					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="goReport" type="button">勘察报告</button>
 				</div>
 			</div>
+			</div>
 		</script>
 		<!--流程部分-->
 		<script id="dataTmpl" type="text/html">
-		    <li>
+			<li class="process-list-pannel clearfix">	
+					<div class="porcess-pannel-list">
+						<span class="porcess-title-icon">1</span>
+				    	<div class="porcess-title-name-pannel">		    		
+				    		<h4 class="porcess-title-name">						
+								通知
+							</h4>
+							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+								{{include 'noticeList' value}} 
+							</div>
+				    	</div>	    
+					</div>					
+				</li>
+				<li class="process-list-pannel clearfix" >	
+					<div class="porcess-pannel-list">
+						<span class="porcess-title-icon">2</span>
+				    	<div class="porcess-title-name-pannel">		    		
+				    		<h4 class="porcess-title-name">						
+								确认
+							</h4>
+							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+								{{include 'confimList' value}} 
+							</div>
+				    	</div>	    
+					</div>					
+				</li>
+				<li class="process-list-pannel clearfix" >	
+					<div class="porcess-pannel-list">
+						<span class="porcess-title-icon">3</span>
+				    	<div class="porcess-title-name-pannel">		    		
+				    		<h4 class="porcess-title-name">						
+								处理
+							</h4>
+							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+								{{include 'dealList' value}} 
+							</div>
+				    	</div>	    
+					</div>					
+				</li>
+		    <!--<li>
 				<h4>
 					<span></span>
 					通知
@@ -158,7 +232,7 @@
 				<div class="mui-col-xs-12 faultBox">
 					{{include 'dealList' $value}} 
 				</div>
-			</li>
+			</li>-->
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}

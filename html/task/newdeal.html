@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<style>
 			.barNav{
 				list-style: none;
@@ -82,6 +83,38 @@
 		</div>
 		<!--信息部分-->
 		<script id="dealTmp" type="text/html">
+			<!--<div class="message-top-pannel">
+				<div class="message-top-box">
+					<div class="message-padding clearfix">
+						<i class="icon iconfont messgae-icon-title">&#xe61c;{{deviceName}}</i>
+						<div class="message-info-group">
+							<div class="message-info-list">
+								<div class="message-add">
+									{{buildingName}}
+								</div>
+								<span class="message-level">
+									{{if warningLevel == 0}}
+									    <span class="scile scileLow"></span>
+										<span class="sileSize sileLow">低</span>
+									{{else if warningLevel == 2}}
+									    <span class="scile scileMiddle"></span>
+										<span class="scile scileMiddle"></span>
+										<span class="sileSize sileMiddle">中</span>
+									{{else}}
+									    <span class="scile scileHeight"></span>
+										<span class="scile scileHeight"></span>
+										<span class="scile scileHeight"></span>
+										<span class="sileSize sileHeight">高</span>
+									{{/if}}
+								</span>
+							</div>
+							<div class="message-info-box">
+								{{eventDescribe}}
+							</div>
+						</div>
+					</div>					
+				</div>	
+			</div>-->
 			<h3>{{deviceName}}
 				<span class="emergency mui-pull-right">
 					{{if warningLevel == 0}}

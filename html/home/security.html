@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<style>
 			.barNav{
 				list-style: none;
@@ -65,13 +66,13 @@
 				<script id="detailTmpl" type="text/html">
 					{{each beans}}
 						{{if $value.eventProcessStatus == 1}}
-						    <div class="mui-col-xs-12 mb5 dataList" style="background:#FFFAFA !important;">
+						    <div class="mui-col-xs-12 mb5 dataList list-pannel" style="background:#FFFAFA !important;">
 						{{else if $value.eventProcessStatus == 2}}
-							<div class="mui-col-xs-12 mb5 dataList" style="background:#F3FBFE !important;">
+							<div class="mui-col-xs-12 mb5 dataList list-pannel" style="background:#F3FBFE !important;">
 						{{else}}
-						    <div class="mui-col-xs-12 mb5 dataList" style="background:#FFF !important;;">
+						    <div class="mui-col-xs-12 mb5 dataList list-pannel" style="background:#FFF !important;;">
 						{{/if}}
-							<h3>{{$value.deviceName}}
+							<h3 class="list-title">{{$value.deviceName}}
 								<span class="emergency mui-pull-right">
 									{{if $value.warningLevel == 0}}
 									    <span class="scile scileLow"></span>
@@ -88,19 +89,19 @@
 									{{/if}}
 								</span>
 							</h3>
-							<div class="mui-col-xs-12 muiDetail">
+							<div class="mui-col-xs-12 muiDetail list-body">
 								{{$value.eventDescribe}}
 							</div>
 							<div class="mui-col-xs-12 muiDetail">				
 							    {{if $value.eventProcessStatus == 1}}
-								    <span class="btnState redColor">未恢复</span>
+								    <span class="btnState redColor font1rem">未恢复</span>
 								{{else if $value.eventProcessStatus == 2}}
-								    <span class="btnState blueColor">处理中</span>
+								    <span class="btnState blueColor font1rem">处理中</span>
 								{{else}}
-								    <span class="btnState greenColor">已恢复</span>
+								    <span class="btnState greenColor font1rem">已恢复</span>
 								{{/if}}
 								<span class="Timecolor">{{$value.applyTime}}</span>
-								<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel" href="javascript:void(0);">
+								<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
 									查看详情
 									<span class="mui-icon mui-icon-arrowright"></span>
 								</a>
