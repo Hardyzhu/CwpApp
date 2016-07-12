@@ -4,7 +4,12 @@
 	margin-top: 15px;
 }
 .form-group-pannel label{
-	font-size: 1.2rem;
+	font-size: 1rem;
+}
+.btn-bottom-pannel{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 /*修改首页滚动图片背景有滚动条样式*/
 .slider-pannel{
@@ -80,6 +85,9 @@
 }
 .font1rem{
 	font-size: 1rem;
+}
+.font11rem{
+	font-size: 1.1rem;
 }
 
 .chart-pannel{
