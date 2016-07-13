@@ -222,7 +222,8 @@
 					"image/home-3.png",
 					"image/home-2.png",
 					"image/home-4.png",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"css/new.css"
 				],
 				"refer": [
 					"html/main/side.html",
@@ -251,7 +252,8 @@
 					"image/head.jpg",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"css/new.css"
 				],
 				"refer": [
 					"html/account/login.html",
@@ -371,7 +373,9 @@
 					"image/logobottom.jpg",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"fonts/iconfont.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
 					"html/main/home.html",
@@ -401,7 +405,9 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"css/new.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/task/securityDetail.html",
@@ -418,7 +424,9 @@
 					"css/mui.min.css",
 					"html/main/home1.html",
 					"html/main/message.html",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"fonts/iconfont.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
 					"html/main/energy.html",
@@ -543,7 +551,13 @@
 					"css/mui.min.css",
 					"css/common.css",
 					"js/template.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"html/home/security_sub.html",
+					"image/icon-11-3.png",
+					"css/new.css",
+					"css/add.css",
+					"js/mask/mask.js",
+					"js/mask/mask.css"
 				],
 				"refer": [
 					"html/task/securityDetail.html"
@@ -557,7 +571,11 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"image/icon-11-3.png",
+					"css/add.css",
+					"css/new.css",
+					"js/mask/mask.css"
 				],
 				"refer": [
 					"html/task/report.html"
@@ -570,7 +588,10 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/template.js"
+					"js/template.js",
+					"image/icon-11-3.png",
+					"js/mui.conf.js",
+					"css/add.css"
 				],
 				"refer": [
 					"html/main/message.html"
@@ -598,7 +619,10 @@
 					"html/home/air_condition.html",
 					"html/home/guard.html",
 					"image/icon-3.png",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"css/new.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.css"
 				],
 				"refer": [
 					"html/Equipment/air_condition.html",
@@ -719,7 +743,9 @@
 					"js/template.js",
 					"html/equipment/json/realTime.json",
 					"html/equipment/json/alerm.json",
-					"js/analysisEcharts.js"
+					"js/analysisEcharts.js",
+					"css/new.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/equipment/air_subdir/subReal.html",
@@ -791,7 +817,11 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"image/icon-11-3.png",
+					"css/add.css",
+					"js/mask/mask.js",
+					"js/mask/mask.css"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html",
@@ -960,7 +990,10 @@
 				"priority": 0
 			},
 			"html/task/messagedetail.html": {
-				"resources": [],
+				"resources": [
+					"image/icon-11-3.png",
+					"css/add.css"
+				],
 				"refer": [
 					"html/task/messageReport.html",
 					"html/task/newdeal.html"
@@ -982,6 +1015,27 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"html/home/security_sub.html": {
+				"resources": [
+					"js/template.js",
+					"css/new.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/add.css",
+					"js/mui.conf.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.js",
+					"js/qmask/qmask-3.0.css",
+					"js/qmask/qmask-3.0.js",
+					"js/mask/mask.js",
+					"js/mask/mask.css"
+				],
+				"refer": [
+					"html/task/securityDetail.html"
+				],
+				"priority": 0
 			}
 		},
 		"index": {
@@ -996,7 +1050,6 @@
 		},
 		"idle": {
 			"resources": [
-				"js/mui.js",
 				"css/mui.css",
 				"new_file.html"
 			]

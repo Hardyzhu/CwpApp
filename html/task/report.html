@@ -10,6 +10,7 @@
 		<title>新增勘察报告</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<style>
@@ -79,7 +80,7 @@
 						<ul class="mui-table-view dealer">
 							<li class="mui-table-view-cell">
 								<span>生成工单</span>
-								<div id="mui-swit" class="mui-switch">
+								<div id="mui-swit" class="mui-switch mui-active">
 									<div class="mui-switch-handle"></div>
 								</div>
 							</li>
@@ -132,6 +133,7 @@
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script>
 			mui.init({
@@ -146,15 +148,23 @@
 				var eventType;
 				var warningEventId;
 				//预加载
+				var mainPage = null;
+				if(!mainPage){
+					mainPage = mui.preload({
+					     url:"../main/main.html",
+					     id:"main"
+					});
+				}
 				var messagePage = null;
 				if(!messagePage){
 					messagePage = mui.preload({
 					     url:"../main/message.html",
-					     id:"message"
+					     id:"message.html"
 					});
 				}
 				if(isLogin){
 					window.addEventListener('getReport',function(event){
+						qmask.show();
 						warningEventId = event.detail.result.warningEventId;
 						var oDeal = document.getElementById('dealTmpl');
 						var dealHtml = template('dealTmp', event.detail.result);
@@ -166,6 +176,7 @@
 						}
 						eventType = event.detail.result.eventType;
 						oTextarea.value = event.detail.result.liveDescribe;
+						qmask.hide();
 					});
 				}
 				
@@ -175,6 +186,7 @@
 					 eventType = event.detail.isActive ? '3' : '';
 				});
 				document.getElementById('subit').addEventListener('tap',function(){
+					qmask.show();
 					var liveDescribe = oTextarea.value;
 					mui.ajax({
 						type: "post",
@@ -191,17 +203,19 @@
 						success: function(data) {
 							mui.toast('查询成功!');
 							//预加载子页面
-							plus.nativeUI.showWaiting();
+							console.log(2222222222);
+							mui.fire(mainPage,'changePage',{
+								active:'message.html',
+								target:'home.html',
+								title:messagePage.getTitle()
+							});
 							mui.fire(messagePage, 'getMessage', {
 								isLogin:JSON.parse(isLogin)
 							});
-							setTimeout(function() {
-								plus.nativeUI.closeWaiting();
-							}, 200);
-							console.log(messagePage);
+							qmask.hide();
 							//打开页面
 							mui.openWindow({
-							  id:'message',
+							  id:'mainPage',
 							  waiting: {
 								autoShow: false
 							  }
@@ -213,6 +227,7 @@
 							}else{
 								mui.toast('提交失败!');
 							}
+							qmask.hide();
 						}
 					});
 				});

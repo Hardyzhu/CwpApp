@@ -125,35 +125,6 @@
 					</div>					
 				</div>	
 			</div>
-			<!--<h3>{{deviceName}}
-				<span class="emergency mui-pull-right">
-					{{if warningLevel == 0}}
-					    <span class="scile scileLow"></span>
-						<span class="sileSize sileLow">低</span>
-					{{else if warningLevel == 2}}
-					    <span class="scile scileMiddle"></span>
-						<span class="scile scileMiddle"></span>
-						<span class="sileSize sileMiddle">中</span>
-					{{else}}
-					    <span class="scile scileHeight"></span>
-						<span class="scile scileHeight"></span>
-						<span class="scile scileHeight"></span>
-						<span class="sileSize sileHeight">高</span>
-					{{/if}}
-				</span>
-			</h3>-->
-			<!--<div class="mui-col-xs-12 muiDetail">
-				<span class="detailTitle">
-					地点：
-				</span>
-				{{buildingName}}
-			</div>-->
-			<!--<div class="mui-col-xs-12 muiMark detailTitle">
-				问题描述：
-			</div>
-			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
-				{{eventDescribe}}
-			</div>-->
 			<div class="fault-pannel">
 				<div class="mui-col-xs-12 deal clearfix">
 					<div class="mui-col-xs-6 dealer fl" style="font-size: 1.5rem;">
@@ -167,80 +138,46 @@
 			</div>
 		</script>
 		<!--流程部分-->
-				
-		
-		
 		<script id="dataTmpl" type="text/html">
-				<li class="process-list-pannel clearfix" style="padding: 0; margin: 0;">	
-					<div class="porcess-pannel-list">
-						<span class="porcess-title-icon">1</span>
-				    	<div class="porcess-title-name-pannel">		    		
-				    		<h4 class="porcess-title-name">						
-								通知
-							</h4>
-							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-								{{include 'noticeList' value}} 
-							</div>
-				    	</div>	    
-					</div>					
-				</li>
-				<li class="process-list-pannel clearfix" >	
-					<div class="porcess-pannel-list">
-						<span class="porcess-title-icon">2</span>
-				    	<div class="porcess-title-name-pannel">		    		
-				    		<h4 class="porcess-title-name">						
-								确认
-							</h4>
-							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-								{{include 'confimList' value}} 
-							</div>
-				    	</div>	    
-					</div>					
-				</li>
-				<li class="process-list-pannel clearfix" >	
-					<div class="porcess-pannel-list">
-						<span class="porcess-title-icon">3</span>
-				    	<div class="porcess-title-name-pannel">		    		
-				    		<h4 class="porcess-title-name">						
-								处理
-							</h4>
-							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-								{{include 'dealList' value}} 
-							</div>
-				    	</div>	    
-					</div>					
-				</li>
-		   <!-- <li class="process-list-pannel">
-		    	<div class="">
-		    		<h4>
-					<span class="list-list-icon" style="">1</span>
-					通知
-				</h4>
-					<div class="mui-col-xs-12 faultBox">
-						{{include 'noticeList' value}} 
-					</div>
-		    	</div>
-		    	
-				
-			</li>-->
-			<!--<li>
-				<h4>
-					<span>2</span>
-					确认
-				</h4>
-				<div class="mui-col-xs-12 faultBox">
-					{{include 'confimList' value}} 
-				</div>
+			<li class="process-list-pannel clearfix" style="padding: 0; margin: 0;">	
+				<div class="porcess-pannel-list">
+					<span class="porcess-title-icon">1</span>
+			    	<div class="porcess-title-name-pannel">		    		
+			    		<h4 class="porcess-title-name">						
+							通知
+						</h4>
+						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+							{{include 'noticeList' value}} 
+						</div>
+			    	</div>	    
+				</div>					
 			</li>
-			<li>
-				<h4>
-					<span>3</span>
-					处理
-				</h4>
-				<div class="mui-col-xs-12 faultBox">
-					{{include 'dealList' value}} 
-				</div>
-			</li>-->
+			<li class="process-list-pannel clearfix" >	
+				<div class="porcess-pannel-list">
+					<span class="porcess-title-icon">2</span>
+			    	<div class="porcess-title-name-pannel">		    		
+			    		<h4 class="porcess-title-name">						
+							确认
+						</h4>
+						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+							{{include 'confimList' value}} 
+						</div>
+			    	</div>	    
+				</div>					
+			</li>
+			<li class="process-list-pannel clearfix" >	
+				<div class="porcess-pannel-list">
+					<span class="porcess-title-icon">3</span>
+			    	<div class="porcess-title-name-pannel">		    		
+			    		<h4 class="porcess-title-name">						
+							处理
+						</h4>
+						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+							{{include 'dealList' value}} 
+						</div>
+			    	</div>	    
+				</div>					
+			</li>
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}
