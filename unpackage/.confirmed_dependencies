@@ -132,7 +132,8 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"js/template.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"css/new.css"
 		]
 	},
 	"html/main/order.html": {
@@ -200,7 +201,9 @@
 			"css/mui.min.css",
 			"js/template.js",
 			"css/new.css",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		],
 		"refer": [
 			"html/task/securityDetail.html",
@@ -216,7 +219,9 @@
 			"css/mui.min.css",
 			"html/main/home1.html",
 			"html/main/message.html",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"fonts/iconfont.css",
+			"fonts/iconfont.woff"
 		],
 		"refer": [
 			"html/main/energy.html",
@@ -353,10 +358,15 @@
 			"js/template.js",
 			"js/mui.conf.js",
 			"image/icon-11-3.png",
-			"css/add.css"
+			"css/add.css",
+			"html/home/security_sub.html",
+			"css/new.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		],
 		"refer": [
-			"html/task/securityDetail.html"
+			"html/task/securityDetail.html",
+			"html/home/security_sub.html"
 		]
 	},
 	"html/task/securityDetail.html": {
@@ -366,7 +376,11 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/template.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"image/icon-11-3.png",
+			"css/add.css",
+			"css/new.css",
+			"js/mask/mask.css"
 		],
 		"refer": [
 			"html/task/report.html"
@@ -379,7 +393,11 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/template.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"image/icon-11-3.png",
+			"css/add.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		],
 		"refer": [
 			"html/main/message.html"
@@ -525,7 +543,8 @@
 			"html/equipment/json/realTime.json",
 			"html/equipment/json/alerm.json",
 			"js/analysisEcharts.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"css/new.css"
 		],
 		"refer": [
 			"html/equipment/air_subdir/subReal.html",
@@ -593,10 +612,15 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/template.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"image/icon-11-3.png",
+			"css/add.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		],
 		"refer": [
-			"html/task/securityAlarmDetail.html"
+			"html/task/securityAlarmDetail.html",
+			"html/task/securityDetail.html"
 		]
 	},
 	"html/task/securityReport.html": {
@@ -779,7 +803,10 @@
 			"js/template.js",
 			"js/mui.conf.js",
 			"image/icon-11-3.png",
-			"css/add.css"
+			"css/add.css",
+			"css/new.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		]
 	},
 	"html/task/messagedetail.html": {
@@ -798,7 +825,9 @@
 			"css/add.css",
 			"css/new.css",
 			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
+			"fonts/iconfont.woff",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		]
 	},
 	"html/energy/energyFloor.html": {
@@ -826,6 +855,26 @@
 			"css/mui.min.css",
 			"js/template.js",
 			"css/add.css"
+		]
+	},
+	"html/home/security_sub.html": {
+		"resources": [
+			"js/template.js",
+			"css/new.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/add.css",
+			"js/mui.conf.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.js",
+			"js/qmask/qmask-3.0.css",
+			"js/qmask/qmask-3.0.js",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
+		],
+		"refer": [
+			"html/task/securityDetail.html"
 		]
 	}
 }
