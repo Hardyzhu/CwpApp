@@ -195,7 +195,13 @@
 						success: function(data) {
 							mui.toast('查询成功!');
 							//预加载子页面
-							plus.nativeUI.showWaiting();
+							console.log(mainPage);
+							console.log(messagePage);
+							mui.fire(mainPage,'changePage',{
+								active:'message.html',
+								target:'home.html',
+								title:messagePage.getTitle()
+							});
 							mui.fire(messagePage, 'getMessage', {
 								isLogin:JSON.parse(isLogin)
 							});
@@ -205,7 +211,7 @@
 							console.log(messagePage);
 							//打开页面
 							mui.openWindow({
-							  id:'message',
+							  id:'main',
 							  waiting: {
 								autoShow: false
 							  }

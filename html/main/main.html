@@ -100,7 +100,6 @@
 				//列表切换
 				for (var j = 0, tabLength = tabs.length; j < tabLength; j++) {
 					tabs[j].addEventListener("tap", function() {
-						console.log(1);
 						console.log(activeTab);
 						console.log(targetTab);
 						targetTab = this.getAttribute("data-href");
@@ -109,7 +108,7 @@
 						}
 						// 改变顶部栏的文字
 						title.innerHTML = this.querySelector(".mui-tab-label").innerHTML;
-						plus.webview.show(targetTab, "fade-in", 300);
+						plus.webview.show(targetTab, "fade-in", 500);
 						plus.webview.hide(activeTab);
 						activeTab = targetTab;
 					});

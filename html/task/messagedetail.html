@@ -14,6 +14,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
@@ -165,7 +166,7 @@
 					</div>
 					<div class="mui-col-xs-6 mui-text-right fl">
 						<button class="mui-btn mui-btn-red" id="goReport" type="button">勘察报告</button>
-						<button class="mui-btn mui-btn-red" id="newdeal" type="button">新增处理</button>
+						<button class="mui-btn mui-btn-red" id="newdeal" type="button">{{eventProgress | toChang}}</button>
 					</div>
 				</div>
 			</div>
@@ -296,6 +297,7 @@
 	    </script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script>
 			mui.init();
@@ -334,6 +336,7 @@
 				 * updateOrDetail 1，详情，2，接受
 				 */
 				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+					qmask.show();
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -349,12 +352,19 @@
 						dataType: "json",
 						timeout: 10000,
 						success: function(data) {
-							if(updateOrDetail==1){
+							//if(updateOrDetail==1){
 								mui.toast('查询成功!');
-							}else{
+							/*}else{
 								mui.toast('接受成功!');
-							}
+							}*/
 							var oDeal = document.getElementById('dealTmpl');
+							template.helper('toChang',function(inp){
+								if(inp=='4'){
+									return '查看处理';
+								}else{
+									return '新增处理';
+								}
+							});
 							var oDault = document.getElementById('dataDault');
 							var dealHtml = template('dealTmp', data.bean);
 							oDeal.innerHTML = dealHtml;
@@ -382,27 +392,24 @@
 							tempObj.deal = deal;
 							var daultHtml = template('dataTmpl', tempObj);
 							oDault.innerHTML = daultHtml;
+							qmask.hide();
 							//预加载子页面
-							plus.nativeUI.showWaiting();
 							mui.fire(reportPage, 'getReport', {
 							    result:data.bean
 							});
 							mui.fire(dealPage, 'newdeal', {
 							    result:data.bean
 							});
-							setTimeout(function() {
-								plus.nativeUI.closeWaiting();
-							}, 200);
-							
 						},
 						error: function(xhr, type, errorThrown) {
 							if(type=='timeout'){
 								mui.toast('请求超时:请检查网络!');
 							}else if(updateOrDetail==1){
 								mui.toast('查询失败!');
-							}else{
+							}/*else{
 								mui.toast('接受失败!');
-							}
+							}*/
+							qmask.hide();
 							return;
 						}
 					});
