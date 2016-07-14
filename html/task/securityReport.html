@@ -14,6 +14,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" href="text/css" href="../../js/mask/mask.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<style>
@@ -136,6 +137,7 @@
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script>
 			mui.init({
@@ -159,6 +161,7 @@
 				}
 				if(isLogin){
 					window.addEventListener('getReport',function(event){
+						qmask.show();
 						warningEventId = event.detail.result.warningEventId;
 						var oDeal = document.getElementById('dealTmpl');
 						var dealHtml = template('dealTmp', event.detail.result);
@@ -168,6 +171,7 @@
 						}else{
 							oSwit.className = 'mui-switch';
 						}
+						qmask.hide();
 						eventType = event.detail.result.eventType;
 						oTextarea.value = event.detail.result.liveDescribe;
 					});
@@ -179,6 +183,7 @@
 					 eventType = event.detail.isActive ? '3' : '';
 				});
 				document.getElementById('subit').addEventListener('tap',function(){
+					qmask.show();
 					var liveDescribe = oTextarea.value;
 					mui.ajax({
 						type: "post",
@@ -195,13 +200,14 @@
 						success: function(data) {
 							mui.toast('查询成功!');
 							//预加载子页面
-							plus.nativeUI.showWaiting();
+							//plus.nativeUI.showWaiting();
 							mui.fire(messagePage, 'getMessage', {
 								isLogin:JSON.parse(isLogin)
 							});
-							setTimeout(function() {
+							/*setTimeout(function() {
 								plus.nativeUI.closeWaiting();
-							}, 200);
+							}, 200);*/
+							qmask.hide();
 							//打开页面
 							mui.openWindow({
 							  id:'message',
@@ -216,6 +222,7 @@
 							}else{
 								mui.toast('提交失败!');
 							}
+							qmask.hide();
 						}
 					});
 				});
