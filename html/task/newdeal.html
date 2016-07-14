@@ -10,6 +10,7 @@
 		<title>新增处理</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
@@ -83,38 +84,6 @@
 		</div>
 		<!--信息部分-->
 		<script id="dealTmp" type="text/html">
-			<!--<div class="message-top-pannel">
-				<div class="message-top-box">
-					<div class="message-padding clearfix">
-						<i class="icon iconfont messgae-icon-title">&#xe61c;{{deviceName}}</i>
-						<div class="message-info-group">
-							<div class="message-info-list">
-								<div class="message-add">
-									{{buildingName}}
-								</div>
-								<span class="message-level">
-									{{if warningLevel == 0}}
-									    <span class="scile scileLow"></span>
-										<span class="sileSize sileLow">低</span>
-									{{else if warningLevel == 2}}
-									    <span class="scile scileMiddle"></span>
-										<span class="scile scileMiddle"></span>
-										<span class="sileSize sileMiddle">中</span>
-									{{else}}
-									    <span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="sileSize sileHeight">高</span>
-									{{/if}}
-								</span>
-							</div>
-							<div class="message-info-box">
-								{{eventDescribe}}
-							</div>
-						</div>
-					</div>					
-				</div>	
-			</div>-->
 			<h3>{{deviceName}}
 				<span class="emergency mui-pull-right">
 					{{if warningLevel == 0}}
@@ -151,9 +120,9 @@
 					<!--描述部分-->
 					<div class="mui-input-row">
 						<div class="mb5">处理描述:</div>
-						{{if eventProgress==4}}
+						{{if eventProgress=='4'}}
 							<div class="dealer">{{handleOpinion}}</div>
-						{{else if eventProgress==3}}
+						{{else if eventProgress=='3'}}
 							<textarea id="textarea" rows="5" class="dealer" placeholder="请输入描述"></textarea>
 						{{/if}}
 					</div>
@@ -165,6 +134,7 @@
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script>
 			mui.init({
@@ -194,7 +164,8 @@
 				    liveDescribe,
 					warningCategoryId;
 				if(isLogin){
-					window.addEventListener('newdeal',function(event){			
+					window.addEventListener('newdeal',function(event){
+						qmask.show();
 						warningEventId = event.detail.result.warningEventId;
 						warningCategoryId = event.detail.result.warningCategoryId;
 						eventProgress = event.detail.result.eventProgress;
@@ -217,20 +188,20 @@
 						var dealHtml = template('dealTmp', event.detail.result);
 						var newHtml = template('newTmp', event.detail.result);
 						oDeal.innerHTML = dealHtml;
-						oNew.innerHTML = newHtml;	
+						oNew.innerHTML = newHtml;
+						qmask.hide();
 					});
 				}
 				//新增或者查看
 				mui('.mui-content').on('tap','.subit',function(){
 					if(eventProgress=='4'){
-						plus.nativeUI.showWaiting();
+						qmask.show();
 						setTimeout(function() {
-							plus.nativeUI.closeWaiting();
+							qmask.hide();
 							mui.back();
 						}, 200);
 					}else{
 						var oTextarea = document.getElementById('textarea');
-						console.log(oTextarea);
 						if(oTextarea!=null){
 							liveDescribe = oTextarea.value;
 						}
@@ -242,6 +213,7 @@
 					}
 				});
 				function subup(){
+					qmask.show();
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -258,7 +230,7 @@
 						success: function(data) {
 							mui.toast('新增成功!');
 							//预加载子页面
-							plus.nativeUI.showWaiting();
+							//plus.nativeUI.showWaiting();
 							mui.fire(detailPage, 'detailId', {
 								warningEventId:warningEventId,
 					    		warningCategoryId:warningCategoryId
@@ -267,7 +239,8 @@
 								isLogin:JSON.parse(isLogin)
 							});
 							setTimeout(function() {
-								plus.nativeUI.closeWaiting();
+								//plus.nativeUI.closeWaiting();
+								qmask.hide();
 								mui.back();
 							}, 200);
 						},
@@ -277,6 +250,7 @@
 							}else{
 								mui.toast('提交失败!');
 							}
+							qmask.hide();
 						}
 					});
 				};

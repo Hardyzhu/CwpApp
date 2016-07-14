@@ -203,7 +203,8 @@
 						success: function(data) {
 							mui.toast('查询成功!');
 							//预加载子页面
-							console.log(2222222222);
+							console.log(mainPage);
+							console.log(messagePage);
 							mui.fire(mainPage,'changePage',{
 								active:'message.html',
 								target:'home.html',
@@ -215,7 +216,7 @@
 							qmask.hide();
 							//打开页面
 							mui.openWindow({
-							  id:'mainPage',
+							  id:'main',
 							  waiting: {
 								autoShow: false
 							  }

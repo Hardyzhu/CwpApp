@@ -10,6 +10,7 @@
 		<title>勘察报告</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<style>
@@ -137,6 +138,7 @@
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
 		<script>
 			mui.init({
 				swipeBack:true 
@@ -149,6 +151,7 @@
 				
 				if(isLogin){
 					window.addEventListener('getReport',function(event){
+						qmask.show();
 						var oDeal = document.getElementById('dealTmpl');
 						var oMark = document.getElementById('markTmpl');
 						template.helper('toSet',function(eType){
@@ -169,13 +172,14 @@
 						var markHtml = template('markTmp', event.detail.result);
 						oDeal.innerHTML = dealHtml;
 						oMark.innerHTML = markHtml;
+						qmask.hide();
 					});
 				}
 				//点击返回
 				mui('.mui-content').on('tap','#subit',function(){
-					plus.nativeUI.showWaiting();
+					qmask.show();
 					setTimeout(function() {
-						plus.nativeUI.closeWaiting();
+						qmask.hide();
 						mui.back();
 					}, 200);
 				});

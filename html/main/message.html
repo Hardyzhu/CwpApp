@@ -9,6 +9,7 @@
 		<meta charset="UTF-8">
 		<title>消息</title>
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<style>
@@ -105,6 +106,7 @@
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
@@ -153,16 +155,16 @@
 				 * 添加自定义事件，用于登录后刷新数据；
 				 */
 				window.addEventListener("getMessage",function(event){
+					console.log(1);
 					userId = event.detail.isLogin.userId;
 					getProductList(userId);
 				});
 			});
-			var count = 0;
 			var page = 1;
-			//var abData;
-			//var mark = false;
+			var mark = false;
 			//渲染数据
 			function getProductList(userId) { //获取工单列表
+				qmask.show();
 				mui.ajax({
 					url: global_url+"/cwp/front/sh/warningEvent!execute",
 					type: "post",
@@ -179,9 +181,17 @@
 					success: function(data) {
 						var oList = document.getElementById("list");
 						var html = template('detailTmpl', data);
-						//abData = data
-						//mark = true;
 						oList.innerHTML += html;
+						if(data.beans.length<5){
+							mark = true;
+							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+							setTimeout(function(){
+								mui.toast('没有更多数据了!');
+							},500);
+							qmask.hide();
+							return;
+						}
+						qmask.hide();
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){
@@ -190,7 +200,7 @@
 						}else {
 							mui.toast('数据加载失败');
 						}
-						
+						qmask.hide();
 					}
 				});
 			}
@@ -199,8 +209,9 @@
 			 * 上拉加载具体业务实现
 			 */
 			function pullupRefresh() {
+				qmask.show();
 				setTimeout(function() {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(mark); //参数为true代表没有更多数据了。
 					page++;
 					getProductList(userId);
 				}, 1500);
