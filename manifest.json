@@ -254,13 +254,17 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js",
-					"css/new.css"
+					"css/new.css",
+					"js/mui.conf.js",
+					"js/mask/mask.js",
+					"js/mask/mask.css"
 				],
 				"refer": [
 					"html/account/login.html",
 					"html/user/userInfo.html",
 					"html/login/login.html",
-					"html/user/editUserInfo.html"
+					"html/user/editUserInfo.html",
+					"html/user/systemnotification.html"
 				],
 				"priority": 0
 			},

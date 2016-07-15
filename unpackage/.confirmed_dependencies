@@ -124,7 +124,8 @@
 			"html/account/login.html",
 			"html/user/userInfo.html",
 			"html/login/login.html",
-			"html/user/editUserInfo.html"
+			"html/user/editUserInfo.html",
+			"html/user/systemnotification.html"
 		],
 		"resources": [
 			"image/shop03.jpg",
@@ -134,7 +135,9 @@
 			"css/mui.min.css",
 			"js/template.js",
 			"js/mui.conf.js",
-			"css/new.css"
+			"css/new.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		]
 	},
 	"html/main/order.html": {
