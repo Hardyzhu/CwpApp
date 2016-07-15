@@ -160,6 +160,9 @@
 							return;
 						}
 						EquipmentUrl = this.getAttribute("data-url");
+						if(EquipmentUrl=='lighting.html'||EquipmentUrl=='monitoring.html'){
+							mui.toast('此功能正在开发中....');
+						}
 						mui.openWindow({
 							url: "../equipment/"+EquipmentUrl,
 							id: EquipmentUrl,
