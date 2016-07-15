@@ -138,7 +138,7 @@
 				 * 判定是否登录，如果登录那么跳转至用户信息页面；
 				 * 如果未登录，那么跳转至登录页面；
 				 */
-				mui('#uinfo').on('tap','.mui-table-view-cell',function(){
+				mui('#uInfo').on('tap','.mui-table-view-cell',function(){
 					var infoUrl = this.getAttribute('data-url'); 
 					mui.openWindow({
 						url: "../user/"+infoUrl,
