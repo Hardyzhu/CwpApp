@@ -203,10 +203,10 @@
 							mui.fire(messagePage, 'getMessage', {
 								isLogin:JSON.parse(isLogin)
 							});
-							/*setTimeout(function() {
-								plus.nativeUI.closeWaiting();
-							}, 200);*/
-							qmask.hide();
+							setTimeout(function() {
+								qmask.hide();
+							}, 200);
+							
 							//打开页面
 							mui.openWindow({
 							  id:'message',
