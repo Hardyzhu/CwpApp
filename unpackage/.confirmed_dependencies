@@ -380,7 +380,8 @@
 			"image/icon-11-3.png",
 			"css/add.css",
 			"css/new.css",
-			"js/mask/mask.css"
+			"js/mask/mask.css",
+			"js/mask/mask.js"
 		],
 		"refer": [
 			"html/task/report.html"
