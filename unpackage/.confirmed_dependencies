@@ -67,7 +67,8 @@
 			"image/home-2.png",
 			"image/home-4.png",
 			"css/new.css",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"js/mask/mask.js"
 		],
 		"refer": [
 			"html/main/side.html",
@@ -649,7 +650,13 @@
 			"css/common.css",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/template.js"
+			"js/template.js",
+			"css/new.css",
+			"js/mui.conf.js",
+			"js/mask/mask.js",
+			"js/mask/mask.css",
+			"image/icon-11-3.png",
+			"css/add.css"
 		],
 		"refer": [
 			"html/task/maintenanceDetail.html"
