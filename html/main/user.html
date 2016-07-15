@@ -65,12 +65,12 @@
 				<!--用户信息-->
 				<li id="userList" class="mui-table-view-cell mui-media"></li>
 			</ul>
-			<ul class="mui-table-view mui-table-view-chevron">
+			<ul id="uInfo" class="mui-table-view mui-table-view-chevron">
 				<!--其它选项-->
-				<li class="mui-table-view-cell" id="uinfo">
+				<li class="mui-table-view-cell" data-url="editUserInfo.html">
 					<a class="mui-navigate-right" href="javascript:;">密码修改</a>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" data-url="systemnotification.html">
 					<a class="mui-navigate-right" href="javascript:;">关于</a>
 				</li>
 			</ul>
@@ -138,10 +138,11 @@
 				 * 判定是否登录，如果登录那么跳转至用户信息页面；
 				 * 如果未登录，那么跳转至登录页面；
 				 */
-				document.getElementById("uinfo").addEventListener("tap", function() {
+				mui('#uinfo').on('tap','.mui-table-view-cell',function(){
+					var infoUrl = this.getAttribute('data-url'); 
 					mui.openWindow({
-						url: "../user/editUserInfo.html",
-						id: "editUserInfo",
+						url: "../user/"+infoUrl,
+						id: infoUrl,
 						waiting: {
 							autoShow: false
 						}
