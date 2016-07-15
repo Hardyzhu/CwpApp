@@ -593,7 +593,9 @@
 					"js/template.js",
 					"image/icon-11-3.png",
 					"js/mui.conf.js",
-					"css/add.css"
+					"css/add.css",
+					"js/mask/mask.js",
+					"js/mask/mask.css"
 				],
 				"refer": [
 					"html/main/message.html"
@@ -994,7 +996,8 @@
 			"html/task/messagedetail.html": {
 				"resources": [
 					"image/icon-11-3.png",
-					"css/add.css"
+					"css/add.css",
+					"fonts/mui.ttf"
 				],
 				"refer": [
 					"html/task/messageReport.html",

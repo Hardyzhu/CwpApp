@@ -59,12 +59,17 @@
 					bottom: "50px",
 					scrollIndicator: "none"
 				};
+				var aniShow = {};
 				// 生成三个子窗口，并添加至主窗口；
 				var subpage = null;
 				for (var i = 0, subLength = subpageArr.length; i < subLength; i++) {
+					var temp = {};
 					subpage = plus.webview.create(subpageArr[i], subpageArr[i], subStyles);
 					if (i != 1) {
 						subpage.hide("none");
+					}else{
+						temp[subpage[i]] = "true";
+						mui.extend(aniShow,temp);
 					}
 					main.append(subpage);
 				}
@@ -90,10 +95,19 @@
 					targetTab = active;
 					title.innerHTML = tabTitle;
 					for (var i = 0, tabLength = tabs.length; i < tabLength; i++) {
-						tabs[i].className = 'mui-tab-item';
+						tabs[i].classList.remove('mui-active');
 					}
-					tabs[0].className = 'mui-tab-item mui-active';
-					plus.webview.show(targetTab, "fade-in", 300);
+					tabs[0].classList.add('mui-active');
+					//若为iOS平台或非首次显示，则直接显示
+					if(mui.os.ios||aniShow[targetTab]){
+						plus.webview.show(targetTab);
+					}else{
+						//否则，使用fade-in动画，且保存变量
+						var temp = {};
+						temp[targetTab] = "true";
+						mui.extend(aniShow,temp);
+						plus.webview.show(targetTab,"fade-in",300);
+					}
 					plus.webview.hide(activeTab);
 					activeTab = targetTab;
 				});
@@ -108,7 +122,16 @@
 						}
 						// 改变顶部栏的文字
 						title.innerHTML = this.querySelector(".mui-tab-label").innerHTML;
-						plus.webview.show(targetTab, "fade-in", 500);
+						//若为iOS平台或非首次显示，则直接显示
+						if(mui.os.ios||aniShow[targetTab]){
+							plus.webview.show(targetTab);
+						}else{
+							//否则，使用fade-in动画，且保存变量
+							var temp = {};
+							temp[targetTab] = "true";
+							mui.extend(aniShow,temp);
+							plus.webview.show(targetTab,"fade-in",300);
+						}
 						plus.webview.hide(activeTab);
 						activeTab = targetTab;
 					});
