@@ -171,20 +171,18 @@
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			mui.init();
-			mui.plusReady(function() {
-				var self = plus.webview.currentWebview();
-				gotoDetail(self);   //跳转
-			});
-			
-			//轮播
 			mui.init({
 				swipeBack:true //启用右滑关闭功能
 			});
-			var slider = mui("#slider");
-			slider.slider({
-				interval: 8000
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				gotoDetail(self);   //跳转
+				var slider = mui("#slider");
+				slider.slider({
+					interval: 8000
+				});
 			});
+			
 			
 			//跳转
 			
