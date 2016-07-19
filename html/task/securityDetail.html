@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
+		<link rel="stylesheet" href="../../fonts/iconfont.css">
 		<style>
 			.barNav{
 				list-style: none;
@@ -125,16 +126,22 @@
 			</div>
 			<div class="fault-pannel">
 			<div class="mui-col-xs-12 deal clearfix">
-				<div class="mui-col-xs-6 dealer fl">
+				<div class="mui-col-xs-12 dealer fl pannel-title">
 					故障处理
 				</div>
-				<div class="mui-col-xs-6 mui-text-right fl">
+				<div class="btn-group-pannel clearfix">
 					{{if responseTime==''||responseTime==null}}
-					<button class="mui-btn mui-btn-red" id="accept" type="button">接受</button>
+					<button class="mui-btn mui-btn-red btn-accepct-btn" id="accept" type="button">
+						<i class="iconfont">&#xe625;</i>接受
+					</button>
 					{{else}}
-					<button class="mui-btn mui-btn-red accepter" id="accept" type="button">已接受</button>
+					<button class="mui-btn mui-btn-red accepter btn-accepct-btn" id="accept" type="button">
+						<i class="iconfont">&#xe627;</i>已接受
+					</button>
 					{{/if}}
-					<button class="mui-btn mui-btn-red" data-state="{{responseTime}}" id="goReport" type="button">勘察报告</button>
+					<button class="mui-btn mui-btn-red btn-accepct-btn" data-state="{{responseTime}}" id="goReport" type="button">
+						<i class="iconfont">&#xe626;</i>勘察报告
+					</button>
 				</div>
 			</div>
 			</div>
@@ -170,7 +177,7 @@
 			<li class="process-list-pannel clearfix" >	
 				<div class="porcess-pannel-list">
 					<span class="porcess-title-icon">3</span>
-			    	<div class="porcess-title-name-pannel">		    		
+			    	<div class="porcess-title-name-pannel border-none">		    		
 			    		<h4 class="porcess-title-name">						
 							处理
 						</h4>

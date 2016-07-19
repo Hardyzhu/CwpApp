@@ -212,3 +212,24 @@
 .porcess-title-name-body{
 	margin-left: 0px; color: #5c5c5c; font-size: 1.4rem;
 }
+/*2016/0719/新增按钮样式*/
+.btn-group-pannel{
+	padding:20px 0 10px 10px;
+}
+.btn-accepct-btn{
+	width: calc(50% - 10px);
+	float: left;
+	margin-right:10px;
+	padding:10px 0 15px 0;
+}
+.btn-accepct-btn .iconfont{
+	display: block;
+	font-size:3rem;
+}
+.pannel-title{
+	line-height: 35px;
+	font-size: 1.5rem;
+}
+.border-none{
+	border: none;
+}
