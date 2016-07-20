@@ -583,7 +583,9 @@
 					"css/add.css",
 					"css/new.css",
 					"js/mask/mask.css",
-					"js/mask/mask.js"
+					"js/mask/mask.js",
+					"fonts/iconfont.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
 					"html/task/report.html"
@@ -755,7 +757,8 @@
 					"html/equipment/json/alerm.json",
 					"js/analysisEcharts.js",
 					"css/new.css",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"html/equipment/air_condition.js"
 				],
 				"refer": [
 					"html/equipment/air_subdir/subReal.html",
@@ -831,7 +834,8 @@
 					"image/icon-11-3.png",
 					"css/add.css",
 					"js/mask/mask.js",
-					"js/mask/mask.css"
+					"js/mask/mask.css",
+					"css/new.css"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html",
@@ -904,10 +908,20 @@
 					"js/mui.min.js",
 					"css/common.css",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"image/icon-11-3.png",
+					"fonts/iconfont.css",
+					"css/new.css",
+					"js/mui.conf.js",
+					"js/mask/mask.js",
+					"js/template.js",
+					"js/mask/mask.css",
+					"css/add.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
-					"html/task/securityReport.html"
+					"html/task/securityReport.html",
+					"html/task/report.html"
 				],
 				"priority": 0
 			},
@@ -945,7 +959,8 @@
 					"image/icon-3.png",
 					"js/template.js",
 					"js/analysisEcharts.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"css/new.css"
 				],
 				"refer": [
 					"html/equipment/sewage_subdir/subReal.html",
@@ -971,7 +986,11 @@
 					"image/home-4.png",
 					"css/add.css",
 					"image/icon-003.png",
-					"image/icon-002.png"
+					"image/icon-002.png",
+					"js/echarts-all.js",
+					"fonts/iconfont.css",
+					"css/new.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
 					"html/energy/energyBuilding.html"
@@ -997,7 +1016,12 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"image/icon-11-3.png",
+					"css/new.css",
+					"js/mask/mask.js",
+					"js/mask/mask.css",
+					"css/add.css"
 				],
 				"refer": [
 					"html/main/message.html",
@@ -1009,7 +1033,8 @@
 				"resources": [
 					"image/icon-11-3.png",
 					"css/add.css",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"fonts/iconfont.css"
 				],
 				"refer": [
 					"html/task/messageReport.html",

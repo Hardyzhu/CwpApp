@@ -1,13 +1,13 @@
 <!--
 	作者：yeshengqiang	
 	时间：2016-06-27
-	描述：故障告警
+	描述：安防预警列表
 -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>安防告警</title>
+		<title>安防预警列表</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -122,9 +122,9 @@
 						callback: pullupRefresh
 					}
 				},
-				preloadPages:[{                      //预加载页面
-				    id:'securityDetail',
-				    url:'../task/securityDetail.html'
+				preloadPages:[{                     //预加载页面		
+				    id:'securityAlarmDetail',
+				    url:'../task/securityAlarmDetail.html'
 				}]
 			});
 			mui.plusReady(function() {
@@ -154,7 +154,7 @@
 					}, 200);
 					//打开页面
 					mui.openWindow({
-					  id:'securityDetail',
+					  id:'securityAlarmDetail',
 					  waiting: {
 						autoShow: false
 					  }
