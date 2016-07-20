@@ -641,7 +641,8 @@
 	"html/task/securityAlarmDetail.html": {
 		"refer": [
 			"html/task/securityReport.html",
-			"html/task/report.html"
+			"html/task/report.html",
+			"html/task/securityAlarmReport.html"
 		],
 		"resources": [
 			"js/mui.min.js",
@@ -901,6 +902,19 @@
 		],
 		"refer": [
 			"html/task/securityDetail.html"
+		]
+	},
+	"html/task/securityAlarmReport.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mask/mask.js",
+			"js/template.js",
+			"css/add.css"
 		]
 	}
 }

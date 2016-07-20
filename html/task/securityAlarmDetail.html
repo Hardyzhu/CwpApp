@@ -125,7 +125,7 @@
 					故障处理
 				</div>
 				<div class="btn-group-pannel clearfix">
-					{{if responseTime==''||responseTime==null}}
+					{{if eventProgress=='1'}}
 					<button class="mui-btn mui-btn-red btn-accepct-btn" id="accept" type="button">
 						<i class="iconfont">&#xe625;</i>接受
 					</button>
@@ -161,7 +161,7 @@
 					<span class="porcess-title-icon">2</span>
 			    	<div class="porcess-title-name-pannel">		    		
 			    		<h4 class="porcess-title-name">						
-							确认
+							接单
 						</h4>
 						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
 							{{include 'confimList' value}} 
@@ -172,7 +172,7 @@
 			<li class="process-list-pannel clearfix" >	
 				<div class="porcess-pannel-list">
 					<span class="porcess-title-icon">3</span>
-			    	<div class="porcess-title-name-pannel border-none">		    		
+			    	<div class="porcess-title-name-pannel">		    		
 			    		<h4 class="porcess-title-name">						
 							处理
 						</h4>
@@ -181,19 +181,32 @@
 						</div>
 			    	</div>	    
 				</div>					
-			</li>
+			</li>		
+			<li class="process-list-pannel clearfix" >	
+				<div class="porcess-pannel-list">
+					<span class="porcess-title-icon">4</span>
+			    	<div class="porcess-title-name-pannel border-none">		    		
+			    		<h4 class="porcess-title-name">						
+							完成
+						</h4>
+						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+							{{include 'completeList' value}} 
+						</div>
+			    	</div>	    
+				</div>					
+			</li>	
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.appPush==''||$value.appPush==null}}
+					{{if $value.applyTime==''||$value.applyTime==null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							{{$value.roleName}}:
+							时间：{{$value.applyTime}}
 						</span>
 						<span>
-							{{$value.appPush}}
+							安保员:全部
 						</span>
 					{{/if}}
 				</div>
@@ -202,30 +215,48 @@
 	    <script type="text/html" id="confimList">
 	     	{{each confim}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.appPush==''||$value.appPush==null}}
+					{{if $value.responseTime==''||$value.responseName==null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							{{$value.roleName}}:
+							时间：{{$value.responseTime}}:
 						</span>
 						<span>
-							{{$value.appPush}}
+							<!--安保人：-->
+							{{$value.response}}
+						</span>
+					{{/if}}
+				</div>
+			{{/each}}
+	    </script>	   
+	    <script type="text/html" id="dealList">
+	     	{{each deal}}
+				<div class="mui-col-xs-12 faultUser">
+					{{if $value.handleTime ==''||$value.handName == null}}
+						<span>暂无记录！</span>
+					{{else}}
+						<span>
+							时间：{{$value.handleTime}}
+						</span>
+						<span>
+							{{$value.handName }}
 						</span>
 					{{/if}}
 				</div>
 			{{/each}}
 	    </script>
-	    <script type="text/html" id="dealList">
-	     	{{each deal}}
+	     <script type="text/html" id="completeList">
+	     	{{each complete}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.appPush ==''||$value.appPush == null}}
+					{{if $value.handleTime ==''||$value.handName == null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							{{$value.roleName}}:
+							时间：{{$value.handleTime}}
 						</span>
 						<span>
-							{{$value.appPush}}
+							{{if $value.eventProgress =='4'}}转故障<br/>{{/if}}
+							描述：{{$value.handleOpinion }}
 						</span>
 					{{/if}}
 				</div>
@@ -244,8 +275,8 @@
 				var reportPage = null;
 				if(!reportPage){
 					reportPage = mui.preload({
-					     url:"report.html",
-					     id:"report"
+					     url:"securityAlarmReport.html",
+					     id:"securityAlarmReport"
 					});
 				}
 				var warningEventId;
@@ -253,7 +284,6 @@
 				//添加newId自定义事件监听
 				window.addEventListener('detailId',function(event){
 					warningEventId = event.detail.warningEventId;
-					console.log("告警ID："+warningEventId);
 					warningCategoryId = event.detail.warningCategoryId;
 					//信息部分
 				 	res(warningEventId,warningCategoryId,1,1);
@@ -265,13 +295,14 @@
 				 * updateOrDetail 1，详情，2，接受
 				 */
 				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+					console.log("参数1："+warningEventId+"参数2："+warningCategoryId);
 					qmask.show();
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
 						async: true,
 						data: {
-							uid:"c017",
+							uid:"c025",
 							warningEventId:warningEventId,
 							warningCategoryId:warningCategoryId,
 							updateOrDetail:updateOrDetail,
@@ -296,23 +327,52 @@
 							var notice = [];   //通知
 							var confim = [];   //确认
 							var deal = [];     //处理
-							if(data.beans.length!=0){
-								for(var i=0;i<data.beans.length;i++){
-									if(data.beans[i].personType==1){
-										//通知
-										notice.push(data.beans[i]);
-									}else if(data.beans[i].personType==2){
-										//确认
-										confim.push(data.beans[i]);
-									}else{
-										//处理
-										deal.push(data.beans[i]);
-									}
-								}
+							var complete=[];	//完成
+//							if(data.beans.length!=0){
+//								for(var i=0;i<data.beans.length;i++){
+//									if(data.beans[i].eventProgress=="1"){
+//										//通知
+//										notice.push(data.beans[i]);
+//									}else if(data.beans[i].eventProgress=="2"){
+//										//确认
+//										confim.push(data.beans[i]);
+//									}else if(data.beans[i].eventProgress=="3"){
+//										//处理
+//										deal.push(data.beans[i]);
+//									}else{
+//										//完成
+//										complete.push(data.beans[i]);
+//									}
+//								}
+//							}
+							
+							if(data.bean!=null){
+								switch(data.bean.eventProgress){
+									case "1":
+										notice.push(data.bean);
+										break;
+									case "2":
+										notice.push(data.bean);
+										confim.push(data.bean);										
+										break;
+									case "3":
+										notice.push(data.bean);
+										confim.push(data.bean);
+										deal.push(data.bean);
+										complete.push(data.bean);
+										break;
+									case "4":
+										notice.push(data.bean);
+										confim.push(data.bean);
+										deal.push(data.bean);
+										complete.push(data.bean);
+										break;
+								};
 							}
 							tempObj.notice = notice;
 							tempObj.confim = confim;
 							tempObj.deal = deal;
+							tempObj.complete = complete;
 							var daultHtml = template('dataTmpl', tempObj);
 							oDault.innerHTML = daultHtml;
 							//预加载子页面
@@ -334,18 +394,59 @@
 						}
 					});
 				}
-				//跳转勘察报告
 				
+				//接收工单
+				function order(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+					console.log("人："+JSON.parse(isLogin).userId);
+					qmask.show();
+					mui.ajax({
+						type: "post",
+						url: global_url+"/cwp/front/sh/warningEvent!execute",
+						async: true,
+						data: {
+							uid:"c025",
+							warningEventId:warningEventId,
+							warningCategoryId:warningCategoryId,
+							updateOrDetail:updateOrDetail,
+							responseOfficerId:JSON.parse(isLogin).userId,
+							eventProgress:eventProgress							
+						},
+						dataType: "json",
+						timeout: 10000,
+						success: function(data) {
+							console.log(data);
+							if(data.returnCode==0){
+								res(warningEventId,warningCategoryId,1,2);
+								mui.toast('接受成功!');
+							}else{
+								mui.toast('接受失败!');
+							}						
+							qmask.hide();
+						},
+						error: function(xhr, type, errorThrown) {
+							if(type=='timeout'){
+								mui.toast('请求超时:请检查网络!');
+							}else if(updateOrDetail==1){
+								mui.toast('查询失败!');
+							}else{
+								mui.toast('接受失败!');
+							}
+							qmask.hide();
+							return;
+						}
+					});
+				}
+				
+				//跳转勘察报告
 				mui('.mui-content').on('tap', '#goReport', function(e) {
 					var state = this.getAttribute('data-state');
 					if(state==''||state==null){
 						mui.toast('请先接受工单!');
 						return;
 					}
-					console.log(reportPage);
 					mui.openWindow({
-						url: 'report.html',
-						id: 'report',
+						url: 'securityAlarmReport.html',
+						id: 'securityAlarmReport',
 						waiting: {
 							autoShow: false
 						}
@@ -353,9 +454,9 @@
 				});
 				//接受工单
 				mui('.mui-content').on('tap', '#accept', function(e) {
-					var dataHtml = this.innerHTML;
-					if(dataHtml == '接受'){
-						res(warningEventId,warningCategoryId,2,2);
+					var dataHtml = this.innerHTML;				
+					if(dataHtml.indexOf("接受")>-1){
+						order(warningEventId,warningCategoryId,2,2);
 					}else{
 						mui.toast('该工单已接受,请勿重复点击！');
 					}

@@ -130,7 +130,7 @@
 					故障处理
 				</div>
 				<div class="btn-group-pannel clearfix">
-					{{if responseTime==''||responseTime==null}}
+					{{if eventProgress=='1'}}
 					<button class="mui-btn mui-btn-red btn-accepct-btn" id="accept" type="button">
 						<i class="iconfont">&#xe625;</i>接受
 					</button>
@@ -166,7 +166,7 @@
 					<span class="porcess-title-icon">2</span>
 			    	<div class="porcess-title-name-pannel">		    		
 			    		<h4 class="porcess-title-name">						
-							确认
+							接单
 						</h4>
 						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
 							{{include 'confimList' value}} 
@@ -187,18 +187,31 @@
 			    	</div>	    
 				</div>					
 			</li>
+			<li class="process-list-pannel clearfix" >	
+				<div class="porcess-pannel-list">
+					<span class="porcess-title-icon">3</span>
+			    	<div class="porcess-title-name-pannel border-none">		    		
+			    		<h4 class="porcess-title-name">						
+							完成
+						</h4>
+						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+							{{include 'completeList' value}} 
+						</div>
+			    	</div>	    
+				</div>					
+			</li>
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.appPush==''||$value.appPush==null}}
+					{{if $value.applyTime==''||$value.applyTime==null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							{{$value.roleName}}:
+							时间：{{$value.applyTime}}
 						</span>
 						<span>
-							{{$value.appPush}}
+							安保员:全部
 						</span>
 					{{/if}}
 				</div>
@@ -207,30 +220,46 @@
 	    <script type="text/html" id="confimList">
 	     	{{each confim}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.appPush==''||$value.appPush==null}}
+					{{if $value.responseTime==''||$value.responseName==null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							{{$value.roleName}}:
+							时间：{{$value.responseTime}}
 						</span>
 						<span>
-							{{$value.appPush}}
+							安保人：{{$value.responseName}}
+						</span>
+					{{/if}}
+				</div>
+			{{/each}}
+	    </script>	   
+	    <script type="text/html" id="dealList">
+	     	{{each deal}}
+				<div class="mui-col-xs-12 faultUser">
+					{{if $value.handleTime ==''||$value.handName == null}}
+						<span>暂无记录！</span>
+					{{else}}
+						<span>
+							时间：{{$value.handleTime}}
+						</span>
+						<span>
+							{{$value.handName }}
 						</span>
 					{{/if}}
 				</div>
 			{{/each}}
 	    </script>
-	    <script type="text/html" id="dealList">
-	     	{{each deal}}
+	     <script type="text/html" id="completeList">
+	     	{{each complete}}
 				<div class="mui-col-xs-12 faultUser">
-					{{if $value.appPush ==''||$value.appPush == null}}
+					{{if $value.handleTime ==''||$value.handName == null}}
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							{{$value.roleName}}:
+							时间：{{$value.handleTime}}
 						</span>
 						<span>
-							{{$value.appPush}}
+							描述：{{$value.handleOpinion }}
 						</span>
 					{{/if}}
 				</div>
@@ -276,7 +305,7 @@
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
 						async: true,
 						data: {
-							uid:"c017",
+							uid:"c025",
 							warningEventId:warningEventId,
 							warningCategoryId:warningCategoryId,
 							updateOrDetail:updateOrDetail,
@@ -301,23 +330,51 @@
 							var notice = [];   //通知
 							var confim = [];   //确认
 							var deal = [];     //处理
-							if(data.beans.length!=0){
-								for(var i=0;i<data.beans.length;i++){
-									if(data.beans[i].personType==1){
-										//通知
-										notice.push(data.beans[i]);
-									}else if(data.beans[i].personType==2){
-										//确认
-										confim.push(data.beans[i]);
-									}else{
-										//处理
-										deal.push(data.beans[i]);
-									}
-								}
+							var complete=[];	//完成
+//							if(data.beans.length!=0){
+//								for(var i=0;i<data.beans.length;i++){
+//									if(data.beans[i].eventProgress=="1"){
+//										//通知
+//										notice.push(data.beans[i]);
+//									}else if(data.beans[i].eventProgress=="2"){
+//										//确认
+//										confim.push(data.beans[i]);
+//									}else if(data.beans[i].eventProgress=="3"){
+//										//处理
+//										deal.push(data.beans[i]);
+//									}else{
+//										//完成
+//										complete.push(data.beans[i]);
+//									}
+//								}
+//							}
+							
+							if(data.bean!=null){
+								switch(data.bean.eventProgress){
+									case "1":
+										notice.push(data.bean);
+										break;
+									case "2":
+										notice.push(data.bean);
+										confim.push(data.bean);										
+										break;
+									case "3":
+										notice.push(data.bean);
+										confim.push(data.bean);
+										deal.push(data.bean)
+										break;
+									case "4":
+										notice.push(data.bean);
+										confim.push(data.bean);
+										deal.push(data.bean);
+										complete.push(data.bean);
+										break;
+								};
 							}
 							tempObj.notice = notice;
 							tempObj.confim = confim;
 							tempObj.deal = deal;
+							tempObj.complete = complete;
 							var daultHtml = template('dataTmpl', tempObj);
 							oDault.innerHTML = daultHtml;
 							//预加载子页面
