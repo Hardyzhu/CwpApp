@@ -588,7 +588,9 @@
 					"fonts/iconfont.woff"
 				],
 				"refer": [
-					"html/task/report.html"
+					"html/task/report.html",
+					"html/task/securityAlarmReport.html",
+					"html/task/securityReport.html"
 				],
 				"priority": 0
 			},
@@ -927,7 +929,17 @@
 				"priority": 0
 			},
 			"html/task/securityReport.html": {
-				"resources": [],
+				"resources": [
+					"image/icon-11-3.png",
+					"js/mui.conf.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mask/mask.js",
+					"js/template.js",
+					"css/add.css"
+				],
 				"refer": [
 					"html/main/message.html"
 				],
@@ -1042,7 +1054,8 @@
 					"css/mui.min.css",
 					"js/mask/mask.js",
 					"js/template.js",
-					"js/mask/mask.css"
+					"js/mask/mask.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/task/messageReport.html",
@@ -1098,6 +1111,15 @@
 					"js/mask/mask.js",
 					"js/template.js",
 					"css/add.css"
+				],
+				"refer": [
+					"html/task/securityAlarmDetail.html"
+				],
+				"priority": 0
+			},
+			"html/task/messageReport.html": {
+				"resources": [
+					"js/mask/mask.css"
 				],
 				"refer": [],
 				"priority": 0

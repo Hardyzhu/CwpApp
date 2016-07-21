@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>任务列表详情</title>
+		<title>维修工单详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -74,15 +74,13 @@
 				border-color:#DEDEDE !important;
 				color:#FFF !important;
 			}
-			.messgae-icon-title{
-				font-size: 1rem;
-			}
+
 		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">维修任务列表详情</h1>
+			<h1 class="mui-title">维修工单详情</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 mb5 dataList">
@@ -104,24 +102,9 @@
 						<i class="icon iconfont messgae-icon-title"><!--&#xe61c;-->{{deviceName}}</i>
 						<div class="message-info-group">
 							<div class="message-info-list">
-								<div class="message-add">
-									{{buildingName}}
-								</div>
-								<span class="message-level">
-									{{if warningLevel == 0}}
-									    <span class="scile scileLow"></span>
-										<span class="sileSize sileLow">低</span>
-									{{else if warningLevel == 2}}
-									    <span class="scile scileMiddle"></span>
-										<span class="scile scileMiddle"></span>
-										<span class="sileSize sileMiddle">中</span>
-									{{else}}
-									    <span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="sileSize sileHeight">高</span>
-									{{/if}}
-								</span>
+								<div class="message-info-box">
+									{{eventDetail}}
+								</div>					
 							</div>
 							<div class="message-info-box">
 								{{eventDescribe}}
@@ -129,36 +112,7 @@
 						</div>
 					</div>					
 				</div>	
-			</div>
-			<!--<h3>{{deviceName}}
-				<span class="emergency mui-pull-right">
-					{{if warningLevel == 0}}
-					    <span class="scile scileLow"></span>
-						<span class="sileSize sileLow">低</span>
-					{{else if warningLevel == 2}}
-					    <span class="scile scileMiddle"></span>
-						<span class="scile scileMiddle"></span>
-						<span class="sileSize sileMiddle">中</span>
-					{{else}}
-					    <span class="scile scileHeight"></span>
-						<span class="scile scileHeight"></span>
-						<span class="scile scileHeight"></span>
-						<span class="sileSize sileHeight">高</span>
-					{{/if}}
-				</span>
-			</h3>-->
-			<!--<div class="mui-col-xs-12 muiDetail">
-				<span class="detailTitle">
-					地点：
-				</span>
-				{{buildingName}}
-			</div>-->
-			<!--<div class="mui-col-xs-12 muiMark detailTitle">
-				问题描述：
-			</div>
-			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
-				{{eventDescribe}}
-			</div>-->
+			</div>		
 			<div class="fault-pannel">
 				<div class="mui-col-xs-12 deal clearfix">
 					<div class="mui-col-xs-12 dealer fl pannel-title">
@@ -166,7 +120,7 @@
 					</div>
 					<div class="btn-group-pannel clearfix">
 						<button class="mui-btn mui-btn-red btn-accepct-btn" id="goReport" type="button"><i class="iconfont">&#xe626;</i>勘察报告</button>
-						<button class="mui-btn mui-btn-red btn-accepct-btn" id="newdeal" type="button"><i class="iconfont">&#xe628;</i>{{eventProgress | toChang}}</button>
+						<button class="mui-btn mui-btn-red btn-accepct-btn" id="newdeal" type="button"><i class="iconfont">&#xe628;</i><!--eventProgress | toChang--></button>
 					</div>
 				</div>
 			</div>
@@ -180,7 +134,7 @@
 						<span class="porcess-title-icon">1</span>
 				    	<div class="porcess-title-name-pannel">		    		
 				    		<h4 class="porcess-title-name">						
-								通知
+								审批
 							</h4>
 							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
 								{{include 'noticeList' value}} 
@@ -193,7 +147,7 @@
 						<span class="porcess-title-icon">2</span>
 				    	<div class="porcess-title-name-pannel">		    		
 				    		<h4 class="porcess-title-name">						
-								确认
+								维修
 							</h4>
 							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
 								{{include 'confimList' value}} 
@@ -206,7 +160,7 @@
 						<span class="porcess-title-icon">3</span>
 				    	<div class="porcess-title-name-pannel border-none">		    		
 				    		<h4 class="porcess-title-name">						
-								处理
+								验收
 							</h4>
 							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
 								{{include 'dealList' value}} 
@@ -214,37 +168,19 @@
 				    	</div>	    
 					</div>					
 				</li>
-		   <!-- <li class="process-list-pannel">
-		    	<div class="">
-		    		<h4>
-					<span class="list-list-icon" style="">1</span>
-					通知
-				</h4>
-					<div class="mui-col-xs-12 faultBox">
-						{{include 'noticeList' value}} 
-					</div>
-		    	</div>
-		    	
-				
-			</li>-->
-			<!--<li>
-				<h4>
-					<span>2</span>
-					确认
-				</h4>
-				<div class="mui-col-xs-12 faultBox">
-					{{include 'confimList' value}} 
-				</div>
-			</li>
-			<li>
-				<h4>
-					<span>3</span>
-					处理
-				</h4>
-				<div class="mui-col-xs-12 faultBox">
-					{{include 'dealList' value}} 
-				</div>
-			</li>-->
+				<li class="process-list-pannel clearfix" >	
+					<div class="porcess-pannel-list">
+						<span class="porcess-title-icon">4</span>
+				    	<div class="porcess-title-name-pannel border-none">		    		
+				    		<h4 class="porcess-title-name">						
+								完成
+							</h4>
+							<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+								{{include 'completeList' value}} 
+							</div>
+				    	</div>	    
+					</div>					
+				</li>			
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}
@@ -294,6 +230,22 @@
 				</div>
 			{{/each}}
 	    </script>
+	    <script type="text/html" id="completeList">
+	     	{{each complete}}
+				<div class="mui-col-xs-12 faultUser">
+					{{if $value.handleTime ==''||$value.handName == null}}
+						<span>暂无记录！</span>
+					{{else}}
+						<span>					
+							时间：{{$value.handleTime}}
+						</span>
+						<span>							
+							描述：{{$value.handleOpinion }}
+						</span>
+					{{/if}}
+				</div>
+			{{/each}}
+	    </script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/mask/mask.js"></script>
@@ -319,86 +271,86 @@
 					     id:"newdeal"
 					});
 				}
+				var businessKey;
 				var warningEventId;
-				var warningCategoryId;
 				//添加newId自定义事件监听
 				window.addEventListener('detailId',function(event){
+					businessKey = event.detail.businessKey;
 					warningEventId = event.detail.warningEventId;
-					console.log(warningEventId);
-					warningCategoryId = event.detail.warningCategoryId;
+				
 					//信息部分
-				 	res(warningEventId,warningCategoryId,1,4);
+				 	res(warningEventId,1);
 				});
 				//渲染刷新部分
 				/**
 				 * eventProgress  3代表接受 ，1
 				 * updateOrDetail 1，详情，2，接受
-				 */
-				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+				 */				
+				function res(warningEventId,updateOrDetail){
 					qmask.show();
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
 						async: true,
 						data: {
-							uid:"c017",
-							warningEventId:warningEventId,
-							warningCategoryId:warningCategoryId,
+							uid:"c024",
+							warningEventId:warningEventId,						
 							updateOrDetail:updateOrDetail,
-							responseOfficerId:JSON.parse(isLogin).userId,
-							eventProgress:eventProgress
+							responseOfficerId:JSON.parse(isLogin).userId
 						},
 						dataType: "json",
 						timeout: 10000,
 						success: function(data) {
-							//if(updateOrDetail==1){
-								mui.toast('查询成功!');
-							/*}else{
-								mui.toast('接受成功!');
-							}*/
+//							//if(updateOrDetail==1){
+//								mui.toast('查询成功!');
+//							/*}else{
+//								mui.toast('接受成功!');
+//							}*/
+							//渲染工单详情
 							var oDeal = document.getElementById('dealTmpl');
-							template.helper('toChang',function(inp){
-								if(inp=='4'){
-									return '查看处理';
-								}else{
-									return '新增处理';
-								}
-							});
-							var oDault = document.getElementById('dataDault');
+//							template.helper('toChang',function(inp){
+//								if(inp=='4'){
+//									return '查看处理';
+//								}else{
+//									return '新增处理';
+//								}
+//							});
+							
 							var dealHtml = template('dealTmp', data.bean);
 							oDeal.innerHTML = dealHtml;
 							//数据重组
-							var tempObj = {}; 
-							var notice = [];   //通知
-							var confim = [];   //确认
-							var deal = [];     //处理
-							if(data.beans.length!=0){
-								for(var i=0;i<data.beans.length;i++){
-									if(data.beans[i].personType==1){
-										//通知
-										notice.push(data.beans[i]);
-									}else if(data.beans[i].personType==2){
-										//确认
-										confim.push(data.beans[i]);
-									}else{
-										//处理
-										deal.push(data.beans[i]);
-									}
-								}
-							}
-							tempObj.notice = notice;
-							tempObj.confim = confim;
-							tempObj.deal = deal;
-							var daultHtml = template('dataTmpl', tempObj);
-							oDault.innerHTML = daultHtml;
+//							var tempObj = {}; 
+//							var notice = [];   //通知
+//							var confim = [];   //确认
+//							var deal = [];     //处理
+//							if(data.beans.length!=0){
+//								for(var i=0;i<data.beans.length;i++){
+//									if(data.beans[i].personType==1){
+//										//通知
+//										notice.push(data.beans[i]);
+//									}else if(data.beans[i].personType==2){
+//										//确认
+//										confim.push(data.beans[i]);
+//									}else{
+//										//处理
+//										deal.push(data.beans[i]);
+//									}
+//								}
+//							}
+//							tempObj.notice = notice;
+//							tempObj.confim = confim;
+//							tempObj.deal = deal;
+//							var oDault = document.getElementById('dataDault');
+//							var daultHtml = template('dataTmpl', tempObj);
+//							oDault.innerHTML = daultHtml;
 							qmask.hide();
 							//预加载子页面
-							mui.fire(reportPage, 'getReport', {
-							    result:data.bean
-							});
-							mui.fire(dealPage, 'newdeal', {
-							    result:data.bean
-							});
+//							mui.fire(reportPage, 'getReport', {
+//							    result:data.bean
+//							});
+//							mui.fire(dealPage, 'newdeal', {
+//							    result:data.bean
+//							});
 						},
 						error: function(xhr, type, errorThrown) {
 							if(type=='timeout'){
@@ -413,8 +365,13 @@
 						}
 					});
 				}
-				//跳转勘察报告
 				
+				//获取工单流程详情
+				function processInfo(){
+					
+				}
+				
+				//跳转勘察报告				
 				mui('.mui-content').on('tap', '#goReport', function(e) {
 					mui.openWindow({
 						id: "messageReport",

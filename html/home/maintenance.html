@@ -75,36 +75,27 @@
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
 				<div class="mui-col-xs-12 mb5 dataList list-pannel">
-					<h3 class="list-title">{{$value.deviceName}}
-						<span class="emergency mui-pull-right">
-							{{if $value.warningLevel == 0}}
-							    <span class="scile scileLow"></span>
-								<span class="sileSize sileLow">低</span>
-							{{else if $value.warningLevel == 2}}
-							    <span class="scile scileMiddle"></span>
-								<span class="scile scileMiddle"></span>
-								<span class="sileSize sileMiddle">中</span>
-							{{else}}
+					<h3 class="list-title">{{$value.warningName}}
+						<span class="emergency mui-pull-right">						
 							    <span class="scile scileHeight"></span>
 								<span class="scile scileHeight"></span>
 								<span class="scile scileHeight"></span>
-								<span class="sileSize sileHeight">高</span>
-							{{/if}}
+								<span class="sileSize sileHeight">高</span>							
 						</span>
 					</h3>
 					<div class="mui-col-xs-12 muiDetail list-body">
-						{{$value.eventDescribe}}
+						{{$value.warningName}}
 					</div>
 					<div class="mui-col-xs-12 muiDetail">				
-					    {{if $value.eventProcessStatus == 1}}
-						    <span class="btnState redColor font1rem">未恢复</span>
-						{{else if $value.eventProcessStatus == 2}}
-						    <span class="btnState blueColor font1rem">处理中</span>
-						{{else}}
-						    <span class="btnState greenColor font1rem">已恢复</span>
+					    {{if $value.activityName== "结束工单"}}
+						    <span class="btnState greenColor font1rem">结束工单</span>
+						{{else if $value.activityName== "工单验收"}}
+						    <span class="btnState blueColor font1rem">工单验收</span>
+						{{else}}						    
+						    <span class="btnState redColor font1rem">未处理</span>
 						{{/if}}
-						<span class="Timecolor">{{$value.applyTime}}</span>
-						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
+						<span class="Timecolor">{{$value.createTime}}</span>
+						<a data-id="{{$value.businessKey}}" data-uid="{{$value.eventId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
 							查看详情
 							<span class="mui-icon mui-icon-arrowright"></span>
 						</a>
@@ -132,8 +123,8 @@
 				var messagedetail = null;
 				if(!messagedetail){
 					messagedetail = mui.preload({
-					     url:"../task/messagedetail.html",
-					     id:"messagedetail"
+					     url:"../task/messageDetail.html",
+					     id:"messageDetail"
 					});
 				}
 				var isLogin = plus.storage.getItem("userInfo");
@@ -147,16 +138,16 @@
 				var detailPage = null;
 				mui('.mui-content').on('tap', '.goToDel', function(e) {
 					//console.log(abData);
-					var warningEventId = this.getAttribute("data-id");
-					var warningCategoryId = this.getAttribute("data-uid");
+					var businessKey= this.getAttribute("data-id");
+					var warningEventId = this.getAttribute("data-uid");
 					//自定义事件
 					mui.fire(messagedetail,'detailId',{
-					    warningEventId:warningEventId,
-					    warningCategoryId:warningCategoryId
+					    businessKey:businessKey,
+					    warningEventId:warningEventId
 					});
 					//打开页面
 					mui.openWindow({
-					  id:'messagedetail'
+					  id:'messageDetail'
 					});
 				});
 				
@@ -175,15 +166,15 @@
 			function getProductList(userId) { //获取工单列表
 				qmask.show();
 				mui.ajax({
-					url: global_url+"/cwp/front/sh/warningEvent!execute",
+					url: global_url+"/cwp/front/sh/workflow!execute",
 					type: "post",
 					async: true,
 					data: {
-						uid: 'c019',
+						uid: 'myAuditList',
 						currentPage:page,
 						pageSize:'5',
 						responseOfficerId:userId,
-						eventType:3
+						eventType:''
 					},
 					dataType: "json",
 					timeout: 20000,

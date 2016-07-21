@@ -82,7 +82,7 @@
 						
 						<ul class="mui-table-view dealer">
 							<li class="mui-table-view-cell">
-								<span>转故障</span>
+								<span>生成故障告警</span>
 								<div id="mui-swit" class="mui-switch">
 									<div class="mui-switch-handle"></div>
 								</div>
@@ -148,43 +148,50 @@
 				var oSwit = document.getElementById('mui-swit');
 				var oTextarea = document.getElementById('textarea');
 				var isLogin = plus.storage.getItem("userInfo");
+				var warningEventId="";
+				var warningCategoryId="";
 				var eventProgress="3";
-				var warningEventId;
 				//预加载
-				var messagePage = null;
-				if(!messagePage){
-					messagePage = mui.preload({
-					     url:"../main/message.html",
-					     id:"message"
+				var detailPage = null;
+				if(!detailPage){
+					detailPage= mui.preload({
+					     url:"securityAlarmDetail.html",
+					     id:"securityAlarmDetail"
 					});
 				}
 				if(isLogin){
 					window.addEventListener('getReport',function(event){
+						console.log("勘察报告");
 						qmask.show();
-						warningEventId = event.detail.result.warningEventId;
+						
 						var oDeal = document.getElementById('dealTmpl');
 						var dealHtml = template('dealTmp', event.detail.result);
 						oDeal.innerHTML = dealHtml;
-						if(event.detail.result.eventType == '3'){
-							oSwit.className = 'mui-switch mui-active';
-						}else{
-							oSwit.className = 'mui-switch';
-						}
 						qmask.hide();
-//						eventType = event.detail.result.eventType;
+						console.log(event.detail.result);
+						warningEventId = event.detail.result.warningEventId;
+						warningCategoryId = event.detail.result.warningCategoryId;
 						oTextarea.value = event.detail.result.liveDescribe;
+						console.log("告警ID："+warningEventId);
+						console.log("告警类别ID："+warningCategoryId);
 					});
 				}
 				
 				//监听事件
 				
 				oSwit.addEventListener('toggle', function(event) {
-					
 					 eventProgress = event.detail.isActive ? '4' : '3';
 				});
+				
+				
+	
 				document.getElementById('subit').addEventListener('tap',function(){
 					qmask.show();
 					var liveDescribe = oTextarea.value;
+					console.log("告警ID:"+warningEventId );
+					console.log("告警描述:"+liveDescribe);
+					console.log("用户ID:"+JSON.parse(isLogin).userId);
+					console.log("事件级别:"+eventProgress);
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -198,25 +205,29 @@
 							updateOrDetail:"2"
 						},
 						dataType: "json",
-						timeout: 10000,
+						timeout: 1000000,
 						success: function(data) {
-							mui.toast('查询成功!');
+							mui.toast('提交成功!');
 							//预加载子页面
 							//plus.nativeUI.showWaiting();
-							mui.fire(messagePage, 'getMessage', {
-								isLogin:JSON.parse(isLogin)
+
+							console.log("提交告警ID："+warningEventId);
+							console.log("提交告警类型ID："+warningCategoryId);
+							mui.fire(detailPage,'detailId',{
+							    warningEventId:warningEventId,
+							    warningCategoryId:warningCategoryId
 							});
 							setTimeout(function() {
 								qmask.hide();
 							}, 200);
 							
 							//打开页面
-//							mui.openWindow({
-//							  id:'message',
-//							  waiting: {
-//								autoShow: false
-//							  }
-//							});
+							mui.openWindow({
+							  id:'securityAlarmDetail',
+							  waiting: {
+								autoShow: false
+							  }
+							});
 						},
 						error: function(xhr, type, errorThrown) {
 							if(type=='timeout'){

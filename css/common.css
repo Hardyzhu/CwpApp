@@ -204,5 +204,6 @@ h4 > span{
 .faultUser span{
 	color:#9A9A9A;
 	font-size:1.4rem;
-	display: inline-block;
+	display: block;
+	text-align: left;
 }

@@ -1,13 +1,8 @@
-<!--
-	作者：yeshengqiang
-	时间：2016-06-28
-	描述：告警信息详情
--->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>告警信息详情</title>
+		<title>故障告警详情</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -41,8 +36,7 @@
 				margin: 15px 15px 0;
 			}
 			#accept,
-			#goReport{
-				padding:2px 4px 0;
+			#goReport{				
 				background:#299CEF;
 				border-color:#299CEF;
 				-webkit-transition: all 0.5s;
@@ -76,7 +70,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">告警信息详情</h1>
+			<h1 class="mui-title">故障告警详情</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 mb5 dataList">
@@ -127,7 +121,7 @@
 			<div class="fault-pannel">
 			<div class="mui-col-xs-12 deal clearfix">
 				<div class="mui-col-xs-12 dealer fl pannel-title">
-					故障处理
+					安防处理
 				</div>
 				<div class="btn-group-pannel clearfix">
 					{{if eventProgress=='1'}}
@@ -135,13 +129,21 @@
 						<i class="iconfont">&#xe625;</i>接受
 					</button>
 					{{else}}
-					<button class="mui-btn mui-btn-red accepter btn-accepct-btn" id="accept" type="button">
+					<button class="mui-btn mui-btn-red accepter btn-accepct-btn" type="button">
 						<i class="iconfont">&#xe627;</i>已接受
 					</button>
 					{{/if}}
+					
+					{{if eventProgress=='1'||eventProgress=='2'}}
 					<button class="mui-btn mui-btn-red btn-accepct-btn" data-state="{{responseTime}}" id="goReport" type="button">
 						<i class="iconfont">&#xe626;</i>勘察报告
 					</button>
+					{{else}}
+					<button class="mui-btn mui-btn-red accepter btn-accepct-btn"  type="button">
+						<i class="iconfont">&#xe626;</i>勘察报告
+					</button>
+					{{/if}}
+
 				</div>
 			</div>
 			</div>
@@ -177,7 +179,7 @@
 			<li class="process-list-pannel clearfix" >	
 				<div class="porcess-pannel-list">
 					<span class="porcess-title-icon">3</span>
-			    	<div class="porcess-title-name-pannel border-none">		    		
+			    	<div class="porcess-title-name-pannel">		    		
 			    		<h4 class="porcess-title-name">						
 							处理
 						</h4>
@@ -186,10 +188,10 @@
 						</div>
 			    	</div>	    
 				</div>					
-			</li>
+			</li>		
 			<li class="process-list-pannel clearfix" >	
 				<div class="porcess-pannel-list">
-					<span class="porcess-title-icon">3</span>
+					<span class="porcess-title-icon">4</span>
 			    	<div class="porcess-title-name-pannel border-none">		    		
 			    		<h4 class="porcess-title-name">						
 							完成
@@ -199,7 +201,7 @@
 						</div>
 			    	</div>	    
 				</div>					
-			</li>
+			</li>	
 		</script>
 		<script type="text/html" id="noticeList">
 	     	{{each notice}}
@@ -211,7 +213,7 @@
 							时间：{{$value.applyTime}}
 						</span>
 						<span>
-							安保员:全部
+							{{$value.appPush}}
 						</span>
 					{{/if}}
 				</div>
@@ -227,7 +229,8 @@
 							时间：{{$value.responseTime}}
 						</span>
 						<span>
-							安保人：{{$value.responseName}}
+							<!--安保人：-->
+							{{$value.response}}
 						</span>
 					{{/if}}
 				</div>
@@ -243,7 +246,7 @@
 							时间：{{$value.handleTime}}
 						</span>
 						<span>
-							{{$value.handName }}
+							{{$value.response}}
 						</span>
 					{{/if}}
 				</div>
@@ -256,9 +259,10 @@
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
+							{{if $value.eventProgress =='4'}}转故障<br/>{{/if}}
 							时间：{{$value.handleTime}}
 						</span>
-						<span>
+						<span>							
 							描述：{{$value.handleOpinion }}
 						</span>
 					{{/if}}
@@ -278,8 +282,8 @@
 				var reportPage = null;
 				if(!reportPage){
 					reportPage = mui.preload({
-					     url:"report.html",
-					     id:"report"
+					    id:'securityReport',
+				    	url:'securityReport.html'
 					});
 				}
 				var warningEventId;
@@ -287,9 +291,9 @@
 				//添加newId自定义事件监听
 				window.addEventListener('detailId',function(event){
 					warningEventId = event.detail.warningEventId;
-					console.log("告警ID："+warningEventId);
 					warningCategoryId = event.detail.warningCategoryId;
 					//信息部分
+					if(warningCategoryId==undefined) warningCategoryId="";
 				 	res(warningEventId,warningCategoryId,1,1);
 				});
 				
@@ -299,6 +303,10 @@
 				 * updateOrDetail 1，详情，2，接受
 				 */
 				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+					console.log("告警ID:"+warningEventId);
+					console.log("告警类型ID:"+warningCategoryId);
+					console.log("告警执行ID:"+updateOrDetail);
+					console.log("事件级别ID:"+eventProgress);
 					qmask.show();
 					mui.ajax({
 						type: "post",
@@ -313,9 +321,8 @@
 							eventProgress:eventProgress
 						},
 						dataType: "json",
-						timeout: 10000,
-						success: function(data) {
-							console.log(data);
+						timeout: 1000000,
+						success: function(data) {							
 							if(updateOrDetail==1){
 								mui.toast('查询成功!');
 							}else{
@@ -331,24 +338,6 @@
 							var confim = [];   //确认
 							var deal = [];     //处理
 							var complete=[];	//完成
-//							if(data.beans.length!=0){
-//								for(var i=0;i<data.beans.length;i++){
-//									if(data.beans[i].eventProgress=="1"){
-//										//通知
-//										notice.push(data.beans[i]);
-//									}else if(data.beans[i].eventProgress=="2"){
-//										//确认
-//										confim.push(data.beans[i]);
-//									}else if(data.beans[i].eventProgress=="3"){
-//										//处理
-//										deal.push(data.beans[i]);
-//									}else{
-//										//完成
-//										complete.push(data.beans[i]);
-//									}
-//								}
-//							}
-							
 							if(data.bean!=null){
 								switch(data.bean.eventProgress){
 									case "1":
@@ -361,7 +350,8 @@
 									case "3":
 										notice.push(data.bean);
 										confim.push(data.bean);
-										deal.push(data.bean)
+										deal.push(data.bean);
+										complete.push(data.bean);
 										break;
 									case "4":
 										notice.push(data.bean);
@@ -378,6 +368,7 @@
 							var daultHtml = template('dataTmpl', tempObj);
 							oDault.innerHTML = daultHtml;
 							//预加载子页面
+							console.log(reportPage);
 							mui.fire(reportPage, 'getReport', {
 							    result:data.bean
 							});
@@ -396,18 +387,58 @@
 						}
 					});
 				}
-				//跳转勘察报告
 				
+				//接收工单
+				function order(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
+					qmask.show();
+					mui.ajax({
+						type: "post",
+						url: global_url+"/cwp/front/sh/warningEvent!execute",
+						async: true,
+						data: {
+							uid:"c025",
+							warningEventId:warningEventId,
+							warningCategoryId:warningCategoryId,
+							updateOrDetail:updateOrDetail,
+							responseOfficerId:JSON.parse(isLogin).userId,
+							eventProgress:eventProgress							
+						},
+						dataType: "json",
+						timeout: 1000000,
+						success: function(data) {
+							console.log(data);
+							if(data.returnCode==0){
+								res(warningEventId,warningCategoryId,1,2);
+								mui.toast('接受成功!');
+							}else{
+								mui.toast('接受失败!');
+							}						
+							qmask.hide();
+						},
+						error: function(xhr, type, errorThrown) {
+							if(type=='timeout'){
+								mui.toast('请求超时:请检查网络!');
+							}else if(updateOrDetail==1){
+								mui.toast('查询失败!');
+							}else{
+								mui.toast('接受失败!');
+							}
+							qmask.hide();
+							return;
+						}
+					});
+				}
+				
+				//跳转勘察报告
 				mui('.mui-content').on('tap', '#goReport', function(e) {
 					var state = this.getAttribute('data-state');
 					if(state==''||state==null){
 						mui.toast('请先接受工单!');
 						return;
 					}
-					console.log(reportPage);
 					mui.openWindow({
-						url: 'report.html',
-						id: 'report',
+						url: 'securityReport.html',
+						id: 'securityReport',
 						waiting: {
 							autoShow: false
 						}
@@ -415,9 +446,9 @@
 				});
 				//接受工单
 				mui('.mui-content').on('tap', '#accept', function(e) {
-					var dataHtml = this.innerHTML;
-					if(dataHtml == '接受'){
-						res(warningEventId,warningCategoryId,2,2);
+					var dataHtml = this.innerHTML;				
+					if(dataHtml.indexOf("接受")>-1){
+						order(warningEventId,warningCategoryId,2,2);
 					}else{
 						mui.toast('该工单已接受,请勿重复点击！');
 					}

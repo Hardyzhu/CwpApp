@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>勘察报告</title>
+		<title>故障告警-勘察报告</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -70,7 +70,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">新增勘察报告</h1>
+			<h1 class="mui-title">故障告警-勘察报告</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 mb5 dataList">
@@ -82,7 +82,7 @@
 						
 						<ul class="mui-table-view dealer">
 							<li class="mui-table-view-cell">
-								<span>生成工单</span>
+								<span>生成维修工单</span>
 								<div id="mui-swit" class="mui-switch">
 									<div class="mui-switch-handle"></div>
 								</div>
@@ -148,30 +148,26 @@
 				var oSwit = document.getElementById('mui-swit');
 				var oTextarea = document.getElementById('textarea');
 				var isLogin = plus.storage.getItem("userInfo");
-				var eventType;
-				var warningEventId;
+				var warningEventId="";
+				var warningCategoryId="";
+				var eventProgress="3";
 				//预加载
-				var messagePage = null;
-				if(!messagePage){
-					messagePage = mui.preload({
-					     url:"../main/message.html",
-					     id:"message"
+				var detailPage = null;
+				if(!detailPage){
+					detailPage= mui.preload({
+					     url:"securityDetail.html",
+					     id:"securityDetail"
 					});
 				}
 				if(isLogin){
 					window.addEventListener('getReport',function(event){
-						qmask.show();
-						warningEventId = event.detail.result.warningEventId;
+						qmask.show();						
 						var oDeal = document.getElementById('dealTmpl');
 						var dealHtml = template('dealTmp', event.detail.result);
 						oDeal.innerHTML = dealHtml;
-						if(event.detail.result.eventType == '3'){
-							oSwit.className = 'mui-switch mui-active';
-						}else{
-							oSwit.className = 'mui-switch';
-						}
 						qmask.hide();
-						eventType = event.detail.result.eventType;
+						warningEventId = event.detail.result.warningEventId;
+						warningCategoryId = event.detail.result.warningCategoryId;
 						oTextarea.value = event.detail.result.liveDescribe;
 					});
 				}
@@ -179,29 +175,42 @@
 				//监听事件
 				
 				oSwit.addEventListener('toggle', function(event) {
-					 eventType = event.detail.isActive ? '3' : '';
+					 eventProgress = event.detail.isActive ? '4' : '3';
 				});
+				
+				
+	
 				document.getElementById('subit').addEventListener('tap',function(){
 					qmask.show();
 					var liveDescribe = oTextarea.value;
+					console.log("告警ID:"+warningEventId );
+					console.log("告警描述:"+liveDescribe);
+					console.log("用户ID:"+JSON.parse(isLogin).userId);
+					console.log("事件级别:"+eventProgress);
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
 						async: true,
 						data: {
-							uid:"c018",
-							eventType :eventType ,
+							uid:"c025",							
 							warningEventId:warningEventId,
-							liveDescribe :liveDescribe,
+							handleOpinion :liveDescribe,
+							handleId:JSON.parse(isLogin).userId,
+							eventProgress:eventProgress,
+							updateOrDetail:"2"
 						},
 						dataType: "json",
-						timeout: 10000,
+						timeout: 1000000,
 						success: function(data) {
-							mui.toast('查询成功!');
+							mui.toast('提交成功!');
 							//预加载子页面
 							//plus.nativeUI.showWaiting();
-							mui.fire(messagePage, 'getMessage', {
-								isLogin:JSON.parse(isLogin)
+							console.log(data);
+							console.log("提交告警ID："+warningEventId);
+							console.log("提交告警类型ID："+warningCategoryId);
+							mui.fire(detailPage,'detailId',{
+							    warningEventId:warningEventId,
+							    warningCategoryId:warningCategoryId
 							});
 							setTimeout(function() {
 								qmask.hide();
@@ -209,7 +218,7 @@
 							
 							//打开页面
 							mui.openWindow({
-							  id:'message',
+							  id:'securityDetail',
 							  waiting: {
 								autoShow: false
 							  }

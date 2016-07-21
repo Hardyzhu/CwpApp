@@ -36,8 +36,7 @@
 				margin: 15px 15px 0;
 			}
 			#accept,
-			#goReport{
-				padding:2px 4px 0;
+			#goReport{				
 				background:#299CEF;
 				border-color:#299CEF;
 				-webkit-transition: all 0.5s;
@@ -90,7 +89,7 @@
 			<div class="message-top-pannel">
 				<div class="message-top-box">
 					<div class="message-padding clearfix">
-						<i class="icon iconfont messgae-icon-title" style=""><!--&#xe61c;-->{{deviceName}}</i>
+						<i class="icon iconfont messgae-icon-title"><!--&#xe61c;-->{{deviceName}}</i>
 						<div class="message-info-group">
 							<div class="message-info-list">
 								<div class="message-add">
@@ -122,7 +121,7 @@
 			<div class="fault-pannel">
 			<div class="mui-col-xs-12 deal clearfix">
 				<div class="mui-col-xs-12 dealer fl pannel-title">
-					故障处理
+					安防处理
 				</div>
 				<div class="btn-group-pannel clearfix">
 					{{if eventProgress=='1'}}
@@ -130,13 +129,21 @@
 						<i class="iconfont">&#xe625;</i>接受
 					</button>
 					{{else}}
-					<button class="mui-btn mui-btn-red accepter btn-accepct-btn" id="accept" type="button">
+					<button class="mui-btn mui-btn-red accepter btn-accepct-btn" type="button">
 						<i class="iconfont">&#xe627;</i>已接受
 					</button>
 					{{/if}}
+					
+					{{if eventProgress=='1'||eventProgress=='2'}}
 					<button class="mui-btn mui-btn-red btn-accepct-btn" data-state="{{responseTime}}" id="goReport" type="button">
 						<i class="iconfont">&#xe626;</i>勘察报告
 					</button>
+					{{else}}
+					<button class="mui-btn mui-btn-red accepter btn-accepct-btn"  type="button">
+						<i class="iconfont">&#xe626;</i>勘察报告
+					</button>
+					{{/if}}
+
 				</div>
 			</div>
 			</div>
@@ -161,7 +168,7 @@
 					<span class="porcess-title-icon">2</span>
 			    	<div class="porcess-title-name-pannel">		    		
 			    		<h4 class="porcess-title-name">						
-							接单
+							抢单
 						</h4>
 						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
 							{{include 'confimList' value}} 
@@ -219,7 +226,7 @@
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
-							时间：{{$value.responseTime}}:
+							时间：{{$value.responseTime}}
 						</span>
 						<span>
 							<!--安保人：-->
@@ -239,7 +246,7 @@
 							时间：{{$value.handleTime}}
 						</span>
 						<span>
-							{{$value.handName }}
+							{{$value.response}}
 						</span>
 					{{/if}}
 				</div>
@@ -252,10 +259,10 @@
 						<span>暂无记录！</span>
 					{{else}}
 						<span>
+							{{if $value.eventProgress =='4'}}转故障<br/>{{/if}}
 							时间：{{$value.handleTime}}
 						</span>
-						<span>
-							{{if $value.eventProgress =='4'}}转故障<br/>{{/if}}
+						<span>							
 							描述：{{$value.handleOpinion }}
 						</span>
 					{{/if}}
@@ -275,8 +282,8 @@
 				var reportPage = null;
 				if(!reportPage){
 					reportPage = mui.preload({
-					     url:"securityAlarmReport.html",
-					     id:"securityAlarmReport"
+					    id:'securityAlarmReport',
+				    	url:'securityAlarmReport.html'
 					});
 				}
 				var warningEventId;
@@ -286,6 +293,7 @@
 					warningEventId = event.detail.warningEventId;
 					warningCategoryId = event.detail.warningCategoryId;
 					//信息部分
+					if(warningCategoryId==undefined) warningCategoryId="";
 				 	res(warningEventId,warningCategoryId,1,1);
 				});
 				
@@ -295,7 +303,10 @@
 				 * updateOrDetail 1，详情，2，接受
 				 */
 				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
-					console.log("参数1："+warningEventId+"参数2："+warningCategoryId);
+					console.log("详情告警ID:"+warningEventId);
+					console.log("详情告警ID:"+warningCategoryId);
+					console.log("详情告警ID:"+updateOrDetail);
+					console.log("详情事件级别ID:"+eventProgress);
 					qmask.show();
 					mui.ajax({
 						type: "post",
@@ -310,9 +321,8 @@
 							eventProgress:eventProgress
 						},
 						dataType: "json",
-						timeout: 10000,
-						success: function(data) {
-							console.log(data);
+						timeout: 1000000,
+						success: function(data) {							
 							if(updateOrDetail==1){
 								mui.toast('查询成功!');
 							}else{
@@ -376,6 +386,7 @@
 							var daultHtml = template('dataTmpl', tempObj);
 							oDault.innerHTML = daultHtml;
 							//预加载子页面
+							console.log(reportPage);
 							mui.fire(reportPage, 'getReport', {
 							    result:data.bean
 							});
@@ -397,7 +408,6 @@
 				
 				//接收工单
 				function order(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
-					console.log("人："+JSON.parse(isLogin).userId);
 					qmask.show();
 					mui.ajax({
 						type: "post",
@@ -412,7 +422,7 @@
 							eventProgress:eventProgress							
 						},
 						dataType: "json",
-						timeout: 10000,
+						timeout: 1000000,
 						success: function(data) {
 							console.log(data);
 							if(data.returnCode==0){
