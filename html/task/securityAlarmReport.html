@@ -185,10 +185,6 @@
 				document.getElementById('subit').addEventListener('tap',function(){
 					qmask.show();
 					var liveDescribe = oTextarea.value;
-					console.log("告警ID"+warningEventId);
-					console.log("描述"+liveDescribe);
-					console.log("用户ID"+JSON.parse(isLogin).userId);
-					console.log("事件级别"+eventProgress);
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
