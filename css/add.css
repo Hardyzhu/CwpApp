@@ -38,6 +38,12 @@ a.mui-action-back{
 	line-height: 55px;
 	font-size: 16px;
 }
+
+.guard_ss_icon{
+	background: url(../image/icn-6.png) 10px 10px no-repeat #fff;
+	background-size: 50px 50px;
+	padding: 0 6px 11px 70px;
+}
 #ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
 	background: url(../image/icon-1.png) 10px center no-repeat #fff;
 	background-size: 36px 36px;

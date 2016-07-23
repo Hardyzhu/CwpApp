@@ -103,8 +103,8 @@ h3{
 
 .muiDetail{
 	background:#FFF;
-	padding:10px 15px;
-	color:#9A9A9A;
+	/*padding:10px 15px;*/
+	color:#848484;
 	font-size:1.4rem;
 }
 .muiMark{
@@ -115,12 +115,15 @@ h3{
 }
 .btnState{
 	display:inline-block;
-	padding:2px 4px 0;
+	padding:0 8px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	color:#FFF;
-	line-height:1.4;
-	margin-right:5px;
+	font-size: 1.3rem;
+	font-weight: normal;
+	line-height: 24px;
+	height: 20px;
+	margin-top: 4px;
 }
 .redColor{
 	background:#DB0100;

@@ -68,7 +68,9 @@
 			"image/home-4.png",
 			"css/new.css",
 			"js/mui.conf.js",
-			"js/mask/mask.js"
+			"js/mask/mask.js",
+			"fonts/iconfont.woff",
+			"fonts/iconfont.css"
 		],
 		"refer": [
 			"html/main/side.html",
@@ -89,7 +91,8 @@
 			"html/home/securityAlarm.html",
 			"html/home/maintenance.html",
 			"html/home/energy.html",
-			"html/energy/energy.html"
+			"html/energy/energy.html",
+			"html/home/securityAlarmList.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -928,6 +931,26 @@
 			"js/mask/mask.js",
 			"js/template.js",
 			"css/add.css"
+		],
+		"refer": [
+			"html/task/securityAlarmDetail.html"
+		]
+	},
+	"html/home/securityAlarmList.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"css/new.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mask/mask.js",
+			"js/template.js",
+			"js/mask/mask.css",
+			"css/add.css",
+			"image/home-4.png",
+			"image/icn-6.png"
 		],
 		"refer": [
 			"html/task/securityAlarmDetail.html"
