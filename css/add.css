@@ -40,8 +40,8 @@ a.mui-action-back{
 }
 
 .guard_ss_icon{
-	background: url(../image/icn-6.png) 10px 10px no-repeat #fff;
-	background-size: 50px 50px;
+	background-color: #fff;
+	/*background-size: 50px 50px;*/
 	padding: 0 6px 11px 70px;
 }
 #ss .mui-table-view-cell,.gj-title .mui-table-view-cell{
@@ -104,11 +104,11 @@ a.mui-action-back{
 /* xupeng end*/
 .mui-slider .mui-slider-group{
 	background: #fff;
-	margin-top: 20px;
+	margin-top: 10px;
 	height: auto!important;
 }
 .mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
-	border-top:1px solid #dedede;
+	border-top:0;
 	border-bottom:0;
 }
 .mui-ellipsis-2{

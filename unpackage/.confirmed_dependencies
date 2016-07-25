@@ -896,7 +896,8 @@
 			"css/mui.min.css",
 			"js/template.js",
 			"css/add.css",
-			"js/mask/mask.css"
+			"js/mask/mask.css",
+			"js/mask/mask.js"
 		],
 		"refer": []
 	},
@@ -950,7 +951,10 @@
 			"js/mask/mask.css",
 			"css/add.css",
 			"image/home-4.png",
-			"image/icn-6.png"
+			"image/icn-6.png",
+			"fonts/iconfont.woff",
+			"fonts/iconfont.css",
+			"fonts/demo.css"
 		],
 		"refer": [
 			"html/task/securityAlarmDetail.html"
