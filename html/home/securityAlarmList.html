@@ -18,34 +18,6 @@
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="../../fonts/demo.css"/>
-		<style>
-			.barNav{
-				list-style: none;
-				background: #FFFFFF;
-				padding:5px 0;
-				margin-bottom:10px;
-				border-top:1px solid #DEDEDE;
-				border-bottom:1px solid #DEDEDE;
-			}
-			.barNav li{
-				float:left;
-				border-right:1px solid #DEDEDE;
-				padding:4px 0;
-				font-size:1.4rem;
-				color:#9C9C9C;
-				text-align:center;
-			}
-			.mui-icon{
-				font-size:1.4rem;
-			}
-			.searchData{
-				margin: 15px 15px 0;
-			}
-			.mui-table-view{
-				background-color: initial;
-			}
-			.mui-table-view-cell:after{}
-		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -62,11 +34,11 @@
 					</div>
 					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 					<div class="mui-slider-group">
-						<div id="untreated" data-state="untreated" class="mui-slider-item mui-control-content mui-active">
+						<div id="untreated" data-state="1" class="mui-slider-item mui-control-content mui-active">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
-									<div class="mui-col-xs-12" id="untreatedList123">
-											<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+									<div class="mui-col-xs-12" id="untreatedList">
+											<!--<div class="mui-col-xs-12 mb5 list-pannel">	
 													<div class="icon iconfont icon-menjinxitong redColor"></div>
 													<h3 class="list-title clearfix" style="padding: 0;">HWZJ201607201154123	
 														<span class="btnState  blueColor mui-pull-right">处理完</span>
@@ -81,7 +53,7 @@
 														<div class="Timecolor fr">2016-07-22 16:03:07</div>
 													</div>
 											</div>
-											<div class="mui-col-xs-12 mb5 dataList list-pannel">				
+											<div class="mui-col-xs-12 mb5 list-pannel">				
 													<div class="icon iconfont icon-menjinxitong blueColor"></div>
 													<h3 class="list-title clearfix" style="padding: 0;">HWZJ201607201154123	
 														<span class="btnState  blueColor mui-pull-right">处理完</span>
@@ -95,19 +67,19 @@
 														</div>
 														<div class="Timecolor fr">2016-07-22 16:03:07</div>
 													</div>
-											</div>
+											</div>-->
 									</div>
 								</div>
 							</div>
 						</div>
-						<div id="processing" data-state="processing" class="mui-slider-item mui-control-content">
+						<div id="processing" data-state="2" class="mui-slider-item mui-control-content">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
 									<div class="mui-col-xs-12" id="processingList">处理中</div>
 								</div>
 							</div>
 						</div>
-						<div id="processed" data-state="processed" class="mui-slider-item mui-control-content">
+						<div id="processed" data-state="3" class="mui-slider-item mui-control-content">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
 									<div class="mui-col-xs-12" id="processedList">已处理</div>
@@ -121,41 +93,42 @@
 		
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
-				<div class="mui-col-xs-12 mb5 dataList list-pannel">
-					<h3 class="list-title">{{$value.deviceName}}
-						<span class="emergency mui-pull-right">
-							{{if $value.warningLevel == 0}}
-							    <span class="scile scileLow"></span>
-								<span class="sileSize sileLow">低</span>
-							{{else if $value.warningLevel == 2}}
-							    <span class="scile scileMiddle"></span>
-								<span class="scile scileMiddle"></span>
-								<span class="sileSize sileMiddle">中</span>
-							{{else}}
-							    <span class="scile scileHeight"></span>
-								<span class="scile scileHeight"></span>
-								<span class="scile scileHeight"></span>
-								<span class="sileSize sileHeight">高</span>
-							{{/if}}
-						</span>
-					</h3>
-					<div class="mui-col-xs-12 muiDetail list-body">
-						{{$value.eventDescribe}}
-					</div>
-					<div class="mui-col-xs-12 muiDetail">				
-					    {{if $value.eventProcessStatus == 1}}
-						    <span class="btnState redColor font1rem">未恢复</span>
-						{{else if $value.eventProcessStatus == 2}}
-						    <span class="btnState blueColor font1rem">处理中</span>
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+						{{if $value.warningLevel == 0}}
+							<div class="icon iconfont icon-menjinxitong blueColor"></div>
+						{{else if $value.warningLevel == 1}}
+						    <div class="icon iconfont icon-menjinxitong yellowColor"></div>
+						{{else if $value.warningLevel == 2}}
+						    <div class="icon iconfont icon-menjinxitong orangeColor"></div>
 						{{else}}
-						    <span class="btnState greenColor font1rem">已恢复</span>
+						   	<div class="icon iconfont icon-menjinxitong redColor"></div>
 						{{/if}}
-						<span class="Timecolor">{{$value.applyTime}}</span>
-						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
-							查看详情
-							<span class="mui-icon mui-icon-arrowright"></span>
-						</a>
-					</div>
+						<h3 class="list-title clearfix" style="padding: 0;">							
+							{{if $value.alarmNumber != ""}}
+									{{$value.alarmNumber}}
+							{{else}}
+							    	HWZJ201607201154123
+							{{/if}}			
+							<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
+								查看详情
+								<span class="mui-icon mui-icon-arrowright"></span>
+							</a>
+						</h3>
+						<div class="mui-col-xs-12 muiDetail">
+							{{$value.eventDescribe}}
+						</div>
+						<div class="mui-col-xs-12 muiDetail clearfix">															
+							<div class="fl goToDel list-link-a" href="javascript:void(0);">		
+									{{if $value.eventProcessStatus == 1}}
+							    			告警通知
+									{{else if $value.eventProcessStatus == 2}}
+									    	处理中
+									{{else}}
+									    	已恢复
+									{{/if}}					
+							</div>
+							<div class="Timecolor fr">{{$value.applyTime}}</div>
+						</div>
 				</div>
 		    {{/each}}		
 		</script>
@@ -172,15 +145,29 @@
 						callback: pullupRefresh
 					}
 				},
-//				/*preloadPages:[{                     //预加载页面		
-//				    id:'securityAlarmDetail',
-//				    url:'../task/securityAlarmDetail.html'
-//				}]*/
+				preloadPages:[{                     //预加载页面		
+				    id:'securityAlarmDetail',
+				    url:'../task/securityAlarmDetail.html'
+				}]
 			});
+			
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
 				var isLogin = plus.storage.getItem("userInfo");
-
+				var resHeight = window.innerHeight - 84;
+				mui('.mui-control-content').each(function(){
+					this.setAttribute("style","min-height:"+resHeight+"px;");
+					var isActive = this.classList.contains('mui-active') ? true : false;
+					if(isActive){
+						var state = this.getAttribute('data-state');
+						console.log("加载列表："+state);
+						getProductList(state);
+					}
+				});
+				
+//				mui('.mui-scroll-wrapper').scroll({
+//			        indicators: true //是否显示滚动条
+//			    });
 				/**
 				 * 跳转到详情页面
 				 */
@@ -194,7 +181,7 @@
 					    detailPage = plus.webview.getWebviewById('securityAlarmDetail');
 					}
 					//自定义事件
-					//plus.nativeUI.showWaiting();
+			
 					mui.fire(detailPage,'detailId',{
 					    warningEventId:warningEventId,
 					    warningCategoryId:warningCategoryId
@@ -214,7 +201,7 @@
 			var page = 1;
 			var mark = false;
 			//渲染数据
-			function getProductList() { //获取工单列表
+			function getProductList(eventProcessStatus) { //获取工单列表
 				qmask.show();
 				mui.ajax({
 					url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -225,15 +212,33 @@
 						currentPage:page,
 						pageSize:'5',
 						dictValue:'', 
-						eventProcessStatus:'1',
+						eventProcessStatus:eventProcessStatus,
 						eventType:''
 					},
 					dataType: "json",
 					timeout: 1000000,
 					success: function(data) {
-						var oList = document.getElementById("untreatedList");
+						var getId="";		
+						var oList = "";
+						switch(eventProcessStatus){
+							case "1":	
+								getId="untreatedList";
+								oList = document.getElementById("untreatedList");
+								break;
+							case "2":		
+								getId="processingList";
+								oList = document.getElementById("processingList");
+								break;
+							case "3":
+								getId="processedList";	
+								oList = document.getElementById("processedList");
+								break;
+						}
+						console.log("事件状态："+eventProcessStatus);
+//						console.log(getId);				
+//						oList = document.getElementById(getId);
 						var html = template('detailTmpl', data);
-						oList.innerHTML += html;
+						oList.innerHTML = html;
 						if(data.beans instanceof Array && data.beans.length<5){
 							mark = true;
 							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
@@ -265,7 +270,7 @@
 					setTimeout(function() {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(mark); //参数为true代表没有更多数据了。
 						page++;
-						//getProductList();
+						getProductList(1);
 					}, 1500);
 				}
 			}

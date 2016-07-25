@@ -130,13 +130,19 @@ h3{
 	margin-top: 4px;
 }
 .redColor{
-	background:#DB0100;
+	background-color:#DB0100;
 }
 .blueColor{
-	background:#067FC8;
+	background-color:#067FC8;
 }
 .greenColor{
-	background:#90C31E;
+	background-color:#90C31E;
+}
+.orangeColor{
+	background-color:#ff9900;
+}
+.yellowColor{
+	background-color:yellow;
 }
 .Timecolor{
 	color:#5C5C5C;
