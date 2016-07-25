@@ -308,6 +308,8 @@
 					console.log("详情告警ID:"+updateOrDetail);
 					console.log("详情事件级别ID:"+eventProgress);
 					qmask.show();
+					console.log(console);
+					console.time(text);
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -338,23 +340,6 @@
 							var confim = [];   //确认
 							var deal = [];     //处理
 							var complete=[];	//完成
-//							if(data.beans.length!=0){
-//								for(var i=0;i<data.beans.length;i++){
-//									if(data.beans[i].eventProgress=="1"){
-//										//通知
-//										notice.push(data.beans[i]);
-//									}else if(data.beans[i].eventProgress=="2"){
-//										//确认
-//										confim.push(data.beans[i]);
-//									}else if(data.beans[i].eventProgress=="3"){
-//										//处理
-//										deal.push(data.beans[i]);
-//									}else{
-//										//完成
-//										complete.push(data.beans[i]);
-//									}
-//								}
-//							}
 							
 							if(data.bean!=null){
 								switch(data.bean.eventProgress){
@@ -385,6 +370,7 @@
 							tempObj.complete = complete;
 							var daultHtml = template('dataTmpl', tempObj);
 							oDault.innerHTML = daultHtml;
+							console.timeEnd(text);
 							//预加载子页面
 							console.log(reportPage);
 							mui.fire(reportPage, 'getReport', {

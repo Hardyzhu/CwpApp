@@ -166,6 +166,8 @@
 			//渲染数据
 			function getProductList() { //获取工单列表
 				qmask.show();
+				console.log(console);
+				console.time('text');
 				mui.ajax({
 					url: global_url+"/cwp/front/sh/warningEvent!execute",
 					type: "post",
@@ -181,6 +183,8 @@
 					dataType: "json",
 					timeout: 1000000,
 					success: function(data) {
+						console.timeEnd('text');
+						console.time('abc');
 						var oList = document.getElementById("list");
 						var html = template('detailTmpl', data);
 						oList.innerHTML += html;
@@ -193,6 +197,7 @@
 							qmask.hide();
 							return;
 						}
+						console.timeEnd('abc');
 						qmask.hide();
 					},
 					error: function(xhr, type, errorThrown) {
