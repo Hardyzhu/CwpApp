@@ -82,6 +82,9 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .mb15{
 	margin-bottom:15px;
 }
+.mb10{
+	margin-bottom:10px;
+}
 .mb20{
 	margin-bottom:20px;
 }
@@ -90,7 +93,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 }
 .comFont_color{
 	color:#222222;
-	font-size:14px;
+	font-size:1.2rem;
+	font-weight: 500;
 }
 h3{
 	position: relative;
@@ -185,6 +189,9 @@ h3{
 }
 .sileLow{
 	color:#949494;
+}
+.com_detail_color{
+	color:#5D5D5D;
 }
 
 .detailTitle{

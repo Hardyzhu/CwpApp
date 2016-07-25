@@ -79,29 +79,62 @@
 					<div class="message-top-pannel">
 						<div class="message-top-box">
 							<div class="message-padding clearfix">
-								<img class="mui-pull-left" src="../../image/icon1.png" alt="icon1" width="40" style="margin-right:10px;"/>
-								<div class="message-info-group">
+								<img class="mui-pull-left mb5" src="../../image/icon1.png" alt="icon1" width="40" style="margin-right:10px;"/>
+								<div class="message-info-group mb5">
 									<div class="message-info-list">
 										<div class="message-add comFont_color">
 											处理状态：已处理
 										</div>
 										<span class="message-level">
-											<span class="scile scileLow"></span>
-											<span class="sileSize sileLow">低</span>
+											<span class="scileHeight" style="display:inline-block;width:20px;height:20px;line-height:20px;color:#FFF;text-align:center;font-size:1.2rem;">低</span>
 										</span>
 									</div>
-									<div class="message-info-box">
-										{{eventDescribe}}
+									<div class="message-info-box com_detail_color">
+										告警编号：FXABACBAGAO123
 									</div>
 								</div>
+								<div class="mb5" style="background:#DEDEDE;height:1px;overflow:hidden;width:100%;"></div>
+								<ul style="font-size:1.2rem;" class="com_detail_color">
+									<li>告警位置：cc-1客户楼栋</li>
+									<li>告警描述：非法闯入</li>
+									<li>处理报告：设备故障，已转故障告警流程</li>
+								</ul>
 							</div>					
 						</div>	
 					</div>
 				</div>
+				<div class="mui-col-xs-12">
+					<ul class="mui-table-view" style="position: relative">
+						<li id="goDetail" class="mui-table-view-cell mui-media">
+							<a class="mui-navigate-right" href="javascript:;">
+								<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:40px;color:blue;"></span>
+								<div class="mui-media-body">
+									李国庆
+									<p class='mui-ellipsis'>保安员/保安队长</p>
+								</div>
+							</a>
+							<span id="phone" style="display:inline-block;position:absolute;width:30px;height:30px;background:blue;right:35px;top:50%;transform: translateY(-50%);-webkit-transform: translateY(-50%);"></span>
+						</li>
+					</ul>
+				</div>
 				<div class="mui-col-xs-12 fault">
 					<ul class="mui-col-xs-12 faulter" id="dataDault">
 						<!--流程部分-->
+						<li class="process-list-pannel clearfix">
+							<div class="porcess-pannel-list">
+								<span class="porcess-title-icon">1</span>
+						    	<div class="porcess-title-name-pannel">		    		
+						    		<h4 class="porcess-title-name">						
+										通知
+									</h4>
+									<div class="mui-col-xs-12 faultBox porcess-title-name-body">
+										{{include 'noticeList' value}} 
+									</div>
+						    	</div>	    
+							</div>					
+						</li>
 					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -352,7 +385,7 @@
 							var oDeal = document.getElementById('dealTmpl');
 							var oDault = document.getElementById('dataDault');
 							var dealHtml = template('dealTmp', data.bean)
-							oDeal.innerHTML = dealHtml;
+							//oDeal.innerHTML = dealHtml;
 							//数据重组
 							var tempObj = {}; 
 							var notice = [];   //通知
@@ -405,7 +438,7 @@
 							tempObj.deal = deal;
 							tempObj.complete = complete;
 							var daultHtml = template('dataTmpl', tempObj);
-							oDault.innerHTML = daultHtml;
+							//oDault.innerHTML = daultHtml;
 							//预加载子页面
 							console.log(reportPage);
 							mui.fire(reportPage, 'getReport', {
@@ -468,6 +501,24 @@
 					});
 				}
 				
+				//调用电话
+				mui('.mui-content').on('tap', '#phone', function(e) {
+					e.stopPropagation();
+					if(window.plus){
+						toPhone();
+					}else{
+						document.addEventListener("plusready",toPhone(),false);
+					}
+					return false;
+				});
+				function toPhone(){
+					plus.device.dial( "10086", false);
+				}
+				
+				//跳转到详情页面
+				mui('.mui-content').on('tap', '#goDetail', function(e) {
+					console.log(1);
+				});
 				//跳转勘察报告
 				mui('.mui-content').on('tap', '#goReport', function(e) {
 					var state = this.getAttribute('data-state');
