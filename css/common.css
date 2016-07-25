@@ -88,6 +88,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .mb5{
 	margin-bottom:5px;
 }
+.comFont_color{
+	color:#222222;
+	font-size:14px;
+}
 h3{
 	position: relative;
 	font-size:1.8rem;
