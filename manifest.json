@@ -1130,7 +1130,9 @@
 					"js/mui.min.js",
 					"css/common.css",
 					"css/mui.min.css",
-					"css/add.css"
+					"css/add.css",
+					"js/mask/mask.js",
+					"js/template.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1149,7 +1151,10 @@
 					"js/mask/mask.css",
 					"css/add.css",
 					"image/home-4.png",
-					"image/icn-6.png"
+					"image/icn-6.png",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.css",
+					"fonts/demo.css"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html"
