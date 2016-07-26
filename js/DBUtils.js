@@ -22,6 +22,10 @@ var DbTableConfig = {
     	selectPushMsgByType:{
     		sql:"select id,eventId,title,status from PushMessage where 1=1 and type=?",
     		args:["type"]
+    	},
+    	selectPushMsgByStatus:{
+    		sql:"select id,eventId,title,status from PushMessage where 1=1 and status=?",
+    		args:["status"]
     	}
     }
  };
@@ -137,6 +141,10 @@ var websql = (function(document, undefined) {
 	$.selectPushMsgByType=function(options,callback){
 		this.exec(DbTableConfig.dao.selectPushMsgByType,options,callback);		
 	};
+	
+	$.selectPushMsgByStatus=function(options,callback){
+		this.exec(DbTableConfig.dao.selectPushMsgByStatus,options,callback);
+	}
 	
 	
 	//openDatabase中五个参数分别为：数据库名、版本号、描述、数据库大小、创建回调;

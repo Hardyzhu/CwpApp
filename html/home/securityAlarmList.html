@@ -75,14 +75,22 @@
 						<div id="processing" data-state="2" class="mui-slider-item mui-control-content">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
-									<div class="mui-col-xs-12" id="processingList">处理中</div>
+									<div class="mui-col-xs-12" id="processingList">
+										<div class='mui-loading'>
+											<div class='mui-spinner'></div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div id="processed" data-state="3" class="mui-slider-item mui-control-content">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
-									<div class="mui-col-xs-12" id="processedList">已处理</div>
+									<div class="mui-col-xs-12" id="processedList">
+										<div class='mui-loading'>
+											<div class='mui-spinner'></div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>					
@@ -160,14 +168,29 @@
 					var isActive = this.classList.contains('mui-active') ? true : false;
 					if(isActive){
 						var state = this.getAttribute('data-state');
-						console.log("加载列表："+state);
+//						console.log("加载列表："+state);
 						getProductList(state);
 					}
 				});
 				
-//				mui('.mui-scroll-wrapper').scroll({
-//			        indicators: true //是否显示滚动条
-//			    });
+				var processing = document.getElementById("processing");;
+				var processed = document.getElementById("processed");
+				document.getElementById('slider').addEventListener('slide', function(e) {
+					console.log("点击事件");
+					if (e.detail.slideNumber === 1) {
+						if (processing.querySelector('.mui-loading')) {
+							getProductList(2);
+						}
+					} else if (e.detail.slideNumber === 2) {
+						if (processed.querySelector('.mui-loading')) {
+							getProductList(3);
+						}
+					}
+				});
+				
+				mui('.mui-scroll-wrapper').scroll({
+			        indicators: true //是否显示滚动条
+			    });
 				/**
 				 * 跳转到详情页面
 				 */
@@ -221,21 +244,21 @@
 						var getId="";		
 						var oList = "";
 						switch(eventProcessStatus){
-							case "1":	
-								getId="untreatedList";
+							case 1:	
+//								getId="untreatedList";
 								oList = document.getElementById("untreatedList");
 								break;
-							case "2":		
-								getId="processingList";
+							case 2:		
+//								getId="processingList";
 								oList = document.getElementById("processingList");
 								break;
-							case "3":
-								getId="processedList";	
+							case 3:
+//								getId="processedList";	
 								oList = document.getElementById("processedList");
 								break;
 						}
 						console.log("事件状态："+eventProcessStatus);
-//						console.log(getId);				
+						console.log(getId);				
 //						oList = document.getElementById(getId);
 						var html = template('detailTmpl', data);
 						oList.innerHTML = html;
