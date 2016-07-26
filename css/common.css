@@ -48,6 +48,17 @@ a:active { outline: 0; }
 .clearfix:after {
   clear: both;
 }
+.comlogo{
+	width:40px;
+	height:40px;
+	font-size:23px;
+	color:#FFF;
+	line-height:40px;
+	text-align:center;
+	display:inline-block;
+	-webkit-border-radius:100%;
+	border-radius:100%;
+}
 em {
   font-style: normal;
 }

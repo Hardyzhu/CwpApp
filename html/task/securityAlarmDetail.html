@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
-		<link rel="stylesheet" href="../../fonts/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css">
 		<style>
 			.barNav{
 				list-style: none;
@@ -65,6 +65,7 @@
 				border-color:#DEDEDE !important;
 				color:#FFF !important;
 			}
+			
 		</style>
 	</head>
 	<body>
@@ -72,15 +73,31 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">安防预警详情</h1>
 		</header>
+		<nav class="mui-bar mui-bar-tab" style="box-shadow:0 0 1px rgba(0,0,0,0.35);-webkit-box-shadow:0 0 1px rgba(0,0,0,0.35);">
+			<div style="padding:8px 0;">
+				<a class="mui-tab-item mui-active" style="height:40px;border-right:1px solid #DEDEDE;" data-href="home.html">
+					<span class="mui-tab-label">抢单</span>
+				</a>
+				<a class="mui-tab-item" style="height:36px;" data-href="user.html">
+					<span class="mui-tab-label">处理</span>
+				</a>
+			</div>
+		</nav>
 		<div class="mui-content">
-			<div class="mui-col-xs-12 mb5 dataList">
+			<div class="mui-col-xs-12 dataList pb50">
 				<div class="mui-col-xs-12" id="dealTmpl">
-					<!--头部详情部分-->
+					<!--头部详情部分-->	
 				</div>
-				<div class="mui-col-xs-12 fault">
-					<ul class="mui-col-xs-12 faulter" id="dataDault">
+				<div class="mui-col-xs-12" id="posoneTmpl">
+					<!--人员信息部分-->
+				</div>
+				<div class="mui-col-xs-12 line1" id="dataDault">
+					<div class="line">
+						<span class="end"></span>
+					</div>
+					<div class="mui-col-xs-12" id="dataDault">
 						<!--流程部分-->
-					</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -89,186 +106,120 @@
 			<div class="message-top-pannel">
 				<div class="message-top-box">
 					<div class="message-padding clearfix">
-						<i class="icon iconfont messgae-icon-title"><!--&#xe61c;-->{{deviceName}}</i>
-						<div class="message-info-group">
-							<div class="message-info-list">
-								<div class="message-add">
-									{{buildingName}}
+						<span class="mb5 mr10 icon iconfont icon-menjinxitong mui-pull-left comlogo {{warningLevel | colorFormat}}"></span>
+						<div class="message-info-group mb5">
+							<div class="message-info-list clearfix">
+								<div class="message-add comFont_color">
+									处理状态：{{eventProcessStatus | dealerFormat}}
 								</div>
 								<span class="message-level">
 									{{if warningLevel == 0}}
-									    <span class="scile scileLow"></span>
-										<span class="sileSize sileLow">低</span>
+									    <span class="scilFont scileLow">低</span>
 									{{else if warningLevel == 2}}
-									    <span class="scile scileMiddle"></span>
-										<span class="scile scileMiddle"></span>
-										<span class="sileSize sileMiddle">中</span>
+									    <span class="scilFont scileMiddle">中</span>
 									{{else}}
-									    <span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="sileSize sileHeight">高</span>
+									    <span class="scilFont scileHeight">高</span>
 									{{/if}}
 								</span>
 							</div>
-							<div class="message-info-box">
-								{{eventDescribe}}
+							<div class="message-info-box com_detail_color">
+								告警编号：{{alarmNumber}}
 							</div>
 						</div>
+						<div class="btnLine mb5"></div>
+						<ul class="com_detail_color">
+							<li>告警位置：{{buildingName}}</li>
+							<li>告警描述：{{eventDescribe}}</li>
+							<li>处理报告：
+								{{if handleTime==''}}
+								未处理
+								{{else}}
+								{{handleOpinion}}
+								{{/if}}
+							</li>
+						</ul>
 					</div>					
 				</div>	
 			</div>
-			<div class="fault-pannel">
-			<div class="mui-col-xs-12 deal clearfix">
-				<div class="mui-col-xs-12 dealer fl pannel-title">
-					安防处理
-				</div>
-				<div class="btn-group-pannel clearfix">
-					{{if eventProgress=='1'}}
-					<button class="mui-btn mui-btn-red btn-accepct-btn" id="accept" type="button">
-						<i class="iconfont">&#xe625;</i>接受
-					</button>
-					{{else}}
-					<button class="mui-btn mui-btn-red accepter btn-accepct-btn" type="button">
-						<i class="iconfont">&#xe627;</i>已接受
-					</button>
-					{{/if}}
-					
-					{{if eventProgress=='1'||eventProgress=='2'}}
-					<button class="mui-btn mui-btn-red btn-accepct-btn" data-state="{{responseTime}}" id="goReport" type="button">
-						<i class="iconfont">&#xe626;</i>勘察报告
-					</button>
-					{{else}}
-					<button class="mui-btn mui-btn-red accepter btn-accepct-btn"  type="button">
-						<i class="iconfont">&#xe626;</i>勘察报告
-					</button>
-					{{/if}}
-
-				</div>
-			</div>
-			</div>
 		</script>
+		<!--人员信息部分-->
+		<sciprt id="posTpl">
+			<ul class="mui-table-view" style="position: relative">
+				<li id="goDetail" class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right" href="javascript:;">
+						<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:40px;color:blue;"></span>
+						<div class="mui-media-body">
+							{{responseName}}
+							<p class='mui-ellipsis'>{{response}}</p>
+						</div>
+					</a>
+					<span id="phone" data-phone=""></span>
+				</li>
+			</ul>
+		</sciprt>
 		<!--流程部分-->
 		<script id="dataTmpl" type="text/html">
-			<li class="process-list-pannel clearfix">	
-				<div class="porcess-pannel-list">
-					<span class="porcess-title-icon">1</span>
-			    	<div class="porcess-title-name-pannel">		    		
-			    		<h4 class="porcess-title-name">						
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
 							通知
-						</h4>
-						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-							{{include 'noticeList' value}} 
-						</div>
-			    	</div>	    
-				</div>					
-			</li>
-			<li class="process-list-pannel clearfix" >	
-				<div class="porcess-pannel-list">
-					<span class="porcess-title-icon">2</span>
-			    	<div class="porcess-title-name-pannel">		    		
-			    		<h4 class="porcess-title-name">						
+							<span class="mui-pull-right comFont_color">{{applyTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							安保员:全员
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
 							抢单
-						</h4>
-						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-							{{include 'confimList' value}} 
-						</div>
-			    	</div>	    
-				</div>					
-			</li>
-			<li class="process-list-pannel clearfix" >	
-				<div class="porcess-pannel-list">
-					<span class="porcess-title-icon">3</span>
-			    	<div class="porcess-title-name-pannel">		    		
-			    		<h4 class="porcess-title-name">						
+							<span class="mui-pull-right comFont_color">{{responseTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							抢单人:{{responseName}}
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
 							处理
-						</h4>
-						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-							{{include 'dealList' value}} 
-						</div>
-			    	</div>	    
-				</div>					
-			</li>		
-			<li class="process-list-pannel clearfix" >	
-				<div class="porcess-pannel-list">
-					<span class="porcess-title-icon">4</span>
-			    	<div class="porcess-title-name-pannel border-none">		    		
-			    		<h4 class="porcess-title-name">						
-							完成
-						</h4>
-						<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-							{{include 'completeList' value}} 
-						</div>
-			    	</div>	    
-				</div>					
-			</li>	
-		</script>
-		<script type="text/html" id="noticeList">
-	     	{{each notice}}
-				<div class="mui-col-xs-12 faultUser">
-					{{if $value.applyTime==''||$value.applyTime==null}}
-						<span>暂无记录！</span>
-					{{else}}
-						<span>
-							时间：{{$value.applyTime}}
-						</span>
-						<span>
-							安保员:全部
-						</span>
-					{{/if}}
+							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							处理人:{{responseName}}
+						</dd>
+					</dl>
 				</div>
-			{{/each}}
-	    </script>
-	    <script type="text/html" id="confimList">
-	     	{{each confim}}
-				<div class="mui-col-xs-12 faultUser">
-					{{if $value.responseTime==''||$value.responseName==null}}
-						<span>暂无记录！</span>
-					{{else}}
-						<span>
-							时间：{{$value.responseTime}}
-						</span>
-						<span>
-							<!--安保人：-->
-							{{$value.response}}
-						</span>
-					{{/if}}
+			</div>
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ comp"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
+							已完成
+							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							{{eventProgress | toState}}
+						</dd>
+					</dl>
 				</div>
-			{{/each}}
-	    </script>	   
-	    <script type="text/html" id="dealList">
-	     	{{each deal}}
-				<div class="mui-col-xs-12 faultUser">
-					{{if $value.handleTime ==''||$value.handName == null}}
-						<span>暂无记录！</span>
-					{{else}}
-						<span>
-							时间：{{$value.handleTime}}
-						</span>
-						<span>
-							{{$value.response}}
-						</span>
-					{{/if}}
-				</div>
-			{{/each}}
-	    </script>
-	     <script type="text/html" id="completeList">
-	     	{{each complete}}
-				<div class="mui-col-xs-12 faultUser">
-					{{if $value.handleTime ==''||$value.handName == null}}
-						<span>暂无记录！</span>
-					{{else}}
-						<span>
-							{{if $value.eventProgress =='4'}}转故障<br/>{{/if}}
-							时间：{{$value.handleTime}}
-						</span>
-						<span>							
-							描述：{{$value.handleOpinion }}
-						</span>
-					{{/if}}
-				</div>
-			{{/each}}
-	    </script>
+			</div>	
+		</script>	   
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
 		<script	src="../../js/mask/mask.js"></script>
@@ -308,8 +259,6 @@
 					console.log("详情告警ID:"+updateOrDetail);
 					console.log("详情事件级别ID:"+eventProgress);
 					qmask.show();
-					console.log(console);
-					console.time(text);
 					mui.ajax({
 						type: "post",
 						url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -332,45 +281,74 @@
 							}
 							var oDeal = document.getElementById('dealTmpl');
 							var oDault = document.getElementById('dataDault');
-							var dealHtml = template('dealTmp', data.bean)
+							var oPosone = document.getElementById('posoneTmpl');
+							template.helper('dealerFormat',function(inp){
+								if(inp==1){
+									return '未处理';
+								}else if(inp==2){
+									return '处理中';
+								}else{
+									return '已完成';
+								}
+							});
+							template.helper('colorFormat',function(inp){
+								if(inp == 0){
+									return 'blueColor';
+								}else if(inp==1){
+									return 'yellowColor';
+								}else if(inp==2){
+									return 'orangeColor';
+								}else{
+									return 'redColor';
+								}
+							});
+							template.helper('toState',function(inp){
+								if(inp){
+									return '转故障';
+								}
+							});
+							var dealHtml = template('dealTmp', data.bean);
 							oDeal.innerHTML = dealHtml;
-							//数据重组
-							var tempObj = {}; 
-							var notice = [];   //通知
-							var confim = [];   //确认
-							var deal = [];     //处理
-							var complete=[];	//完成
+							console.log(data.bean.eventProcessStatus);
+							//抢单
+							if(data.bean.eventProcessStatus>=2){
+								var posHtml = template('posTpl', data.bean);
+								oPosone.innerHTML = posHtml;
+							}
 							
+							//数据重组
+							/*var tempObj = {}; 
+							tempObj.notice = [];   //通知
+							tempObj.confim = [];   //确认
+							tempObj.deal = [];     //处理
+							tempObj.complete=[];	//完成
 							if(data.bean!=null){
 								switch(data.bean.eventProgress){
 									case "1":
-										notice.push(data.bean);
+										tempObj.notice.push(data.bean);
+//										tempObj.responseName = data.bean.responseName;
 										break;
 									case "2":
-										notice.push(data.bean);
-										confim.push(data.bean);										
+										tempObj.notice.push(data.bean);
+//										tempObj.confim.push(data.bean);			
+//										tempObj.responseName = data.bean.responseName;
 										break;
 									case "3":
-										notice.push(data.bean);
-										confim.push(data.bean);
-										deal.push(data.bean);
-										complete.push(data.bean);
+										tempObj.notice.push(data.bean);
+										tempObj.confim.push(data.bean);
+										tempObj.deal.push(data.bean);
+										tempObj.complete.push(data.bean);
 										break;
 									case "4":
-										notice.push(data.bean);
-										confim.push(data.bean);
-										deal.push(data.bean);
-										complete.push(data.bean);
+										tempObj.notice.push(data.bean);
+										tempObj.confim.push(data.bean);
+										tempObj.deal.push(data.bean);
+										tempObj.complete.push(data.bean);
 										break;
 								};
-							}
-							tempObj.notice = notice;
-							tempObj.confim = confim;
-							tempObj.deal = deal;
-							tempObj.complete = complete;
-							var daultHtml = template('dataTmpl', tempObj);
+							}*/
+							var daultHtml = template('dataTmpl', data.bean);
 							oDault.innerHTML = daultHtml;
-							console.timeEnd(text);
 							//预加载子页面
 							console.log(reportPage);
 							mui.fire(reportPage, 'getReport', {
@@ -433,6 +411,24 @@
 					});
 				}
 				
+				//调用电话
+				mui('.mui-content').on('tap', '#phone', function(e) {
+					e.stopPropagation();
+					if(window.plus){
+						toPhone();
+					}else{
+						document.addEventListener("plusready",toPhone(),false);
+					}
+					return false;
+				});
+				function toPhone(){
+					plus.device.dial( "10086", false);
+				}
+				
+				//跳转到详情页面
+				mui('.mui-content').on('tap', '#goDetail', function(e) {
+					console.log(1);
+				});
 				//跳转勘察报告
 				mui('.mui-content').on('tap', '#goReport', function(e) {
 					var state = this.getAttribute('data-state');
