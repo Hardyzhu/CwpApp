@@ -363,7 +363,8 @@
 					"image/shop02.jpg",
 					"image/shop03.jpg",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/DBUtils.js"
 				],
 				"refer": [
 					"html/main/home.html",
@@ -841,7 +842,9 @@
 					"js/mask/mask.js",
 					"js/mask/mask.css",
 					"css/new.css",
-					"js/home/securityAlarm.js"
+					"js/home/securityAlarm.js",
+					"fonts/iconfont.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html",
