@@ -65,6 +65,7 @@
 				border-color:#DEDEDE !important;
 				color:#FFF !important;
 			}
+			
 		</style>
 	</head>
 	<body>
@@ -72,29 +73,39 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">安防预警详情</h1>
 		</header>
+		<nav class="mui-bar mui-bar-tab" style="box-shadow:0 0 1px rgba(0,0,0,0.35);-webkit-box-shadow:0 0 1px rgba(0,0,0,0.35);">
+			<div style="padding:8px 0;">
+				<a class="mui-tab-item mui-active" style="height:40px;border-right:1px solid #DEDEDE;" data-href="home.html">
+					<span class="mui-tab-label">抢单</span>
+				</a>
+				<a class="mui-tab-item" style="height:36px;" data-href="user.html">
+					<span class="mui-tab-label">处理</span>
+				</a>
+			</div>
+		</nav>
 		<div class="mui-content">
-			<div class="mui-col-xs-12 mb5 dataList">
+			<div class="mui-col-xs-12 dataList pb50">
 				<div class="mui-col-xs-12" id="dealTmpl">
 					<!--头部详情部分-->
 					<div class="message-top-pannel">
 						<div class="message-top-box">
 							<div class="message-padding clearfix">
-								<img class="mui-pull-left mb5" src="../../image/icon1.png" alt="icon1" width="40" style="margin-right:10px;"/>
+								<img class="mui-pull-left mb5 mr10" src="../../image/icon1.png" alt="icon1" width="40"/>
 								<div class="message-info-group mb5">
-									<div class="message-info-list">
+									<div class="message-info-list clearfix">
 										<div class="message-add comFont_color">
 											处理状态：已处理
 										</div>
 										<span class="message-level">
-											<span class="scileHeight" style="display:inline-block;width:20px;height:20px;line-height:20px;color:#FFF;text-align:center;font-size:1.2rem;">低</span>
+											<span class="scilFont scileHeight">低</span>
 										</span>
 									</div>
 									<div class="message-info-box com_detail_color">
 										告警编号：FXABACBAGAO123
 									</div>
 								</div>
-								<div class="mb5" style="background:#DEDEDE;height:1px;overflow:hidden;width:100%;"></div>
-								<ul style="font-size:1.2rem;" class="com_detail_color">
+								<div class="btnLine mb5"></div>
+								<ul class="com_detail_color">
 									<li>告警位置：cc-1客户楼栋</li>
 									<li>告警描述：非法闯入</li>
 									<li>处理报告：设备故障，已转故障告警流程</li>
@@ -113,28 +124,86 @@
 									<p class='mui-ellipsis'>保安员/保安队长</p>
 								</div>
 							</a>
-							<span id="phone" style="display:inline-block;position:absolute;width:30px;height:30px;background:blue;right:35px;top:50%;transform: translateY(-50%);-webkit-transform: translateY(-50%);"></span>
+							<span id="phone"></span>
 						</li>
 					</ul>
 				</div>
-				<div class="mui-col-xs-12 fault">
-					<ul class="mui-col-xs-12 faulter" id="dataDault">
-						<!--流程部分-->
-						<li class="process-list-pannel clearfix">
-							<div class="porcess-pannel-list">
-								<span class="porcess-title-icon">1</span>
-						    	<div class="porcess-title-name-pannel">		    		
-						    		<h4 class="porcess-title-name">						
-										通知
-									</h4>
-									<div class="mui-col-xs-12 faultBox porcess-title-name-body">
-										{{include 'noticeList' value}} 
-									</div>
-						    	</div>	    
-							</div>					
-						</li>
-					</ul>
-					
+				<div class="mui-col-xs-12 line1" id="dataDault">
+					<div class="line">
+						<span class="end"></span>
+					</div>
+					<div class="mui-col-xs-12 clearfix mb10">
+						<span class="com_squ"></span>
+						<div class="mui-col-xs-2 fl"></div>
+						<div class="mui-col-xs-10 bubble fr">
+							<dl class="com_dt">
+								<dt class="clearfix">
+									通知
+									<span class="mui-pull-right comFont_color">2016-10-22 10:22</span>
+								</dt>
+								<dd class="comFont_color">
+									管理员:老宋
+								</dd>
+								<dd class="comFont_color">
+									管理员:全部
+								</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="mui-col-xs-12 clearfix mb10">
+						<span class="com_squ"></span>
+						<div class="mui-col-xs-2 fl"></div>
+						<div class="mui-col-xs-10 bubble fr">
+							<dl class="com_dt">
+								<dt class="clearfix">
+									抢单
+									<span class="mui-pull-right comFont_color">2016-10-22 10:22</span>
+								</dt>
+								<dd class="comFont_color">
+									管理员:老宋
+								</dd>
+								<dd class="comFont_color">
+									管理员:全部
+								</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="mui-col-xs-12 clearfix mb10">
+						<span class="com_squ"></span>
+						<div class="mui-col-xs-2 fl"></div>
+						<div class="mui-col-xs-10 bubble fr">
+							<dl class="com_dt">
+								<dt class="clearfix">
+									处理
+									<span class="mui-pull-right comFont_color">2016-10-22 10:22</span>
+								</dt>
+								<dd class="comFont_color">
+									管理员:老宋
+								</dd>
+								<dd class="comFont_color">
+									管理员:全部
+								</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="mui-col-xs-12 clearfix mb10">
+						<span class="com_squ comp"></span>
+						<div class="mui-col-xs-2 fl"></div>
+						<div class="mui-col-xs-10 bubble fr">
+							<dl class="com_dt">
+								<dt class="clearfix">
+									已完成
+									<span class="mui-pull-right comFont_color">2016-10-22 10:22</span>
+								</dt>
+								<dd class="comFont_color">
+									管理员:老宋
+								</dd>
+								<dd class="comFont_color">
+									管理员:全部
+								</dd>
+							</dl>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
