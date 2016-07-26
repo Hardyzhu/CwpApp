@@ -840,7 +840,8 @@
 					"css/add.css",
 					"js/mask/mask.js",
 					"js/mask/mask.css",
-					"css/new.css"
+					"css/new.css",
+					"js/home/securityAlarm.js"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html",
@@ -1155,7 +1156,8 @@
 					"image/icn-6.png",
 					"fonts/iconfont.woff",
 					"fonts/iconfont.css",
-					"fonts/demo.css"
+					"fonts/demo.css",
+					"js/home/securityAlarm.js"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html"
