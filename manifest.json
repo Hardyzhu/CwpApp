@@ -845,7 +845,8 @@
 				"refer": [
 					"html/task/securityAlarmDetail.html",
 					"html/task/securityDetail.html",
-					"html/task/securityAlarmDetail1.html"
+					"html/task/securityAlarmDetail1.html",
+					"html/task/securityAlarmMain.html"
 				],
 				"priority": 0
 			},
@@ -1172,10 +1173,28 @@
 					"fonts/iconfont.css",
 					"css/new.css",
 					"js/mui.min.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/mui.conf.js",
+					"js/mask/mask.js",
+					"js/template.js",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
 					"html/task/securityAlarmReport.html"
+				],
+				"priority": 0
+			},
+			"html/task/securityAlarmMain.html": {
+				"resources": [
+					"html/task/securityAlarmDetail1.html",
+					"fonts/iconfont.css",
+					"js/mui.conf.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"html/task/report.html"
 				],
 				"priority": 0
 			}

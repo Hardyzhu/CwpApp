@@ -634,7 +634,9 @@
 		],
 		"refer": [
 			"html/task/securityAlarmDetail.html",
-			"html/task/securityDetail.html"
+			"html/task/securityDetail.html",
+			"html/task/securityAlarmDetail1.html",
+			"html/task/securityAlarmMain.html"
 		]
 	},
 	"html/task/securityReport.html": {
@@ -971,7 +973,28 @@
 			"css/new.css",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"image/icon1.png"
+			"image/icon1.png",
+			"js/mui.conf.js",
+			"js/mask/mask.js",
+			"js/template.js",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/task/securityAlarmReport.html"
+		]
+	},
+	"html/task/securityAlarmMain.html": {
+		"resources": [
+			"html/task/securityAlarmDetail1.html",
+			"fonts/iconfont.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"html/task/securityAlarmDetail1.html",
+			"html/task/report.html"
 		]
 	}
 }
