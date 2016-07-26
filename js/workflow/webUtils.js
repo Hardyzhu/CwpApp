@@ -24,7 +24,7 @@ window.amGloble={
         	if (self.method.toUpperCase()=="GET" ||  self.method.toUpperCase()=="POST" )
         	{
         		var responseData={};
-        		mui.ajax(self.serviceName,
+        		mui.ajax(self.serviceName+"?uid="+self.uid,
         		{
 					data:opt,
 					dataType:'json',//服务器返回json格式数据
