@@ -64,12 +64,12 @@ window.amGloble={
 	var serviceType={POST:"POST",GET:"GET"};
 	
 	var self = amGloble.webService = {
-			
 		USER_LOGIN : new webService({
 			serviceName : serviceName + "/cwp/front/sh/login!login",
 			uid:'L001',
 			method:serviceType.GET
 		})
+		
 	}
 })();
 

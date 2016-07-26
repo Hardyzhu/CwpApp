@@ -17,7 +17,6 @@
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
-		<link rel="stylesheet" type="text/css" href="../../fonts/demo.css"/>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -75,7 +74,7 @@
 						<div id="processing" data-state="2" class="mui-slider-item mui-control-content">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
-									<div class="mui-col-xs-12" id="processingList">
+									<div class="mui-col-xs-12 mui-text-center" id="processingList">
 										<div class='mui-loading'>
 											<div class='mui-spinner'></div>
 										</div>
@@ -86,7 +85,7 @@
 						<div id="processed" data-state="3" class="mui-slider-item mui-control-content">
 							<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 								<div class="mui-scroll">
-									<div class="mui-col-xs-12" id="processedList">
+									<div class="mui-col-xs-12 mui-text-center" id="processedList">
 										<div class='mui-loading'>
 											<div class='mui-spinner'></div>
 										</div>
@@ -162,28 +161,47 @@
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
 				var isLogin = plus.storage.getItem("userInfo");
+				var userId=JSON.parse(isLogin).userId;
+				var userRole=JSON.parse(isLogin).role[0].roleId;
+				console.log("用户ID:"+userId)
+				console.log("角色ID:"+userRole);
 				var resHeight = window.innerHeight - 84;
 				mui('.mui-control-content').each(function(){
 					this.setAttribute("style","min-height:"+resHeight+"px;");
 					var isActive = this.classList.contains('mui-active') ? true : false;
 					if(isActive){
 						var state = this.getAttribute('data-state');
-//						console.log("加载列表："+state);
-						getProductList(state);
+						getProductList(state,'');
 					}
 				});
 				
 				var processing = document.getElementById("processing");;
 				var processed = document.getElementById("processed");
-				document.getElementById('slider').addEventListener('slide', function(e) {
-					console.log("点击事件");
+				document.getElementById('slider').addEventListener('slide', function(e) {			
 					if (e.detail.slideNumber === 1) {
 						if (processing.querySelector('.mui-loading')) {
-							getProductList(2);
+							if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
+								for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
+									if(userRole=='8'||userRole=='12'){
+										getProductList(2);
+									}
+									else if(userRole=='6'){
+										getProductList(2,userId);
+									}	
+								}
+							}
+						
 						}
 					} else if (e.detail.slideNumber === 2) {
 						if (processed.querySelector('.mui-loading')) {
-							getProductList(3);
+							for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
+									if(userRole=='8'||userRole=='12'){
+										getProductList(3,'');
+									}
+									else if(userRole=='6'){
+										getProductList(3,userId);
+									}	
+							}
 						}
 					}
 				});
@@ -224,7 +242,8 @@
 			var page = 1;
 			var mark = false;
 			//渲染数据
-			function getProductList(eventProcessStatus) { //获取工单列表
+			function getProductList(eventProcessStatus,userId) { //获取工单列表
+				console.log("得到用户ID："+userId);
 				qmask.show();
 				mui.ajax({
 					url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -236,7 +255,8 @@
 						pageSize:'5',
 						dictValue:'', 
 						eventProcessStatus:eventProcessStatus,
-						eventType:''
+						eventType:2,
+						responseOfficerId:userId
 					},
 					dataType: "json",
 					timeout: 1000000,
@@ -257,16 +277,26 @@
 								oList = document.getElementById("processedList");
 								break;
 						}
-						console.log("事件状态："+eventProcessStatus);
-						console.log(getId);				
-//						oList = document.getElementById(getId);
+
 						var html = template('detailTmpl', data);
 						oList.innerHTML = html;
 						if(data.beans instanceof Array && data.beans.length<5){
 							mark = true;
 							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
 							setTimeout(function(){
-								mui.toast('没有更多数据了!');
+//								mui.toast('没有更多数据了!');
+								var tipHtml="<div class=t-norecord><i class='icon iconfont icon-baogaoyichuangjian'></i><p>暂无数据记录</p></div>";
+								switch(eventProcessStatus){
+									case 1:			
+										document.getElementById("untreatedList").innerHTML=tipHtml;
+										break;
+									case 2:	
+										document.getElementById("processingList").innerHTML=tipHtml;
+										break;
+									case 3:
+										document.getElementById("processedList").innerHTML=tipHtml;
+										break;
+								}
 							},500);
 							qmask.hide();
 							return;
@@ -293,7 +323,7 @@
 					setTimeout(function() {
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh(mark); //参数为true代表没有更多数据了。
 						page++;
-						getProductList(1);
+						getProductList(1,'');
 					}, 1500);
 				}
 			}

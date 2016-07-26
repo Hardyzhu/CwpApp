@@ -335,3 +335,10 @@ h4 > span{
 	display: block;
 	text-align: left;
 }
+
+
+
+/* 暂无数据记录 */
+.t-norecord { text-align: center; padding-top: 10px;background-color: #FFFFFF; }
+.t-norecord i { font-size: 30px; line-height: 30px; color: #D8D8D8;}
+.t-norecord p { font-size: 14px; margin: 0; line-height: 24px; color: #999;}
