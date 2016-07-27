@@ -93,7 +93,8 @@
 			"html/home/maintenance.html",
 			"html/home/energy.html",
 			"html/energy/energy.html",
-			"html/home/securityAlarmList.html"
+			"html/home/securityAlarmList.html",
+			"html/home/securityAlarmOld.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -1007,6 +1008,29 @@
 		"refer": [
 			"html/task/securityAlarmDetail1.html",
 			"html/task/report.html"
+		]
+	},
+	"html/home/securityAlarmOld.html": {
+		"resources": [
+			"js/home/securityAlarm1.js",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"image/icon-11-3.png",
+			"fonts/iconfont.css",
+			"css/new.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mask/mask.js",
+			"js/template.js",
+			"js/mask/mask.css",
+			"css/add.css",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/task/securityAlarmDetail.html"
 		]
 	}
 }
