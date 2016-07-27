@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>智慧园区</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/common.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../fonts/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/add.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../fonts/demo.css"/>
+		<script src="../../../js/mui.min.js" type="text/javascript"></script>
+		<script src="../../../js/workflow/webUtils.js" type="text/javascript"/></script>
+		<script src="../../../js/workflow/orderDetail.js" type="text/javascript"></script>
+		<script src="../../../js/template.js" type="text/javascript"></script>
+		<style>
+			.orderContent{
+				font-size:12px;			
+				background: #FFFFFF;	
+			}
+			.title{
+				height:80px;
+				padding:15px 10px 15px 25px;
+				border-bottom: 1px solid #ddd;
+			}
+			.orderContent .orderBaseInfo{
+				position: relative;
+			    height: 50px;
+			    float: left;
+    			padding: 0 5px 0 10px;
+			}
+			.orderContent .icon{
+				position: relative;
+    			float: left;
+			    height: 50px;
+			    width: 50px;
+			    border-radius: 50px;
+			    line-height: 50px;
+			    font-size: 35px;
+			    text-align: center;
+			    background: #067FC8;
+			    color: #fff;
+			}
+			.orderContent .stepTitle{
+			    font-size: 14px;
+			    font-weight: 500;
+			    line-height: 30px;
+			}
+			
+			.orderContent .orderNum{
+			    color: #848484;
+			}
+			
+			.eventInfo{
+				margin-top:8px;
+				padding: 10px 10px 10px 20px;
+				border-bottom: 1px solid #ddd;
+				border-top: 1px solid #ddd;
+			}
+			.eventInfo ul li span{
+				font-size: 12px!important;
+			}
+			.eventInfo ul li .etitle{
+				color: #000000;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav topColor">			
+			<h1 class="mui-title" style="color:#FFF;">维修工单详情</h1>
+		</header>
+		<div class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="orderContent title">
+						<div class="icon iconfont icon-weixiu"></div>
+						<div class="orderBaseInfo">
+						<div class="stepTitle">
+							<span>当前环节：管理员审批</span>
+						</div>
+						<div class="orderNum">
+							<span>工单编号：20160725143544175003</span></div>
+						</div>
+					</div>
+					
+					<div class="orderContent eventInfo">
+						<ul>
+							<li><p><span class="etitle">故障告警：</span><span>MJ201607201154123</span></p></li>
+							<li><p><span class="etitle">故障位置：</span><span>CC-1客服楼1楼东门</span></p></li>
+							<li><p><span class="etitle">故障描述：</span><span>机箱监测线路故障/故障告警</span></p></li>
+							<li><p><span class="etitle">处理报告：</span><span>设备故障，已转维修工单流程。</span></p></li>
+						</ul>
+					</div>
+					
+					<div class="orderContent eventInfo">
+						<ul>
+							<li><p><span class="etitle">维修说明：</span><span>MJ201607201154123</span></p></li>
+							<li><p><span class="etitle">维修服务：</span><span>CC-1客服楼1楼东门</span></p></li>
+							<li><p><span class="etitle">费用预估：</span><span>机箱监测线路故障/故障告警</span></p></li>
+							<li><p><span class="etitle">计划完成日期：</span><span>设备故障，已转维修工单流程。</span></p></li>
+							<li><p><span class="etitle">实际完成日期：</span><span>设备故障，已转维修工单流程。</span></p></li>
+						</ul>
+					</div>
+					
+				<!-- 联系方式 -->	
+				<ul class="mui-table-view" style="position: relative;margin-top:8px">
+					<li id="goDetail" class="mui-table-view-cell mui-media">
+						<a class="mui-navigate-right" href="javascript:;">
+							<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:50px;color:blue;"></span>
+							<div class="mui-media-body">
+								发起人
+								<p class='mui-ellipsis'>{{response}}</p>
+							</div>
+						</a>
+						<span id="phone" data-phone=""></span>
+					</li>
+				</ul>
+					<div class="mui-col-xs-12 line1" id="dataDault">
+						<div class="line">
+							<span class="end"></span>
+						</div>
+						<div class="mui-col-xs-12" id="dataDault">
+							<!--流程部分-->
+						</div>
+					</div>
+				</div>
+		</div>
+		
+		<!--流程部分-->
+		<script id="dataTmpl" type="text/html">
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
+							通知
+							<span class="mui-pull-right comFont_color">{{applyTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							安保员:全员
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
+							抢单
+							<span class="mui-pull-right comFont_color">{{responseTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							抢单人:{{responseName}}
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
+							处理
+							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							处理人:{{responseName}}
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="mui-col-xs-12 clearfix mb10">
+				<span class="com_squ comp"></span>
+				<div class="mui-col-xs-2 fl"></div>
+				<div class="mui-col-xs-10 bubble fr">
+					<dl class="com_dt">
+						<dt class="clearfix">
+							已完成
+							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
+						</dt>
+						<dd class="comFont_color">
+							{{eventProgress | toState}}
+						</dd>
+					</dl>
+				</div>
+			</div>	
+		</script>	
+	</body>
+</html>

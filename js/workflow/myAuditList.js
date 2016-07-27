@@ -11,11 +11,17 @@ mui.init({
     container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
     up : {
       height:50,//可选.默认50.触发上拉加载拖动距离
-      auto:false,//可选,默认false.自动上拉加载一次
       callback :pullfreshUp //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
     }
-  }
+  },
+  preloadPages:[
+    {
+      url:"orderDetail.html",
+      id:"orderDetail"
+    }
+  ]
 });
+
 mui.ready(function(){	
 	mui('.mui-control-content').each(function(){
 		var resHeight = window.innerHeight - 109;
@@ -27,9 +33,8 @@ mui.ready(function(){
 				loadMyToDoList();
 			}else if(state == 'myauditTab'){
 				loadMyAuditList();
-			}else{
-				
 			}
+			
 		}
 	});
 	
@@ -51,6 +56,8 @@ mui.ready(function(){
 	
 	
 
+	
+
 });
 
 
@@ -61,7 +68,7 @@ function loadMyToDoList(){
 		pageSize:10
 	};
 	
-	amGloble.webService.MY_TODO_LIST.exec(options,function(ret){
+	amGloble.web.MY_TODO_LIST.exec(options,function(ret){
 		console.log(ret);
 		if(ret.result!=undefined && ret.result==0){
 			var responData=ret.data;
@@ -77,6 +84,9 @@ function loadMyToDoList(){
 				}
 				todoCount++;
 				todoTotalPage=ret.data.object.totalPage;
+
+
+					
 			}else{
 				mui.toast(responData.returnMessage);
 			}
@@ -84,6 +94,18 @@ function loadMyToDoList(){
 		
 	});
 	
+	mui(".mui-slider-group").on("tap",".item",function(){
+		var id = this.getAttribute("id");
+		console.log(id);
+	});
+	
+}
+
+var detailPage = null;
+function openOrderDetail(){
+		if(!detailPage){
+				detailPage = plus.webview.getWebviewById('orderDetail');
+		}
 }
 
 function loadMyAuditList(){
@@ -93,7 +115,7 @@ function loadMyAuditList(){
 		pageSize:10
 	};
 	
-	amGloble.webService.MY_AUDIT_LIST.exec(options,function(ret){
+	amGloble.web.MY_AUDIT_LIST.exec(options,function(ret){
 		console.log(ret);
 		if(ret.result!=undefined && ret.result==0){
 			var responData=ret.data;
@@ -125,7 +147,6 @@ function pullfreshUp(){
 					mui.later(function() {
 						mui('#refreshContainer').pullRefresh().pullupLoading();
 					}, 1000);
-
 				});
 			} else {
 				mui.ready(function() {
@@ -137,13 +158,12 @@ function pullfreshUp(){
      //2、若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
      var self=this;
      mui.later(function(){
-     	if(todoPageNum<todoTotalPage){
+     	if(auditPageNum<auditTotalPage){
      		self.endPullupToRefresh(false);
-     		todoPageNum++;
-     		loadMyToDoList();
+     		auditPageNum++;
+     		loadMyAuditList();
      	}else{
-     		self.endPullupToRefresh(true);
-			
+     		self.endPullupToRefresh(true);			
      	}
 
      	

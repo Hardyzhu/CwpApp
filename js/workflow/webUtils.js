@@ -19,20 +19,22 @@ window.amGloble={
     window.webService = function (opt) {
         if (!opt) return;
         if (opt.serviceName && opt.method && opt.uid) {
-            mui.extend(webService.Option,opt);           
+            this.options=opt;       
         } else {
             throw ('Api error: 必须输入{serviceName && method && uid must be valid!}');
         }
     };
-    window.webService.Option={};
     
     window.webService.prototype = {
+    	options:{
+    		
+    	},
         exec: function (opt, cb) {
             this.getdata(opt, cb);
         },
         getdata: function (opt, callback) {
         	
-        	var self=webService.Option;
+        	var self=this.options;
         	
         	if (self.method.toUpperCase()=="GET" ||  self.method.toUpperCase()=="POST" )
         	{
@@ -81,7 +83,7 @@ window.amGloble={
 	var serviceName="http://192.168.100.65:20011/cwp";
 	var serviceType={POST:"POST",GET:"GET"};
 	
-	var self = amGloble.webService = {
+	var self = amGloble.web = {
 		USER_LOGIN : new webService({
 			serviceName : serviceName + "/cwp/front/sh/login!login",
 			uid:'L001',
@@ -96,7 +98,12 @@ window.amGloble={
 			serviceName:serviceName+"/front/sh/workflow!execute",
 			uid:"myTodoList",
 			method:serviceType.GET
-		})
+		}),
+		AUDIT_HISTORY:new webService({
+			serviceName:serviceName+"/front/sh/workflow!execute",
+			uid:'auditHistory',
+			method:serviceType.GET
+		} )
 		
 	}
 })();

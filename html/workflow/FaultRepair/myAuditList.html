@@ -78,7 +78,7 @@
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 				<div class="mui-slider-group">
 					<div id="mytodoTab" data-state="mytodoTab" class="mui-slider-item mui-control-content mui-active">
-						<div class="mui-content mui-scroll-wrapper" id="refreshContainer">
+						<div class="mui-content mui-scroll-wrapper" id="refreshContainer"  >
 							<div class="mui-scroll">
 								<div class="mui-col-xs-12" id="mytodolist">
 									<!--<div class="mui-loading">
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 					<div id="myauditTab" data-state="myauditTab" class="mui-slider-item mui-control-content ">
-						<div class="mui-content mui-scroll-wrapper" id="refreshContainer">
+						<div class="mui-content mui-scroll-wrapper" id="refreshContainer2" >
 							<div class="mui-scroll">
 								<div class="mui-col-xs-12" id="myauditlist">
 									<!--<div class="mui-loading">
@@ -104,7 +104,7 @@
 		</div>
 		<script id="mytodoTmpl" type="text/html">
 				{{each beans}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix item" id={{$value.orderId}} >	
 						<div class="icon iconfont icon-weixiu blueColor"></div>
 						<div class="mui-col-xs-12 muiDetail title">
 							{{$value.warningName}}，来自{{$value.trueName}}
@@ -121,7 +121,7 @@
 		
 		<script id="myAuditTmpl" type="text/html">
 				{{each beans}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix item" id={{$value.businessKey}}  >	
 						<div class="icon iconfont icon-weixiu blueColor"></div>
 						<div class="mui-col-xs-12 muiDetail title">
 							{{$value.warningName}}，来自{{$value.trueName}}
