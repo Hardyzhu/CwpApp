@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>智慧园区</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/common.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../fonts/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/add.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../fonts/demo.css"/>
+		<script src="../../../js/mui.min.js" type="text/javascript"></script>
+		<script src="../../../js/workflow/webUtils.js" type="text/javascript"/></script>
+		<script src="../../../js/workflow/myAuditList.js" type="text/javascript"></script>
+		<script src="../../../js/template.js" type="text/javascript"></script>
+		<style>
+		.mui-slider-indicator.mui-segmented-control.mui-segmented-control-inverted{
+			border-bottom:2px solid #c8c7cc;
+		}
+		.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+			border:none;
+		}
+		.mui-control-content {
+			background-color: white;
+			min-height: 345px;
+		}
+		.mui-control-content .mui-loading {
+			margin-top: 50px;
+		}
+		.list-pannel {
+		    background: #fff;
+		    border-bottom: 1px solid #ddd;
+		    border-top: 1px solid #ddd;
+		    padding: 6px 12px 6px 75px;
+		    position: relative;
+		    height: 79px;
+		}
+		.list-pannel .icon {
+		    position: absolute;
+		    left: 12px;
+		    top: 12px;
+		    z-index: 1;
+		    width: 55px;
+		    height: 55px;
+		    line-height: 57px;
+		    border-radius: 55px;
+		    text-align: center;
+		    color: #fff;
+		    font-size: 36px;
+		}
+		.list-title {
+		    line-height: 28px;
+		    color: #222;
+		    font-size: 1.5rem;
+		    border: none;
+		    /* border-bottom: 1px solid #ddd; */
+		}
+		.title{
+			height:44px;	
+		}
+		.content{
+			font-size:10px;
+		}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav topColor">			
+			<h1 class="mui-title" style="color:#FFF;">工单审批</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#mytodoTab">待我审批的</a>
+					<a class="mui-control-item " href="#myauditTab">我已审批的</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+				<div class="mui-slider-group">
+					<div id="mytodoTab" data-state="mytodoTab" class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-content mui-scroll-wrapper" id="refreshContainer">
+							<div class="mui-scroll">
+								<div class="mui-col-xs-12" id="mytodolist">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner"></div>
+									</div>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="myauditTab" data-state="myauditTab" class="mui-slider-item mui-control-content ">
+						<div class="mui-content mui-scroll-wrapper" id="refreshContainer">
+							<div class="mui-scroll">
+								<div class="mui-col-xs-12" id="myauditlist">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner"></div>
+									</div>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script id="mytodoTmpl" type="text/html">
+				{{each beans}}
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+						<div class="icon iconfont icon-weixiu blueColor"></div>
+						<div class="mui-col-xs-12 muiDetail title">
+							{{$value.warningName}}，来自{{$value.trueName}}
+						</div>
+						<div class="mui-col-xs-12 muiDetail content  clearfix">															
+							<div class="fl goToDel list-link-a" href="javascript:void(0);">			
+								{{$value.activityName}}
+							</div>
+							<div class="Timecolor fr">{{$value.createTime}}</div>
+						</div>
+				</div>
+				{{/each}}
+		</script>
+		
+		<script id="myAuditTmpl" type="text/html">
+				{{each beans}}
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+						<div class="icon iconfont icon-weixiu blueColor"></div>
+						<div class="mui-col-xs-12 muiDetail title">
+							{{$value.warningName}}，来自{{$value.trueName}}
+						</div>
+						<div class="mui-col-xs-12 muiDetail content  clearfix">															
+							<div class="fl goToDel list-link-a" href="javascript:void(0);">			
+								{{$value.activityName}}
+							</div>
+							<div class="Timecolor fr">{{$value.createTime}}</div>
+						</div>
+				</div>
+				{{/each}}
+		</script>
+	</body>
+</html>

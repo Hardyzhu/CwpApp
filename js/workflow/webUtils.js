@@ -1,5 +1,18 @@
 window.amGloble={
-	
+	userSession:{},
+	userInfo:function(){
+		if(this.userSession!=undefined && mui.isEmptyObject(this.userSession)){
+			if(mui.os.plus){		
+				mui.plusReady(function(){
+					this.userSession=mui.parseJSON(plus.storage.getItem("userInfo"));
+				});
+			}else{
+				this.userSession=mui.parseJSON(localStorage.getItem("userInfo"));
+			}
+		}
+		return this.userSession;
+	}
+
 };
 
 (function () {
@@ -24,6 +37,7 @@ window.amGloble={
         	if (self.method.toUpperCase()=="GET" ||  self.method.toUpperCase()=="POST" )
         	{
         		var responseData={};
+        		opt.userId=amGloble.userInfo().userId;
         		mui.ajax(self.serviceName+"?uid="+self.uid,
         		{
 					data:opt,
@@ -39,10 +53,15 @@ window.amGloble={
 						callback && callback(responseData);
 					},
 					error:function(xhr,type,errorThrown){
+						if(type=='timeout'){
+							mui.toast('请求超时:请检查网络!');
+						}else {
+							mui.toast('数据加载失败!');
+						}
 						//异常处理；
 						responseData.result=1;
 						responseData.data=null;
-						responseData.message="successful";
+						responseData.message="failed";						
 						
 						callback && callback(responseData);
 					}
@@ -58,15 +77,24 @@ window.amGloble={
    
 })();
 
-
 (function() {	
-	var serviceName="http://192.168.92.201:28090";
+	var serviceName="http://192.168.100.65:20011/cwp";
 	var serviceType={POST:"POST",GET:"GET"};
 	
 	var self = amGloble.webService = {
 		USER_LOGIN : new webService({
 			serviceName : serviceName + "/cwp/front/sh/login!login",
 			uid:'L001',
+			method:serviceType.GET
+		}),
+		MY_AUDIT_LIST:new webService({
+			serviceName:serviceName+"/front/sh/workflow!execute",
+			uid:'myAuditList',
+			method:serviceType.GET
+		}),
+		MY_TODO_LIST:new webService({
+			serviceName:serviceName+"/front/sh/workflow!execute",
+			uid:"myTodoList",
 			method:serviceType.GET
 		})
 		
