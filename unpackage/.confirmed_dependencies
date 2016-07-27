@@ -663,7 +663,8 @@
 		"refer": [
 			"html/task/securityReport.html",
 			"html/task/report.html",
-			"html/task/securityAlarmReport.html"
+			"html/task/securityAlarmReport.html",
+			"html/home/security.html"
 		],
 		"resources": [
 			"js/mui.min.js",
@@ -678,7 +679,9 @@
 			"js/mask/mask.js",
 			"js/mask/mask.css",
 			"css/add.css",
-			"fonts/iconfont.woff"
+			"fonts/iconfont.woff",
+			"js/home/securityAlarmDetail.js",
+			"image/phone.png"
 		]
 	},
 	"html/home/maintenance.html": {
@@ -937,7 +940,8 @@
 			"css/mui.min.css",
 			"js/mask/mask.js",
 			"js/template.js",
-			"css/add.css"
+			"css/add.css",
+			"js/home/securityAlarmReport.js"
 		],
 		"refer": [
 			"html/task/securityAlarmDetail.html"

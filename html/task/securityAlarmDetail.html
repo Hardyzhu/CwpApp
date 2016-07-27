@@ -35,13 +35,13 @@
 			.searchData{
 				margin: 15px 15px 0;
 			}
-			#accept,
+			/*#accept,
 			#goReport{				
 				background:#299CEF;
 				border-color:#299CEF;
 				-webkit-transition: all 0.5s;
 				transition: all 0.5s;
-			}
+			}*/
 			.fault{
 				background:#FFF;
 				padding:15px;
@@ -73,14 +73,9 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">安防预警详情</h1>
 		</header>
-		<nav class="mui-bar mui-bar-tab" style="box-shadow:0 0 1px rgba(0,0,0,0.35);-webkit-box-shadow:0 0 1px rgba(0,0,0,0.35);">
-			<div style="padding:8px 0;">
-				<a class="mui-tab-item mui-active" style="height:40px;border-right:1px solid #DEDEDE;" data-href="home.html">
-					<span class="mui-tab-label">抢单</span>
-				</a>
-				<a class="mui-tab-item" style="height:36px;" data-href="user.html">
-					<span class="mui-tab-label">处理</span>
-				</a>
+		<nav id="bottom_bar" class="mui-bar mui-bar-tab barLine">
+			<div style="padding:8px 0;" id="btooTmpl">
+				<!--底部信息-->
 			</div>
 		</nav>
 		<div class="mui-content">
@@ -92,15 +87,25 @@
 					<!--人员信息部分-->
 				</div>
 				<div class="mui-col-xs-12 line1" id="dataDault">
-					<div class="line">
-						<span class="end"></span>
-					</div>
-					<div class="mui-col-xs-12" id="dataDault">
-						<!--流程部分-->
-					</div>
+					<!--流程部分-->
 				</div>
 			</div>
 		</div>
+		<script id="btooTmp" type="text/html">
+			{{if eventProcessStatus =='1'}}
+			<a id="accept" class="mui-tab-item mui-active">
+				<span class="mui-tab-label">{{responseTime | toGet}}</span>
+			</a>
+			{{else if eventProcessStatus =='2'}}
+			<a id="goReport" data-state="{{responseTime}}" class="mui-tab-item mui-active">
+				<span class="mui-tab-label">处理</span>
+			</a>
+			{{else if eventProcessStatus =='3'&&eventProgress =='4'}}
+			<a id="goSecurity" data-url="security.html" class="mui-tab-item mui-active">
+				<span class="mui-tab-label">故障告警</span>
+			</a>
+			{{/if}}
+		</script>
 		<!--信息部分-->
 		<script id="dealTmp" type="text/html">
 			<div class="message-top-pannel">
@@ -130,39 +135,36 @@
 						<ul class="com_detail_color">
 							<li>告警位置：{{buildingName}}</li>
 							<li>告警描述：{{eventDescribe}}</li>
-							<li>处理报告：
-								{{if handleTime==''}}
-								未处理
-								{{else}}
-								{{handleOpinion}}
-								{{/if}}
-							</li>
+							<li>处理报告：{{if handleTime==''}}未处理{{else}}{{handleOpinion}}{{/if}}</li>
 						</ul>
 					</div>					
 				</div>	
 			</div>
 		</script>
 		<!--人员信息部分-->
-		<sciprt id="posTpl">
+		<script id="posTpl" type="text/html">
 			<ul class="mui-table-view" style="position: relative">
 				<li id="goDetail" class="mui-table-view-cell mui-media">
-					<a class="mui-navigate-right" href="javascript:;">
-						<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:40px;color:blue;"></span>
+					<a href="javascript:;">
+						<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:40px;color:#1F95DD;"></span>
 						<div class="mui-media-body">
-							{{responseName}}
+							{{response}}
 							<p class='mui-ellipsis'>{{response}}</p>
 						</div>
 					</a>
-					<span id="phone" data-phone=""></span>
+					<img id="phone" src="../../image/phone.png" data-phone="{{responsePhone}}" />
 				</li>
 			</ul>
-		</sciprt>
+		</script>
 		<!--流程部分-->
 		<script id="dataTmpl" type="text/html">
+			<div class="line">
+				<span class="end {{handleTime | sFormat:'2'}}"></span>
+			</div>
 			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ"></span>
+				<span class="com_squ {{applyTime | sFormat:'2'}}"></span>
 				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
+				<div class="mui-col-xs-10 bubble fr {{applyTime | sFormat:'1'}}">
 					<dl class="com_dt">
 						<dt class="clearfix">
 							通知
@@ -175,47 +177,65 @@
 				</div>
 			</div>
 			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ"></span>
+				<span class="com_squ {{responseTime | sFormat:'2'}}"></span>
 				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
+				<div class="mui-col-xs-10 bubble fr {{responseTime | sFormat:'1'}}">
 					<dl class="com_dt">
 						<dt class="clearfix">
 							抢单
 							<span class="mui-pull-right comFont_color">{{responseTime}}</span>
 						</dt>
-						<dd class="comFont_color">
-							抢单人:{{responseName}}
-						</dd>
+						{{if responseTime ==''||responseTime == null}}
+							<dd class="comFont_color">
+								暂无记录!
+							</dd>
+						{{else}}
+							<dd class="comFont_color">
+								{{response}}
+							</dd>
+						{{/if}}
 					</dl>
 				</div>
 			</div>
 			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ"></span>
+				<span class="com_squ {{handleTime | sFormat:'2'}}"></span>
 				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
+				<div class="mui-col-xs-10 bubble fr {{handleTime | sFormat:'1'}}">
 					<dl class="com_dt">
 						<dt class="clearfix">
 							处理
 							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
 						</dt>
-						<dd class="comFont_color">
-							处理人:{{responseName}}
-						</dd>
+						{{if handleTime ==''||handleTime == null}}
+							<dd class="comFont_color">
+								暂无记录!
+							</dd>
+						{{else}}
+							<dd class="comFont_color">
+								{{response}}
+							</dd>
+						{{/if}}
 					</dl>
 				</div>
 			</div>
 			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ comp"></span>
+				<span class="com_squ1 {{handleTime | sFormat:'2'}}"></span>
 				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
+				<div class="mui-col-xs-10 bubble fr {{handleTime | sFormat:'1'}}">
 					<dl class="com_dt">
 						<dt class="clearfix">
 							已完成
 							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
 						</dt>
-						<dd class="comFont_color">
-							{{eventProgress | toState}}
-						</dd>
+						{{if handleTime ==''||handleTime == null}}
+							<dd class="comFont_color">
+								暂无记录!
+							</dd>
+						{{else}}
+							<dd class="comFont_color">
+								{{eventProgress | toState}}
+							</dd>
+						{{/if}}
 					</dl>
 				</div>
 			</div>	
@@ -224,236 +244,6 @@
 		<script src="../../js/template.js"></script>
 		<script	src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
-		<script>
-			mui.init();
-			mui.plusReady(function(){
-				//获取登录信息
-				var isLogin = plus.storage.getItem("userInfo");
-				//预加载
-				var reportPage = null;
-				if(!reportPage){
-					reportPage = mui.preload({
-					    id:'securityAlarmReport',
-				    	url:'securityAlarmReport.html'
-					});
-				}
-				var warningEventId;
-				var warningCategoryId;
-				//添加newId自定义事件监听
-				window.addEventListener('detailId',function(event){
-					warningEventId = event.detail.warningEventId;
-					warningCategoryId = event.detail.warningCategoryId;
-					//信息部分
-					if(warningCategoryId==undefined) warningCategoryId="";
-				 	res(warningEventId,warningCategoryId,1,1);
-				});
-				
-				//渲染刷新部分
-				/**
-				 * eventProgress  3代表已接受 ，1
-				 * updateOrDetail 1，详情，2，接受
-				 */
-				function res(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
-					console.log("详情告警ID:"+warningEventId);
-					console.log("详情告警ID:"+warningCategoryId);
-					console.log("详情告警ID:"+updateOrDetail);
-					console.log("详情事件级别ID:"+eventProgress);
-					qmask.show();
-					mui.ajax({
-						type: "post",
-						url: global_url+"/cwp/front/sh/warningEvent!execute",
-						async: true,
-						data: {
-							uid:"c025",
-							warningEventId:warningEventId,
-							warningCategoryId:warningCategoryId,
-							updateOrDetail:updateOrDetail,
-							responseOfficerId:JSON.parse(isLogin).userId,
-							eventProgress:eventProgress
-						},
-						dataType: "json",
-						timeout: 1000000,
-						success: function(data) {							
-							if(updateOrDetail==1){
-								mui.toast('查询成功!');
-							}else{
-								mui.toast('接受成功!');
-							}
-							var oDeal = document.getElementById('dealTmpl');
-							var oDault = document.getElementById('dataDault');
-							var oPosone = document.getElementById('posoneTmpl');
-							template.helper('dealerFormat',function(inp){
-								if(inp==1){
-									return '未处理';
-								}else if(inp==2){
-									return '处理中';
-								}else{
-									return '已完成';
-								}
-							});
-							template.helper('colorFormat',function(inp){
-								if(inp == 0){
-									return 'blueColor';
-								}else if(inp==1){
-									return 'yellowColor';
-								}else if(inp==2){
-									return 'orangeColor';
-								}else{
-									return 'redColor';
-								}
-							});
-							template.helper('toState',function(inp){
-								if(inp){
-									return '转故障';
-								}
-							});
-							var dealHtml = template('dealTmp', data.bean);
-							oDeal.innerHTML = dealHtml;
-							console.log(data.bean.eventProcessStatus);
-							//抢单
-							if(data.bean.eventProcessStatus>=2){
-								var posHtml = template('posTpl', data.bean);
-								oPosone.innerHTML = posHtml;
-							}
-							
-							//数据重组
-							/*var tempObj = {}; 
-							tempObj.notice = [];   //通知
-							tempObj.confim = [];   //确认
-							tempObj.deal = [];     //处理
-							tempObj.complete=[];	//完成
-							if(data.bean!=null){
-								switch(data.bean.eventProgress){
-									case "1":
-										tempObj.notice.push(data.bean);
-//										tempObj.responseName = data.bean.responseName;
-										break;
-									case "2":
-										tempObj.notice.push(data.bean);
-//										tempObj.confim.push(data.bean);			
-//										tempObj.responseName = data.bean.responseName;
-										break;
-									case "3":
-										tempObj.notice.push(data.bean);
-										tempObj.confim.push(data.bean);
-										tempObj.deal.push(data.bean);
-										tempObj.complete.push(data.bean);
-										break;
-									case "4":
-										tempObj.notice.push(data.bean);
-										tempObj.confim.push(data.bean);
-										tempObj.deal.push(data.bean);
-										tempObj.complete.push(data.bean);
-										break;
-								};
-							}*/
-							var daultHtml = template('dataTmpl', data.bean);
-							oDault.innerHTML = daultHtml;
-							//预加载子页面
-							console.log(reportPage);
-							mui.fire(reportPage, 'getReport', {
-							    result:data.bean
-							});
-							qmask.hide();
-						},
-						error: function(xhr, type, errorThrown) {
-							if(type=='timeout'){
-								mui.toast('请求超时:请检查网络!');
-							}else if(updateOrDetail==1){
-								mui.toast('查询失败!');
-							}else{
-								mui.toast('接受失败!');
-							}
-							qmask.hide();
-							return;
-						}
-					});
-				}
-				
-				//接收工单
-				function order(warningEventId,warningCategoryId,updateOrDetail,eventProgress){
-					qmask.show();
-					mui.ajax({
-						type: "post",
-						url: global_url+"/cwp/front/sh/warningEvent!execute",
-						async: true,
-						data: {
-							uid:"c025",
-							warningEventId:warningEventId,
-							warningCategoryId:warningCategoryId,
-							updateOrDetail:updateOrDetail,
-							responseOfficerId:JSON.parse(isLogin).userId,
-							eventProgress:eventProgress							
-						},
-						dataType: "json",
-						timeout: 1000000,
-						success: function(data) {
-							console.log(data);
-							if(data.returnCode==0){
-								res(warningEventId,warningCategoryId,1,2);
-								mui.toast('接受成功!');
-							}else{
-								mui.toast('接受失败!');
-							}						
-							qmask.hide();
-						},
-						error: function(xhr, type, errorThrown) {
-							if(type=='timeout'){
-								mui.toast('请求超时:请检查网络!');
-							}else if(updateOrDetail==1){
-								mui.toast('查询失败!');
-							}else{
-								mui.toast('接受失败!');
-							}
-							qmask.hide();
-							return;
-						}
-					});
-				}
-				
-				//调用电话
-				mui('.mui-content').on('tap', '#phone', function(e) {
-					e.stopPropagation();
-					if(window.plus){
-						toPhone();
-					}else{
-						document.addEventListener("plusready",toPhone(),false);
-					}
-					return false;
-				});
-				function toPhone(){
-					plus.device.dial( "10086", false);
-				}
-				
-				//跳转到详情页面
-				mui('.mui-content').on('tap', '#goDetail', function(e) {
-					console.log(1);
-				});
-				//跳转勘察报告
-				mui('.mui-content').on('tap', '#goReport', function(e) {
-					var state = this.getAttribute('data-state');
-					if(state==''||state==null){
-						mui.toast('请先接受工单!');
-						return;
-					}
-					mui.openWindow({
-						url: 'securityAlarmReport.html',
-						id: 'securityAlarmReport',
-						waiting: {
-							autoShow: false
-						}
-					});
-				});
-				//接受工单
-				mui('.mui-content').on('tap', '#accept', function(e) {
-					var dataHtml = this.innerHTML;				
-					if(dataHtml.indexOf("接受")>-1){
-						order(warningEventId,warningCategoryId,2,2);
-					}else{
-						mui.toast('该工单已接受,请勿重复点击！');
-					}
-				});
-			});
-		</script>
+		<script src="../../js/home/securityAlarmDetail.js"></script>
 	</body>
 </html>

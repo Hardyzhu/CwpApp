@@ -843,8 +843,9 @@
 					"js/mask/mask.css",
 					"css/new.css",
 					"js/home/securityAlarm.js",
+					"fonts/iconfont.woff",
 					"fonts/iconfont.css",
-					"fonts/iconfont.woff"
+					"js/home/securityAlarm1.js"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html",
@@ -929,12 +930,15 @@
 					"js/mask/mask.css",
 					"css/add.css",
 					"fonts/iconfont.woff",
-					"image/icon1.png"
+					"image/icon1.png",
+					"js/home/securityAlarmDetail.js",
+					"image/phone.png"
 				],
 				"refer": [
 					"html/task/securityReport.html",
 					"html/task/report.html",
-					"html/task/securityAlarmReport.html"
+					"html/task/securityAlarmReport.html",
+					"html/home/security.html"
 				],
 				"priority": 0
 			},
@@ -1120,7 +1124,8 @@
 					"css/mui.min.css",
 					"js/mask/mask.js",
 					"js/template.js",
-					"css/add.css"
+					"css/add.css",
+					"js/home/securityAlarmReport.js"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html"

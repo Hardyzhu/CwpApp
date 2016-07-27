@@ -5,11 +5,11 @@ mui.init({
 						auto:true,
 						callback: pullupRefresh
 					}
-				},
+				}/*,
 				preloadPages:[{                     //预加载页面		
 				    id:'securityAlarmDetail',
 				    url:'../task/securityAlarmDetail.html'
-				}]
+				}]*/
 			});
 			
 			mui.plusReady(function() {
@@ -72,23 +72,28 @@ mui.init({
 					var warningEventId = this.getAttribute("data-id");
 					var warningCategoryId = this.getAttribute("data-uid");
 					//判断是否有这个页面
-					if(!detailPage){
+					/*if(!detailPage){
 					    detailPage = plus.webview.getWebviewById('securityAlarmDetail');
-					}
+					}*/
 					//自定义事件
 			
-					mui.fire(detailPage,'detailId',{
+					/*mui.fire(detailPage,'detailId',{
 					    warningEventId:warningEventId,
 					    warningCategoryId:warningCategoryId
-					});
-					setTimeout(function() {
+					});*/
+					/*setTimeout(function() {
 						qmask.hide();
-					}, 200);
+					}, 200);*/
 					//打开页面
 					mui.openWindow({
+					  url:'../task/securityAlarmDetail.html',
 					  id:'securityAlarmDetail',
 					  waiting: {
 						autoShow: false
+					  },
+					  extras: {
+						warningEventId:warningEventId,
+					    warningCategoryId:warningCategoryId
 					  }
 					});
 				});
