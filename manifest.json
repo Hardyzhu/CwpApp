@@ -1125,7 +1125,10 @@
 					"js/mask/mask.js",
 					"js/template.js",
 					"css/add.css",
-					"js/home/securityAlarmReport.js"
+					"js/home/securityAlarmReport.js",
+					"css/new.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.css"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html"
