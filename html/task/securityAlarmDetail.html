@@ -148,8 +148,8 @@
 					<a href="javascript:;">
 						<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:40px;color:#1F95DD;"></span>
 						<div class="mui-media-body">
-							{{response}}
-							<p class='mui-ellipsis'>{{response}}</p>
+							{{responseName}}
+							<p class='mui-ellipsis'>{{response | toIndexOf}}</p>
 						</div>
 					</a>
 					<img id="phone" src="../../image/phone.png" data-phone="{{responsePhone}}" />
@@ -191,7 +191,7 @@
 							</dd>
 						{{else}}
 							<dd class="comFont_color">
-								{{response}}
+								抢单人：{{responseName}}
 							</dd>
 						{{/if}}
 					</dl>
@@ -212,7 +212,7 @@
 							</dd>
 						{{else}}
 							<dd class="comFont_color">
-								{{response}}
+								处理人：{{responseName}}
 							</dd>
 						{{/if}}
 					</dl>
