@@ -23,7 +23,7 @@ mui.ready(function(){
 			if(responData.returnCode!=undefined && responData.returnCode=="0"){
 				console.log(responData);
 				var todoListUl=mui("#dataDault");
-				var html = template('dataTmpl', responData.beans);
+				var html = template('dataTmpl', responData);
 				
 				todoListUl[0].innerHTML = html;
 
