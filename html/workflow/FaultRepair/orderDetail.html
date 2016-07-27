@@ -131,66 +131,28 @@
 		
 		<!--流程部分-->
 		<script id="dataTmpl" type="text/html">
+			{{each beans}}
 			<div class="mui-col-xs-12 clearfix mb10">
 				<span class="com_squ"></span>
 				<div class="mui-col-xs-2 fl"></div>
 				<div class="mui-col-xs-10 bubble fr">
 					<dl class="com_dt">
 						<dt class="clearfix">
-							通知
-							<span class="mui-pull-right comFont_color">{{applyTime}}</span>
+							<!--<span class="mui-pull-left comFont_color">{{$value.operName}}</span>-->
+							<span class="mui-pull-left comFont_color">{{$value.activityName}}</span>
+							
+							<span class="mui-pull-right comFont_color">{{$value.operDate}}</span>
 						</dt>
 						<dd class="comFont_color">
-							安保员:全员
+							<span>{{$value.auditComment}}</span>
+						</dd>
+						<dd class="comFont_color">
+							<span>处理人员：{{$value.person}}</span>
 						</dd>
 					</dl>
 				</div>
 			</div>
-			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ"></span>
-				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
-					<dl class="com_dt">
-						<dt class="clearfix">
-							抢单
-							<span class="mui-pull-right comFont_color">{{responseTime}}</span>
-						</dt>
-						<dd class="comFont_color">
-							抢单人:{{responseName}}
-						</dd>
-					</dl>
-				</div>
-			</div>
-			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ"></span>
-				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
-					<dl class="com_dt">
-						<dt class="clearfix">
-							处理
-							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
-						</dt>
-						<dd class="comFont_color">
-							处理人:{{responseName}}
-						</dd>
-					</dl>
-				</div>
-			</div>
-			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ comp"></span>
-				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
-					<dl class="com_dt">
-						<dt class="clearfix">
-							已完成
-							<span class="mui-pull-right comFont_color">{{handleTime}}</span>
-						</dt>
-						<dd class="comFont_color">
-							{{eventProgress | toState}}
-						</dd>
-					</dl>
-				</div>
-			</div>	
+			{{/each}}
 		</script>	
 	</body>
 </html>
