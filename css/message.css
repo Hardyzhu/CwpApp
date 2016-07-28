@@ -1,0 +1,121 @@
+html,body{
+	min-height: 100%;
+	height: auto;
+}
+body.has-footer{
+	padding:0 0 80px;
+}
+body.header-nav{
+	padding: 50px 0 0;
+}
+header.mui-bar{
+	background-color: #0680cb;
+	height: 50px;
+}
+.mui-title{
+	color: #fff;
+}
+.mui-title{
+	line-height: 50px;
+	font-size: 20px;
+}
+a.mui-action-back{
+	color: #0680cb;
+	background: url(../image/icon-11-3.png) 16px center no-repeat;
+	width: 42px;
+	height: 50px;
+	background-size: 25px 25px;
+}
+.mui-bar .mui-icon{
+	font-size: 25px;
+}
+/*.mui-bar-nav~.mui-content{
+	padding-top: 40px;
+}*/
+.mui-table-view{
+	margin-top: 10px;
+}
+#mui-img1{
+	background: url(../image/mes-01.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+
+
+#mui-img2{
+	background: url(../image/mes-02.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+#mui-img3{
+	background: url(../image/mes-03.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+.mes_data{
+	font-size: 14px;
+    margin-top: 5px;
+    /*margin-bottom: 2px;*/
+    color: #8f8f94;
+	float: right;
+	padding-right: 10px;
+}
+.mui-ellipsis1 {
+   /*overflow: hidden;*/
+   white-space: nowrap;
+   /*overflow: hidden;*/
+   /*text-overflow: ellipsis;*/
+}
+.mui-media-body p{
+	margin-top: 5px;
+
+}
+#mui-imgs1{
+	background: url(../image/mes-04.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+
+#mui-imgs2{
+	background: url(../image/mes-01.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+
+#mui-imgs3{
+	background: url(../image/mes-05.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+
+#mui-imgs4{
+	background: url(../image/mes-06.png) 10px center no-repeat #fff;
+	background-size: 36px 36px;
+	padding: 11px 6px 11px 40px;
+}
+
+.mui-btn-blue, .mui-btn-primary, .alarmbtn input[type=submit] {
+color: #fff;
+border: 1px solid #007aff;
+background-color: #007aff;
+}
+.mui-btn-alm{
+font-size: 14px;
+font-weight: 400px;
+line-height: 1.42;
+position: relative;
+display: inline-block;
+margin-bottom: 0;
+padding: 3px 12px;
+float: right;
+margin-right: 10px;
+border-radius: 0px;
+}
+.mui-mes{
+	font-size: 14px;
+    margin-top: 5px;
+/*    margin-bottom: 2px;*/
+    color: #8f8f94;
+	float: left;
+	padding-right: 10px;
+}

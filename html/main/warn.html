@@ -1,0 +1,150 @@
+<!--
+	作者：yeshengqiang
+	时间：2016-06-24
+	描述：首页主窗体
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>故障告警消息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" href="../../fonts/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		
+	</head>
+
+	<body>
+		<!--顶部栏-->
+		<!--<header class="mui-bar mui-bar-nav topColor">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="padding-left: 0px;"></a>
+			<h1 class="mui-title" style="color:#FFF;">故障告警消息</h1>
+		</header>-->
+		<!--底部选项栏-->
+		<!--<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" data-href="message.html">
+				<span class="mui-icon icon iconfont">&#xe612;</span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item " data-href="home.html">
+				<span class="mui-icon icon iconfont">&#xe622;</span>
+				<span class="mui-tab-label">工作</span>
+			</a>
+			<a class="mui-tab-item" data-href="user.html">
+				<span class="mui-icon icon iconfont">&#xe616;</span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>-->
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.conf.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			// 主窗口和侧滑窗口
+			var main = null,
+				menu = null;
+			mui.init();
+			mui.plusReady(function() {
+						
+					});
+		</script>
+<!--
+	作者：wangyoujie
+	时间：2016-07-26
+	描述：消息主题
+-->
+	<div class="mui-content">
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media " id="mui-imgs1">
+				<a href="javascript:;">
+					<!--<img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">-->
+					<div class="mui-media-body" id="secNo1">
+						HWZJ201607201154123
+						<button type="button" class="mui-btn-alm mui-btn-primary alarmbtn" id="warnAction1">处理完成</button>
+						<p class='mui-ellipsis1'>
+						<span class="mui-mes" style="white-space:normal;width:45%">
+							CC-1客服楼东非法入侵
+							郝庆伟已处理&nbsp;&nbsp;转故障
+						</span>
+						<span class="mui-ellipsis mes_data" id="warnActiontime1">
+							2016-07-26  10:00
+						</span>				
+						</p>	
+
+					</div>
+				</a>
+			</li>
+        </ul>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media" id="mui-imgs2">
+				<a href="javascript:;">
+					<!--<img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">-->
+					<div class="mui-media-body" id="secNo2">
+						HWZJ201607201154123
+						<button type="button" class="mui-btn-alm mui-btn-primary alarmbtn" id="warnAction2">抢单完成</button>
+						<p class='mui-ellipsis1'>
+						<span class="mui-mes" style="white-space:normal;width:45%">
+							CC-1客服楼东非法入侵
+							郝庆伟已处理&nbsp;&nbsp;转故障
+						</span>
+						<span class="mui-ellipsis mes_data" id="warnActiontime2">
+							2016-07-26  10:00
+						</span>							
+						</p>	
+
+					</div>
+				</a>
+			</li>
+        </ul>  
+        <ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media" id="mui-imgs3">
+				<a href="javascript:;">
+					<!--<img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">-->
+					<div class="mui-media-body" id="secNo3">
+					HWZJ201607201154123
+						<button type="button" class="mui-btn-alm mui-btn-primary alarmbtn" id="warnAction3">系统告警</button>
+						<p class='mui-ellipsis1'>
+						<span class="mui-mes" style="white-space:normal;width:45%">
+							CC-1客服楼东非法入侵
+							郝庆伟已处理&nbsp;&nbsp;转故障
+						</span>
+						<span class="mui-ellipsis mes_data" id="warnActiontime3">
+							2016-07-26  10:00
+						</span>							
+						</p>	
+
+					</di
+				</a>
+			</li>
+        </ul> 
+        <ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media" id="mui-imgs3">
+				<a href="javascript:;">
+					<!--<img class="mui-media-object mui-pull-left" src="../images/shuijiao.jpg">-->
+					<div class="mui-media-body" id="secNo4">
+						HWZJ201607201154123
+						<button type="button" class="mui-btn-alm mui-btn-primary alarmbtn" id="warnAction4">人工告警</button>
+						<p class='mui-ellipsis1'>
+						<span class="mui-mes" style="white-space:normal;width:45%">
+							CC-1客服楼2楼圆形楼梯：摄像头遮盖
+							告警通知
+						</span>
+						<span class="mui-ellipsis mes_data" id="warnActiontime4">
+							2016-07-26  10:00
+						</span>							
+						</p>	
+
+					</di
+				</a>
+			</li>
+        </ul> 
+
+
+		
+	</div>		
+		
+	</body>
+</html>
