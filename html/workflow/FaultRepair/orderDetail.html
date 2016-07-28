@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<title>智慧园区</title>
+		<title>工单详情</title>
 		<link href="../../../css/mui.min.css" rel="stylesheet" />
 		<link href="../../../css/common.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../../fonts/iconfont.css">
-		<link rel="stylesheet" type="text/css" href="../../../css/add.css"/>
-		<link rel="stylesheet" type="text/css" href="../../../fonts/demo.css"/>
+		<link rel="stylesheet"  href="../../../css/add.css" type="text/css"/>
+		<link rel="stylesheet"  href="../../../fonts/demo.css" type="text/css"/>
 		<script src="../../../js/mui.min.js" type="text/javascript"></script>
 		<script src="../../../js/workflow/webUtils.js" type="text/javascript"/></script>
 		<script src="../../../js/workflow/orderDetail.js" type="text/javascript"></script>
@@ -66,93 +66,123 @@
 				color: #000000;
 			}
 			
+			.comFont_color{
+				font-size:12px;
+			}
 			
+			.mui-ellipsis{
+				font-size:12px;
+			}
 		</style>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav topColor">			
+		<header class="mui-bar mui-bar-nav topColor">		
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title" style="color:#FFF;">维修工单详情</h1>
 		</header>
 		<div class="mui-content mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<div class="orderContent title">
-						<div class="icon iconfont icon-weixiu"></div>
-						<div class="orderBaseInfo">
-						<div class="stepTitle">
-							<span>当前环节：管理员审批</span>
-						</div>
-						<div class="orderNum">
-							<span>工单编号：20160725143544175003</span></div>
-						</div>
-					</div>
-					
-					<div class="orderContent eventInfo">
-						<ul>
-							<li><p><span class="etitle">故障告警：</span><span>MJ201607201154123</span></p></li>
-							<li><p><span class="etitle">故障位置：</span><span>CC-1客服楼1楼东门</span></p></li>
-							<li><p><span class="etitle">故障描述：</span><span>机箱监测线路故障/故障告警</span></p></li>
-							<li><p><span class="etitle">处理报告：</span><span>设备故障，已转维修工单流程。</span></p></li>
-						</ul>
-					</div>
-					
-					<div class="orderContent eventInfo">
-						<ul>
-							<li><p><span class="etitle">维修说明：</span><span>MJ201607201154123</span></p></li>
-							<li><p><span class="etitle">维修服务：</span><span>CC-1客服楼1楼东门</span></p></li>
-							<li><p><span class="etitle">费用预估：</span><span>机箱监测线路故障/故障告警</span></p></li>
-							<li><p><span class="etitle">计划完成日期：</span><span>设备故障，已转维修工单流程。</span></p></li>
-							<li><p><span class="etitle">实际完成日期：</span><span>设备故障，已转维修工单流程。</span></p></li>
-						</ul>
-					</div>
-					
-				<!-- 联系方式 -->	
-				<ul class="mui-table-view" style="position: relative;margin-top:8px">
-					<li id="goDetail" class="mui-table-view-cell mui-media">
-						<a class="mui-navigate-right" href="javascript:;">
-							<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:50px;color:blue;"></span>
-							<div class="mui-media-body">
-								发起人
-								<p class='mui-ellipsis'>{{response}}</p>
+					<div class="orderContent title" id="orderBaseInfoUl">
+						<script id="orderBaseInfoImpl" type="text/html">
+							<div class="icon iconfont icon-weixiu"></div>
+							<div class="orderBaseInfo">
+							<div class="stepTitle">
+								<span>当前环节：</span><span>{{activityName}}</span>
 							</div>
-						</a>
-						<img id="phone" src="../../../image/phone.png" data-phone="" />
-					</li>
-				</ul>
-					<div class="mui-col-xs-12 line1" id="dataDault">
-						<div class="line">
-							<span class="end"></span>
-						</div>
-						<div class="mui-col-xs-12" id="dataDault">
-							<!--流程部分-->
-						</div>
+							<div class="orderNum">
+								<span>工单编号：</span><span>{{orderNum}}</span></div>
+							</div>
+						</script>
 					</div>
-				</div>
-		</div>
-		
+				
+					
+					<div class="orderContent eventInfo">
+						<ul id="eventInfoUl">	
+							<script id="eventInfoImpl" type="text/html">
+							<li><p><span class="etitle">故障告警：</span><span>{{alarmNumber}}</span></p></li>
+							<li><p><span class="etitle">故障位置：</span><span>{{eventAddress}}</span></p></li>
+							<li><p><span class="etitle">故障描述：</span><span>{{eventDescribe}}</span></p></li>
+							<li><p><span class="etitle">处理报告：</span><span>设备故障，已转维修工单流程。</span></p></li>
+							</script>
+						</ul>
+					</div>
+				
+									
+					<div class="orderContent eventInfo">
+						<ul id="orderInfoUl">
+							<script id="orderInfoImpl" type="text/html">
+							<li><p><span class="etitle">维修说明：</span><span>{{orderDescribe}}</span></p></li>
+							<li><p><span class="etitle">维修服务：</span><span>{{serviceType | dealerFormat}}</span></p></li>
+							<li><p><span class="etitle">费用预估：</span><span>{{serviceBudget}}</span></p></li>
+							<li><p><span class="etitle">计划完成日期：</span><span>{{planCompleteDate}}</span></p></li>
+							<li><p><span class="etitle">实际完成日期：</span><span>{{activityId | dateFormat}}</span></p></li>		
+							</script>
+						</ul>
+					</div>
+				
+					
+				<!-- 联系方式 -->
+				
+					<ul class="mui-table-view" style="position: relative;margin-top:8px" id="posoneUl">
+						<script id="posTpl" type="text/html">
+						<li id="goDetail" class="mui-table-view-cell mui-media">
+							<a class="mui-navigate-right" >
+								<span class="mui-media-object mui-pull-left mui-icon mui-icon-contact" style="font-size:50px;color:blue;"></span>
+								<div class="mui-media-body">
+									发起人
+									<p class='mui-ellipsis'>{{trueName}}</p>
+								</div>
+							</a>
+							<img id="phone" src="../../../image/phone.png" data-phone="{{phone}}" />
+						</li>
+						</script>
+					</ul>
+				
+
 		<!--流程部分-->
-		<script id="dataTmpl" type="text/html">
-			{{each beans}}
-			<div class="mui-col-xs-12 clearfix mb10">
-				<span class="com_squ"></span>
-				<div class="mui-col-xs-2 fl"></div>
-				<div class="mui-col-xs-10 bubble fr">
-					<dl class="com_dt">
-						<dt class="clearfix">
-							<!--<span class="mui-pull-left comFont_color">{{$value.operName}}</span>-->
-							<span class="mui-pull-left comFont_color">{{$value.activityName}}</span>
-							
-							<span class="mui-pull-right comFont_color">{{$value.operDate}}</span>
-						</dt>
-						<dd class="comFont_color">
-							<span>{{$value.auditComment}}</span>
-						</dd>
-						<dd class="comFont_color">
-							<span>处理人员：{{$value.person}}</span>
-						</dd>
-					</dl>
+		
+			<div class="mui-col-xs-12 line1" id="dataDault">
+							<!--流程部分-->
+						<script id="dataTmpl" type="text/html">
+						<div class="line">
+							<span class="end conp"></span>
+						</div>
+						{{each beans}}
+						<div class="mui-col-xs-12 clearfix mb10">
+							<span class="com_squ comp"></span>
+							<div class="mui-col-xs-2 fl"></div>
+							<div class="mui-col-xs-10 bubble fr" >
+								<dl class="com_dt">
+									<dt class="clearfix">
+										<!--<span class="mui-pull-left comFont_color">{{$value.operName}}</span>-->
+										<span class="mui-pull-left comFont_color">{{$value.activityName}}</span>
+										
+										<span class="mui-pull-right comFont_color">{{$value.operDate}}</span>
+									</dt>
+									<dd class="comFont_color">
+										<span>{{$value.auditComment}}</span>
+									</dd>
+									<dd class="comFont_color">
+										<span>处理人员：{{$value.person}}</span>
+									</dd>
+								</dl>
+							</div>
+						</div>
+						{{/each}}
+						</script>
 				</div>
-			</div>
-			{{/each}}
-		</script>	
+			
+	</div>
+</div>
+
+		
+		
+						
+							
+
+		
+
+
+
 	</body>
 </html>

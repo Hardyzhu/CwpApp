@@ -1,19 +1,12 @@
-window.amGloble={
-	userSession:{},
-	userInfo:function(){
-		if(this.userSession!=undefined && mui.isEmptyObject(this.userSession)){
-			if(mui.os.plus){		
-				mui.plusReady(function(){
-					this.userSession=mui.parseJSON(plus.storage.getItem("userInfo"));
-				});
-			}else{
-				this.userSession=mui.parseJSON(localStorage.getItem("userInfo"));
-			}
-		}
-		return this.userSession;
-	}
 
+
+window.amGloble={
+	userInfo:{}
 };
+
+	
+
+
 
 (function () {
     window.webService = function (opt) {
@@ -33,13 +26,39 @@ window.amGloble={
             this.getdata(opt, cb);
         },
         getdata: function (opt, callback) {
+        	var self=this;
+        	var _opt=this.options;
         	
-        	var self=this.options;
-        	
-        	if (self.method.toUpperCase()=="GET" ||  self.method.toUpperCase()=="POST" )
+        	if (_opt.method.toUpperCase()=="GET" ||  _opt.method.toUpperCase()=="POST" )
         	{
-        		var responseData={};
-        		opt.userId=amGloble.userInfo().userId;
+        		
+        		
+        		if(amGloble.userInfo!=undefined && mui.isEmptyObject(amGloble.userInfo)){
+					if(mui.os.plus){
+						mui.plusReady(function(){
+							amGloble.userInfo=mui.parseJSON(plus.storage.getItem("userInfo"));
+							self.ajaxCommon(opt,callback);
+						});
+					}else{
+						amGloble.userInfo=mui.parseJSON(localStorage.getItem("userInfo"));
+						self.ajaxCommon(opt,callback);
+					}
+					
+				}else{
+					self.ajaxCommon(opt,callback);
+				}
+        		
+        		
+
+
+        	 }else {
+        		 throw ('Api error: 输入的请求类型错误，需要为POST 或 GET')
+        	 }
+        },
+        ajaxCommon:function(opt,callback){
+        	var responseData={};
+        		var self=this.options;
+        	    opt.userId=amGloble.userInfo.userId;
         		mui.ajax(self.serviceName+"?uid="+self.uid,
         		{
 					data:opt,
@@ -67,12 +86,7 @@ window.amGloble={
 						
 						callback && callback(responseData);
 					}
-				});				
-        		callback && callback(responseData);
-
-        	 }else {
-        		 throw ('Api error: 输入的请求类型错误，需要为POST 或 GET')
-        	 }
+				});
         }
         
     };
@@ -80,7 +94,7 @@ window.amGloble={
 })();
 
 (function() {	
-	var serviceName="http://192.168.100.65:20011/cwp";
+	var serviceName="http://192.168.92.227:8010/cwp";
 	var serviceType={POST:"POST",GET:"GET"};
 	
 	var self = amGloble.web = {
