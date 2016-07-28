@@ -37,7 +37,7 @@ mui.init({
 							if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
 								for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
 									if(userRole=='8'||userRole=='12'){
-										getProductList(2);
+										getProductList(2,'');
 									}
 									else if(userRole=='6'){
 										getProductList(2,userId);
