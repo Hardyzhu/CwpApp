@@ -635,7 +635,9 @@
 			"css/new.css",
 			"js/home/securityAlarm.js",
 			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
+			"fonts/iconfont.woff",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js"
 		],
 		"refer": [
 			"html/task/securityAlarmDetail.html",
