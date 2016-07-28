@@ -1,1045 +1,1045 @@
 {
-	"guide.html": {
-		"resources": [
-			"image/shop01.jpg",
-			"image/shop02.jpg",
-			"image/shop03.jpg",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/DBUtils.js"
-		],
-		"refer": [
-			"html/main/home.html",
-			"html/account/login.html",
-			"html/login/login.html"
-		]
-	},
-	"index.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"guide.html",
-			"html/main/home.html",
-			"html/account/login.html",
-			"html/login/login.html",
-			"html/main/main.html"
-		]
-	},
-	"html/main/shop.html": {
-		"resources": [
-			"image/shop04.jpg",
-			"json/main/shop.json",
-			"js/template.js",
-			"image/shop01.jpg",
-			"image/shop02.jpg",
-			"js/mui.min.js",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"html/shop/shopDetail.html"
-		]
-	},
-	"html/main/home.html": {
-		"resources": [
-			"fonts/mui.ttf",
-			"html/main/shop.html",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"image/shop04.jpg",
-			"image/shop01.jpg",
-			"image/shop02.jpg",
-			"json/main/shop.json",
-			"js/template.js",
-			"css/common.css",
-			"js/echarts-all.js",
-			"image/icon-10.png",
-			"image/icn-6.png",
-			"image/icon-2.png",
-			"image/icon-5.png",
-			"image/icon-9.png",
-			"image/icon-4.png",
-			"image/icon-1.png",
-			"css/home.css",
-			"image/icon-10-1.png",
-			"image/home-1.png",
-			"image/home-3.png",
-			"image/home-2.png",
-			"image/home-4.png",
-			"css/new.css",
-			"js/mui.conf.js",
-			"js/mask/mask.js",
-			"fonts/iconfont.woff",
-			"fonts/iconfont.css"
-		],
-		"refer": [
-			"html/main/side.html",
-			"html/main/user.html",
-			"html/main/order.html",
-			"html/main/shop.html",
-			"html/home/shopDetail.html",
-			"html/home/air_condition.html",
-			"html/home/fresh_air.html",
-			"html/home/sewage.html",
-			"html/home/lighting.html",
-			"html/home/monitoring.html",
-			"html/home/guard.html",
-			"html/home/security.html",
-			"html/home/smart.html",
-			"html/home/Equipment.html",
-			"html/Equipment/Equipment.html",
-			"html/home/securityAlarm.html",
-			"html/home/maintenance.html",
-			"html/home/energy.html",
-			"html/energy/energy.html",
-			"html/home/securityAlarmList.html",
-			"html/home/securityAlarmOld.html"
-		]
-	},
-	"html/shop/shopDetail.html": {
-		"resources": [
-			"json/shop/shopDetail.json",
-			"image/product.jpg",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"html/account/login.html"
-		]
-	},
-	"html/account/login.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"json/account/login.json",
-			"css/login.css",
-			"css/common.css",
-			"image/user.jpg",
-			"image/logobottom.jpg"
-		],
-		"refer": [
-			"html/main/home.html"
-		]
-	},
-	"html/main/user.html": {
-		"refer": [
-			"html/account/login.html",
-			"html/user/userInfo.html",
-			"html/login/login.html",
-			"html/user/editUserInfo.html",
-			"html/user/systemnotification.html"
-		],
-		"resources": [
-			"image/shop03.jpg",
-			"image/head.jpg",
-			"fonts/mui.ttf",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/template.js",
-			"js/mui.conf.js",
-			"css/new.css",
-			"js/mask/mask.js",
-			"js/mask/mask.css"
-		]
-	},
-	"html/main/order.html": {
-		"resources": [
-			"json/main/order.json",
-			"js/mui.min.js",
-			"css/mui.min.css"
-		],
-		"refer": []
-	},
-	"html/user/userInfo.html": {
-		"resources": [
-			"json/user/userInfo.json",
-			"js/template.js",
-			"image/head.jpg",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"html/account/login.html",
-			"html/user/editUserInfo.html",
-			"html/user/userHead.html",
-			"html/login/login.html"
-		]
-	},
-	"html/login/login.html": {
-		"resources": [
-			"image/user.jpg",
-			"css/login.css",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"image/logobottom.jpg",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/mui.conf.js",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
-		],
-		"refer": [
-			"html/main/home.html",
-			"html/main/main.html",
-			"html/user/userInfo.html",
-			"html/main/message.html",
-			"html/main/user.html"
-		]
-	},
-	"html/main/energy.html": {
-		"resources": [
-			"image/shop03.jpg",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"html/user/userInfo.html"
-		]
-	},
-	"html/main/message.html": {
-		"resources": [
-			"json/main/order.json",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"css/new.css",
-			"js/mui.conf.js",
-			"js/mask/mask.js",
-			"js/mask/mask.css"
-		],
-		"refer": [
-			"html/task/securityDetail.html",
-			"html/task/messagedetail.html"
-		]
-	},
-	"html/main/main.html": {
-		"resources": [
-			"css/common.css",
-			"fonts/mui.ttf",
-			"html/main/home.html",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"html/main/home1.html",
-			"html/main/message.html",
-			"js/mui.conf.js",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
-		],
-		"refer": [
-			"html/main/energy.html",
-			"html/main/side.html",
-			"html/main/message.html",
-			"html/main/home.html",
-			"html/main/home1.html",
-			"html/main/user.html"
-		]
-	},
-	"html/home/shopDetail.html": {
-		"resources": [
-			"json/shop/shopDetail.json",
-			"image/product.jpg",
-			"fonts/mui.ttf"
-		],
-		"refer": []
-	},
-	"html/main/home1.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"css/mui.min.css",
-			"js/echarts-all.js",
-			"image/icon-1.png",
-			"image/icon-10.png",
-			"image/icon-10-1.png",
-			"image/icon-9.png",
-			"image/icon-2.png",
-			"image/icon-4.png",
-			"image/icon-5.png",
-			"image/icn-6.png"
-		],
-		"refer": []
-	},
-	"html/user/editUserInfo.html": {
-		"resources": [
-			"html/user/supages/subEdit.html",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/checkValue.js",
-			"js/mui.conf.js",
-			"image/icon-11-3.png",
-			"css/new.css",
-			"css/add.css"
-		],
-		"refer": [
-			"html/user/supages/subEdit.html",
-			"html/login/login.html"
-		]
-	},
-	"html/home/fresh_air.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/echarts-all.js",
-			"css/common.css",
-			"image/paifengji.png",
-			"html/home/Equipment.html"
-		],
-		"refer": []
-	},
-	"html/home/sewage.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": []
-	},
-	"html/home/lighting.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/echarts-all.js",
-			"css/common.css",
-			"html/home/Equipment.html"
-		],
-		"refer": []
-	},
-	"html/home/air_condition.html": {
-		"resources": [
-			"fonts/mui.ttf",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/echarts-all.js",
-			"css/common.css",
-			"image/icon-11-3.png",
-			"image/icon-1.png",
-			"css/add.css",
-			"html/home/Equipment.html"
-		],
-		"refer": []
-	},
-	"html/home/monitoring.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/echarts-all.js",
-			"css/common.css",
-			"html/home/Equipment.html"
-		],
-		"refer": []
-	},
-	"html/home/guard.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/echarts-all.js",
-			"css/common.css",
-			"html/home/Equipment.html"
-		],
-		"refer": []
-	},
-	"html/home/smart.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": []
-	},
-	"html/home/security.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/common.css",
-			"js/template.js",
-			"js/mui.conf.js",
-			"image/icon-11-3.png",
-			"css/add.css",
-			"html/home/security_sub.html",
-			"css/new.css",
-			"js/mask/mask.js",
-			"js/mask/mask.css",
-			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js",
-			"js/home/securityAlarm.js",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff",
-			"js/home/security.js"
-		],
-		"refer": [
-			"html/task/securityDetail.html",
-			"html/home/security_sub.html",
-			"html/task/securityAlarmDetail.html"
-		]
-	},
-	"html/task/securityDetail.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"js/mui.conf.js",
-			"image/icon-11-3.png",
-			"css/add.css",
-			"css/new.css",
-			"js/mask/mask.css",
-			"js/mask/mask.js",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
-		],
-		"refer": [
-			"html/task/report.html",
-			"html/task/securityAlarmReport.html",
-			"html/task/securityReport.html"
-		]
-	},
-	"html/task/report.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"js/mui.conf.js",
-			"image/icon-11-3.png",
-			"css/add.css",
-			"js/mask/mask.js",
-			"js/mask/mask.css"
-		],
-		"refer": [
-			"html/main/message.html"
-		]
-	},
-	"html/home/Equipment.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"image/icn-6.png",
-			"image/icon-2.png",
-			"image/icon-5.png",
-			"html/home/fresh_air.html",
-			"image/icon-4.png",
-			"css/add.css",
-			"html/home/lighting.html",
-			"js/echarts-all.js",
-			"fonts/mui.ttf",
-			"css/home.css",
-			"css/common.css",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"image/icon-1.png",
-			"html/home/monitoring.html",
-			"html/home/air_condition.html",
-			"html/home/guard.html",
-			"image/icon-3.png",
-			"js/mui.conf.js",
-			"css/new.css",
-			"fonts/iconfont.woff",
-			"fonts/iconfont.css"
-		],
-		"refer": [
-			"html/home/fresh_air.html",
-			"html/Equipment/air_condition.html",
-			"html/Equipment/monitoring.html",
-			"html/Equipment/lighting.html",
-			"html/Equipment/fresh_air.html",
-			"html/Equipment/sewage.html",
-			"html/Equipment/guard.html",
-			"html/equipment/air_condition.html",
-			"html/equipment/monitoring.html",
-			"html/equipment/guard.html",
-			"html/equipment/sewage.html",
-			"html/equipment/fresh_air.html",
-			"html/equipment/lighting.html"
-		]
-	},
-	"html/Equipment/Equipment.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"image/icn-6.png",
-			"image/icon-2.png",
-			"image/icon-5.png",
-			"image/icon-4.png",
-			"css/add.css",
-			"js/echarts-all.js",
-			"fonts/mui.ttf",
-			"css/home.css",
-			"css/common.css",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"image/icon-1.png"
-		],
-		"refer": []
-	},
-	"html/Equipment/fresh_air.html": {
-		"resources": [
-			"image/paifengji.png",
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/add.css"
-		],
-		"refer": []
-	},
-	"html/Equipment/sewage.html": {
-		"resources": [
-			"image/icon-3.png",
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/add.css"
-		],
-		"refer": []
-	},
-	"html/Equipment/lighting.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-4.png",
-			"css/add.css"
-		],
-		"refer": []
-	},
-	"html/Equipment/air_condition.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-1.png",
-			"css/add.css"
-		],
-		"refer": []
-	},
-	"html/Equipment/guard.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"image/icn-6.png",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/add.css"
-		],
-		"refer": []
-	},
-	"html/equipment/air_condition.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-1.png",
-			"css/add.css",
-			"image/icon-3.png",
-			"js/template.js",
-			"html/equipment/json/realTime.json",
-			"html/equipment/json/alerm.json",
-			"js/analysisEcharts.js",
-			"js/mui.conf.js",
-			"css/new.css",
-			"html/equipment/air_condition.js"
-		],
-		"refer": [
-			"html/equipment/air_subdir/subReal.html",
-			"html/task/securityDetail.html"
-		]
-	},
-	"html/equipment/monitoring.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"image/icon-5.png",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/add.css",
-			"js/mui.conf.js"
-		],
-		"refer": []
-	},
-	"html/equipment/guard.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"image/icn-6.png",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/add.css",
-			"html/equipment/json/realTime.json",
-			"js/template.js",
-			"js/analysisEcharts.js",
-			"js/mui.conf.js"
-		],
-		"refer": [
-			"html/equipment/guard_subdir/subReal.html",
-			"html/task/securityDetail.html"
-		]
-	},
-	"html/equipment/sewage.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-3.png",
-			"css/add.css",
-			"html/equipment/json/realTime.json",
-			"js/analysisEcharts.js",
-			"js/template.js",
-			"js/mui.conf.js"
-		],
-		"refer": [
-			"html/task/securityDetail.html",
-			"html/equipment/sewage_subdir/subReal.html"
-		]
-	},
-	"html/home/securityAlarm.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"js/mui.conf.js",
-			"image/icon-11-3.png",
-			"css/add.css",
-			"js/mask/mask.js",
-			"js/mask/mask.css",
-			"css/new.css",
-			"js/home/securityAlarm.js",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff",
-			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js"
-		],
-		"refer": [
-			"html/task/securityAlarmDetail.html",
-			"html/task/securityDetail.html",
-			"html/task/securityAlarmDetail1.html",
-			"html/task/securityAlarmMain.html"
-		]
-	},
-	"html/task/securityReport.html": {
-		"refer": [
-			"html/main/message.html"
-		],
-		"resources": [
-			"image/icon-11-3.png",
-			"js/mui.conf.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mask/mask.js",
-			"js/template.js",
-			"css/add.css"
-		]
-	},
-	"html/task/securityAlarmDetail.html": {
-		"refer": [
-			"html/task/securityReport.html",
-			"html/task/report.html",
-			"html/task/securityAlarmReport.html",
-			"html/home/security.html"
-		],
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.conf.js",
-			"js/template.js",
-			"image/icon-11-3.png",
-			"fonts/iconfont.css",
-			"css/new.css",
-			"js/mask/mask.js",
-			"js/mask/mask.css",
-			"css/add.css",
-			"fonts/iconfont.woff",
-			"js/home/securityAlarmDetail.js",
-			"image/phone.png"
-		]
-	},
-	"html/home/maintenance.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"css/new.css",
-			"js/mui.conf.js",
-			"js/mask/mask.js",
-			"js/mask/mask.css",
-			"image/icon-11-3.png",
-			"css/add.css"
-		],
-		"refer": [
-			"html/task/maintenanceDetail.html"
-		]
-	},
-	"html/task/maintenanceReport.html": {
-		"refer": [
-			"html/main/message.html"
-		],
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js"
-		]
-	},
-	"html/task/maintenanceDetail.html": {
-		"refer": [
-			"html/task/maintenanceReport.html"
-		],
-		"resources": []
-	},
-	"html/equipment/air_subdir/subReal.html": {
-		"resources": [
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"html/equipment/json/alerm.json",
-			"html/equipment/json/realDeail.json",
-			"js/mui.conf.js"
-		],
-		"refer": []
-	},
-	"html/home/energy.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-1.png",
-			"css/add.css",
-			"image/icon-003.png",
-			"image/icon-002.png",
-			"image/home-4.png"
-		],
-		"refer": [
-			"html/energy/energyBuilding.html"
-		]
-	},
-	"html/equipment/fresh_air.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"image/paifengji.png",
-			"css/mui.min.css",
-			"css/add.css",
-			"html/equipment/json/realTime.json",
-			"image/icon-3.png",
-			"js/template.js",
-			"js/analysisEcharts.js",
-			"js/mui.conf.js",
-			"css/new.css"
-		],
-		"refer": [
-			"html/equipment/sewage_subdir/subReal.html",
-			"html/task/securityDetail.html",
-			"html/equipment/fresh_air_subdir/subReal.html"
-		]
-	},
-	"html/energy/energyBuilding.html": {
-		"resources": [
-			"image/icon-001.png",
-			"image/icon-11-3.png",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/add.css",
-			"js/echarts-all.js",
-			"image/icon-003.png",
-			"image/icon-002.png",
-			"css/new.css"
-		],
-		"refer": [
-			"html/energy/energyFloor.html"
-		]
-	},
-	"html/energy/energy.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/home-4.png",
-			"css/add.css",
-			"image/icon-003.png",
-			"image/icon-002.png",
-			"js/echarts-all.js",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff",
-			"css/new.css"
-		],
-		"refer": [
-			"html/energy/energyBuilding.html"
-		]
-	},
-	"html/equipment/lighting.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-4.png",
-			"css/add.css",
-			"js/mui.conf.js",
-			"js/analysisEcharts.js"
-		],
-		"refer": []
-	},
-	"html/equipment/sewage_subdir/subReal.html": {
-		"resources": [
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js"
-		],
-		"refer": []
-	},
-	"html/task/newdeal.html": {
-		"refer": [
-			"html/main/message.html",
-			"html/task/messagedetail.html"
-		],
-		"resources": [
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"js/mui.conf.js",
-			"image/icon-11-3.png",
-			"css/add.css",
-			"css/new.css",
-			"js/mask/mask.js",
-			"js/mask/mask.css"
-		]
-	},
-	"html/task/messagedetail.html": {
-		"refer": [
-			"html/task/messageReport.html",
-			"html/task/newdeal.html"
-		],
-		"resources": [
-			"fonts/mui.ttf",
-			"js/template.js",
-			"image/icon-11-3.png",
-			"js/mui.conf.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"css/mui.min.css",
-			"css/add.css",
-			"css/new.css",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff",
-			"js/mask/mask.js",
-			"js/mask/mask.css"
-		]
-	},
-	"html/energy/energyFloor.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/echarts-all.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"image/icon-003.png",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"image/icon-002.png",
-			"css/add.css",
-			"css/new.css",
-			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
-		],
-		"refer": []
-	},
-	"html/task/messageReport.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/template.js",
-			"css/add.css",
-			"js/mask/mask.css",
-			"js/mask/mask.js"
-		],
-		"refer": []
-	},
-	"html/home/security_sub.html": {
-		"resources": [
-			"js/template.js",
-			"css/new.css",
-			"js/mui.min.js",
-			"css/common.css",
-			"css/add.css",
-			"js/mui.conf.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.js",
-			"js/qmask/qmask-3.0.css",
-			"js/qmask/qmask-3.0.js",
-			"js/mask/mask.js",
-			"js/mask/mask.css"
-		],
-		"refer": [
-			"html/task/securityDetail.html"
-		]
-	},
-	"html/task/securityAlarmReport.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"js/mui.conf.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mask/mask.js",
-			"js/template.js",
-			"css/add.css",
-			"js/home/securityAlarmReport.js",
-			"css/new.css",
-			"fonts/iconfont.woff",
-			"fonts/iconfont.css"
-		],
-		"refer": [
-			"html/task/securityAlarmDetail.html"
-		]
-	},
-	"html/home/securityAlarmList.html": {
-		"resources": [
-			"image/icon-11-3.png",
-			"css/new.css",
-			"js/mui.conf.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mask/mask.js",
-			"js/template.js",
-			"js/mask/mask.css",
-			"css/add.css",
-			"image/home-4.png",
-			"image/icn-6.png",
-			"fonts/iconfont.woff",
-			"fonts/iconfont.css",
-			"fonts/demo.css",
-			"js/home/securityAlarm.js"
-		],
-		"refer": [
-			"html/task/securityAlarmDetail.html"
-		]
-	},
-	"html/task/securityAlarmDetail1.html": {
-		"resources": [
-			"css/common.css",
-			"css/mui.min.css",
-			"js/mask/mask.css",
-			"css/add.css",
-			"image/icon-11-3.png",
-			"fonts/iconfont.css",
-			"css/new.css",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"image/icon1.png",
-			"js/mui.conf.js",
-			"js/mask/mask.js",
-			"js/template.js",
-			"fonts/iconfont.woff"
-		],
-		"refer": [
-			"html/task/securityAlarmReport.html"
-		]
-	},
-	"html/task/securityAlarmMain.html": {
-		"resources": [
-			"html/task/securityAlarmDetail1.html",
-			"fonts/iconfont.css",
-			"js/mui.conf.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"html/task/securityAlarmDetail1.html",
-			"html/task/report.html"
-		]
-	},
-	"html/home/securityAlarmOld.html": {
-		"resources": [
-			"js/home/securityAlarm1.js",
-			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js",
-			"image/icon-11-3.png",
-			"fonts/iconfont.css",
-			"css/new.css",
-			"js/mui.conf.js",
-			"js/mui.min.js",
-			"css/common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mask/mask.js",
-			"js/template.js",
-			"js/mask/mask.css",
-			"css/add.css",
-			"fonts/iconfont.woff"
-		],
-		"refer": [
-			"html/task/securityAlarmDetail.html"
-		]
-	}
+  "guide.html": {
+    "resources": [
+      "image/shop01.jpg",
+      "image/shop02.jpg",
+      "image/shop03.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/DBUtils.js"
+    ],
+    "refer": [
+      "html/main/home.html",
+      "html/account/login.html",
+      "html/login/login.html"
+    ]
+  },
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "guide.html",
+      "html/main/home.html",
+      "html/account/login.html",
+      "html/login/login.html",
+      "html/main/main.html"
+    ]
+  },
+  "html/main/shop.html": {
+    "resources": [
+      "image/shop04.jpg",
+      "json/main/shop.json",
+      "js/template.js",
+      "image/shop01.jpg",
+      "image/shop02.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "html/shop/shopDetail.html"
+    ]
+  },
+  "html/main/home.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "html/main/shop.html",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "image/shop04.jpg",
+      "image/shop01.jpg",
+      "image/shop02.jpg",
+      "json/main/shop.json",
+      "js/template.js",
+      "css/common.css",
+      "js/echarts-all.js",
+      "image/icon-10.png",
+      "image/icn-6.png",
+      "image/icon-2.png",
+      "image/icon-5.png",
+      "image/icon-9.png",
+      "image/icon-4.png",
+      "image/icon-1.png",
+      "css/home.css",
+      "image/icon-10-1.png",
+      "image/home-1.png",
+      "image/home-3.png",
+      "image/home-2.png",
+      "image/home-4.png",
+      "css/new.css",
+      "js/mui.conf.js",
+      "js/mask/mask.js",
+      "fonts/iconfont.woff",
+      "fonts/iconfont.css"
+    ],
+    "refer": [
+      "html/main/side.html",
+      "html/main/user.html",
+      "html/main/order.html",
+      "html/main/shop.html",
+      "html/home/shopDetail.html",
+      "html/home/air_condition.html",
+      "html/home/fresh_air.html",
+      "html/home/sewage.html",
+      "html/home/lighting.html",
+      "html/home/monitoring.html",
+      "html/home/guard.html",
+      "html/home/security.html",
+      "html/home/smart.html",
+      "html/home/Equipment.html",
+      "html/Equipment/Equipment.html",
+      "html/home/securityAlarm.html",
+      "html/home/maintenance.html",
+      "html/home/energy.html",
+      "html/energy/energy.html",
+      "html/home/securityAlarmList.html",
+      "html/home/securityAlarmOld.html"
+    ]
+  },
+  "html/shop/shopDetail.html": {
+    "resources": [
+      "json/shop/shopDetail.json",
+      "image/product.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "html/account/login.html"
+    ]
+  },
+  "html/account/login.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "json/account/login.json",
+      "css/login.css",
+      "css/common.css",
+      "image/user.jpg",
+      "image/logobottom.jpg"
+    ],
+    "refer": [
+      "html/main/home.html"
+    ]
+  },
+  "html/main/user.html": {
+    "refer": [
+      "html/account/login.html",
+      "html/user/userInfo.html",
+      "html/login/login.html",
+      "html/user/editUserInfo.html",
+      "html/user/systemnotification.html"
+    ],
+    "resources": [
+      "image/shop03.jpg",
+      "image/head.jpg",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/template.js",
+      "js/mui.conf.js",
+      "css/new.css",
+      "js/mask/mask.js",
+      "js/mask/mask.css"
+    ]
+  },
+  "html/main/order.html": {
+    "resources": [
+      "json/main/order.json",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "html/user/userInfo.html": {
+    "resources": [
+      "json/user/userInfo.json",
+      "js/template.js",
+      "image/head.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "html/account/login.html",
+      "html/user/editUserInfo.html",
+      "html/user/userHead.html",
+      "html/login/login.html"
+    ]
+  },
+  "html/login/login.html": {
+    "resources": [
+      "image/user.jpg",
+      "css/login.css",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "image/logobottom.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/mui.conf.js",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/main/home.html",
+      "html/main/main.html",
+      "html/user/userInfo.html",
+      "html/main/message.html",
+      "html/main/user.html"
+    ]
+  },
+  "html/main/energy.html": {
+    "resources": [
+      "image/shop03.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "html/user/userInfo.html"
+    ]
+  },
+  "html/main/message.html": {
+    "resources": [
+      "json/main/order.json",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "css/new.css",
+      "js/mui.conf.js",
+      "js/mask/mask.js",
+      "js/mask/mask.css"
+    ],
+    "refer": [
+      "html/task/securityDetail.html",
+      "html/task/messagedetail.html"
+    ]
+  },
+  "html/main/main.html": {
+    "resources": [
+      "css/common.css",
+      "fonts/mui.ttf",
+      "html/main/home.html",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "html/main/home1.html",
+      "html/main/message.html",
+      "js/mui.conf.js",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/main/energy.html",
+      "html/main/side.html",
+      "html/main/message.html",
+      "html/main/home.html",
+      "html/main/home1.html",
+      "html/main/user.html"
+    ]
+  },
+  "html/home/shopDetail.html": {
+    "resources": [
+      "json/shop/shopDetail.json",
+      "image/product.jpg",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "html/main/home1.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "css/mui.min.css",
+      "js/echarts-all.js",
+      "image/icon-1.png",
+      "image/icon-10.png",
+      "image/icon-10-1.png",
+      "image/icon-9.png",
+      "image/icon-2.png",
+      "image/icon-4.png",
+      "image/icon-5.png",
+      "image/icn-6.png"
+    ],
+    "refer": []
+  },
+  "html/user/editUserInfo.html": {
+    "resources": [
+      "html/user/supages/subEdit.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/checkValue.js",
+      "js/mui.conf.js",
+      "image/icon-11-3.png",
+      "css/new.css",
+      "css/add.css"
+    ],
+    "refer": [
+      "html/user/supages/subEdit.html",
+      "html/login/login.html"
+    ]
+  },
+  "html/home/fresh_air.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/echarts-all.js",
+      "css/common.css",
+      "image/paifengji.png",
+      "html/home/Equipment.html"
+    ],
+    "refer": []
+  },
+  "html/home/sewage.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "html/home/lighting.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/echarts-all.js",
+      "css/common.css",
+      "html/home/Equipment.html"
+    ],
+    "refer": []
+  },
+  "html/home/air_condition.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/echarts-all.js",
+      "css/common.css",
+      "image/icon-11-3.png",
+      "image/icon-1.png",
+      "css/add.css",
+      "html/home/Equipment.html"
+    ],
+    "refer": []
+  },
+  "html/home/monitoring.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/echarts-all.js",
+      "css/common.css",
+      "html/home/Equipment.html"
+    ],
+    "refer": []
+  },
+  "html/home/guard.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/echarts-all.js",
+      "css/common.css",
+      "html/home/Equipment.html"
+    ],
+    "refer": []
+  },
+  "html/home/smart.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "html/home/security.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/common.css",
+      "js/template.js",
+      "js/mui.conf.js",
+      "image/icon-11-3.png",
+      "css/add.css",
+      "html/home/security_sub.html",
+      "css/new.css",
+      "js/mask/mask.js",
+      "js/mask/mask.css",
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/home/securityAlarm.js",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff",
+      "js/home/security.js"
+    ],
+    "refer": [
+      "html/task/securityDetail.html",
+      "html/home/security_sub.html",
+      "html/task/securityAlarmDetail.html"
+    ]
+  },
+  "html/task/securityDetail.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "js/mui.conf.js",
+      "image/icon-11-3.png",
+      "css/add.css",
+      "css/new.css",
+      "js/mask/mask.css",
+      "js/mask/mask.js",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/task/report.html",
+      "html/task/securityAlarmReport.html",
+      "html/task/securityReport.html"
+    ]
+  },
+  "html/task/report.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "js/mui.conf.js",
+      "image/icon-11-3.png",
+      "css/add.css",
+      "js/mask/mask.js",
+      "js/mask/mask.css"
+    ],
+    "refer": [
+      "html/main/message.html"
+    ]
+  },
+  "html/home/Equipment.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "image/icn-6.png",
+      "image/icon-2.png",
+      "image/icon-5.png",
+      "html/home/fresh_air.html",
+      "image/icon-4.png",
+      "css/add.css",
+      "html/home/lighting.html",
+      "js/echarts-all.js",
+      "fonts/mui.ttf",
+      "css/home.css",
+      "css/common.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "image/icon-1.png",
+      "html/home/monitoring.html",
+      "html/home/air_condition.html",
+      "html/home/guard.html",
+      "image/icon-3.png",
+      "js/mui.conf.js",
+      "css/new.css",
+      "fonts/iconfont.woff",
+      "fonts/iconfont.css"
+    ],
+    "refer": [
+      "html/home/fresh_air.html",
+      "html/Equipment/air_condition.html",
+      "html/Equipment/monitoring.html",
+      "html/Equipment/lighting.html",
+      "html/Equipment/fresh_air.html",
+      "html/Equipment/sewage.html",
+      "html/Equipment/guard.html",
+      "html/equipment/air_condition.html",
+      "html/equipment/monitoring.html",
+      "html/equipment/guard.html",
+      "html/equipment/sewage.html",
+      "html/equipment/fresh_air.html",
+      "html/equipment/lighting.html"
+    ]
+  },
+  "html/Equipment/Equipment.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "image/icn-6.png",
+      "image/icon-2.png",
+      "image/icon-5.png",
+      "image/icon-4.png",
+      "css/add.css",
+      "js/echarts-all.js",
+      "fonts/mui.ttf",
+      "css/home.css",
+      "css/common.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "image/icon-1.png"
+    ],
+    "refer": []
+  },
+  "html/Equipment/fresh_air.html": {
+    "resources": [
+      "image/paifengji.png",
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/add.css"
+    ],
+    "refer": []
+  },
+  "html/Equipment/sewage.html": {
+    "resources": [
+      "image/icon-3.png",
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/add.css"
+    ],
+    "refer": []
+  },
+  "html/Equipment/lighting.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-4.png",
+      "css/add.css"
+    ],
+    "refer": []
+  },
+  "html/Equipment/air_condition.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-1.png",
+      "css/add.css"
+    ],
+    "refer": []
+  },
+  "html/Equipment/guard.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "image/icn-6.png",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/add.css"
+    ],
+    "refer": []
+  },
+  "html/equipment/air_condition.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-1.png",
+      "css/add.css",
+      "image/icon-3.png",
+      "js/template.js",
+      "html/equipment/json/realTime.json",
+      "html/equipment/json/alerm.json",
+      "js/analysisEcharts.js",
+      "js/mui.conf.js",
+      "css/new.css",
+      "html/equipment/air_condition.js"
+    ],
+    "refer": [
+      "html/equipment/air_subdir/subReal.html",
+      "html/task/securityDetail.html"
+    ]
+  },
+  "html/equipment/monitoring.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "image/icon-5.png",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/add.css",
+      "js/mui.conf.js"
+    ],
+    "refer": []
+  },
+  "html/equipment/guard.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "image/icn-6.png",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/add.css",
+      "html/equipment/json/realTime.json",
+      "js/template.js",
+      "js/analysisEcharts.js",
+      "js/mui.conf.js"
+    ],
+    "refer": [
+      "html/equipment/guard_subdir/subReal.html",
+      "html/task/securityDetail.html"
+    ]
+  },
+  "html/equipment/sewage.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-3.png",
+      "css/add.css",
+      "html/equipment/json/realTime.json",
+      "js/analysisEcharts.js",
+      "js/template.js",
+      "js/mui.conf.js"
+    ],
+    "refer": [
+      "html/task/securityDetail.html",
+      "html/equipment/sewage_subdir/subReal.html"
+    ]
+  },
+  "html/home/securityAlarm.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "js/mui.conf.js",
+      "image/icon-11-3.png",
+      "css/add.css",
+      "js/mask/mask.js",
+      "js/mask/mask.css",
+      "css/new.css",
+      "js/home/securityAlarm.js",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff",
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js"
+    ],
+    "refer": [
+      "html/task/securityAlarmDetail.html",
+      "html/task/securityDetail.html",
+      "html/task/securityAlarmDetail1.html",
+      "html/task/securityAlarmMain.html"
+    ]
+  },
+  "html/task/securityReport.html": {
+    "refer": [
+      "html/main/message.html"
+    ],
+    "resources": [
+      "image/icon-11-3.png",
+      "js/mui.conf.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mask/mask.js",
+      "js/template.js",
+      "css/add.css"
+    ]
+  },
+  "html/task/securityAlarmDetail.html": {
+    "refer": [
+      "html/task/securityReport.html",
+      "html/task/report.html",
+      "html/task/securityAlarmReport.html",
+      "html/home/security.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.conf.js",
+      "js/template.js",
+      "image/icon-11-3.png",
+      "fonts/iconfont.css",
+      "css/new.css",
+      "js/mask/mask.js",
+      "js/mask/mask.css",
+      "css/add.css",
+      "fonts/iconfont.woff",
+      "js/home/securityAlarmDetail.js",
+      "image/phone.png"
+    ]
+  },
+  "html/home/maintenance.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "css/new.css",
+      "js/mui.conf.js",
+      "js/mask/mask.js",
+      "js/mask/mask.css",
+      "image/icon-11-3.png",
+      "css/add.css"
+    ],
+    "refer": [
+      "html/task/maintenanceDetail.html"
+    ]
+  },
+  "html/task/maintenanceReport.html": {
+    "refer": [
+      "html/main/message.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js"
+    ]
+  },
+  "html/task/maintenanceDetail.html": {
+    "refer": [
+      "html/task/maintenanceReport.html"
+    ],
+    "resources": []
+  },
+  "html/equipment/air_subdir/subReal.html": {
+    "resources": [
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "html/equipment/json/alerm.json",
+      "html/equipment/json/realDeail.json",
+      "js/mui.conf.js"
+    ],
+    "refer": []
+  },
+  "html/home/energy.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-1.png",
+      "css/add.css",
+      "image/icon-003.png",
+      "image/icon-002.png",
+      "image/home-4.png"
+    ],
+    "refer": [
+      "html/energy/energyBuilding.html"
+    ]
+  },
+  "html/equipment/fresh_air.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "image/paifengji.png",
+      "css/mui.min.css",
+      "css/add.css",
+      "html/equipment/json/realTime.json",
+      "image/icon-3.png",
+      "js/template.js",
+      "js/analysisEcharts.js",
+      "js/mui.conf.js",
+      "css/new.css"
+    ],
+    "refer": [
+      "html/equipment/sewage_subdir/subReal.html",
+      "html/task/securityDetail.html",
+      "html/equipment/fresh_air_subdir/subReal.html"
+    ]
+  },
+  "html/energy/energyBuilding.html": {
+    "resources": [
+      "image/icon-001.png",
+      "image/icon-11-3.png",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/add.css",
+      "js/echarts-all.js",
+      "image/icon-003.png",
+      "image/icon-002.png",
+      "css/new.css"
+    ],
+    "refer": [
+      "html/energy/energyFloor.html"
+    ]
+  },
+  "html/energy/energy.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/home-4.png",
+      "css/add.css",
+      "image/icon-003.png",
+      "image/icon-002.png",
+      "js/echarts-all.js",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff",
+      "css/new.css"
+    ],
+    "refer": [
+      "html/energy/energyBuilding.html"
+    ]
+  },
+  "html/equipment/lighting.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-4.png",
+      "css/add.css",
+      "js/mui.conf.js",
+      "js/analysisEcharts.js"
+    ],
+    "refer": []
+  },
+  "html/equipment/sewage_subdir/subReal.html": {
+    "resources": [
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js"
+    ],
+    "refer": []
+  },
+  "html/task/newdeal.html": {
+    "refer": [
+      "html/main/message.html",
+      "html/task/messagedetail.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "js/mui.conf.js",
+      "image/icon-11-3.png",
+      "css/add.css",
+      "css/new.css",
+      "js/mask/mask.js",
+      "js/mask/mask.css"
+    ]
+  },
+  "html/task/messagedetail.html": {
+    "refer": [
+      "html/task/messageReport.html",
+      "html/task/newdeal.html"
+    ],
+    "resources": [
+      "fonts/mui.ttf",
+      "js/template.js",
+      "image/icon-11-3.png",
+      "js/mui.conf.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "css/mui.min.css",
+      "css/add.css",
+      "css/new.css",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff",
+      "js/mask/mask.js",
+      "js/mask/mask.css"
+    ]
+  },
+  "html/energy/energyFloor.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/echarts-all.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "image/icon-003.png",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "image/icon-002.png",
+      "css/add.css",
+      "css/new.css",
+      "fonts/iconfont.css",
+      "fonts/iconfont.woff"
+    ],
+    "refer": []
+  },
+  "html/task/messageReport.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/template.js",
+      "css/add.css",
+      "js/mask/mask.css",
+      "js/mask/mask.js"
+    ],
+    "refer": []
+  },
+  "html/home/security_sub.html": {
+    "resources": [
+      "js/template.js",
+      "css/new.css",
+      "js/mui.min.js",
+      "css/common.css",
+      "css/add.css",
+      "js/mui.conf.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.js",
+      "js/qmask/qmask-3.0.css",
+      "js/qmask/qmask-3.0.js",
+      "js/mask/mask.js",
+      "js/mask/mask.css"
+    ],
+    "refer": [
+      "html/task/securityDetail.html"
+    ]
+  },
+  "html/task/securityAlarmReport.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "js/mui.conf.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mask/mask.js",
+      "js/template.js",
+      "css/add.css",
+      "js/home/securityAlarmReport.js",
+      "css/new.css",
+      "fonts/iconfont.woff",
+      "fonts/iconfont.css"
+    ],
+    "refer": [
+      "html/task/securityAlarmDetail.html"
+    ]
+  },
+  "html/home/securityAlarmList.html": {
+    "resources": [
+      "image/icon-11-3.png",
+      "css/new.css",
+      "js/mui.conf.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mask/mask.js",
+      "js/template.js",
+      "js/mask/mask.css",
+      "css/add.css",
+      "image/home-4.png",
+      "image/icn-6.png",
+      "fonts/iconfont.woff",
+      "fonts/iconfont.css",
+      "fonts/demo.css",
+      "js/home/securityAlarm.js"
+    ],
+    "refer": [
+      "html/task/securityAlarmDetail.html"
+    ]
+  },
+  "html/task/securityAlarmDetail1.html": {
+    "resources": [
+      "css/common.css",
+      "css/mui.min.css",
+      "js/mask/mask.css",
+      "css/add.css",
+      "image/icon-11-3.png",
+      "fonts/iconfont.css",
+      "css/new.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "image/icon1.png",
+      "js/mui.conf.js",
+      "js/mask/mask.js",
+      "js/template.js",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/task/securityAlarmReport.html"
+    ]
+  },
+  "html/task/securityAlarmMain.html": {
+    "resources": [
+      "html/task/securityAlarmDetail1.html",
+      "fonts/iconfont.css",
+      "js/mui.conf.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "html/task/securityAlarmDetail1.html",
+      "html/task/report.html"
+    ]
+  },
+  "html/home/securityAlarmOld.html": {
+    "resources": [
+      "js/home/securityAlarm1.js",
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "image/icon-11-3.png",
+      "fonts/iconfont.css",
+      "css/new.css",
+      "js/mui.conf.js",
+      "js/mui.min.js",
+      "css/common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mask/mask.js",
+      "js/template.js",
+      "js/mask/mask.css",
+      "css/add.css",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "html/task/securityAlarmDetail.html"
+    ]
+  }
 }
