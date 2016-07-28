@@ -583,7 +583,10 @@
 					"js/mask/mask.css",
 					"js/mask/mask.js",
 					"fonts/iconfont.css",
-					"fonts/iconfont.woff"
+					"fonts/iconfont.woff",
+					"js/home/securityDetail.js",
+					"js/home/securityAlarmDetail.js",
+					"image/phone.png"
 				],
 				"refer": [
 					"html/task/report.html",
@@ -948,10 +951,17 @@
 					"css/mui.min.css",
 					"js/mask/mask.js",
 					"js/template.js",
-					"css/add.css"
+					"css/add.css",
+					"js/home/securityReport.js",
+					"css/new.css",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.css",
+					"js/mui.picker.min.js",
+					"css/mui.picker.min.css"
 				],
 				"refer": [
-					"html/main/message.html"
+					"html/main/message.html",
+					"html/task/securityAlarmDetail.html"
 				],
 				"priority": 0
 			},
