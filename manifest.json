@@ -1207,7 +1207,6 @@
 				],
 				"priority": 0
 			},
-<<<<<<< f2cfd4ad23ae9382451c3374273d3f802baeb5c1
 			"html/main/mes.html": {
 				"resources": [
 					"css/message.css",
@@ -1222,7 +1221,7 @@
 					"html/main/home.html"
 				],
 				"priority": 0
-=======
+			},
 			"html/workflow/JobIndex.html": {
 				"resources": [
 					"js/workflow/webUtils.js",
@@ -1278,7 +1277,6 @@
 				],
 				"refer": [],
 				"priority": 0
->>>>>>> a2ec4f21b4405ce9f94e7791a0e87303d31c9ce5
 			}
 		},
 		"idle": {
