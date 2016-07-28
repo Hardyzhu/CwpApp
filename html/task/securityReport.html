@@ -7,32 +7,19 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>故障告警-勘察报告</title>
+		<title>故障告警-处理</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" href="../../css/mui.picker.min.css" />
 		<link rel="stylesheet" href="text/css" href="../../js/mask/mask.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css">
 		<style>
-			.barNav{
-				list-style: none;
-				background: #FFFFFF;
-				padding:5px 0;
-				margin-bottom:10px;
-				border-top:1px solid #DEDEDE;
-				border-bottom:1px solid #DEDEDE;
-			}
-			.barNav li{
-				float:left;
-				border-right:1px solid #DEDEDE;
-				padding:4px 0;
-				font-size:1.4rem;
-				color:#9C9C9C;
-				text-align:center;
-			}
 			.mui-icon{
 				font-size:1.4rem;
 			}
@@ -65,17 +52,26 @@
 			.mui-button-row {
 				padding: 10px;
 			}
+			.isShow{
+				display:none;
+				filter:alpha(opacity:100);
+				opactiy:1;
+				-webkit-transition: 1s opacity all;
+				-moz-transition: 1s opacity all;
+				transition: 1s opacity all;
+			}
 		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">故障告警-勘察报告</h1>
+			<h1 class="mui-title">故障告警-处理</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-col-xs-12 mb5 dataList">
 				<div class="mui-col-xs-12" id="dealTmpl">
 					<!--头部详情部分-->
+					
 				</div>
 				<div class="mui-col-xs-12"style="background:#FFF;">
 					<div class="mui-col-xs-12">
@@ -88,11 +84,37 @@
 								</div>
 							</li>
 						</ul>
+						<ul class="mui-table-view dealer isShow">
+							<li id="severs" class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									<span>维修服务</span>
+									<span class='mui-pull-right' id="change_sever" style="margin-right:15px;">无偿服务</span>
+								</a>
+							</li>
+							<li id="money" class="mui-table-view-cell">
+								<span>费用预估(元)</span>
+								<span class="mui-pull-right">
+									<span id="lead_money">100.00</span>
+								</span>
+							</li>
+							<li id="end_time" data-options='{}' class="mui-table-view-cell">
+								<span>计划完成时间</span>
+								<span class="mui-pull-right">
+									<span id="estimated_finish_time">2016-10-22 19:30:48</span>
+									<span style="margin-left:5px;vertical-align: -1px;" class="icon iconfont icon-rili"></span>
+								</span>
+							</li>
+						</ul>
 						<div class="dealer" style="padding:11px 15px;">
+							<!--维修说明部分-->
+							<div class="mui-input-row isShow">
+								<div class="mb5">维修说明:</div>
+								<textarea id="textarea1" rows="5" class="dealer" placeholder="请输入描述"></textarea>
+							</div>
 							<!--描述部分-->
 							<div class="mui-input-row">
 								<div class="mb5">情况描述:</div>
-								<textarea id="textarea" rows="5" class="dealer" placeholder="请输入描述"></textarea>
+								<textarea id="textarea2" rows="5" class="dealer" placeholder="请输入描述"></textarea>
 							</div>
 						</div>
 					</div>
@@ -104,174 +126,45 @@
 		</div>
 		<!--信息部分-->
 		<script id="dealTmp" type="text/html">
-			<h3>{{deviceName}}
-				<span class="emergency mui-pull-right">
-					{{if warningLevel == 0}}
-					    <span class="scile scileLow"></span>
-						<span class="sileSize sileLow">低</span>
-					{{else if warningLevel == 2}}
-					    <span class="scile scileMiddle"></span>
-						<span class="scile scileMiddle"></span>
-						<span class="sileSize sileMiddle">中</span>
-					{{else}}
-					    <span class="scile scileHeight"></span>
-						<span class="scile scileHeight"></span>
-						<span class="scile scileHeight"></span>
-						<span class="sileSize sileHeight">高</span>
-					{{/if}}
-				</span>
-			</h3>
-			<div class="mui-col-xs-12 muiDetail">
-				<span class="detailTitle">
-					地点：
-				</span>
-				{{buildingName}}
-			</div>
-			<div class="mui-col-xs-12 muiMark detailTitle">
-				问题描述：
-			</div>
-			<div class="mui-col-xs-12 muiDetail" style="text-indent: 20px;">	
-				{{eventDescribe}}
+			<div class="message-top-pannel">
+				<div class="message-top-box">
+					<div class="message-padding clearfix">
+						<span class="mb5 mr10 icon iconfont icon-menjinxitong mui-pull-left comlogo {{warningLevel | colorFormat}}"></span>
+						<div class="message-info-group mb5">
+							<div class="message-info-list clearfix">
+								<div class="message-add comFont_color">
+									处理状态：{{eventProcessStatus | dealerFormat}}
+								</div>
+								<span class="message-level">
+									{{if warningLevel == 0}}
+									    <span class="scilFont scileLow">低</span>
+									{{else if warningLevel == 2}}
+									    <span class="scilFont scileMiddle">中</span>
+									{{else}}
+									    <span class="scilFont scileHeight">高</span>
+									{{/if}}
+								</span>
+							</div>
+							<div class="message-info-box com_detail_color">
+								告警编号：{{alarmNumber}}
+							</div>
+						</div>
+						<div class="btnLine mb5"></div>
+						<ul class="com_detail_color">
+							<li>告警位置：{{buildingName}}</li>
+							<li>告警描述：{{eventDescribe}}</li>
+							<li>处理报告：{{if handleTime==''}}未处理{{else}}{{handleOpinion}}{{/if}}
+							</li>
+						</ul>
+					</div>					
+				</div>	
 			</div>
 		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mui.picker.min.js"></script>
 		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
-		<script>
-			mui.init({
-				swipeBack:true 
-			});
-
-			mui.plusReady(function(){
-				//获取登录信息
-				var oSwit = document.getElementById('mui-swit');
-				var oTextarea = document.getElementById('textarea');
-				var isLogin = plus.storage.getItem("userInfo");
-				var warningEventId="";
-				var warningCategoryId="";
-				var eventProgress="3";
-				//预加载
-				var detailPage = null;
-				if(!detailPage){
-					detailPage= mui.preload({
-					     url:"securityDetail.html",
-					     id:"securityDetail"
-					});
-				}
-				if(isLogin){
-					window.addEventListener('getReport',function(event){
-						qmask.show();						
-						var oDeal = document.getElementById('dealTmpl');
-						var dealHtml = template('dealTmp', event.detail.result);
-						oDeal.innerHTML = dealHtml;
-						qmask.hide();
-						warningEventId = event.detail.result.warningEventId;
-						warningCategoryId = event.detail.result.warningCategoryId;
-						oTextarea.value = event.detail.result.liveDescribe;
-					});
-				}
-				
-				//监听事件
-				
-				oSwit.addEventListener('toggle', function(event) {
-					 eventProgress = event.detail.isActive ? '4' : '3';
-				});
-				
-				
-	
-				document.getElementById('subit').addEventListener('tap',function(){
-					qmask.show();
-					var liveDescribe = oTextarea.value;
-					console.log("告警ID:"+warningEventId );
-					console.log("告警描述:"+liveDescribe);
-					console.log("用户ID:"+JSON.parse(isLogin).userId);
-					console.log("事件级别:"+eventProgress);
-					mui.ajax({
-						type: "post",
-						url: global_url+"/cwp/front/sh/warningEvent!execute",
-						async: true,
-						data: {
-							uid:"c025",							
-							warningEventId:warningEventId,
-							handleOpinion :liveDescribe,
-							handleId:JSON.parse(isLogin).userId,
-							eventProgress:eventProgress,
-							updateOrDetail:"2"
-						},
-						dataType: "json",
-						timeout: 1000000,
-						success: function(data) {
-							mui.toast('提交成功!');
-							//预加载子页面
-							//plus.nativeUI.showWaiting();
-							console.log(data);
-							console.log("提交告警ID："+warningEventId);
-							console.log("提交告警类型ID："+warningCategoryId);
-							if(data.returnCode=="4"){
-								createWorkOrder();
-							}
-							mui.fire(detailPage,'detailId',{
-							    warningEventId:warningEventId,
-							    warningCategoryId:warningCategoryId
-							});
-							setTimeout(function() {
-								qmask.hide();
-							}, 200);
-							
-							//打开页面
-							mui.openWindow({
-								  id:'securityDetail',
-								  waiting: {
-									autoShow: false
-								  }
-							});
-						},
-						error: function(xhr, type, errorThrown) {
-							if(type=='timeout'){
-								mui.toast('提交超时:请检查网络!');
-							}else{
-								mui.toast('提交失败!');
-							}
-							qmask.hide();
-						}
-					});
-				});
-					
-				//生成工单
-				function createWorkOrder(){
-						var liveDescribe = oTextarea.value;
-						console.log("故障描述:"+liveDescribe);
-						console.log("事件ID:"+warningEventId);
-						console.log("用户ID:"+JSON.parse(isLogin).userId);
-						mui.ajax({
-								type: "post",
-								url: global_url+"/cwp/front/sh/faultRepairWf!execute",
-								async: true,
-								data: {
-									uid:"startFaultRepair",							
-									eventId:warningEventId,
-									orderDescribe :liveDescribe,
-									userId:JSON.parse(isLogin).userId
-								},
-								dataType: "json",
-								timeout: 1000000,
-								success: function(data) {								
-									console.log("转故障工单");								
-								},
-								error: function(xhr, type, errorThrown) {
-									if(type=='timeout'){
-										mui.toast('提交超时:请检查网络!');
-									}else{
-										mui.toast('生成工单提交失败!');
-									}
-									qmask.hide();
-								}
-						});
-					
-				}
-			
-			});
-		</script>
+		<script src="../../js/home/securityReport.js"></script>
 	</body>
 </html>

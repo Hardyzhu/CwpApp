@@ -17,8 +17,6 @@ mui.init();
 		console.log("角色ID:"+userRole);
 		//循环初始化所有下拉刷新，上拉加载。
 		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-			console.log($(pullRefreshEl).pullRefresh());
-			console.log($(pullRefreshEl).pullRefresh().disablePullupToRefresh);
 			$(pullRefreshEl).pullToRefresh({
 				up: {
 					auto:true,
@@ -86,6 +84,7 @@ mui.init();
 			if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
 				for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
 					if(userRole=='8'||userRole=='12'){
+						++index;
 						obj.user_id = '';
 					}
 					else if(userRole=='6'){
@@ -120,6 +119,7 @@ mui.init();
 				dataType: "json",
 				timeout: 1000000,
 				success: function(data) {
+					console.log(JSON.stringify(data));
 					template.helper('dealerFormat',function(inp){
 						if(inp==1){
 							return '未处理';

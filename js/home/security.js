@@ -17,8 +17,6 @@ mui.init();
 		console.log("角色ID:"+userRole);
 		//循环初始化所有下拉刷新，上拉加载。
 		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-			console.log($(pullRefreshEl).pullRefresh());
-			console.log($(pullRefreshEl).pullRefresh().disablePullupToRefresh);
 			$(pullRefreshEl).pullToRefresh({
 				up: {
 					auto:true,
@@ -26,7 +24,7 @@ mui.init();
 						var _self = this;
 						setTimeout(function() {
 							var dataList = _self.element.querySelector('.mui-text-center');
-							getProductList($(pullRefreshEl),_self,dataList, index, 5 ,userId);
+							getProductList(_self,dataList,index,5,userId);
 							if(_self.mark !=undefined){
 								_self.endPullUpToRefresh(_self.mark);
 							}else{
@@ -47,6 +45,8 @@ mui.init();
 			qmask.show();
 			var warningEventId = this.getAttribute("data-id");
 			var warningCategoryId = this.getAttribute("data-uid");
+			console.log(warningEventId);
+			console.log(warningCategoryId);
 			//判断是否有这个页面
 			/*if(!detailPage){
 			    detailPage = plus.webview.getWebviewById('securityAlarmDetail');
@@ -75,7 +75,7 @@ mui.init();
 		});
 		
 		//渲染数据
-		function getProductList(_elem,_this,obj,index,pageSize,userId) { //获取工单列表
+		function getProductList(_this,obj,index,pageSize,userId) { //获取工单列
 			qmask.show();
 			console.log("得到用户ID："+userId);
 			var totalLength = obj.querySelectorAll('.listData').length;
@@ -86,6 +86,7 @@ mui.init();
 			if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
 				for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
 					if(userRole=='8'||userRole=='12'){
+						++index;
 						obj.user_id = '';
 					}
 					else if(userRole=='6'){
@@ -109,7 +110,7 @@ mui.init();
 				type: "post",
 				async: true,
 				data: {
-					uid: 'c001',
+					uid: 'c016',
 					currentPage:page,
 					pageSize:pageSize,
 					dictValue:'', 
@@ -120,6 +121,40 @@ mui.init();
 				dataType: "json",
 				timeout: 1000000,
 				success: function(data) {
+					console.log(JSON.stringify(data));	
+					
+					template.helper('colFormat',function(inp){
+					   	if(inp==0){
+					   		return 'blueColor';
+					   	}else if(inp==1){
+							return 'yellowColor';
+						}else if(inp==2){
+							return 'orangeColor';
+						}else{
+							return 'redColor';
+						}
+					});
+					template.helper('nameFormat',function(inp){
+						var b = '';
+						switch(inp){                   
+							case '1003185':            //空调
+							  b = 'icon-kongdiao';
+							  break;
+							case '1003186':            //新风
+							  b = "icon-tongfeng"
+							  break;
+							case '1003187':            //排污泵
+							  b = "icon-135" 
+							  break;  
+							case '1004001':            //门禁设备
+							  b = "icon-menjinxitong"
+							  break;  
+							
+						}
+						if(b!=''||b!=null){
+							return b;
+						}
+					});
 					template.helper('dealerFormat',function(inp){
 						if(inp==1){
 							return '未处理';
@@ -134,7 +169,7 @@ mui.init();
 					if(data.beans instanceof Array && data.beans.length<5){
 						_this.mark = true;
 						setTimeout(function(){
-							mui.toast('没有更多数据了!');
+							//mui.toast('没有更多数据了!');
 							//_elem.pullRefresh().disablePullupToRefresh();
 							//var tipHtml="<div class=t-norecord><i class='icon iconfont icon-baogaoyichuangjian'></i><p>暂无数据记录</p></div>";
 							//mui(_this).innerHTML = tipHtml;

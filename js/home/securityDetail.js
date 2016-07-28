@@ -5,6 +5,7 @@ mui.plusReady(function(){
 	var userRole=JSON.parse(isLogin).role[0].roleId;
 	console.log("角色ID:"+userRole);
 	var self = plus.webview.currentWebview();
+	
 	//预加载
 	//var reportPage = null;
 	/*if(!reportPage){
@@ -26,6 +27,8 @@ mui.plusReady(function(){
 	window.addEventListener('detailId',function(event){
 		warningEventId = event.detail.warningEventId;
 		warningCategoryId = event.detail.warningCategoryId;
+		console.log(warningEventId);
+		console.log(warningCategoryId);
 		//信息部分
 		if(warningCategoryId==undefined) warningCategoryId="";
 	 	res(warningEventId,warningCategoryId,1,1);
@@ -68,7 +71,7 @@ mui.plusReady(function(){
 				var oPosone = document.getElementById('posoneTmpl');
 				template.helper('toGet',function(inp){
 					if(inp==''||inp==null){
-						return '抢单';
+						return '接单';
 					}else{
 						return '已接单';
 					}
@@ -106,7 +109,7 @@ mui.plusReady(function(){
 				});
 				template.helper('toState',function(inp){
 					if(inp){
-						return '转故障';
+						return '转工单';
 					}
 				});
 				template.helper('sFormat',function(inp,iAttr){
@@ -160,8 +163,8 @@ mui.plusReady(function(){
 						return;
 					}
 					mui.openWindow({
-						url: 'securityAlarmReport.html',
-						id: 'securityAlarmReport',
+						url: 'securityReport.html',
+						id: 'securityReport',
 						waiting: {
 							autoShow: false
 						},
@@ -178,7 +181,7 @@ mui.plusReady(function(){
 				}else if(updateOrDetail==1){
 					mui.toast('查询失败!');
 				}else{
-					mui.toast('接单失败!');
+					mui.toast('抢单失败!');
 				}
 				qmask.hide();
 				return;
@@ -199,7 +202,7 @@ mui.plusReady(function(){
 				warningCategoryId:warningCategoryId,
 				updateOrDetail:updateOrDetail,
 				responseOfficerId:JSON.parse(isLogin).userId,
-				eventProgress:eventProgress							
+				eventProgress:eventProgress		
 			},
 			dataType: "json",
 			timeout: 1000000,

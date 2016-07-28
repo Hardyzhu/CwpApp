@@ -148,16 +148,8 @@
 		</div>
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData">	
-					{{if $value.warningLevel == 0}}
-						<div class="icon iconfont icon-menjinxitong blueColor"></div>
-					{{else if $value.warningLevel == 1}}
-					    <div class="icon iconfont icon-menjinxitong yellowColor"></div>
-					{{else if $value.warningLevel == 2}}
-					    <div class="icon iconfont icon-menjinxitong orangeColor"></div>
-					{{else}}
-					   	<div class="icon iconfont icon-menjinxitong redColor"></div>
-					{{/if}}
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData">					
+					<div class="icon iconfont {{$value.warningType | nameFormat}} {{$value.warningLevel | colFormat}}"></div>
 					<h3 class="list-title clearfix" style="padding: 0;">							
 						{{if $value.alarmNumber != ""}}
 								{{$value.alarmNumber}}
