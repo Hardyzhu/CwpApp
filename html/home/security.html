@@ -1,7 +1,7 @@
 <!--
 	作者：yeshengqiang	
 	时间：2016-06-27
-	描述：故障告警
+	描述：故障预警列表
 -->
 <!DOCTYPE html>
 <html>
@@ -12,238 +12,181 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
 		<style>
-			.barNav{
-				list-style: none;
-				background: #FFFFFF;
-				padding:5px 0;
-				margin-bottom:10px;
-				border-top:1px solid #DEDEDE;
-				border-bottom:1px solid #DEDEDE;
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 50px;
+				height: auto;
 			}
-			.barNav li{
-				float:left;
-				border-right:1px solid #DEDEDE;
-				padding:4px 0;
-				font-size:1.4rem;
-				color:#9C9C9C;
-				text-align:center;
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
 			}
-			.mui-icon{
-				font-size:1.4rem;
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
 			}
-			.searchData{
-				margin: 15px 15px 0;
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
 			}
 		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">告警信息列表</h1>
+			<h1 class="mui-title">故障告警</h1>
 		</header>
 		<!--内容部分-->
-		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
-			<div class="mui-scroll">
-				<!--搜索部分-->
-				<!--<div class="mui-content-padded searchData">
-					<div class="mui-input-row mui-search">
-						<input type="search" class="mui-input-clear" placeholder="请输入关键字" />
-					</div>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#untreated">
+						未处理
+					</a>
+					<a class="mui-control-item" href="#processing">
+						处理中
+					</a>
+					<a class="mui-control-item" href="#processed">
+						已处理
+					</a>
 				</div>
-				<ul class="mui-col-xs-12 barNav clearfix">
-					<li class="mui-col-xs-3">排序
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-					<li class="mui-col-xs-3">未处理
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-					<li class="mui-col-xs-3" style="border:none;">与我相关
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-				</ul>-->
-				<div class="mui-col-xs-12" id="list"></div>
-				<script id="detailTmpl" type="text/html">
-					{{each beans}}
-						{{if $value.eventProcessStatus == 1}}
-						    <div class="mui-col-xs-12 mb5 dataList list-pannel" style="background:#FFFAFA !important;">
-						{{else if $value.eventProcessStatus == 2}}
-							<div class="mui-col-xs-12 mb5 dataList list-pannel" style="background:#F3FBFE !important;">
-						{{else}}
-						    <div class="mui-col-xs-12 mb5 dataList list-pannel" style="background:#FFF !important;;">
-						{{/if}}
-							<h3 class="list-title">{{$value.deviceName}}
-								<span class="emergency mui-pull-right">
-									{{if $value.warningLevel == 0}}
-									    <span class="scile scileLow"></span>
-										<span class="sileSize sileLow">低</span>
-									{{else if $value.warningLevel == 2}}
-									    <span class="scile scileMiddle"></span>
-										<span class="scile scileMiddle"></span>
-										<span class="sileSize sileMiddle">中</span>
-									{{else}}
-									    <span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="scile scileHeight"></span>
-										<span class="sileSize sileHeight">高</span>
-									{{/if}}
-								</span>
-							</h3>
-							<div class="mui-col-xs-12 muiDetail list-body">
-								{{$value.eventDescribe}}
-							</div>
-							<div class="mui-col-xs-12 muiDetail">				
-							    {{if $value.eventProcessStatus == 1}}
-								    <span class="btnState redColor font1rem">未恢复</span>
-								{{else if $value.eventProcessStatus == 2}}
-								    <span class="btnState blueColor font1rem">处理中</span>
-								{{else}}
-								    <span class="btnState greenColor font1rem">已恢复</span>
-								{{/if}}
-								<span class="Timecolor">{{$value.applyTime}}</span>
-								<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
-									查看详情
-									<span class="mui-icon mui-icon-arrowright"></span>
-								</a>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="untreated" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-col-xs-12 mui-text-center">
+									<!--<div class='mui-loading'>
+										<div class='mui-spinner'></div>
+									</div>-->	
+								</div>
 							</div>
 						</div>
-				    {{/each}}		
-				</script>
+					</div>
+					<div id="processing" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-col-xs-12 mui-text-center">
+									<!--<div class='mui-loading'>
+										<div class='mui-spinner'></div>
+									</div>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="processed" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-col-xs-12 mui-text-center">
+									<!--<div class='mui-loading'>
+										<div class='mui-spinner'></div>
+									</div>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<script id="detailTmpl" type="text/html">
+			{{each beans}}
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData">	
+					{{if $value.warningLevel == 0}}
+						<div class="icon iconfont icon-menjinxitong blueColor"></div>
+					{{else if $value.warningLevel == 1}}
+					    <div class="icon iconfont icon-menjinxitong yellowColor"></div>
+					{{else if $value.warningLevel == 2}}
+					    <div class="icon iconfont icon-menjinxitong orangeColor"></div>
+					{{else}}
+					   	<div class="icon iconfont icon-menjinxitong redColor"></div>
+					{{/if}}
+					<h3 class="list-title clearfix" style="padding: 0;">							
+						{{if $value.alarmNumber != ""}}
+								{{$value.alarmNumber}}
+						{{else}}
+						    	HWZJ201607201154123
+						{{/if}}			
+						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
+							查看详情
+							<span class="mui-icon mui-icon-arrowright"></span>
+						</a>
+					</h3>
+					<div class="mui-col-xs-12 muiDetail">
+						{{$value.eventDescribe}}
+					</div>
+					<div class="mui-col-xs-12 muiDetail clearfix">															
+						<div class="fl goToDel list-link-a" href="javascript:void(0);">		
+							{{$value.eventProcessStatus | dealerFormat}}			
+						</div>
+						<div class="Timecolor fr">{{$value.applyTime}}</div>
+					</div>
+				</div>
+		    {{/each}}		
+		</script>
 		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.pullToRefresh.js"></script>
+		<script src="../../js/mui.pullToRefresh.material.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				pullRefresh: {
-					container: '#pullrefresh',
-					up: {
-						auto:true,
-						callback: pullupRefresh
-					}
-				},
-				preloadPages:[{                      //预加载页面
-				    id:'securityDetail',
-				    url:'../task/securityDetail.html'
-				}]
-			});
-			mui.plusReady(function() {
-				var self = plus.webview.currentWebview();
-				var isLogin = plus.storage.getItem("userInfo");
-				
-				/**
-				 * 跳转到详情页面
-				 */
-				var detailPage = null;
-				mui('.mui-content').on('tap', '.goToDel', function(e) {
-					qmask.show();
-					var warningEventId = this.getAttribute("data-id");
-					var warningCategoryId = this.getAttribute("data-uid");
-					//判断是否有这个页面
-					if(!detailPage){
-					    detailPage = plus.webview.getWebviewById('securityDetail');
-					}
-					//自定义事件
-					//plus.nativeUI.showWaiting();
-					
-					mui.fire(detailPage,'detailId',{
-					    warningEventId:warningEventId,
-					    warningCategoryId:warningCategoryId
-					});
-					setTimeout(function() {
-						qmask.hide();
-					}, 200);
-					//打开页面
-					mui.openWindow({
-					  id:'securityDetail',
-					  waiting: {
-						autoShow: false
-					  }
-					});
-				});
-			});
-			var page = 1;
-			var mark = false;
-			//渲染数据
-			function getProductList() { //获取工单列表
-				qmask.show();
-				mui.ajax({
-					url: global_url+"/cwp/front/sh/warningEvent!execute",				
-					type: "post",
-					async: true,
-					data: {
-						uid: 'c001',
-						currentPage:page,
-						pageSize:'5',
-						dictValue:'', 
-						eventProcessStatus:'1',
-						eventType:1
-					},
-					dataType: "json",
-					timeout: 1000000,
-					success: function(data) {
-						var oList = document.getElementById("list");
-						var html = template('detailTmpl', data);
-						oList.innerHTML += html;
-						if(data.beans instanceof Array && data.beans.length<5){
-							mark = true;
-							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
-							setTimeout(function(){
-								mui.toast('没有更多数据了!');
-							},500);
-							qmask.hide();
-							return;
-						}
-						qmask.hide();
-					},
-					error: function(xhr, type, errorThrown) {
-						if(type=='timeout'){
-							mui.toast('请求超时:请检查网络!');
-						}else {
-							mui.toast('数据加载失败!');
-						}
-						qmask.hide();
-					}
-				});
-			}
-			
-			/**
-			 * 上拉加载具体业务实现
-			 */
-			function pullupRefresh() {
-				if(!mark){
-					qmask.show();
-					setTimeout(function() {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(mark); //参数为true代表没有更多数据了。
-						page++;
-						getProductList();
-					}, 1500);
-				}
-			}
-			if (mui.os.plus) {
-				mui.plusReady(function() {
-					setTimeout(function() {
-						mui('#pullrefresh').pullRefresh().pullupLoading();
-					}, 1000);
-
-				});
-			} else {
-				mui.ready(function() {
-					mui('#pullrefresh').pullRefresh().pullupLoading();
-				});
-			}
-			/*document.querySelector('header').addEventListener('doubletap',function () {
-				if(contentWebview==null){
-					contentWebview = plus.webview.currentWebview().children()[0];
-				}
-				contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
-			});*/
-		</script>
+		<script src="../../js/home/security.js"></script>		
 	</body>
 </html>

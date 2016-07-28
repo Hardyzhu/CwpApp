@@ -174,13 +174,14 @@
 					</div>
 					<div class="mui-col-xs-12 muiDetail clearfix">															
 						<div class="fl goToDel list-link-a" href="javascript:void(0);">		
-								{{if $value.eventProcessStatus == 1}}
-						    			告警通知
+								<!--{{if $value.eventProcessStatus == 1}}
+						    			未处理
 								{{else if $value.eventProcessStatus == 2}}
 								    	处理中
 								{{else}}
 								    	已恢复
-								{{/if}}					
+								{{/if}}	-->	
+								{{$value.eventProcessStatus | dealerFormat}}
 						</div>
 						<div class="Timecolor fr">{{$value.applyTime}}</div>
 					</div>
