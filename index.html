@@ -15,6 +15,7 @@
 
 	<body>
 		<script src="js/mui.min.js"></script>
+		<script src="js/DBUtils.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
@@ -49,11 +50,37 @@
         // 判断是从本地创建还是离线推送的消息
         switch( msg.payload ) {
             case "LocalMSG":
-            	alert("bendi:"+msg.payload);
+            	//alert("bendi:"+msg.payload);
+            	var msgJs={
+            			eventId:msg.eventId,
+			    		title:msg.title,
+			    		type:msg.messageType,
+			    		content:msg.content,
+			    		processAction:msg.processAction,
+			    		messageNo:msg.messageNo,
+			    		messageLevel:msg.messageLevel,
+			    		status:0,
+            	};
+            	websql.insertPushMessage(msgJs,function(res){
+            		alert(res.status);
+            	});
                 outSet( "点击本地创建消息启动：" );
             break;
             default:
-            	alert("离线推送消息"+msg.payload);
+            	var msgJs={
+            			eventId:msg.eventId,
+			    		title:msg.title,
+			    		type:msg.,
+			    		content:msg.content,
+			    		processAction:msg.processAction,
+			    		messageNo:msg.messageNo,
+			    		messageLevel:msg.messageLevel,
+			    		status:0,
+            	};
+            	websql.insertPushMessage(msgJs,function(res){
+            		alert(res.status);
+            	});
+            	//alert("离线推送消息"+msg.payload);
                 outSet( "点击离线推送消息启动：");
             break;
         }

@@ -7,24 +7,31 @@ var DbTableConfig = {
     		type:"TEXT",
     		content:"TEXT",
     		status:"TEXT",
+    		processAction:"TEXT",
+    		messageNo:"TEXT",
+    		messageLevel:"TEXT",
     		createTime:"TEXT"
     	}
     },
     dao:{
     	addPushMessage:{
-    		sql:"INSERT INTO PushMessage (id,eventId,title,type,content,status,createTime) values (?,?,?,?,?,?,?)",
-    		args:["id","eventId","title","type","content","status","createTime"]
+    		sql:"INSERT INTO PushMessage (id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime) values (?,?,?,?,?,?,?,?,?,?)",
+    		args:["id","eventId","title","type","content","status","processAction","messageNo","messageLevel","createTime"]
+    	},
+    	updatePushMessageStatus:{
+    		sql:"UPDATE PushMessage SET status=? where id=?",
+    		args:["status","id"]
     	},
     	deletePushMessage:{
     		sql:"delete from PushMessage",
     		args:[]
     	},
     	selectPushMsgByType:{
-    		sql:"select id,eventId,title,status from PushMessage where 1=1 and type=?",
+    		sql:"select id,eventId,title,status,content,processAction,createTime from PushMessage where 1=1 and type=? and status=0",
     		args:["type"]
     	},
     	selectPushMsgByStatus:{
-    		sql:"select id,eventId,title,status from PushMessage where 1=1 and status=?",
+    		sql:"select id,eventId,title,status,type,content,processAction,createTime from PushMessage where 1=1 and status=?",
     		args:["status"]
     	}
     }
@@ -138,6 +145,12 @@ var websql = (function(document, undefined) {
 			this.exec(DbTableConfig.dao.addPushMessage,options,callback);
 		}		
 	};
+	$.updatePushMessageStatus=function(options,callback){
+		if(!this.isEmptyObject(options)){
+			this.exec(DbTableConfig.dao.updatePushMessageStatus,options,callback);
+		}		
+	};
+	
 	$.selectPushMsgByType=function(options,callback){
 		this.exec(DbTableConfig.dao.selectPushMsgByType,options,callback);		
 	};
@@ -243,7 +256,7 @@ var websql = (function(document, undefined) {
 		if (ret.error == 0) {
 			cb({ result: 0, responseData: ret.data });
 		} else {
-			cb({ result: 1, responseData : ret.error });
+			cb({ result: 1, responseData : ret.data });
 		}
 	};
 			
