@@ -93,7 +93,8 @@
 			"html/home/maintenance.html",
 			"html/home/energy.html",
 			"html/energy/energy.html",
-			"html/home/securityAlarmList.html"
+			"html/home/securityAlarmList.html",
+			"html/home/securityAlarmOld.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -370,11 +371,18 @@
 			"html/home/security_sub.html",
 			"css/new.css",
 			"js/mask/mask.js",
-			"js/mask/mask.css"
+			"js/mask/mask.css",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"js/home/securityAlarm.js",
+			"fonts/iconfont.css",
+			"fonts/iconfont.woff",
+			"js/home/security.js"
 		],
 		"refer": [
 			"html/task/securityDetail.html",
-			"html/home/security_sub.html"
+			"html/home/security_sub.html",
+			"html/task/securityAlarmDetail.html"
 		]
 	},
 	"html/task/securityDetail.html": {
@@ -634,7 +642,9 @@
 			"css/new.css",
 			"js/home/securityAlarm.js",
 			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
+			"fonts/iconfont.woff",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js"
 		],
 		"refer": [
 			"html/task/securityAlarmDetail.html",
@@ -1007,6 +1017,29 @@
 		"refer": [
 			"html/task/securityAlarmDetail1.html",
 			"html/task/report.html"
+		]
+	},
+	"html/home/securityAlarmOld.html": {
+		"resources": [
+			"js/home/securityAlarm1.js",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"image/icon-11-3.png",
+			"fonts/iconfont.css",
+			"css/new.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mask/mask.js",
+			"js/template.js",
+			"js/mask/mask.css",
+			"css/add.css",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/task/securityAlarmDetail.html"
 		]
 	}
 }

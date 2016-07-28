@@ -62,8 +62,8 @@ mui.init();
 			}, 200);*/
 			//打开页面
 			mui.openWindow({
-			  url:'../task/securityAlarmDetail.html',
-			  id:'securityAlarmDetail',
+			  url:'../task/securityDetail.html',
+			  id:'securityDetail',
 			  waiting: {
 				autoShow: false
 			  },
@@ -109,12 +109,12 @@ mui.init();
 				type: "post",
 				async: true,
 				data: {
-					uid: 'c016',
+					uid: 'c001',
 					currentPage:page,
 					pageSize:pageSize,
 					dictValue:'', 
 					eventProcessStatus:index,
-					eventType:2,
+					eventType:1,
 					responseOfficerId:obj.user_id
 				},
 				dataType: "json",

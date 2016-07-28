@@ -82,6 +82,17 @@ mui.plusReady(function(){
 						return '已完成';
 					}
 				});
+				template.helper('toIndexOf',function(inp){
+					console.log(inp.length);
+					console.log(inp.lastIndexOf(','));
+					if((inp.length-1)==inp.lastIndexOf(',')){
+						var b = inp.substring(0,inp.length-1);	
+						return b.replace(/\,/g,'/');
+					}else{
+						return inp.replace(/\,/g,'/');
+					}
+					
+				});
 				template.helper('colorFormat',function(inp){
 					if(inp == 0){
 						return 'blueColor';

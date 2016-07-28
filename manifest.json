@@ -568,10 +568,17 @@
 					"css/new.css",
 					"css/add.css",
 					"js/mask/mask.js",
-					"js/mask/mask.css"
+					"js/mask/mask.css",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js",
+					"js/home/securityAlarm.js",
+					"fonts/iconfont.css",
+					"fonts/iconfont.woff",
+					"js/home/security.js"
 				],
 				"refer": [
-					"html/task/securityDetail.html"
+					"html/task/securityDetail.html",
+					"html/task/securityAlarmDetail.html"
 				],
 				"priority": 0
 			},
@@ -845,7 +852,9 @@
 					"js/home/securityAlarm.js",
 					"fonts/iconfont.woff",
 					"fonts/iconfont.css",
-					"js/home/securityAlarm1.js"
+					"js/home/securityAlarm1.js",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js"
 				],
 				"refer": [
 					"html/task/securityAlarmDetail.html",

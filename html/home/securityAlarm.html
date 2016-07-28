@@ -17,6 +17,77 @@
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
+		<style>
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 50px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -25,51 +96,59 @@
 		</header>
 		<!--内容部分-->
 		<div class="mui-content">
-			<div id="slider" class="mui-slider">
-				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item mui-active" href="#untreated">未处理</a>
-					<a class="mui-control-item" href="#processing">处理中</a>
-					<a class="mui-control-item" href="#processed">已处理</a>
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#untreated">
+						未处理
+					</a>
+					<a class="mui-control-item" href="#processing">
+						处理中
+					</a>
+					<a class="mui-control-item" href="#processed">
+						已处理
+					</a>
 				</div>
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 				<div class="mui-slider-group">
-					<div id="untreated" data-state="1" class="mui-slider-item mui-control-content mui-active">
-						<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+					<div id="untreated" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<div class="mui-col-xs-12" id="untreatedList">
-										
+								<div class="mui-col-xs-12 mui-text-center">
+									<!--<div class='mui-loading'>
+										<div class='mui-spinner'></div>
+									</div>-->	
 								</div>
 							</div>
 						</div>
 					</div>
-					<div id="processing" data-state="2" class="mui-slider-item mui-control-content">
-						<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+					<div id="processing" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<div class="mui-col-xs-12 mui-text-center" id="processingList">
-									<div class='mui-loading'>
+								<div class="mui-col-xs-12 mui-text-center">
+									<!--<div class='mui-loading'>
 										<div class='mui-spinner'></div>
-									</div>
+									</div>-->
 								</div>
 							</div>
 						</div>
 					</div>
-					<div id="processed" data-state="3" class="mui-slider-item mui-control-content">
-						<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+					<div id="processed" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<div class="mui-col-xs-12 mui-text-center" id="processedList">
-									<div class='mui-loading'>
+								<div class="mui-col-xs-12 mui-text-center">
+									<!--<div class='mui-loading'>
 										<div class='mui-spinner'></div>
-									</div>
+									</div>-->
 								</div>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix">	
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData">	
 					{{if $value.warningLevel == 0}}
 						<div class="icon iconfont icon-menjinxitong blueColor"></div>
 					{{else if $value.warningLevel == 1}}
@@ -95,13 +174,14 @@
 					</div>
 					<div class="mui-col-xs-12 muiDetail clearfix">															
 						<div class="fl goToDel list-link-a" href="javascript:void(0);">		
-								{{if $value.eventProcessStatus == 1}}
-						    			告警通知
+								<!--{{if $value.eventProcessStatus == 1}}
+						    			未处理
 								{{else if $value.eventProcessStatus == 2}}
 								    	处理中
 								{{else}}
 								    	已恢复
-								{{/if}}					
+								{{/if}}	-->	
+								{{$value.eventProcessStatus | dealerFormat}}
 						</div>
 						<div class="Timecolor fr">{{$value.applyTime}}</div>
 					</div>
@@ -109,6 +189,8 @@
 		    {{/each}}		
 		</script>
 		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.pullToRefresh.js"></script>
+		<script src="../../js/mui.pullToRefresh.material.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
