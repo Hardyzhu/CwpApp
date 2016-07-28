@@ -13,13 +13,7 @@ mui.init({
       height:50,//可选.默认50.触发上拉加载拖动距离
       callback :pullfreshUp //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
     }
-  },
-  preloadPages:[
-    {
-      url:"orderDetail.html",
-      id:"orderDetail"
-    }
-  ]
+  }
 });
 
 mui.ready(function(){	
@@ -96,16 +90,22 @@ function loadMyToDoList(){
 	
 	mui(".mui-slider-group").on("tap",".item",function(){
 		var id = this.getAttribute("id");
-		console.log(id);
+		gotoNextPage("orderDetail.html","orderDetail",{
+			orderNum:id
+    })
 	});
 	
 }
 
-var detailPage = null;
-function openOrderDetail(){
-		if(!detailPage){
-				detailPage = plus.webview.getWebviewById('orderDetail');
-		}
+function gotoNextPage(url,urlId,extras){
+	mui.openWindow({
+		url: url,
+		id: urlId,
+		waiting: {
+			autoShow: false
+		},
+		extras:extras
+	});
 }
 
 function loadMyAuditList(){

@@ -196,16 +196,13 @@
 			},
 			"html/main/home.html": {
 				"resources": [
-					"html/main/order.html",
 					"fonts/mui.ttf",
-					"html/main/shop.html",
 					"html/main/user.html",
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"image/shop04.jpg",
 					"image/shop01.jpg",
 					"image/shop02.jpg",
-					"json/main/shop.json",
 					"js/template.js",
 					"css/common.css",
 					"js/echarts-all.js",
@@ -229,23 +226,12 @@
 					"fonts/iconfont.css"
 				],
 				"refer": [
-					"html/main/side.html",
-					"html/home/shopDetail.html",
-					"html/home/air_condition.html",
-					"html/home/fresh_air.html",
-					"html/home/sewage.html",
-					"html/home/lighting.html",
-					"html/home/monitoring.html",
-					"html/home/guard.html",
 					"html/home/security.html",
-					"html/home/smart.html",
 					"html/home/Equipment.html",
-					"html/Equipment/Equipment.html",
 					"html/home/securityAlarm.html",
 					"html/home/maintenance.html",
-					"html/home/energy.html",
 					"html/energy/energy.html",
-					"html/home/securityAlarmList.html"
+					"html/workflow/JobIndex.html"
 				],
 				"priority": 0
 			},
@@ -1221,6 +1207,7 @@
 				],
 				"priority": 0
 			},
+<<<<<<< f2cfd4ad23ae9382451c3374273d3f802baeb5c1
 			"html/main/mes.html": {
 				"resources": [
 					"css/message.css",
@@ -1235,17 +1222,64 @@
 					"html/main/home.html"
 				],
 				"priority": 0
+=======
+			"html/workflow/JobIndex.html": {
+				"resources": [
+					"js/workflow/webUtils.js",
+					"fonts/demo.css",
+					"js/workflow/jobIndex.js",
+					"image/icon-11-3.png",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/add.css"
+				],
+				"refer": [
+					"html/workflow/FaultRepair/myAuditList.html"
+				],
+				"priority": 0
+			},
+			"html/workflow/FaultRepair/myAuditList.html": {
+				"resources": [
+					"js/workflow/myAuditList.js",
+					"fonts/iconfont.css",
+					"js/template.js",
+					"image/icon-11-3.png",
+					"js/workflow/webUtils.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/demo.css",
+					"css/add.css",
+					"fonts/iconfont.woff"
+				],
+				"refer": [
+					"html/workflow/FaultRepair/orderDetail.html"
+				],
+				"priority": 0
+			},
+			"html/workflow/FaultRepair/orderDetail.html": {
+				"resources": [
+					"js/workflow/orderDetail.js",
+					"image/phone.png",
+					"fonts/iconfont.woff",
+					"image/icon-11-3.png",
+					"js/workflow/webUtils.js",
+					"fonts/iconfont.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js",
+					"fonts/demo.css",
+					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+>>>>>>> a2ec4f21b4405ce9f94e7791a0e87303d31c9ce5
 			}
-		},
-		"index": {
-			"resources": [
-				"js/mui.min.js",
-				"css/mui.min.css"
-			],
-			"refer": [
-				"html/main/home.html"
-			],
-			"priority": 0
 		},
 		"idle": {
 			"resources": [

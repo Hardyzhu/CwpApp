@@ -242,31 +242,7 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/DBUtils.js"></script>
 		<script>
-/*			var options={
-				eventId:"20010102",
-    			title:"ceshi",
-    			type:"1",
-    			content:"2",
-    			status:"3",
-			};
-			
-			websql.insertPushMessage(options,function(ret){
-				console.log(ret);
-			});*/
-			
-			var option={
-				type:"1"
-			}
-			websql.selectPushMsgByType(option,function(ret){
-				console.log(ret);
-			})
-			
-			var option={
-				status:"1"
-			}
-			websql.selectPushMsgByStatus(option,function(ret){
-				console.log(ret);
-			});
+
 			
 			mui.init();
 			mui.back = function() {};
