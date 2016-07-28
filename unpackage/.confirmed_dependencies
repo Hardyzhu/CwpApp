@@ -371,11 +371,18 @@
 			"html/home/security_sub.html",
 			"css/new.css",
 			"js/mask/mask.js",
-			"js/mask/mask.css"
+			"js/mask/mask.css",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"js/home/securityAlarm.js",
+			"fonts/iconfont.css",
+			"fonts/iconfont.woff",
+			"js/home/security.js"
 		],
 		"refer": [
 			"html/task/securityDetail.html",
-			"html/home/security_sub.html"
+			"html/home/security_sub.html",
+			"html/task/securityAlarmDetail.html"
 		]
 	},
 	"html/task/securityDetail.html": {
