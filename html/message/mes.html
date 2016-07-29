@@ -46,6 +46,72 @@
 		<script src="../../js/DBUtils.js"></script>
 		
 		<script type="text/javascript" charset="utf-8">
+		document.addEventListener( "plusready", function(){
+    message = document.getElementById("message");
+    // 监听点击消息事件
+    plus.push.addEventListener( "click", function( msg ) {
+        // 判断是从本地创建还是离线推送的消息
+        switch( msg.payload ) {
+            case "LocalMSG":
+              	alert("bendi:"+msg.payload);
+                outSet( "点击本地创建消息启动：" );
+            break;
+            default:
+	            alert("离线推送消息ddd"+msg.payload);
+//	            var msgJs1={
+//		            			eventId:"123",
+//					    		title:"TEXT",
+//					    		type:"WARN",
+//					    		content:"本地测试消息",
+//					    		processAction:"TEXT",
+//					    		messageNo:"1",
+//					    		messageLevel:"1",
+//					    		status:'0'
+//		            	};
+//		    	websql.insertPushMessage(msgJs1,function(res){
+//		    		alert('本地消息返回值'+res.responseData);
+//	            		alert('本地消息返回状态'+res.status);
+//		    	});
+		    	saveMsg(msg);
+//		    	location.reload(true) ;
+                outSet( "点击离线推送消息启动：");
+            break;
+        }
+        // 提示点击的内容
+        plus.ui.alert( msg.content );
+        // 处理其它数据
+        logoutPushMsg( msg );
+    }, false );
+    // 监听在线消息事件
+    plus.push.addEventListener( "receive", function( msg ) {
+        if ( msg.aps ) {  // Apple APNS message
+            outSet( "接收到在线APNS消息：" );
+        } else {
+            outSet( "接收到在线透传消息：" );
+            alert("feibeidi"+msg.payload);
+        }
+        logoutPushMsg( msg );
+    }, false );
+}, false );
+function saveMsg(msg){
+	var data = eval('('+msg.payload+')');
+	alert(data.eventId);
+	var msgJs={
+            			eventId:data.eventId,
+			    		title:msg.title,
+			    		type:data.messageType,
+			    		content:msg.content,
+			    		processAction:data.processAction,
+			    		messageNo:data.messageNo,
+			    		messageLevel:data.messageLevel,
+			    		status:'0'
+            	};
+    	alert('组装消息'+msgJs.type);
+    	websql.insertPushMessage(msgJs,function(res){
+    		alert('远程消息返回值'+res.responseData);
+    		alert('远程消息返回状态'+res.status);
+    	});
+}
 //			var msgJs={
 //	            			eventId:"123",
 //				    		title:"TEXT",
