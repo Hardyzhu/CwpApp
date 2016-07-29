@@ -66,7 +66,7 @@ mui.plusReady(function(){
 		console.log(self.result);
 		warningEventId = self.result.warningEventId;
 		warningCategoryId = self.warningCategoryId;
-		oTextarea.value = self.result.liveDescribe;
+		oTextarea1.value = self.result.liveDescribe;
 	}
 	
 	//监听事件
@@ -115,8 +115,10 @@ mui.plusReady(function(){
 	}
 	
 	//维修服务
+	var info = document.getElementById('change_sever');
+	var lead_money = document.getElementById('lead_money');
+	var end_timer = document.getElementById('estimated_finish_time');;
 	document.getElementById('severs').addEventListener('tap',function(e){
-		var info = document.getElementById('change_sever');
 		var tip = '';
 		if(info.innerHTML=='无偿服务'){
 			tip = '有偿服务';
@@ -136,7 +138,7 @@ mui.plusReady(function(){
 		var btnArray = ['取消', '确定'];
 		mui.prompt('请输入费用：', '请输入费用', '预付费用', btnArray, function(e) {
 			if (e.index == 1) {
-				document.getElementById('lead_money').innerHTML = (+e.value).toFixed(2);
+				lead_money.innerHTML = (+e.value).toFixed(2);
 			}
 		})
 	});
@@ -148,7 +150,7 @@ mui.plusReady(function(){
 		var id = this.getAttribute('id');
 		var picker = new mui.DtPicker(options);
 		picker.show(function(rs) {
-			document.getElementById('estimated_finish_time').innerHTML = rs.text;
+			end_timer.innerHTML = rs.text;
 			picker.dispose();
 		});
 	});
@@ -156,10 +158,49 @@ mui.plusReady(function(){
 	document.getElementById('subit').addEventListener('tap',function(){
 		qmask.show();
 		var liveDescribe = oTextarea2.value;
+		
 		console.log("告警ID:"+warningEventId );
 		console.log("告警描述:"+liveDescribe);
 		console.log("用户ID:"+JSON.parse(isLogin).userId);
 		console.log("事件级别:"+eventProgress);
+		if(eventProgress==4){
+			console.log(1);
+			var orderDescribe = oTextarea1.value;    //维修说明
+			var serviceBudget = lead_money.innerHTML  //预估费用
+			var planCompleteDate = end_timer.innerHTML;   //预计结束时间
+			var serviceType = '';                    //服务类型
+			if(info.innerHTML = '有偿服务'){
+				serviceType = '1';
+			}else{
+				serviceType = '0';
+			}
+			mui.ajax({
+				type: "post",
+				url: "http://192.168.92.227:8010/cwp/front/sh/faultRepairWf!execute",
+				data: {
+					uid:"startFaultRepair",							
+					eventId:warningEventId,
+					serviceType:serviceType,
+					orderDescribe :orderDescribe,
+					userId:JSON.parse(isLogin).userId,
+					serviceBudget:serviceBudget
+				},
+				dataType: "json",
+				timeout: 10000,
+				success: function(data) {
+					mui.toast('提交成功!');
+					console.log(JSON.stringify(data));
+				},
+				error: function(xhr, type, errorThrown) {
+					if(type=='timeout'){
+						mui.toast('提交超时:请检查网络!');
+					}else{
+						mui.toast('提交失败!');
+					}
+					qmask.hide();
+				}
+			});
+		}
 		mui.ajax({
 			type: "post",
 			url: global_url+"/cwp/front/sh/warningEvent!execute",
@@ -189,14 +230,6 @@ mui.plusReady(function(){
 					mui.back();
 					qmask.hide();
 				}, 200);
-			
-				/*mui.openWindow({
-				  id:'securityAlarmDetail',
-				  waiting: {
-					autoShow: false
-				  },
-				  createNew:true,
-				});*/
 			},
 			error: function(xhr, type, errorThrown) {
 				if(type=='timeout'){
