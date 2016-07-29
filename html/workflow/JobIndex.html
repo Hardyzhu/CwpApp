@@ -10,7 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="../../fonts/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
 		<script src="../../js/mui.min.js" type="text/javascript"></script>
-		<script src="../../js/workflow/webUtils.js" type="text/javascript"/></script>
 		<script src="../../js/workflow/jobIndex.js" type="text/javascript"></script>
 		
 		<style>
@@ -26,17 +25,6 @@
 				border-top:1px solid #DEDEDE;
 				border-bottom:1px solid #DEDEDE;
 			}
-        	.comul li{
-        		float:left;
-        		text-align: center;
-        		width:33.3%;
-        		cursor:pointer;
-        	}
-        	.comul li span{
-				font-size:1.3rem;
-				color:#BFBFBF;
-				text-decoration: underline;
-        	}
         	.iconCenter{
         		display: table-cell;
         		text-align: center;
@@ -59,6 +47,14 @@
 			    border-radius: 40px;
 			    color:#FFFFFF;
         	}
+        	.mui-bar-tab{
+        		top:0;
+        		position: relative!important;
+        		height: 40px!important;
+        	}
+        	.mui-tab-item {
+        		height: 40px!important;
+        	}
 			
 		</style>
 	</head>
@@ -67,24 +63,22 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title" style="color:#FFF;">工单审批</h1>
 		</header>
+
 		<div class="mui-content">
-			<div class="mui-col-xs-12 headerBarBox">
-				<div class="mui-col-xs-12 clearfix headBar">
-					<ul class="comul">
-						<li >
-							<span id="mytodo_bt" class="button">待我审批</span>
-						</li>
-						<li >
-							<span id="mycreate_bt" class="button">我发起的</span>
-						</li>
-						<li >
-							<span id="copytome_bt" class="button">抄送我的</span>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<!--选项栏-->
+			<nav class="mui-bar mui-bar-tab">
+						<a id="mytodo_bt" class="mui-tab-item button" data-href ="mes.html">
+							<span class="mui-tab-label" >待我审批</span>
+						</a>
+						<a id="mycreate_bt" class="mui-tab-item button" data-href="home.html">
+							<span class="mui-tab-label">我发起的</span>
+						</a>
+						<a id="copytome_bt" class="mui-tab-item button" data-href="home.html">
+							<span class="mui-tab-label">抄送我的</span>
+						</a>
+			</nav>
 			<div class="mui-col-xs-12 mui-text-center clearfix classify linkButton">
-				<div data-url="securityAlarm.html" class="mui-col-xs-3 fl subClassify tabList button-line">
+				<div data-url="faultRepair" class="mui-col-xs-3 fl subClassify tabList button-line linkItem">
 					<div class="mui-col-xs-12 fl">
 						<div class="mui-col-xs-12 fl iconCenter" >
 							<center><div class='icon iconfont ' >&#xe60d;</div></center>
@@ -94,13 +88,13 @@
 						</div>
 					</div>
 				</div>	
-				<div data-url="securityAlarm.html" class="mui-col-xs-3 fl subClassify tabList button-line">
+				<div data-url="addItem" class="mui-col-xs-3 fl subClassify tabList button-line linkItem">
 					<div class="mui-col-xs-12 fl">
 						<div class="mui-col-xs-12 fl iconCenter" >
 							<center><div class='icon iconfont ' style="background: none;color:#8f8f94;font-size:45px">&#xe628;</div></center>
 						</div>
 						<div class="mui-col-xs-12 mui-text-left fl" style="text-align:center!important;font-size:14px;">
-							<span></span>
+							<span>&nbsp;</span>
 						</div>
 					</div>
 				</div>	

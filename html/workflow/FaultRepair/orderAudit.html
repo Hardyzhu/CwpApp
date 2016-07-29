@@ -11,8 +11,10 @@
 		<link rel="stylesheet" type="text/css" href="../../../css/add.css"/>
 		<link rel="stylesheet" type="text/css" href="../../../css/new.css"/>
 		<link rel="stylesheet" type="text/css" href="../../../fonts/iconfont.css">
-		<script src="../../js/mui.min.js"></script>
-		<script src="../../js/template.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/workflow/webUtils.js"></script>
+		<script src="../../../js/workflow/orderAudit.js"></script>
+		<script src="../../../js/template.js"></script>
 		<style>
 			.mui-btn-primary{
 				width:90%;
@@ -26,21 +28,25 @@
 			<h1 class="mui-title">工单办理</h1>
 		</header>
 		<div class="mui-content">
+			<div class="mui-scroll-wrapper" style="top: 50px; ">
+				<div class="mui-scroll">
 			<div class="mui-col-xs-12 mb5 dataList">
 				<div class="mui-col-xs-12"style="background:#FFF;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;">
 					<div class="mui-col-xs-12">
 						<div class="dealer" style="padding:0 10px;">
 							<div class="mui-input-row">
-								<textarea id="textarea" style="border:0;font-size:14px;" rows="8" class="dealer" placeholder="请输入审批意见..."></textarea>
+								<textarea id="auditComment" style="border:0;font-size:14px;" rows="8" class="dealer" placeholder="请输入审批意见..."></textarea>
 							</div>
 						</div>
 					</div>
 
 				</div>
 					<div class="mui-button-row" >
-						<button class="mui-btn mui-btn-primary" id="subit" type="button">提交</button>
+						<button class="mui-btn mui-btn-primary" id="sumbit" type="button">提交</button>
 					</div>
 			</div>
+			</div></div>
+			
 		</div>
 	</body>
 </html>

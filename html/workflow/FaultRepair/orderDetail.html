@@ -80,14 +80,15 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title" style="color:#FFF;">维修工单详情</h1>
 		</header>
-		<div class="mui-content mui-scroll-wrapper">
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper" style="top: 50px; ">
 				<div class="mui-scroll">
 					<div class="orderContent title" id="orderBaseInfoUl">
 						<script id="orderBaseInfoImpl" type="text/html">
 							<div class="icon iconfont icon-weixiu"></div>
 							<div class="orderBaseInfo">
 							<div class="stepTitle">
-								<span>当前环节：</span><span>{{activityName}}</span>
+								<span>当前环节：</span><span id="currentFlowStep" data-actid="{{activityId}}">{{activityName}}</span>
 							</div>
 							<div class="orderNum">
 								<span>工单编号：</span><span>{{orderNum}}</span></div>
@@ -171,18 +172,21 @@
 						{{/each}}
 						</script>
 				</div>
-			
+		</div>
 	</div>
 </div>
 
 		
-		
+		<!--底部选项栏-->
+		<nav class="mui-bar mui-bar-tab" id="flowOperBar" style="display:none">
+			<a class="mui-tab-item" data-oper="agree">
+				<span class="mui-tab-label" >审批</span>
+			</a>
+			<a class="mui-tab-item" data-oper="refusal" style="border-left: 1px solid #ddd;">
+				<span class="mui-tab-label">拒绝</span>
+			</a>
+		</nav>	
 						
-							
-
-		
-
-
 
 	</body>
 </html>

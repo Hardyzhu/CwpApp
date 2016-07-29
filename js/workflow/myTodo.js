@@ -2,10 +2,6 @@ var todoCount = 1;
 var todoPageNum=1;
 var todoTotalPage=0;
 
-var auditCount = 1;
-var auditPageNum=1;
-var auditTotalPage=0;
-
 mui.init({
   pullRefresh : {
     container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -17,40 +13,19 @@ mui.init({
 });
 
 mui.ready(function(){	
-	mui('.mui-control-content').each(function(){
+	mui('.mui-content').each(function(){
 		var resHeight = window.innerHeight - 109;
 		this.setAttribute("style","min-height:"+resHeight+"px;");
-		var isActive = this.classList.contains('mui-active') ? true : false;
-		if(isActive){
-			var state = this.getAttribute('data-state');
-			if(state == 'mytodoTab'){
-				loadMyToDoList();
-			}else if(state == 'myauditTab'){
-				loadMyAuditList();
-			}
-			
-		}
+			loadMyToDoList();		
 	});
+
 	
 	mui('.mui-scroll-wrapper').scroll({
 		scrollX: false, //是否横向滚动
 		indicators: true, //是否显示滚动条
 		deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
  		bounce: false //是否启用回弹
-	});
-	
-	var item2Show=false;//子选项卡是否显示标志
-	document.querySelector('.mui-slider').addEventListener("slide",function(event){
-		 if (event.detail.slideNumber === 1&&!item2Show) {
-		    //切换到第二个选项卡
-		    loadMyAuditList();
-		    item2Show = true;
-  		}
-	});
-	
-	
-
-	
+	});	
 
 });
 
@@ -78,9 +53,7 @@ function loadMyToDoList(){
 				}
 				todoCount++;
 				todoTotalPage=ret.data.object.totalPage;
-
-
-					
+				
 			}else{
 				mui.toast(responData.returnMessage);
 			}
@@ -88,7 +61,7 @@ function loadMyToDoList(){
 		
 	});
 	
-	mui(".mui-slider-group").on("tap",".item",function(){
+	mui(".mui-scroll-wrapper").on("tap",".item",function(){
 		var id = this.getAttribute("id");
 		var pid= this.getAttribute("data-pid");
 		var taskId= this.getAttribute("data-taskId");
@@ -111,38 +84,6 @@ function gotoNextPage(url,urlId,extras){
 		},
 		extras:extras
 	});
-}
-
-function loadMyAuditList(){
-			
-	var options={
-		currentPage:auditPageNum,
-		pageSize:10
-	};
-	
-	amGloble.web.MY_AUDIT_LIST.exec(options,function(ret){
-		console.log(ret);
-		if(ret.result!=undefined && ret.result==0){
-			var responData=ret.data;
-			if(responData.returnCode!=undefined && responData.returnCode=="0"){
-				
-				var auditListUl=mui("#myauditlist");
-				var html = template('myAuditTmpl', responData);
-				
-				if(auditCount==1){
-					auditListUl[0].innerHTML = html;
-				}else{
-					auditListUl[0].innerHTML += html;
-				}
-				auditCount++;
-				auditTotalPage=ret.data.object.totalPage;
-			}else{
-				mui.toast(responData.returnMessage);
-			}
-		}
-		
-	});
-	
 }
 
 function pullfreshUp(){

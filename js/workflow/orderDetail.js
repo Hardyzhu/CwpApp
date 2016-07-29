@@ -1,18 +1,19 @@
 mui.init();
 var orderNO="20160725143544175003";
+var currenActivitid="";
+var taskId="";
+
 mui.ready(function(){
-	console.log("23");
+	var self=this;
 	mui('.mui-scroll-wrapper').scroll({
 		 scrollY: true, //是否竖向滚动
 		 scrollX: false, //是否横向滚动
-		 indicators: true, //是否显示滚动条
+		 indicators: false, //是否显示滚动条
 		 deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
 		 bounce: true //是否启用回弹
 	});
 	
-
-	
-		//调用电话
+	//调用电话
 	mui('.mui-table-view').on('tap', '#goDetail', function() {
 		var phone = this.getAttribute('data-phone');
 		if(window.plus){
@@ -21,16 +22,18 @@ mui.ready(function(){
 			document.addEventListener("plusready",toPhone(phone),false);
 		}
 	});
-	function toPhone(){
-		plus.device.dial(phone, false);
-	}
+
 	if(mui.os.plus){
 		
 		mui.plusReady(function(){
-			var self=plus.webview.currentWebview();
-			console.log(self.orderNum);
+			var _self=plus.webview.currentWebview();
+			console.log(_self);
+			orderNO=_self.orderNum;
+			currenActivitid=_self.processInstId;
+			taskId=_self.taskId;
+			
 			var options={
-				"businessKey":self.orderNum,
+				"businessKey":orderNO,
 				currentPage:1,
 				pageSize:1000
 			};
@@ -41,15 +44,36 @@ mui.ready(function(){
 	}else{
 		
 		var options={
-			"businessKey":orderNO,
-			currentPage:1,
-			pageSize:1000
+				"businessKey":orderNO,
+				currentPage:1,
+				pageSize:1000
 		}
 		loadDetailInfo(options);
 	}
 	
+	
+	mui("#flowOperBar").on("tap",".mui-tab-item",function(){
+		var oid=this.getAttribute('data-oper');
+		var currentAid=mui("#currentFlowStep")[0].getAttribute('data-actid');
+		console.log(oid);
+		console.log(currentAid)
+		var extras={
+			operId:oid,
+			curAid:currentAid,
+			processInstId:currenActivitid,
+			taskId:taskId,
+			businessKey:orderNO
+		};
+		
+		self.gotoNextPage("orderAudit.html","orderAudit",extras)
+	})
+	
 });
 
+function toPhone(phone){
+	plus.device.dial(phone, false);
+}
+	
 function loadDetailInfo(options){
 		amGloble.web.AUDIT_HISTORY.exec(options,function(ret){
 		
@@ -63,6 +87,13 @@ function loadDetailInfo(options){
 				var orderBaseInfoUl=mui("#orderBaseInfoUl");
 				var oPosone = mui('#posoneUl');
 				
+				if(validPermission(responData.bean)){
+					var wrap=mui(".mui-scroll-wrapper")[0];
+					wrap.setAttribute("style","top:50px;bottom:50px;");
+					var flowOperBar=mui("#flowOperBar")[0];
+					flowOperBar.removeAttribute("style");
+				}
+
 				
 				
 				
@@ -106,4 +137,43 @@ function loadDetailInfo(options){
 			}
 		}
 	});
+}
+
+function gotoNextPage(url,urlId,extras){
+	mui.openWindow({
+		url: url,
+		id: urlId,
+		waiting: {
+			autoShow: false
+		},
+		extras:extras
+	});
+}
+
+function validPermission(data){
+	var showButton=false;
+	if(data.person!=undefined && amGloble.userInfo.userId !=undefined){
+		if(data.person==amGloble.userInfo.userId){
+			showButton=true;
+			return showButton;
+		}
+	}
+	
+	if(amGloble.userInfo.role !=undefined && amGloble.userInfo.role.length !=undefined
+		&& amGloble.userInfo.role.length>0 &&
+		data.currGroup !=undefined && data.currGroup !=""){
+		var currGroupAry=data.currGroup.split(",");
+		if(currGroupAry.length>0){
+			mui.each(amGloble.userInfo.role,function(index,item){
+		  		console.log(item);
+		  		if(currGroupAry.indexOf(item)>=0){
+		  			showButton=true;
+					return showButton;
+		  		}
+			}) 
+		}		
+	}
+		
+	return showButton;
+	
 }
