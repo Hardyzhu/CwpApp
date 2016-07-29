@@ -1224,7 +1224,8 @@
 					"image/mes-02.png",
 					"html/main/message.html",
 					"image/mes-01.png",
-					"image/mes-03.png"
+					"image/mes-03.png",
+					"html/main/warn.html"
 				],
 				"refer": [
 					"html/main/user.html",
@@ -1284,6 +1285,21 @@
 					"js/template.js",
 					"fonts/demo.css",
 					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/main/warn.html": {
+				"resources": [
+					"image/mes-04.png",
+					"fonts/iconfont.css",
+					"js/mui.conf.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/message.css",
+					"image/mes-01.png",
+					"css/mui.min.css",
+					"image/mes-05.png"
 				],
 				"refer": [],
 				"priority": 0
