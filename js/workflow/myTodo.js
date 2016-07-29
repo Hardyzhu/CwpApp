@@ -19,6 +19,10 @@ mui.ready(function(){
 			loadMyToDoList();		
 	});
 
+	window.addEventListener('refreshOrderDetailPage',function(event){
+	  //通过event.detail可获得传递过来的参数内容
+	  loadMyToDoList();		
+	});
 	
 	mui('.mui-scroll-wrapper').scroll({
 		scrollX: false, //是否横向滚动

@@ -1,9 +1,22 @@
-mui.init();
 var operId="";
 var curAid="";
 var processInstId="";
 var taskId="";
 var businessKey="";
+
+mui.init(
+	{  
+	    beforeback: function() {  
+	    		//获得列表界面的webview  
+			    var orderDetail = plus.webview.currentWebview().opener();  
+			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			    mui.fire(orderDetail, 'refreshOrderDetailPage');  
+			    //返回true，继续页面关闭逻辑  
+			    return true;
+	    }  
+	}
+);
+
 
 mui.ready(function(){
 	var self=this;
@@ -32,6 +45,8 @@ mui.ready(function(){
 	}
 	
 	mui(".mui-button-row").on("tap","#sumbit",function(){
+		this.setAttribute("disabled","true");
+		
 		var comment=mui("#auditComment")[0].value.trim();
 		if(comment!=null && comment!=""){
 			var options={
@@ -90,6 +105,7 @@ function acceptanceOrder(options){
 }
 
 function resultValid(ret){
+	
 	if(ret.result!=undefined && ret.result==0){
 		var responData=ret.data;
 		if(responData.returnCode!=undefined && responData.returnCode=="0"){
@@ -100,8 +116,10 @@ function resultValid(ret){
 			
 		}else if(responData.returnCode=="-9999"){					
 			mui.toast("服务器接口内部错误！");
+			mui("#sumbit")[0].removeAttribute("disabled");
 		}else{
 			mui.toast("未知异常！");
+			mui("#sumbit")[0].removeAttribute("disabled");
 		}
 		
 	}

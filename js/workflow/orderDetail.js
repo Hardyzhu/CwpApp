@@ -1,7 +1,19 @@
-mui.init();
+mui.init(
+	{  
+	    beforeback: function() {  
+	    		//获得列表界面的webview  
+			    var orderDetail = plus.webview.currentWebview().opener();  
+			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			    mui.fire(orderDetail, 'refreshOrderDetailPage');  
+			    //返回true，继续页面关闭逻辑  
+			    return true;
+	    }  
+	}
+);
 var orderNO="20160725143544175003";
 var currenActivitid="";
 var taskId="";
+var localOptions={};
 
 mui.ready(function(){
 	var self=this;
@@ -11,6 +23,12 @@ mui.ready(function(){
 		 indicators: false, //是否显示滚动条
 		 deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
 		 bounce: true //是否启用回弹
+	});
+	
+	window.addEventListener('refreshOrderDetailPage',function(event){
+	  //通过event.detail可获得传递过来的参数内容
+	  console.log(localOptions);
+	  loadDetailInfo(localOptions);
 	});
 	
 	//调用电话
@@ -32,23 +50,23 @@ mui.ready(function(){
 			currenActivitid=_self.processInstId;
 			taskId=_self.taskId;
 			
-			var options={
+			localOptions={
 				"businessKey":orderNO,
 				currentPage:1,
 				pageSize:1000
 			};
-			loadDetailInfo(options);
+			loadDetailInfo(localOptions);
 		})
 
 		
 	}else{
 		
-		var options={
+		localOptions={
 				"businessKey":orderNO,
 				currentPage:1,
 				pageSize:1000
 		}
-		loadDetailInfo(options);
+		loadDetailInfo(localOptions);
 	}
 	
 	
@@ -87,11 +105,14 @@ function loadDetailInfo(options){
 				var orderBaseInfoUl=mui("#orderBaseInfoUl");
 				var oPosone = mui('#posoneUl');
 				
-				if(validPermission(responData.bean)){
-					var wrap=mui(".mui-scroll-wrapper")[0];
+				var flowOperBar=mui("#flowOperBar")[0];
+				var wrap=mui(".mui-scroll-wrapper")[0];
+				if(validPermission(responData.bean)){					
 					wrap.setAttribute("style","top:50px;bottom:50px;");
-					var flowOperBar=mui("#flowOperBar")[0];
 					flowOperBar.removeAttribute("style");
+				}else{
+					wrap.setAttribute("style","top:50px;");
+					flowOperBar.setAttribute("style","display: none;");
 				}
 
 				
