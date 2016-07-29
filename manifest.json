@@ -189,9 +189,22 @@
 					"json/main/order.json",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"image/icon-11-3.png",
+					"fonts/iconfont.woff",
+					"image/mes-04.png",
+					"fonts/iconfont.css",
+					"html/main/message.html",
+					"css/common.css",
+					"js/mui.conf.js",
+					"css/message.css",
+					"image/mes-01.png",
+					"image/mes-05.png"
 				],
-				"refer": [],
+				"refer": [
+					"html/main/user.html",
+					"html/main/home.html"
+				],
 				"priority": 0
 			},
 			"html/main/home.html": {
@@ -336,7 +349,12 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/checkValue.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"image/icon-11-3.png",
+					"css/new.css",
+					"js/mask/mask.js",
+					"js/mask/mask.css",
+					"css/add.css"
 				],
 				"refer": [
 					"html/login/login.html"
@@ -1225,7 +1243,9 @@
 					"html/main/message.html",
 					"image/mes-01.png",
 					"image/mes-03.png",
-					"html/main/warn.html"
+					"html/main/warn.html",
+					"html/main/se_alarm.html",
+					"html/main/order.html"
 				],
 				"refer": [
 					"html/main/user.html",
@@ -1243,10 +1263,15 @@
 					"css/common.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/add.css"
+					"css/add.css",
+					"fonts/iconfont.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [
-					"html/workflow/FaultRepair/myAuditList.html"
+					"html/workflow/FaultRepair/myAuditList.html",
+					"html/workflow/FaultRepair/ccToMe.html",
+					"html/workflow/FaultRepair/myCreate.html",
+					"html/workflow/FaultRepair/myToDo.html"
 				],
 				"priority": 0
 			},
@@ -1284,6 +1309,109 @@
 					"css/mui.min.css",
 					"js/template.js",
 					"fonts/demo.css",
+					"css/add.css"
+				],
+				"refer": [
+					"html/workflow/FaultRepair/orderAudit.html"
+				],
+				"priority": 0
+			},
+			"html/workflow/FaultRepair/ccToMe.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"fonts/iconfont.css",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/demo.css",
+					"css/add.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/workflow/FaultRepair/myCreate.html": {
+				"resources": [
+					"js/workflow/webUtils.js",
+					"js/workflow/myCreate.js",
+					"image/icon-11-3.png",
+					"fonts/iconfont.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js",
+					"fonts/demo.css",
+					"fonts/iconfont.woff",
+					"css/add.css"
+				],
+				"refer": [
+					"html/workflow/FaultRepair/orderDetail.html"
+				],
+				"priority": 0
+			},
+			"html/workflow/FaultRepair/myToDo.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"js/workflow/myTodo.js",
+					"js/workflow/webUtils.js",
+					"fonts/iconfont.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js",
+					"fonts/demo.css",
+					"fonts/iconfont.woff",
+					"css/add.css"
+				],
+				"refer": [
+					"html/workflow/FaultRepair/orderDetail.html"
+				],
+				"priority": 0
+			},
+			"html/workflow/FaultRepair/orderAudit.html": {
+				"resources": [
+					"css/new.css",
+					"js/workflow/orderAudit.js",
+					"image/icon-11-3.png",
+					"js/workflow/webUtils.js",
+					"fonts/iconfont.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js",
+					"css/add.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/main/se_alarm.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"fonts/mui.ttf",
+					"fonts/iconfont.woff",
+					"image/mes-04.png",
+					"fonts/iconfont.css",
+					"html/main/message.html",
+					"css/common.css",
+					"js/mui.min.js",
+					"js/mui.conf.js",
+					"css/message.css",
+					"css/mui.min.css",
+					"image/mes-01.png",
+					"image/mes-05.png"
+				],
+				"refer": [
+					"html/main/user.html",
+					"html/main/home.html"
+				],
+				"priority": 0
+			},
+			"html/user/systemnotification.html": {
+				"resources": [
+					"image/icon-11-3.png",
 					"css/add.css"
 				],
 				"refer": [],
