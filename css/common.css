@@ -51,9 +51,9 @@ a:active { outline: 0; }
 .comlogo{
 	width:40px;
 	height:40px;
-	font-size:23px;
+	font-size:36px!important;
 	color:#FFF;
-	line-height:40px;
+	line-height:42px;
 	text-align:center;
 	display:inline-block;
 	-webkit-border-radius:100%;
