@@ -11,32 +11,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
 		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
 		<style>
-			.barNav{
-				list-style: none;
-				background: #FFFFFF;
-				padding:5px 0;
-				margin-bottom:10px;
-				border-top:1px solid #DEDEDE;
-				border-bottom:1px solid #DEDEDE;
+			.mesR{
+				position: relative;
 			}
-			.barNav li{
-				float:left;
-				border-right:1px solid #DEDEDE;
-				padding:4px 0;
-				font-size:1.4rem;
-				color:#9C9C9C;
-				text-align:center;
+			.mesA{
+				position: absolute;
+				right:-5px;
+				top:-5px;
+				
 			}
-			.mui-icon{
-				font-size:1.4rem;
-			}
-			.searchData{
-				margin: 15px 15px 0;
+			.mesDate,
+			.mesLevel{
+				display:none;
+				opacity: 0;
+				filter:alpha(opacity:0);
 			}
 		</style>
 	</head>
@@ -44,197 +38,238 @@
 		<!--内容部分-->
 		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 			<div class="mui-scroll">
-				<!--搜索部分-->
-				<!--<div class="mui-content-padded searchData">
-					<div class="mui-input-row mui-search">
-						<input type="search" class="mui-input-clear" placeholder="请输入关键字" />
-					</div>
+				<div class="mui-col-xs-12" id="list">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<span class="mui-media-object mui-pull-left mesR">
+									<span class="mui-badge mui-badge-danger mesA"></span>
+									<img class="mui-media-object" src="../../image/mes-01.png" />
+								</span>
+								<div class="mui-media-body">
+									安防告警消息
+									<span class="mui-pull-right com_detail_color mesDate"></span>
+									<p class='mui-ellipsis'>
+										<span class="mesCon"></span>
+										<span class="mui-pull-right mesLevel"></span>
+									</p>
+								</div>
+							</a>
+						</li>	
+					</ul>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<span class="mui-media-object mui-pull-left mesR">
+									<span class="mui-badge mui-badge-danger mesA"></span>
+									<img class="mui-media-object" src="../../image/mes-02.png" />
+								</span>
+								<div class="mui-media-body">
+									故障告警消息
+									<span class="mui-pull-right com_detail_color mesDate"></span>
+									<p class='mui-ellipsis'>
+										<span class="mesCon"></span>
+										<span class="mui-pull-right mesLevel"></span>
+									</p>
+								</div>
+							</a>
+						</li>	
+					</ul>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<span class="mui-media-object mui-pull-left mesR">
+									<span class="mui-badge mui-badge-danger mesA"></span>
+									<img class="mui-media-object" src="../../image/mes-03.png" />
+								</span>
+								<div class="mui-media-body">
+									工单待办消息
+									<span class="mui-pull-right com_detail_color mesDate"></span>
+									<p class='mui-ellipsis'>
+										<span class="mesCon"></span>
+										<span class="mui-pull-right mesLevel"></span>
+									</p>
+								</div>
+							</a>
+						</li>	
+					</ul>
 				</div>
-				<ul class="mui-col-xs-12 barNav clearfix">
-					<li class="mui-col-xs-3">排序
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-					<li class="mui-col-xs-3">类别
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-					<li class="mui-col-xs-3">未恢复
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-					<li class="mui-col-xs-3" style="border:none;">与我相关
-						<span class="mui-icon mui-icon-arrowdown"></span>
-					</li>
-				</ul>-->
-				<div class="mui-col-xs-12" id="list"></div>
 			</div>
 		</div>
-		<script id="detailTmpl" type="text/html">
-			{{each beans}}
-				<div class="mui-col-xs-12 mb5 dataList list-pannel">
-					<h3 class="list-title">{{$value.deviceName}}
-						<span class="emergency mui-pull-right">
-							{{if $value.warningLevel == 0}}
-							    <span class="scile scileLow"></span>
-								<span class="sileSize sileLow">低</span>
-							{{else if $value.warningLevel == 2}}
-							    <span class="scile scileMiddle"></span>
-								<span class="scile scileMiddle"></span>
-								<span class="sileSize sileMiddle">中</span>
-							{{else}}
-							    <span class="scile scileHeight"></span>
-								<span class="scile scileHeight"></span>
-								<span class="scile scileHeight"></span>
-								<span class="sileSize sileHeight">高</span>
-							{{/if}}
-						</span>
-					</h3>
-					<div class="mui-col-xs-12 muiDetail list-body">
-						{{$value.eventDescribe}}
-					</div>
-					<div class="mui-col-xs-12 muiDetail">				
-					    {{if $value.eventProcessStatus == 1}}
-						    <span class="btnState redColor font1rem">未恢复</span>
-						{{else if $value.eventProcessStatus == 2}}
-						    <span class="btnState blueColor font1rem">处理中</span>
-						{{else}}
-						    <span class="btnState greenColor font1rem">已恢复</span>
-						{{/if}}
-						<span class="Timecolor">{{$value.applyTime}}</span>
-						<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
-							查看详情
-							<span class="mui-icon mui-icon-arrowright"></span>
-						</a>
-					</div>
-				</div>
-		    {{/each}}		
-		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/mask/mask.js"></script>
 		<script src="../../js/mui.conf.js"></script>
+		<script src="../../js/DBUtils.js"></script>	
+		<script src="../../js/getData.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				pullRefresh: {
-					container: '#pullrefresh',
-					up: {
-						callback: pullupRefresh
-					}
-				}
-			});
+			mui.init();
 			var userId;
-			mui.plusReady(function() {
-				var self = plus.webview.currentWebview();
-				//预加载
-				var messagedetail = null;
-				if(!messagedetail){
-					messagedetail = mui.preload({
-					     url:"../task/messagedetail.html",
-					     id:"messagedetail"
-					});
-				}
-				var isLogin = plus.storage.getItem("userInfo");
-				if(isLogin){
-					userId = JSON.parse(isLogin).userId;
-					getProductList(userId);
-				}
-				/**
-				 * 跳转到详情页面
-				 */
-				var detailPage = null;
-				mui('.mui-content').on('tap', '.goToDel', function(e) {
-					//console.log(abData);
-					var warningEventId = this.getAttribute("data-id");
-					var warningCategoryId = this.getAttribute("data-uid");
-					//自定义事件
-					mui.fire(messagedetail,'detailId',{
-					    warningEventId:warningEventId,
-					    warningCategoryId:warningCategoryId
-					});
-					//打开页面
-					mui.openWindow({
-					  id:'messagedetail'
-					});
-				});
-				
-				/*
-				 * 添加自定义事件，用于登录后刷新数据；
-				 */
-				window.addEventListener("getMessage",function(event){
-					console.log(1);
-					userId = event.detail.isLogin.userId;
-					getProductList(userId);
-				});
-			});
-			var page = 1;
-			var mark = false;
-			//渲染数据
-			function getProductList(userId) { //获取工单列表
-				qmask.show();
-				mui.ajax({
-					url: global_url+"/cwp/front/sh/warningEvent!execute",
-					type: "post",
-					async: true,
-					data: {
-						uid: 'c019',
-						currentPage:page,
-						pageSize:'5',
-						responseOfficerId:userId,
-						eventType:3
-					},
-					dataType: "json",
-					timeout: 20000,
-					success: function(data) {
+			var message = null;
+			// 监听plusready事件  
+			
+			document.addEventListener( "plusready", function(){
+				var pram = {
+					status:'0',
+					type:'SECURITY'
+				};
+				$$.selectData(pram);
+				$$.selectData({type:'WARN'});
+				$$.selectData({type:'ORDER'});
+				message = document.getElementById("message");
+				plus.push.addEventListener( "click", function( msg ) {
+                    // 判断是从本地创建还是离线推送的消息
+                    switch (msg.payload) {
+                        case "LocalMSG":
+                            outSet("点击本地创建消息启动：");
+                            break;
+                        default:
+                        	saveMsg(msg);
+                            outSet("点击离线推送消息启动：");
+                            break;
+                    }
+                    // 处理其它数据
+					logoutPushMsg( msg );
+			    }, false );
+			    // 监听在线消息事件
+			    plus.push.addEventListener( "receive", function( msg ) {
+                    if (msg.aps) { // Apple APNS message
+                        alert("接收到在线APNS消息：");
+                    } else {
+                        alert("接收到在线透传消息：");
+                    }
+                    saveMsg(msg);
+			    }, false );
+			    
+			    
+				function saveMsg(msg){
+					var data = eval('('+msg.payload+')');
+					alert(JSON.stringify(data));
+					alert(data.content);
+					alert(data.eventId);
+					var msgJs={
+            			eventId:data.eventId,
+			    		title:msg.title,
+			    		type:data.messageType,
+			    		content:msg.content,
+			    		processAction:data.processAction,
+			    		messageNo:data.messageNo,
+			    		messageLevel:data.messageLevel,
+			    		status:'0'
+	            	};
+			    	alert(JSON.stringify(msgJs));
+			    	websql.insertPushMessage(msgJs,function(res){
+			    		/*alert('远程消息返回值'+res.responseData);
+			    		alert('远程消息返回状态'+res.status);*/
+			    		//预加载
+						//新消息获取个数
+						
+//						websql.selectPushMsgByType({type:'SECURITY'},function(res){
+//							if((res.responseData instanceof Array)&&(res.responseData.length>0)){
+//								//result = res.responseData[0];
+//								alert(JSON.stringify(res.responseData[0]));
+//								alert(JSON.stringify(res.responseData));
+//								//mark = true;
+//							}
+//						 	/*if(res.responseData.length>0){
+//						 		document.getElementById("eventOrder").innerHTML=res.responseData[0].content;
+//						 		document.getElementById("ordertime").innerHTML=res.responseData[0].pushDate;
+//						 		document.getElementById("ordername").innerHTML=res.responseData[0].pushDate;
+//						 	}else{
+//						 		document.getElementById("eventOrder").innerHTML='暂无消息';
+//						 		document.getElementById("ordertime").innerHTML='';
+//						 		document.getElementById("ordername").innerHTML='陈金波';
+//						 	}*/
+//						});
+//						websql.selectPushMsgByType({type:'WARN'},function(res){
+//							if((res.responseData instanceof Array)&&(res.responseData.length>0)){
+//								//result = res.responseData[0];
+//								alert(JSON.stringify(res.responseData[0]));
+//								alert(JSON.stringify(res.responseData));
+//								//mark = true;
+//							}
+//						 	/*if(res.responseData.length>0){
+//						 		document.getElementById("eventOrder").innerHTML=res.responseData[0].content;
+//						 		document.getElementById("ordertime").innerHTML=res.responseData[0].pushDate;
+//						 		document.getElementById("ordername").innerHTML=res.responseData[0].pushDate;
+//						 	}else{
+//						 		document.getElementById("eventOrder").innerHTML='暂无消息';
+//						 		document.getElementById("ordertime").innerHTML='';
+//						 		document.getElementById("ordername").innerHTML='陈金波';
+//						 	}*/
+//						});
+//						websql.selectPushMsgByType({type:'ORDER'},function(res){
+//							if((res.responseData instanceof Array)&&(res.responseData.length>0)){
+//								//result = res.responseData[0];
+//								alert(JSON.stringify(res.responseData[0]));
+//								alert(JSON.stringify(res.responseData));
+//								//mark = true;
+//							}
+//						 	/*if(res.responseData.length>0){
+//						 		document.getElementById("eventOrder").innerHTML=res.responseData[0].content;
+//						 		document.getElementById("ordertime").innerHTML=res.responseData[0].pushDate;
+//						 		document.getElementById("ordername").innerHTML=res.responseData[0].pushDate;
+//						 	}else{
+//						 		document.getElementById("eventOrder").innerHTML='暂无消息';
+//						 		document.getElementById("ordertime").innerHTML='';
+//						 		document.getElementById("ordername").innerHTML='陈金波';
+//						 	}*/
+//						});
+						/*var mes = {};
+						$$.selectData({status:'0'});
+						mes.security = $$.selectData({type:'SECURITY'});
+						mes.warn = $$.selectData({type:'WARN'});
+						mes.order = $$.selectData({type:'ORDER'});
+						alert(JSON.stringify(mes));
+						for(var i = 0 in count_obj){
+							switch(i){
+								case 'security':
+									mes.security.count(count_obj[i]);
+									break;
+								case 'warn':
+									mes.warn.count(count_obj[i]);
+									break;
+								case 'order':
+									mes.order.count(count_obj[i]);
+									break;
+							}
+						}
+						alert(JSON.stringify(mes));
+						//渲染数据
+						
 						var oList = document.getElementById("list");
-						var html = template('detailTmpl', data);
-						oList.innerHTML += html;
-						if(data.beans instanceof Array && data.beans.length<5){
-							mark = true;
-							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
-							setTimeout(function(){
-								mui.toast('没有更多数据了!');
-							},500);
-							qmask.hide();
-							return;
-						}
-						qmask.hide();
-					},
-					error: function(xhr, type, errorThrown) {
-						if(type=='timeout'){
-							console.log('message');
-							mui.toast('请求超时:请检查网络!');
-						}else {
-							mui.toast('数据加载失败');
-						}
-						qmask.hide();
-					}
-				});
-			}
-			
-			/**
-			 * 上拉加载具体业务实现
-			 */
-			function pullupRefresh() {
-				if(!mark){
-					qmask.show();
-					setTimeout(function() {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(mark); //参数为true代表没有更多数据了。
-						page++;
-						getProductList(userId);
-					}, 1500);
+						var html = template('detailTmpl', mes);
+						oList.innerHTML += html;*/
+						var pram = {
+							status:'0',
+							type:'SECURITY'
+						};
+						$$.selectData(pram);
+						$$.selectData({type:'WARN'});
+						$$.selectData({type:'ORDER'});
+						/*mes.security = $$.selectData({});
+						mes.warn = $$.selectData({});
+						mes.order = $$.selectData({});*/
+						template.helper('numFormat',function(inp){
+							if(inp>=99){
+								return '99+';
+							}else{
+								return inp;
+							}
+						});
+			    	});
 				}
-			}
-			if (mui.os.plus) {
-				mui.plusReady(function() {
-					setTimeout(function() {
-						mui('#pullrefresh').pullRefresh().pullupLoading();
-					}, 1000);
-
-				});
-			} else {
-				mui.ready(function() {
-					mui('#pullrefresh').pullRefresh().pullupLoading();
-				});
-			}
+				
+				
+			}, false );
 			
+			/*mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				/*var message = null;
+				message = document.getElementById('message');*/
+				
+			    
+			//});*/
 		</script>
 	</body>
 </html>
