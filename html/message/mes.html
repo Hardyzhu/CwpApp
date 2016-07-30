@@ -30,7 +30,7 @@
 			<a class="mui-tab-item mui-active" data-href="mes.html" style="position: relative;">
 				<span class="mui-icon icon iconfont">&#xe612;</span>
 				<span class="mui-tab-label">消息</span>
-				<span class="mui-badge mui-badge-danger" id="new-mes"  style=" position: absolute; top: 0px; z-index: 1000; padding: 6px; display: none;"></span>
+				<span class="mui-badge mui-badge-danger" id="new-mes"  style=" position: absolute; top: 0px; z-index: 1000; padding: 6px; display: inline;"></span>
 			</a>
 			<a class="mui-tab-item " data-href="../main/home.html">
 				<span class="mui-icon icon iconfont">&#xe622;</span>
@@ -163,6 +163,13 @@ function saveMsg(msg){
 		  	}
 		  	
 		  });
+		  //刷新消息条数
+//		  $(document).ready(function(){
+//			  $("#btn1").click(function(){
+//			    $('#test').load('/example/jquery/demo_test.txt');
+//			  })
+//			})
+//		  
 		 //点击查看
 //		 	document.getElementById("sec").onclick=function(){
 //				  		document.getElementById("order").innerHTML=0;

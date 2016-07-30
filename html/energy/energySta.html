@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>能耗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="../../css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+    <!-- App自定义的css -->
+    <!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/new.css"/>
+    <link rel="stylesheet" href="../../fonts/iconfont.css">
+</head>
+
+<body>
+<style>
+    .mui-control-content {min-height: 800px;}
+    /*.mui-control-content .mui-loading {margin-top: 50px;}*/
+    .top{background:#f1f1f1}/*设置历史情况背景颜色*/
+    .history{padding:10px;font-size: 14px;color:#aeaeae} /*历史情况*/
+    .history .tbn{float: right;background-color: #fff;font-size: 12px;padding: 0 3px;border:1px solid #d4d4d4;border-radius: 3px;} /*历史数据button*/
+    /*.today{display: block;padding:0 10px 10px 10px;font-size: 14px;color: #3d3d3d;} *//*今日耗电量*/
+    .mui-slider .mui-slider-group{margin-top: 0;background: transparent}  /*调整头部间距及颜色*/
+    .mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border-top: none}/*去掉头部边界限*/
+    .mui-slider .mui-slider-group .mui-slider-item, .mui-slider-indicator, .classify{background: transparent} /*设置背景颜色为透明*/
+    .mui-control-content{background: transparent} /*设置背景颜色为透明*/
+    /*.mui-table{padding:10px;background-color: #FFFFFF;margin-bottom: 10px}*//*楼层容器*/
+    /*.color-block{background-color: #007aff;line-height: 30px;padding: 0 20px;color: #FFFFFF;}*//*设备容器*/
+    /*.col-float{float: left;padding:5px}*//*设备容器 浮动*/
+    /*.mui-ellipsis-2{padding: 0 5px}*//*标题padding*/
+    .mui-ellipsis-2 .data{padding-left: 10px;color: #000}/*标题数据间距*/
+    /*.see{font-size: 14px;float: right;color: #aeaeae;}*//*查看详情样式*/
+    .right-time{font-size: 14px;right: 35px;top:12px;color: #aeaeae;position: absolute}/*查看详情样式*/
+    .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding-right: 5px}/*查看详情“！”样式*/
+    .calendar-box{padding: 15px 10px}
+    .calendar-input{width:42%;height:30px;padding: 5px 10px;font-size: 14px;;border: 1px solid #CCC;background:#FFFFFF url(../../image/icon-003.png) no-repeat right 3px;border-radius: 3px;position: relative}
+    .calendar-btn{width:14%;height: 30px;padding: 5px;background-color:#007aff;border-radius: 3px;text-align: center;float: right;}
+    .mui-slider .mui-slider-group .mui-slider-item img{width: 20px;padding: 2px;}
+    .chart {height: 200px;margin: 0px;padding: 0px;}
+	 .mui-bar-popover {width: 30%;text-align: center;}
+</style>
+
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">能耗统计
+    <a class="mui-tab-item" href="#Popover_0" style="float: right;">产品</a>
+    </h1>
+</header>
+<div class="mui-content">
+		<!--右上二级带单-->
+	<div id="Popover_0" class="mui-popover mui-bar-popover">
+		<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="#">用电</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#">用水</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#">燃气</a>
+				</li>
+			</ul>
+	</div>
+    <div id="slider" class="mui-slider">
+        <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+            <a class="mui-control-item" href="#air_real_time">
+                用电趋势
+            </a>
+            <a class="mui-control-item" href="#air_statistical_analysis">
+                楼栋用电
+            </a>
+        </div>
+        <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+
+        <div class="mui-slider-group">
+        	
+            <div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
+                <div id="scroll1" class="mui-scroll-wrapper">
+                    <div class="calendar-box">
+                    <input class="calendar-input"placeholder="请选择年份" id="year"/>
+                    <input class="calendar-input"placeholder="请选择月份" id="month"/>
+                    <span type="button" class="calendar-btn"onclick="search()"><img src="../../image/icon-002.png"></span>
+                    </div>
+                    	<div class="mui-control-content mui-active">
+						<div id="scroll" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-content">
+									<div class="chart-pannel" >
+										<!--<h5>线图示例</h5>-->
+										<div class="chart" id="lineChart"></div>					
+									</div>
+								</div>
+							</div>
+						</div>					
+					</div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
+                 <div id="scroll1" class="mui-scroll-wrapper">
+                    <div class="calendar-box">
+                        <input class="calendar-input"placeholder="请选择年份"/>
+                        <input class="calendar-input"placeholder="请选择月份"/>
+    				    <span type="button" class="calendar-btn"><img src="../../image/icon-002.png"></span>
+                    </div>
+		                <div class="mui-control-content mui-active">
+							<div id="scroll" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<div class="mui-content">
+										<div class="chart-pannel">
+											<!--<h5>线图示例</h5>-->
+											<div class="chart" id="barChart"></div>					
+										</div>
+									</div>
+								</div>
+							</div>					
+					</div>		
+				<div>		
+	 				
+					</div>
+				</div>	
+			</div>
+				</div>	   
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/echarts-all.js"></script>
+<script>
+	var getOption = function(chartType) {
+				var chartOption = {
+//					legend: {
+//						data: ['蒸发量', '降水量']
+//					},
+                    color:['#007aff'],
+					grid: {
+						x: 35,
+						x2: 30,
+						y: 30,
+						y2: 25
+					},
+					toolbox: {
+						show: false,
+						feature: {
+							mark: {
+								show: true
+							},
+							dataView: {
+								show: true,
+								readOnly: false
+							},
+							magicType: {
+								show: true,
+								type: ['line', 'bar']
+							},
+							restore: {
+								show: true
+							},
+							saveAsImage: {
+								show: true
+							}
+						}
+					},
+					calculable: false,
+					xAxis: [{
+						type: 'category',
+						boundaryGap : false,
+						data: ['1月', '2月', '3月', '4月', '5月', '6月','7月','8月','9月','10月','11月','12月' ]
+					}],
+					yAxis: [{
+						type: 'value',
+						splitArea: {
+							show: true
+						}
+					}],
+					series: [{
+						name: '耗电量',
+						type: chartType,
+						smooth:true,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [31, 35, 24, 26, 50, 75,102,130,90,85,57,45]
+					}, {
+//						name: '降水量',
+//						type: chartType,
+//						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+					}]
+				};
+				return chartOption;
+			};
+			var byId = function(id) {
+				return document.getElementById(id);
+			};
+			var lineChart = echarts.init(byId('lineChart'));
+			lineChart.setOption(getOption('line'));
+//			byId("echarts").addEventListener('tap',function(){
+//				var url = this.getAttribute('data-url');
+//				plus.runtime.openURL(url);
+//			},false);
+   
+   // 楼东用电
+         // Step:3 echarts和zrender被echarts-plain.js写入为全局接口
+        var myChart = echarts.init(document.getElementById('barChart'));
+        myChart.setOption({
+//          tooltip : {
+//              trigger: 'axis'
+//          },
+//          legend: {
+//              data:['蒸发量','降水量']
+//          },
+//          toolbox: {
+//              show : true,
+//              feature : {
+//                  mark : {show: true},
+//                  dataView : {show: true, readOnly: false},
+//                  magicType : {show: true, type: ['line', 'bar']},
+//                  restore : {show: true},
+//                  saveAsImage : {show: true}
+//              }
+//          },
+//          calculable : true,
+   			color:['#007aff'],
+				grid: {
+					x: 35,
+					x2: 10,
+					y: 30,
+					y2: 25
+				},
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    splitArea : {show : true}
+                }
+            ],
+            series : [
+                {
+                    name:'蒸发量',
+                    type:'bar',
+                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                },
+                {
+//                  name:'降水量',
+//                  type:'bar',
+//                  data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                }
+            ]
+        });
+   
+   
+</script>
+</body>
+
+</html>
