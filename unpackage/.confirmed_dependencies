@@ -17,7 +17,8 @@
 	"index.html": {
 		"resources": [
 			"js/mui.min.js",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"js/DBUtils.js"
 		],
 		"refer": [
 			"guide.html",
@@ -94,7 +95,8 @@
 			"html/home/energy.html",
 			"html/energy/energy.html",
 			"html/home/securityAlarmList.html",
-			"html/home/securityAlarmOld.html"
+			"html/home/securityAlarmOld.html",
+			"html/workflow/JobIndex.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -149,9 +151,24 @@
 		"resources": [
 			"json/main/order.json",
 			"js/mui.min.js",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"image/mes-04.png",
+			"image/icon-11-3.png",
+			"fonts/iconfont.css",
+			"js/mui.conf.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/message.css",
+			"image/mes-01.png",
+			"image/mes-05.png",
+			"fonts/iconfont.woff",
+			"html/main/message.html"
 		],
-		"refer": []
+		"refer": [
+			"html/main/message.html",
+			"html/main/user.html",
+			"html/main/home.html"
+		]
 	},
 	"html/user/userInfo.html": {
 		"resources": [
@@ -212,7 +229,13 @@
 			"css/new.css",
 			"js/mui.conf.js",
 			"js/mask/mask.js",
-			"js/mask/mask.css"
+			"js/mask/mask.css",
+			"image/mes-02.png",
+			"css/message.css",
+			"image/mes-01.png",
+			"image/mes-03.png",
+			"js/DBUtils.js",
+			"js/getData.js"
 		],
 		"refer": [
 			"html/task/securityDetail.html",
@@ -278,7 +301,9 @@
 			"js/mui.conf.js",
 			"image/icon-11-3.png",
 			"css/new.css",
-			"css/add.css"
+			"css/add.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css"
 		],
 		"refer": [
 			"html/user/supages/subEdit.html",
@@ -401,7 +426,9 @@
 			"js/mask/mask.css",
 			"js/mask/mask.js",
 			"fonts/iconfont.css",
-			"fonts/iconfont.woff"
+			"fonts/iconfont.woff",
+			"js/home/securityDetail.js",
+			"image/phone.png"
 		],
 		"refer": [
 			"html/task/report.html",
@@ -602,7 +629,8 @@
 			"html/equipment/json/realTime.json",
 			"js/template.js",
 			"js/analysisEcharts.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"css/new.css"
 		],
 		"refer": [
 			"html/equipment/guard_subdir/subReal.html",
@@ -668,7 +696,13 @@
 			"css/mui.min.css",
 			"js/mask/mask.js",
 			"js/template.js",
-			"css/add.css"
+			"css/add.css",
+			"js/home/securityReport.js",
+			"js/mui.picker.min.js",
+			"css/mui.picker.min.css",
+			"css/new.css",
+			"fonts/iconfont.woff",
+			"fonts/iconfont.css"
 		]
 	},
 	"html/task/securityAlarmDetail.html": {
@@ -1051,10 +1085,19 @@
 			"image/mes-01.png",
 			"image/mes-03.png",
 			"js/DBUtils.js",
-			"html/main/warn.html"
+			"html/main/warn.html",
+			"fonts/iconfont.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"html/main/order.html",
+			"html/main/se_alarm.html"
 		],
 		"refer": [
-			"html/main/warn.html"
+			"html/main/warn.html",
+			"html/main/order.html",
+			"html/main/se_alarm.html"
 		]
 	},
 	"html/main/warn.html": {
@@ -1068,6 +1111,78 @@
 			"image/mes-01.png",
 			"css/mui.min.css",
 			"image/mes-05.png"
+		],
+		"refer": []
+	},
+	"html/user/systemnotification.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"css/home.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mask/mask.js",
+			"js/mask/mask.css",
+			"css/add.css"
+		],
+		"refer": []
+	},
+	"html/main/se_alarm.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"fonts/mui.ttf",
+			"fonts/iconfont.woff",
+			"image/mes-04.png",
+			"fonts/iconfont.css",
+			"html/main/message.html",
+			"css/common.css",
+			"js/mui.min.js",
+			"js/mui.conf.js",
+			"css/message.css",
+			"css/mui.min.css",
+			"image/mes-01.png",
+			"image/mes-05.png"
+		],
+		"refer": [
+			"html/main/message.html",
+			"html/main/user.html",
+			"html/main/home.html"
 		]
+	},
+	"html/workflow/JobIndex.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"js/workflow/webUtils.js",
+			"fonts/iconfont.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/demo.css",
+			"js/workflow/jobIndex.js",
+			"fonts/iconfont.woff",
+			"css/add.css"
+		],
+		"refer": [
+			"html/workflow/FaultRepair/myAuditList.html"
+		]
+	},
+	"html/workflow/FaultRepair/myAuditList.html": {
+		"resources": [
+			"js/workflow/myAuditList.js",
+			"js/template.js",
+			"image/icon-11-3.png",
+			"js/workflow/webUtils.js",
+			"fonts/iconfont.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/demo.css",
+			"css/add.css"
+		],
+		"refer": []
 	}
 }
