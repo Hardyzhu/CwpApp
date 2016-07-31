@@ -49,22 +49,39 @@
 <header class="mui-bar mui-bar-nav">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
     <h1 class="mui-title">能耗统计
-    <a class="mui-tab-item" href="#Popover_0" style="float: right;">产品</a>
+    <!--<a class="mui-tab-item" href="#Popover_0" style="float: right;" id="chanpin">用电</a>-->
     </h1>
+    	<div class="mui-card" style="width: 80px;float: right;background-color: transparent; border: 1px; margin: 0px;padding-top: 5px;padding-bottom: 10px;">
+				<ul class="mui-table-view" style="background-color: rgba(0 ,0, 0, 0); color: #FFFFFF;">
+					<li class="mui-table-view-cell mui-collapse" >
+						<a class="mui-navigate-right" href="#">用电</a>
+						<div class="mui-collapse-content mui-popover-arrow">
+								<ul >
+									<li"><a href="#">用电</a>
+									</li>
+									<li></li"> <a href="#">用水</a>
+									</li>
+									<li><a href="#">燃气</a>
+									</li>
+								</ul>
+						</div>
+					</li>
+				</ul>
+		</div>
 </header>
 <div class="mui-content">
 		<!--右上二级带单-->
-	<div id="Popover_0" class="mui-popover mui-bar-popover">
+	<!--<div id="Popover_0" class="mui-popover mui-bar-popover">
 		<div class="mui-popover-arrow"></div>
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell"><a href="#">用电</a>
+				<li class="mui-table-view-cell"><a href="#"id="">用电</a>
 				</li>
 				<li class="mui-table-view-cell"><a href="#">用水</a>
 				</li>
 				<li class="mui-table-view-cell"><a href="#">燃气</a>
 				</li>
 			</ul>
-	</div>
+	</div>-->
     <div id="slider" class="mui-slider">
         <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
             <a class="mui-control-item" href="#air_real_time">
@@ -80,10 +97,47 @@
         	
             <div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
                 <div id="scroll1" class="mui-scroll-wrapper">
-                    <div class="calendar-box">
-                    <input class="calendar-input"placeholder="请选择年份" id="year"/>
-                    <input class="calendar-input"placeholder="请选择月份" id="month"/>
-                    <span type="button" class="calendar-btn"onclick="search()"><img src="../../image/icon-002.png"></span>
+                    <div class="calendar-box" style="position: relative;">
+                    <!--<input class="calendar-input"placeholder="请选择年份" id="year" value=""/>
+                    <input class="calendar-input"placeholder="请选择月份" id="month"/>-->
+                    
+                    <div>
+                    	<select class="mui-btn mui-btn-block" style="width: 120px;text-align: center; float: left;margin-right: 30px; margin-left: 50px; line-height: 0.8; padding: 10px">
+							<option value="item-1">请选择年份</option>
+							<option value="item-2">2016</option>
+							<option value="item-3">2015</option>
+							<option value="item-4">2014</option>
+							<option value="item-5">2013</option>
+						</select>
+						<select class="mui-btn mui-btn-block" style="width: 120px;text-align: center;  line-height: 0.8;padding: 10px;">
+							<option value="item-1" >请选择月份</option>
+							<option value="item-2">01</option>
+							<option value="item-3">02</option>
+							<option value="item-4">03</option>
+							<option value="item-5">03</option>
+							<option value="item-2">04</option>
+							<option value="item-3">05</option>
+							<option value="item-4">06</option>
+							<option value="item-5">07</option>
+							<option value="item-4">08</option>
+							<option value="item-5">09</option>
+							<option value="item-2">10</option>
+							<option value="item-3">11</option>
+							<option value="item-4">12</option>
+						</select>
+                    <span type="button" class="calendar-btn"onclick="search1()" style="float: right;top: -40px; position: relative;"><img src="../../image/icon-002.png"></span>
+                    </div>
+                    <script type="text/javascript">
+                    	function search1(){
+                    		 var year1 = document.getElementById('year').value
+                    		 if (year1) {
+                    		 	document.getElementById('lineChart').style.display="none";
+                    		 	document.getElementById('lineChart1').style.display="inline";
+                    		 } else{
+                    		 	
+                    		 }
+                    	}
+                    </script>
                     </div>
                     	<div class="mui-control-content mui-active">
 						<div id="scroll" class="mui-scroll-wrapper">
@@ -91,7 +145,8 @@
 								<div class="mui-content">
 									<div class="chart-pannel" >
 										<!--<h5>线图示例</h5>-->
-										<div class="chart" id="lineChart"></div>					
+										<div class="chart" id="lineChart" ></div>
+										<div class="chart" id="lineChart1" style="display: none"></div>
 									</div>
 								</div>
 							</div>
@@ -105,9 +160,36 @@
             <div id="air_statistical_analysis" class="mui-slider-item mui-control-content">
                  <div id="scroll1" class="mui-scroll-wrapper">
                     <div class="calendar-box">
-                        <input class="calendar-input"placeholder="请选择年份"/>
+                        <!--<input class="calendar-input"placeholder="请选择年份"/>
                         <input class="calendar-input"placeholder="请选择月份"/>
-    				    <span type="button" class="calendar-btn"><img src="../../image/icon-002.png"></span>
+    				    <span type="button" class="calendar-btn"><img src="../../image/icon-002.png"></span>-->
+    				    
+    				                        <div>
+                    	<select class="mui-btn mui-btn-block" style="width: 120px;text-align: center; float: left;margin-right: 30px; margin-left: 50px; line-height: 0.8; padding: 10px">
+							<option value="item-1">请选择年份</option>
+							<option value="item-2">2016</option>
+							<option value="item-3">2015</option>
+							<option value="item-4">2014</option>
+							<option value="item-5">2013</option>
+						</select>
+						<select class="mui-btn mui-btn-block" style="width: 120px;text-align: center;  line-height: 0.8;padding: 10px;">
+							<option value="item-1" >请选择月份</option>
+							<option value="item-2">01</option>
+							<option value="item-3">02</option>
+							<option value="item-4">03</option>
+							<option value="item-5">03</option>
+							<option value="item-2">04</option>
+							<option value="item-3">05</option>
+							<option value="item-4">06</option>
+							<option value="item-5">07</option>
+							<option value="item-4">08</option>
+							<option value="item-5">09</option>
+							<option value="item-2">10</option>
+							<option value="item-3">11</option>
+							<option value="item-4">12</option>
+						</select>
+                    <span type="button" class="calendar-btn"onclick="search1()" style="float: right;top: -40px; position: relative;"><img src="../../image/icon-002.png"></span>
+    				    
                     </div>
 		                <div class="mui-control-content mui-active">
 							<div id="scroll" class="mui-scroll-wrapper">
@@ -205,7 +287,79 @@
 //				plus.runtime.openURL(url);
 //			},false);
    
-   // 楼东用电
+   //年份用电查询
+   	var getOption = function(chartType) {
+				var chartOption = {
+//					legend: {
+//						data: ['蒸发量', '降水量']
+//					},
+                    color:['#007aff'],
+					grid: {
+						x: 35,
+						x2: 30,
+						y: 30,
+						y2: 25
+					},
+					toolbox: {
+						show: false,
+						feature: {
+							mark: {
+								show: true
+							},
+							dataView: {
+								show: true,
+								readOnly: false
+							},
+							magicType: {
+								show: true,
+								type: ['line', 'bar']
+							},
+							restore: {
+								show: true
+							},
+							saveAsImage: {
+								show: true
+							}
+						}
+					},
+					calculable: false,
+					xAxis: [{
+						type: 'category',
+						boundaryGap : false,
+						data: ['1月', '2月', '3月', '4月', '5月', '6月','7月','8月','9月','10月','11月','12月' ]
+					}],
+					yAxis: [{
+						type: 'value',
+						splitArea: {
+							show: true
+						}
+					}],
+					series: [{
+						name: '耗电量1',
+						type: chartType,
+						smooth:true,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [41, 55, 60, 26, 50, 75,90,90,90,85,57,45]
+					}, {
+//						name: '降水量',
+//						type: chartType,
+//						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+					}]
+				};
+				return chartOption;
+			};
+			var byId = function(id) {
+				return document.getElementById(id);
+			};
+			var lineChart = echarts.init(byId('lineChart1'));
+			lineChart.setOption(getOption('line'));
+//			byId("echarts").addEventListener('tap',function(){
+//				var url = this.getAttribute('data-url');
+//				plus.runtime.openURL(url);
+//			},false);
+   
+   
+   // 楼栋用电
          // Step:3 echarts和zrender被echarts-plain.js写入为全局接口
         var myChart = echarts.init(document.getElementById('barChart'));
         myChart.setOption({
@@ -229,14 +383,14 @@
    			color:['#007aff'],
 				grid: {
 					x: 35,
-					x2: 10,
+					x2: 15,
 					y: 30,
 					y2: 25
 				},
             xAxis : [
                 {
                     type : 'category',
-                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                    data : ['CC-1','cc-2','CC-3','CC-4','CC-5','CC-6','CC-7',]
                 }
             ],
             yAxis : [
@@ -248,8 +402,8 @@
             series : [
                 {
                     name:'蒸发量',
-                    type:'bar',
-                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                    type:'bar',         
+                    data:[65 ,206, 344, 380,260,180,70,]
                 },
                 {
 //                  name:'降水量',
@@ -258,6 +412,8 @@
                 }
             ]
         });
+   
+
    
    
 </script>
