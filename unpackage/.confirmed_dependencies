@@ -96,7 +96,8 @@
 			"html/energy/energy.html",
 			"html/home/securityAlarmList.html",
 			"html/home/securityAlarmOld.html",
-			"html/workflow/JobIndex.html"
+			"html/workflow/JobIndex.html",
+			"html/energy/energyNew.html"
 		]
 	},
 	"html/shop/shopDetail.html": {
@@ -1184,5 +1185,22 @@
 			"css/add.css"
 		],
 		"refer": []
+	},
+	"html/energy/energyNew.html": {
+		"resources": [
+			"image/icon-11-3.png",
+			"fonts/iconfont.css",
+			"fonts/mui.ttf",
+			"image/icon-002.png",
+			"js/energy/energy.js",
+			"css/mui.picker.min.css",
+			"css/add.css",
+			"js/echarts-all.js",
+			"css/new.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"fonts/iconfont.woff"
+		]
 	}
 }
