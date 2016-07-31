@@ -169,6 +169,8 @@ function banPower(){
     	document.getElementById("banPower").style.display="none";
     	document.getElementById("banPermonthDisplay").style.display="block";
     	document.getElementById("banDevicesDisplay").style.display="block";
+
+    	document.getElementById("cmbBan").value=param.name;
         banPermonth();
         devicesPowerCompared();
     });
