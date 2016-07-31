@@ -245,7 +245,8 @@
 					"html/home/securityAlarm.html",
 					"html/home/maintenance.html",
 					"html/energy/energy.html",
-					"html/workflow/JobIndex.html"
+					"html/workflow/JobIndex.html",
+					"html/energy/energyNew.html"
 				],
 				"priority": 0
 			},
@@ -821,7 +822,8 @@
 					"html/equipment/json/realTime.json",
 					"js/template.js",
 					"js/analysisEcharts.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"css/new.css"
 				],
 				"refer": [
 					"html/equipment/guard_subdir/subReal.html",
@@ -1434,6 +1436,25 @@
 					"image/mes-01.png",
 					"css/mui.min.css",
 					"image/mes-05.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/energy/energyNew.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"fonts/iconfont.css",
+					"fonts/mui.ttf",
+					"image/icon-002.png",
+					"js/energy/energy.js",
+					"css/mui.picker.min.css",
+					"css/add.css",
+					"js/echarts-all.js",
+					"css/new.css",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/iconfont.woff"
 				],
 				"refer": [],
 				"priority": 0
