@@ -1,23 +1,32 @@
 var $$ = (function($){
 	//注入$
 	var $$ = $||{};
-	//搜索推送消息
-	$$.selectData = function (json)
+	/**
+	 * 描述：查询消息
+	 * @param {String} index (1,消息，2，消息详情)
+	 * @param {Object} json
+	 */
+	$$.selectData = function (index,json)
 	{
-		var temp = {};
-		if(arguments.length==1){
+		if(arguments.length==2){
 			//json
 			for(var i in json){
 				if(json.hasOwnProperty(i)){
-					this.selectData(i,json[i]);
+					this.selectData(index,i,json[i]);
 				}
 			}
 		}	
 		else	//name, value
 		{
-			this.searchData(arguments[0],arguments[1]);
+			if(index==1){
+				this.searchData(arguments[1],arguments[2]);
+			}else{
+				this.searchDetailData(arguments[1],arguments[2]);
+				this.updatePushMessageAllStatus(arguments[1],arguments[2]);
+			}
 		}
 	};
+
 	//搜索方法
 	$$.searchData = function(arg,item)
 	{
@@ -27,12 +36,7 @@ var $$ = (function($){
 		var oMesDate = document.querySelectorAll('.mesDate');                     //推送日期
 		var oMesCon = document.querySelectorAll('.mesCon');                       //推送类容
 		var oMesLevel = document.querySelectorAll('.mesLevel');                   //推送级别
-//		alert(oNumList);
-//		alert(oMesDate);
-//		alert(oMesCon);
-//		alert(oMesLevel);
 		parm[arg] = item.toUpperCase();
-//		alert(JSON.stringify(parm));
 		if(arg=='status'){
 			//通过状态查询
 			websql.selectPushMsgByStatus(parm,function(res){
@@ -51,19 +55,94 @@ var $$ = (function($){
 			  	if(mess.security!=0){
 			  		_thiss.setStyle(oNumList[0],{opacity:100,display:'block'});
 			  		oNumList[0].innerHTML = mess.security;
-			  	}else if(mess.alarm!=0){
+			  	}else{
+			  		_thiss.setStyle(oNumList[0],{opacity:0,display:'none'});
+			  		oNumList[0].innerHTML = '';
+			  	}
+			  	if(mess.alarm!=0){
 			  		_thiss.setStyle(oNumList[1],{opacity:100,display:'block'});
 			  		oNumList[1].innerHTML = mess.alarm;
-			  	}else if(mess.order!=0){
+			  	}else{
+			  		_thiss.setStyle(oNumList[1],{opacity:0,display:'none'});
+			  		oNumList[1].innerHTML = '';
+			  	}
+			  	if(mess.order!=0){
 			  		_thiss.setStyle(oNumList[2],{opacity:100,display:'block'});
 			  		oNumList[2].innerHTML = mess.order;
+			  	}else{
+			  		_thiss.setStyle(oNumList[2],{opacity:0,display:'none'});
+			  		oNumList[2].innerHTML = '';
 			  	}
-			  	
 		  	});
 		}else{
 			//通过类型查询
 			websql.selectPushMsgByType(parm,function(res){
-				if((res.responseData instanceof Array)&&(res.responseData.length>0)){
+				var data = res.responseData;
+				var security = {},
+					warn = {},
+					order = {};
+				template.helper('isnotNull',function(inp){
+					if(inp==''||inp==null){
+						return '暂无记录';
+					}else{
+						return inp;
+					}
+				});
+				if((data instanceof Array)&&(data.length>0)){
+					switch(data[0].type){
+						case 'SECURITY':
+							//alert(JSON.stringify(data));
+							security = data[0];
+							//alert(1);
+							var securityTmp = document.getElementById('securityTmp');
+							var secHtml = template('securityTmpl',security);
+							securityTmp.innerHTML = secHtml;
+							break;
+						case 'WARN':
+							//alert(JSON.stringify(data));
+							warn = data[0];
+							//alert(2);
+							var warnTmp = document.getElementById('warnTmp');
+							var warnHtml = template('warnTmpl',warn);
+							warnTmp.innerHTML = warnHtml;
+							break;
+						case 'ORDER':
+							//alert(JSON.stringify(data));
+							order = data[0];
+							//alert(3);
+							var orderTmp = document.getElementById('orderTmp');		
+							var orderHtml = template('orderTmpl',order);
+							orderTmp.innerHTML = orderHtml;
+						    break;
+					}
+				}else{
+					
+					switch(item.toUpperCase()){
+						case 'SECURITY':
+							//alert(11);	
+							var securityTmp = document.getElementById('securityTmp');
+							var secHtml = template('securityTmpl',security);
+							securityTmp.innerHTML = secHtml;
+							break;
+						case 'WARN':
+							//alert(22);
+							var warnTmp = document.getElementById('warnTmp');
+							var warnHtml = template('warnTmpl',warn);
+							warnTmp.innerHTML = warnHtml;
+							break;
+						case 'ORDER':
+						
+							//alert(33);
+							var orderTmp = document.getElementById('orderTmp');		
+							var orderHtml = template('orderTmpl',order);
+							orderTmp.innerHTML = orderHtml;
+						    break;
+					}
+				}
+				
+				
+				
+				/*if((res.responseData instanceof Array)&&(res.responseData.length>0)){
 					var reslut = {security:{},warn:{},order:{}};
 					switch(item.toUpperCase()){
 						case 'SECURITY':
@@ -76,7 +155,6 @@ var $$ = (function($){
 							reslut.order = res.responseData[0];
 						    break;
 					}
-					alert(JSON.stringify(resulte));
 					if(_thiss.isNullObj(reslut.security)){
 				  		_thiss.setStyle(oMesDate[0],{opacity:100,display:'block'});
 				  		_thiss.setStyle(oMesLevel[0],{opacity:100,display:'block'});
@@ -98,7 +176,7 @@ var $$ = (function($){
 				  	}else{
 				  		_thiss.setStyle(oMesDate[1],{opacity:0,display:'none'});
 				  		_thiss.setStyle(oMesLevel[1],{opacity:0,display:'none'});
-				  		oMesCon[2].innerHTML = '暂无消息';
+				  		oMesCon[1].innerHTML = '暂无消息';
 				  	}
 				  	if(_thiss.isNullObj(reslut.order)){
 				  		_thiss.setStyle(oMesDate[2],{opacity:100,display:'block'});
@@ -111,22 +189,58 @@ var $$ = (function($){
 				  		_thiss.setStyle(oMesLevel[2],{opacity:0,display:'none'});
 				  		oMesCon[2].innerHTML = '暂无消息';
 				  	}
-					/*var oList = document.getElementById("list");
-					var html = template('detailTmpl', reslut);
-					oList.innerHTML += html;*/
-				}
+				}*/
 			});
 		}
+	};
+	//修改方法
+	//修改方法
+	$$.updatePushMessageAllStatus = function(arg,item){
+		var parm = {};                          //渲染部分
+		parm['status'] = '1';
+		parm[arg] = item.toUpperCase();
+		websql.updatePushMessageAllStatus(parm,function(res){});
+	};
+	
+	//查询详情列表
+	$$.searchDetailData = function(arg,item)
+	{
+		qmask.show();
+		var parm = {};
+		var _thiss = this;                      
+		var oList = document.getElementById('list');                            //渲染部分
+		parm[arg] = item.toUpperCase();
+		//通过类型查询
+		websql.selectPushMsgByType(parm,function(res){
+			if((res.responseData instanceof Array)&&(res.responseData.length>0)){
+				var data = {result:[]};
+				data.reslut = res.responseData;
+				template.helper('colFormat',function(inp){
+				   	if(inp==0){
+				   		return 'blueColor';
+				   	}else if(inp==1){
+						return 'yellowColor';
+					}else if(inp==2){
+						return 'orangeColor';
+					}else{
+						return 'redColor';
+					}
+				});
+				var dealHtml = template('detailTmpl', data);
+				oList.innerHTML = dealHtml;
+				qmask.hide();
+			}
+		});
 	};
 	//设置样式
 	$$.setStyle = function (obj, json)
 	{
 		if(obj.length)
-			for(var i=0;i<obj.length;i++) setStyle(obj[i], json);
+			for(var i=0;i<obj.length;i++) this.setStyle(obj[i], json);
 		else
 		{
 			if(arguments.length==2)	//json
-				for(var i in json) setStyle(obj, i, json[i]);
+				for(var i in json) this.setStyle(obj, i, json[i]);
 			else	//name, value
 			{
 				switch(arguments[1].toLowerCase())
@@ -151,13 +265,12 @@ var $$ = (function($){
 	};
 	//判断对象是否为空
 	$$.isNullObj = function(obj){
-		var mark = false;
 		for(var i=0 in obj){
 			if(obj.hasOwnProperty(i)){
-				mark = true;
+				return true;
 			}
 		}
-		return mark;
+		return false;
 	};
 	return $$;
 })({});

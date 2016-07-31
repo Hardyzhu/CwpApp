@@ -15,7 +15,14 @@
 		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 		<link rel="stylesheet" href="../../css/home.css" />
 		<link rel="stylesheet" href="../../css/new.css" />	
-		
+		<style>
+			.isHide{
+				display:none;
+			}
+			.isShow{
+				display:block;
+			}
+		</style>
 	</head>
 	</head>
 	<body>
@@ -50,8 +57,10 @@
 		<div class="mui-col-xs-12 facility">
 			设备
 		</div>
-		<div class="mui-col-xs-12 mui-text-center clearfix classify button-pannel">
-			<div data-url="securityAlarm.html" class="mui-col-xs-3 fl subClassify tabList button-line">
+		<div class="mui-col-xs-12 mui-text-center clearfix classify button-pannel" id="tablist">
+			
+		</div>
+		<script type="text/html" id="btn">
 				<div class="mui-col-xs-12 fl">
 					<div class="mui-col-xs-12 fl">
 						 <img src="../../image/home-1.png" width="40" alt="空调" />
@@ -61,7 +70,7 @@
 					</div>
 				</div>
 			</div>	
-			<div data-url="security.html" class="mui-col-xs-3 fl subClassify tabList">
+			<div data-url="security.html" class="mui-col-xs-4 fl subClassify tabList {{alm | toshow}}">
 				<div class="mui-col-xs-12 fl">
 					<div class="mui-col-xs-12 fl">
 						<img src="../../image/home-2.png" width="40" alt="空调" />
@@ -101,74 +110,24 @@
 					</div>
 				</div>
 			</div>
-			
-
-			
-			
-			<!--<div data-url="air_condition.html" class="mui-col-xs-4 fl subClassify tabList">
-				
-			</div>-->
-			<!--<div data-url="fresh_air.html" class="mui-col-xs-4 fl subClassify tabList">
-				<div class="mui-col-xs-12 fl">
-					<div class="mui-col-xs-6 fl">
-						<img src="../../image/icon-2.png" width="50" alt="新风" />
-					</div>
 					<div class="mui-col-xs-6 mui-text-left fl">
-						<span>新风</span>
+						<span>能耗分析</span>
 					</div>
 				</div>
 			</div>
-			<div data-url="sewage.html" class="mui-col-xs-4 fl subClassif tabList">
+			<div data-url="Equipment.html" class="mui-col-xs-4 fl subClassify tabList border-bottom-none">
 				<div class="mui-col-xs-12 fl">
 					<div class="mui-col-xs-6 fl">
-						<img src="../../image/icon-1.png" width="50" alt="排污泵" />
+						<img src="../../image/icon-1.png" width="40" alt="空调" />
 					</div>
 					<div class="mui-col-xs-6 mui-text-left fl">
-						<span>排污泵</span>
+						<span>设备监控</span>
 					</div>
 				</div>
 			</div>
-			<div data-url="lighting.html" class="mui-col-xs-4 fl subClassify tabList">
-				<div class="mui-col-xs-12 fl">
-					<div class="mui-col-xs-6 fl">
-						<img src="../../image/icon-4.png" width="50" alt="智能照明" />
-					</div>
-					<div class="mui-col-xs-6 mui-text-left fl">
-						<span>智能照明</span>
-					</div>
-				</div>
-			</div>
-			<div data-url="monitoring.html" class="mui-col-xs-4 fl subClassify tabList">
-				<div class="mui-col-xs-12 fl">
-					<div class="mui-col-xs-6 fl">
-						<img src="../../image/icon-5.png" width="50" alt="视频监控" />
-					</div>
-					<div class="mui-col-xs-6 mui-text-left fl">
-						<span>视频监控</span>
-					</div>
-				</div>
-			</div>
-			<div data-url="guard.html" class="mui-col-xs-4 fl subClassif tabList">
-				<div class="mui-col-xs-12 fl">
-					<div class="mui-col-xs-6 fl">
-						<img src="../../image/icn-6.png" width="50" alt="门禁" />
-					</div>
-					<div class="mui-col-xs-6 mui-text-left fl">
-						<span>门禁</span>
-					</div>
-				</div>
-			</div>-->
-		</div>
-		<!--安防调度-->
-		<!--<div class="mui-col-xs-12 clearfix Security">
-			<div data-url="smart.html" class="mui-col-xs-6 fl tabList">
-				<img src="../../image/icon-9.png" alt="智能调度" />
-			</div>
-			<div data-url="security.html" class="mui-col-xs-6 fl tabList">
-				<img src="../../image/icon-10.png" alt="安防告警" />
-			</div>
-		</div>-->
+		</script>
 		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/template.js"></script>
 		<script src="../../js/echarts-all.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script type="text/javascript" charset="utf-8">
@@ -177,11 +136,39 @@
 			});
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
+				var isLogin = plus.storage.getItem("userInfo");
+				var userRole=JSON.parse(isLogin).role[0].roleId;
+				
 				gotoDetail(self);   //跳转
 //				var slider = mui("#slider");
 //				slider.slider({
 //					interval: 8000
 //				});
+				//加入角色信息
+				var state = {};
+				state.sec = '';
+				state.alm = '';
+				template.helper('toshow',function(inp){
+					if(inp==1){
+						return 'isHide';
+					}else{
+						return '';
+					}
+				});
+				if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
+					for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
+						console.log(userRole);
+						if(userRole=='14'||userRole=='4'){
+							//不可看安防告警
+							state.sec = '1';
+						}else if(userRole=='5'||userRole=='6'||userRole=='15'){
+							//不可看故障告警
+							state.alm = '1';
+						}
+					}
+				}
+				var btnHtml = template('btn',state);
+				document.getElementById('tablist').innerHTML = btnHtml;
 			});
 			
 			
@@ -249,38 +236,42 @@
 			 * 点击事件
 			 */
 			function gotoDetail(self) {
-				var list = document.getElementsByClassName("tabList");
 				var homeUrl = "";
+				mui('#tablist').on('tap','.tabList',function(){
+					homeUrl = this.getAttribute("data-url");
+					if(homeUrl=='energy.html'){
+						mui.openWindow({
+							url: "../energy/"+homeUrl,
+							id: homeUrl,
+							waiting: {
+								autoShow: false
+							}
+						});
+					}else if(homeUrl=='JobIndex.html'){
+						mui.openWindow({
+							url: "../workflow/"+homeUrl,
+							id: homeUrl,
+							waiting: {
+								autoShow: false
+							}
+						});
+					}else{
+						mui.openWindow({
+							url: "../home/"+homeUrl,
+							id: homeUrl,
+							waiting: {
+								autoShow: false
+							}
+						});
+					}
+				});
+				//var list = document.getElementsByClassName("tabList");
+				/*
 				for (var i = 0, len = list.length; i < len; i++) {
 					list[i].addEventListener("tap", function() {
-						homeUrl = this.getAttribute("data-url");
-						if(homeUrl=='energyNew.html'){
-							mui.openWindow({
-								url: "../energy/"+homeUrl,
-								id: homeUrl,
-								waiting: {
-									autoShow: false
-								}
-							});
-						}else if(homeUrl=='JobIndex.html'){
-							mui.openWindow({
-								url: "../workflow/"+homeUrl,
-								id: homeUrl,
-								waiting: {
-									autoShow: false
-								}
-							});
-						}else{
-							mui.openWindow({
-								url: "../home/"+homeUrl,
-								id: homeUrl,
-								waiting: {
-									autoShow: false
-								}
-							});
-						}
+						
 					});
-				}
+				}*/
 			}
 		</script>
 	</body>

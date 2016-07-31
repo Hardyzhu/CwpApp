@@ -17,7 +17,7 @@ mui.plusReady(function(){
 	var warningEventId;
 	var warningCategoryId;
 	//添加newId自定义事件监听
-	if(self.warningEventId!=''&&self.warningCategoryId!=''){
+	if(self.warningEventId!=''){
 		warningEventId = self.warningEventId;
 		warningCategoryId = self.warningCategoryId;
 		//信息部分
@@ -239,7 +239,7 @@ mui.plusReady(function(){
 			document.addEventListener("plusready",toPhone(phone),false);
 		}
 	});
-	function toPhone(){
+	function toPhone(phone){
 		plus.device.dial(phone, false);
 	}
 	//抢单

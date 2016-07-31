@@ -1,0 +1,149 @@
+<!--
+	作者：yeshengqiang	
+	时间：2016-06-27
+	描述：消息详情
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../js/mask/mask.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/add.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
+	</head>
+	<body>
+		<!--顶部栏-->
+		<header class="mui-bar mui-bar-nav topColor">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color:#FFF;">智慧园区</h1>
+		</header>
+		<!--内容部分-->
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+			<div class="mui-scroll">
+				<div class="mui-col-xs-12" id="list">
+					<!-- 数据展示 -->
+				</div>
+			</div>
+		</div>
+		<script id="detailTmpl" type="text/html">
+			{{each reslut}}
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData" data-id="{{$value.eventId}}">					
+					<div class="icon iconfont icon-kongdiao {{$value.messageLevel | colFormat}}"></div>
+					<h3 class="list-title clearfix" style="padding: 0;">							
+						{{if $value.messageNo != ""}}
+							{{$value.messageNo}}
+						{{else}}
+						    HWZJ201607201154123
+						{{/if}}
+						<span class="mui-pull-right" style="padding:3px 8px;color:#FFF;background:#0680C9;">{{$value.processAction}}</span>
+					</h3>
+					<div class="mui-col-xs-12 muiDetail">
+						{{$value.content}}
+					</div>
+					<div class="mui-col-xs-12 muiDetail">															
+						<div class="Timecolor">{{$value.pushDate}}</div>
+					</div>
+				</div>
+		    {{/each}}		
+		</script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/template.js"></script>
+		<script src="../../js/mask/mask.js"></script>
+		<script src="../../js/mui.conf.js"></script>
+		<script src="../../js/DBUtils.js"></script>	
+		<script src="../../js/getData.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			//监听plusready事件  
+			document.addEventListener( "plusready", function(){
+				//获取当前视图
+				var self = plus.webview.currentWebview();
+				var title = document.querySelector(".mui-title");
+				//查询数据
+				switch(self.bstate){
+	    			case '1':
+	    				//安防
+	    				$$.selectData('2',{type:'SECURITY'});
+	    				title.innerHTML = document.title = '安防告警消息';
+	    				break;
+	    			case '2':
+	    				//故障
+	    				$$.selectData('2',{type:'WARN'});
+	    				title.innerHTML = document.title = '故障告警消息';
+	    			    break;
+	    			case '3':
+	    				//工单
+	    				$$.selectData('2',{type:'ORDER'});
+	    				title.innerHTML = document.title = '工单待办消息';
+	    				break;
+	    		}
+				mui('#list').on('tap','.listData',function(){
+					//alert(1);
+					var id = this.getAttribute('data-id');
+					//alert(id);
+					if(id){
+						switch(self.bstate){
+			    			case '1':
+			    				//安防
+			    				mui.openWindow({
+									url: "../task/securityAlarmDetail.html",
+									id: "securityAlarmDetail",
+									waiting: {
+										autoShow: false
+									},
+									extras: {
+										warningEventId: id
+									}
+								});
+			    				break;
+			    			case '2':
+			    				//故障
+			    				mui.openWindow({
+									url: "../task/securityDetail.html",
+									id: "securityDetail",
+									waiting: {
+										autoShow: false
+									},
+									extras: {
+										warningEventId: id
+									}
+								});
+			    			    break;
+			    			case '3':
+			    				//工单
+			    				mui.openWindow({
+									url: "../task/securityAlarmDetail.html",
+									id: "securityAlarmDetail",
+									waiting: {
+										autoShow: false
+									},
+									extras: {
+										warningEventId: id
+									}
+								});
+			    				break;
+			    		}
+						
+					}
+				});
+				
+				//重写back方法
+				mui.back = function(){
+					mui.fire(self.opener(),'opens',{});
+					self.close('none');
+					//self.opener().show('none');
+				};
+			}, false );
+		</script>
+	</body>
+</html>
+

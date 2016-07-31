@@ -22,16 +22,20 @@ var DbTableConfig = {
     		sql:"UPDATE PushMessage SET status=? where id=?",
     		args:["status","id"]
     	},
+    	updatePushMessageAllStatus:{
+    		sql:"UPDATE PushMessage SET status=? where type=?",
+    		args:["status","type"]
+    	},
     	deletePushMessage:{
     		sql:"delete from PushMessage",
     		args:[]
     	},
     	selectPushMsgByType:{
-    		sql:"select id,eventId,title,status,content,processAction,createTime from PushMessage where 1=1 and type=? and status=0 order by createTime desc",
+    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime from PushMessage where 1=1 and type=? and status=0 order by createTime desc",
     		args:["type"]
     	},
     	selectPushMsgByStatus:{
-    		sql:"select id,eventId,title,status,type,content,processAction,createTime from PushMessage where 1=1 and status=? order by createTime desc",
+    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime from PushMessage where 1=1 and status=? order by createTime desc",
     		args:["status"]
     	}
     }
@@ -150,7 +154,11 @@ var websql = (function(document, undefined) {
 			this.exec(DbTableConfig.dao.updatePushMessageStatus,options,callback);
 		}		
 	};
-	
+	$.updatePushMessageAllStatus=function(options,callback){
+		if(!this.isEmptyObject(options)){
+			this.exec(DbTableConfig.dao.updatePushMessageAllStatus,options,callback);
+		}		
+	};
 	$.selectPushMsgByType=function(options,callback){
 		this.exec(DbTableConfig.dao.selectPushMsgByType,options,callback);		
 	};

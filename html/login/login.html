@@ -59,6 +59,15 @@
 			mui.plusReady(function() {                
 				var self = plus.webview.currentWebview();
 				var entrance = self.entrance;
+				var subStyles = {
+					top: "45px",
+					bottom: "50px",
+				};
+				mui.preload({
+					url:"../main/user.html",
+					id:"user.html",
+					styles:subStyles
+				});
 				if(entrance === 'user'){
 					var wvs = plus.webview.all();
 					var fristWv = plus.webview.getLaunchWebview();
@@ -103,8 +112,8 @@
 			});
 
 			function loginByPhone(uphone, upwd) { //调用登录接口
-				var message = null;
 				var self = null;
+				var user = null;
 				mui.ajax({
 					type: "get",
 					url: global_url+"/cwp/front/sh/login!login",
@@ -121,21 +130,15 @@
 							mui.toast('登录成功!');
 							var obj = data.object;
 							var str = JSON.stringify(obj);
-							//预加载
-							var message = null,messagePage;
-							if(!messagePage){
-								messagePage = plus.webview.create('../main/message.html','message',{});
-							}
 
 							plus.storage.setItem("userInfo", str);
 							if(!self){
 								self = plus.webview.currentWebview();
 							}
-							if(!message)
+							if(!user)
 							{
-								message = plus.webview.getWebviewById('message');
+								user = plus.webview.getWebviewById('user.html');
 							}
-							console.log(message);
 							// 根据入口不同，进行的操作也不同，具体参数在两个入口处都有区分；
 							mui.openWindow({
 								url: "../main/main.html",
@@ -143,13 +146,14 @@
 								waiting: {
 									autoShow: false
 								},
+								createNew:true,
 								extras: {
 									entrance: "login"
 								}
 							});
 							plus.nativeUI.showWaiting();
-							mui.fire(message, "getMessage", {
-								isLogin:str
+							mui.fire(user, "getuser", {
+								isLog:str
 							});
 							setTimeout(function() {
 								plus.nativeUI.closeWaiting();
@@ -162,7 +166,6 @@
 					},
 					error: function(xhr, type, errorThrown) {
 						if(type=='timeout'){
-							console.log(1);
 							mui.toast('请求超时:请检查网络!');
 						}else {
 							mui.toast('登录失败!');

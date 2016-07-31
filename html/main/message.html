@@ -24,13 +24,18 @@
 				position: absolute;
 				right:-5px;
 				top:-5px;
-				
+				display:none;
+				opacity: 0;
+				filter:alpha(opacity:0);
 			}
 			.mesDate,
 			.mesLevel{
 				display:none;
 				opacity: 0;
 				filter:alpha(opacity:0);
+			}
+			#list{
+				margin:5px 0;
 			}
 		</style>
 	</head>
@@ -39,56 +44,41 @@
 		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 			<div class="mui-scroll">
 				<div class="mui-col-xs-12" id="list">
-					<ul class="mui-table-view">
+					<ul data-state="1" class="mui-table-view mb5">
 						<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<span class="mui-media-object mui-pull-left mesR">
 									<span class="mui-badge mui-badge-danger mesA"></span>
 									<img class="mui-media-object" src="../../image/mes-01.png" />
 								</span>
-								<div class="mui-media-body">
-									安防告警消息
-									<span class="mui-pull-right com_detail_color mesDate"></span>
-									<p class='mui-ellipsis'>
-										<span class="mesCon"></span>
-										<span class="mui-pull-right mesLevel"></span>
-									</p>
+								<div class="mui-media-body" id="securityTmp">
+									<!--安防告警消息-->
 								</div>
 							</a>
 						</li>	
 					</ul>
-					<ul class="mui-table-view">
+					<ul data-state="2" class="mui-table-view mb5">
 						<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<span class="mui-media-object mui-pull-left mesR">
 									<span class="mui-badge mui-badge-danger mesA"></span>
 									<img class="mui-media-object" src="../../image/mes-02.png" />
 								</span>
-								<div class="mui-media-body">
-									故障告警消息
-									<span class="mui-pull-right com_detail_color mesDate"></span>
-									<p class='mui-ellipsis'>
-										<span class="mesCon"></span>
-										<span class="mui-pull-right mesLevel"></span>
-									</p>
+								<div class="mui-media-body" id="warnTmp">
+									<!--故障告警消息-->
 								</div>
 							</a>
-						</li>	
+						</li>
 					</ul>
-					<ul class="mui-table-view">
+					<ul data-state="3" class="mui-table-view">
 						<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<span class="mui-media-object mui-pull-left mesR">
 									<span class="mui-badge mui-badge-danger mesA"></span>
 									<img class="mui-media-object" src="../../image/mes-03.png" />
 								</span>
-								<div class="mui-media-body">
-									工单待办消息
-									<span class="mui-pull-right com_detail_color mesDate"></span>
-									<p class='mui-ellipsis'>
-										<span class="mesCon"></span>
-										<span class="mui-pull-right mesLevel"></span>
-									</p>
+								<div class="mui-media-body" id="orderTmp">
+									<!--工单待办消息-->
 								</div>
 							</a>
 						</li>	
@@ -96,6 +86,30 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/html" id="securityTmpl">
+			安防告警消息
+			<span class="mui-pull-right com_detail_color mesDate">{{pushDate}}</span>
+			<p class='mui-ellipsis'>
+				<span class="mesCon">{{content | isnotNull}}</span>
+				<span class="mui-pull-right mesLevel">{{processAction}}</span>
+			</p>
+		</script>
+		<script type="text/html" id="warnTmpl">
+			故障告警消息
+			<span class="mui-pull-right com_detail_color mesDate">{{pushDate}}</span>
+			<p class='mui-ellipsis'>
+				<span class="mesCon">{{content | isnotNull}}</span>
+				<span class="mui-pull-right mesLevel">{{processAction}}</span>
+			</p>
+		</script>
+		<script type="text/html" id="orderTmpl">
+			工单待办消息
+			<span class="mui-pull-right com_detail_color mesDate">{{pushDate}}</span>
+			<p class='mui-ellipsis'>
+				<span class="mesCon">{{content | isnotNull}}</span>
+				<span class="mui-pull-right mesLevel">{{processAction}}</span>
+			</p>
+		</script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/mask/mask.js"></script>
@@ -104,19 +118,23 @@
 		<script src="../../js/getData.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-			var userId;
-			var message = null;
-			// 监听plusready事件  
+			//var message = null;
 			
+			// 监听plusready事件  
 			document.addEventListener( "plusready", function(){
-				var pram = {
-					status:'0',
-					type:'SECURITY'
-				};
-				$$.selectData(pram);
-				$$.selectData({type:'WARN'});
-				$$.selectData({type:'ORDER'});
-				message = document.getElementById("message");
+				$$.selectData('1',{status:'0'});
+				$$.selectData('1',{type:'SECURITY'});
+				$$.selectData('1',{type:'WARN'});
+				$$.selectData('1',{type:'ORDER'});
+				//message = document.getElementById("message");
+				
+				window.addEventListener('opens',function(e){
+					$$.selectData('1',{status:'0'});
+					$$.selectData('1',{type:'SECURITY'});
+					$$.selectData('1',{type:'WARN'});
+					$$.selectData('1',{type:'ORDER'});
+				});
+				
 				plus.push.addEventListener( "click", function( msg ) {
                     // 判断是从本地创建还是离线推送的消息
                     switch (msg.payload) {
@@ -141,12 +159,34 @@
                     saveMsg(msg);
 			    }, false );
 			    
-			    
+			    //点击跳入对应的详情页面
+			    var oList = document.getElementById('list'),
+			    	aUl = oList.querySelectorAll('ul');
+			    for(var i=0;i<aUl.length;i++){
+			    	aUl[i].addEventListener('tap',function(){
+			    		var state = this.getAttribute('data-state');
+			    		var con = this.querySelector('.mesA').innerHTML;
+			    		if(con==''||con==null){
+			    			mui.toast('暂无最新消息!');
+			    			return;
+			    		}
+			    		mui.openWindow({
+							url: 'messageDetail.html',
+							id: 'messageDetail',
+							waiting: {
+								autoShow: false
+							},
+							extras: {
+								bstate: state
+							}
+						});
+			    	});
+			    }
+			    //存储消息
 				function saveMsg(msg){
+					
 					var data = eval('('+msg.payload+')');
-					alert(JSON.stringify(data));
-					alert(data.content);
-					alert(data.eventId);
+				//	alert(JSON.stringify(data));
 					var msgJs={
             			eventId:data.eventId,
 			    		title:msg.title,
@@ -157,119 +197,16 @@
 			    		messageLevel:data.messageLevel,
 			    		status:'0'
 	            	};
-			    	alert(JSON.stringify(msgJs));
+					//向websql里面新增数据
+					//alert(JSON.stringify(msgJs));
 			    	websql.insertPushMessage(msgJs,function(res){
-			    		/*alert('远程消息返回值'+res.responseData);
-			    		alert('远程消息返回状态'+res.status);*/
-			    		//预加载
-						//新消息获取个数
-						
-//						websql.selectPushMsgByType({type:'SECURITY'},function(res){
-//							if((res.responseData instanceof Array)&&(res.responseData.length>0)){
-//								//result = res.responseData[0];
-//								alert(JSON.stringify(res.responseData[0]));
-//								alert(JSON.stringify(res.responseData));
-//								//mark = true;
-//							}
-//						 	/*if(res.responseData.length>0){
-//						 		document.getElementById("eventOrder").innerHTML=res.responseData[0].content;
-//						 		document.getElementById("ordertime").innerHTML=res.responseData[0].pushDate;
-//						 		document.getElementById("ordername").innerHTML=res.responseData[0].pushDate;
-//						 	}else{
-//						 		document.getElementById("eventOrder").innerHTML='暂无消息';
-//						 		document.getElementById("ordertime").innerHTML='';
-//						 		document.getElementById("ordername").innerHTML='陈金波';
-//						 	}*/
-//						});
-//						websql.selectPushMsgByType({type:'WARN'},function(res){
-//							if((res.responseData instanceof Array)&&(res.responseData.length>0)){
-//								//result = res.responseData[0];
-//								alert(JSON.stringify(res.responseData[0]));
-//								alert(JSON.stringify(res.responseData));
-//								//mark = true;
-//							}
-//						 	/*if(res.responseData.length>0){
-//						 		document.getElementById("eventOrder").innerHTML=res.responseData[0].content;
-//						 		document.getElementById("ordertime").innerHTML=res.responseData[0].pushDate;
-//						 		document.getElementById("ordername").innerHTML=res.responseData[0].pushDate;
-//						 	}else{
-//						 		document.getElementById("eventOrder").innerHTML='暂无消息';
-//						 		document.getElementById("ordertime").innerHTML='';
-//						 		document.getElementById("ordername").innerHTML='陈金波';
-//						 	}*/
-//						});
-//						websql.selectPushMsgByType({type:'ORDER'},function(res){
-//							if((res.responseData instanceof Array)&&(res.responseData.length>0)){
-//								//result = res.responseData[0];
-//								alert(JSON.stringify(res.responseData[0]));
-//								alert(JSON.stringify(res.responseData));
-//								//mark = true;
-//							}
-//						 	/*if(res.responseData.length>0){
-//						 		document.getElementById("eventOrder").innerHTML=res.responseData[0].content;
-//						 		document.getElementById("ordertime").innerHTML=res.responseData[0].pushDate;
-//						 		document.getElementById("ordername").innerHTML=res.responseData[0].pushDate;
-//						 	}else{
-//						 		document.getElementById("eventOrder").innerHTML='暂无消息';
-//						 		document.getElementById("ordertime").innerHTML='';
-//						 		document.getElementById("ordername").innerHTML='陈金波';
-//						 	}*/
-//						});
-						/*var mes = {};
-						$$.selectData({status:'0'});
-						mes.security = $$.selectData({type:'SECURITY'});
-						mes.warn = $$.selectData({type:'WARN'});
-						mes.order = $$.selectData({type:'ORDER'});
-						alert(JSON.stringify(mes));
-						for(var i = 0 in count_obj){
-							switch(i){
-								case 'security':
-									mes.security.count(count_obj[i]);
-									break;
-								case 'warn':
-									mes.warn.count(count_obj[i]);
-									break;
-								case 'order':
-									mes.order.count(count_obj[i]);
-									break;
-							}
-						}
-						alert(JSON.stringify(mes));
-						//渲染数据
-						
-						var oList = document.getElementById("list");
-						var html = template('detailTmpl', mes);
-						oList.innerHTML += html;*/
-						var pram = {
-							status:'0',
-							type:'SECURITY'
-						};
-						$$.selectData(pram);
-						$$.selectData({type:'WARN'});
-						$$.selectData({type:'ORDER'});
-						/*mes.security = $$.selectData({});
-						mes.warn = $$.selectData({});
-						mes.order = $$.selectData({});*/
-						template.helper('numFormat',function(inp){
-							if(inp>=99){
-								return '99+';
-							}else{
-								return inp;
-							}
-						});
+						$$.selectData('1',{status:'0'});
+						$$.selectData('1',{type:'SECURITY'});
+						$$.selectData('1',{type:'WARN'});
+						$$.selectData('1',{type:'ORDER'});
 			    	});
 				}
-				
-				
 			}, false );
-			
-			/*mui.plusReady(function() {
-				var self = plus.webview.currentWebview();
-				/*var message = null;
-				message = document.getElementById('message');*/
-				
-			    
-			//});*/
 		</script>
 	</body>
 </html>
