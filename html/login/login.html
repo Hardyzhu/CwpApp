@@ -59,15 +59,15 @@
 			mui.plusReady(function() {                
 				var self = plus.webview.currentWebview();
 				var entrance = self.entrance;
-				var subStyles = {
+				/*var subStyles = {
 					top: "45px",
 					bottom: "50px",
-				};
-				mui.preload({				//预加载用户页面
+				};*/
+				/*mui.preload({
 					url:"../main/user.html",
 					id:"user.html",
 					styles:subStyles
-				});
+				});*/
 				if(entrance === 'user'){
 					var wvs = plus.webview.all();
 					var fristWv = plus.webview.getLaunchWebview();
@@ -130,26 +130,23 @@
 							mui.toast('登录成功!');
 							var obj = data.object;
 							var str = JSON.stringify(obj);
-							//先清空旧的数据
-							plus.storage.removeItem("userInfo");
-							console.log("用户信息");
-							console.log(str);
+							plus.storage.removeItem('userInfo');
 							plus.storage.setItem("userInfo", str);
 							if(!self){
 								self = plus.webview.currentWebview();
 							}
-//							if(!user)
-//							{
-//								user = plus.webview.getWebviewById('user.html');
-//							}
+							/*if(!user)
+							{
+								user = plus.webview.getWebviewById('user.html');
+							}*/
 							// 根据入口不同，进行的操作也不同，具体参数在两个入口处都有区分；
 							mui.openWindow({
 								url: "../main/main.html",
-								id: "main",
+								id: "main.html",
 								waiting: {
 									autoShow: false
 								},
-//								createNew:true,
+								createNew:true,
 								extras: {
 									entrance: "login"
 								}
