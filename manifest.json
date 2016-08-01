@@ -1420,7 +1420,15 @@
 			"html/user/systemnotification.html": {
 				"resources": [
 					"image/icon-11-3.png",
-					"css/add.css"
+					"css/add.css",
+					"css/home.css",
+					"js/mui.conf.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mask/mask.js",
+					"js/mask/mask.css"
 				],
 				"refer": [],
 				"priority": 0
