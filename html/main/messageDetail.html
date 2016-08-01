@@ -36,7 +36,7 @@
 		</div>
 		<script id="detailTmpl" type="text/html">
 			{{each reslut}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData" data-id="{{$value.eventId}}">					
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData" data-id="{{$value.eventId}}" order-no="{{$value.messageNo}}">					
 					<div class="icon iconfont icon-kongdiao {{$value.messageLevel | colFormat}}"></div>
 					<h3 class="list-title clearfix" style="padding: 0;">							
 						{{if $value.messageNo != ""}}
@@ -89,6 +89,7 @@
 				mui('#list').on('tap','.listData',function(){
 					//alert(1);
 					var id = this.getAttribute('data-id');
+					var orderNO=this.getAttribute("order-no");
 					//alert(id);
 					if(id){
 						switch(self.bstate){
@@ -121,13 +122,13 @@
 			    			case '3':
 			    				//工单
 			    				mui.openWindow({
-									url: "../task/securityAlarmDetail.html",
-									id: "securityAlarmDetail",
+									url: "../workflow/FaultRepair/orderDetail.html",
+									id: "orderDetail",
 									waiting: {
 										autoShow: false
 									},
 									extras: {
-										warningEventId: id
+										orderNum: orderNO
 									}
 								});
 			    				break;
