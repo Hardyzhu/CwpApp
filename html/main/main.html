@@ -46,6 +46,13 @@
 				mui.init();
 			mui.plusReady(function() {
 				main = plus.webview.currentWebview();
+				var self = plus.webview.currentWebview();
+				var entrance = self.entrance;
+				if (entrance === "login") {
+					self.opener().close("none");
+				} else {
+					self.opener().hide("none");
+				}
 				var title = document.querySelector(".mui-title");
 				// 将子窗口的地址存在数组中，方便进行遍历，创建子窗口；
 				var subpageArr = ["message.html", "home.html", "user.html"];
@@ -115,6 +122,7 @@
 						console.log(activeTab);
 						console.log(targetTab);
 						targetTab = this.getAttribute("data-href");
+						console.log(targetTab);
 						if (targetTab === activeTab) {
 							return;
 						}
