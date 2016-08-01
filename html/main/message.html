@@ -44,7 +44,7 @@
 		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 			<div class="mui-scroll">
 				<div class="mui-col-xs-12" id="list">
-					<ul data-state="1" class="mui-table-view mb5">
+					<ul data-state="1" id="securityTip" class="mui-table-view mb5">
 						<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<span class="mui-media-object mui-pull-left mesR">
@@ -57,7 +57,7 @@
 							</a>
 						</li>	
 					</ul>
-					<ul data-state="2" class="mui-table-view mb5">
+					<ul data-state="2" id="faultTip" class="mui-table-view mb5">
 						<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<span class="mui-media-object mui-pull-left mesR">
@@ -70,7 +70,7 @@
 							</a>
 						</li>
 					</ul>
-					<ul data-state="3" class="mui-table-view">
+					<ul data-state="3" id="orderTip" class="mui-table-view">
 						<li class="mui-table-view-cell mui-media">
 							<a href="javascript:;">
 								<span class="mui-media-object mui-pull-left mesR">
@@ -119,6 +119,37 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			//var message = null;
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var isLogin = plus.storage.getItem("userInfo");
+				var userRole=JSON.parse(isLogin).role[0].roleId;
+				if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
+					var securityTip=document.getElementById("securityTip");
+					var faultTip=document.getElementById("faultTip");
+					var orderTip=document.getElementById("orderTip");
+					for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
+						console.log(userRole);
+						if(userRole=='14'||userRole=='4'||userRole=='13'){
+							securityTip.style.display="none";
+							faultTip.style.display="block";
+							orderTip.style.display="block";
+						}else if(userRole=='5'||userRole=='6'||userRole=='12'||userRole=='15'){
+							securityTip.style.display="block";
+							faultTip.style.display="none";
+							orderTip.style.display="none";
+						}else if(userRole=='4'){
+							securityTip.style.display="none";
+							faultTip.style.display="block";
+							orderTip.style.display="none";
+						}
+						else if(userRole=='2'||userRole=='3'||userRole=='8'){
+							securityTip.style.display="block";
+							faultTip.style.display="block";
+							orderTip.style.display="block";
+						}
+					}
+				}
+			});
 			
 			// 监听plusready事件  
 			document.addEventListener( "plusready", function(){
