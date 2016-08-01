@@ -231,6 +231,28 @@ var $$ = (function($){
 						return 'redColor';
 					}
 				});
+				//设备图标
+				template.helper('nameFormat',function(inp){
+					var b = '';
+					switch(inp){                   
+						case '1003185':            //空调
+						  b = 'icon-kongdiao';
+						  break;
+						case '1003186':            //新风
+						  b = "icon-tongfeng"
+						  break;
+						case '1003187':            //排污泵
+						  b = "icon-135" 
+						  break;  
+						case '1004001':            //门禁设备
+						  b = "icon-menjinxitong"
+						  break;  
+						
+					}
+					if(b!=''||b!=null){
+						return b;
+					}
+				});
 				var dealHtml = template('detailTmpl', data);
 				oList.innerHTML = dealHtml;
 				qmask.hide();
