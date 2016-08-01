@@ -85,11 +85,11 @@ mui.init();
 			obj.user_id = '';
 			if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
 				for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
-					if(userRole=='8'||userRole=='12'){
+					if(userRole=='8'||userRole=='4'||userRole=='3'||userRole=='2'){
 						++index;
 						obj.user_id = '';
 					}
-					else if(userRole=='6'){
+					else if(userRole=='13'){
 						switch(++index){
 							case 1:	
 								obj.user_id = '';

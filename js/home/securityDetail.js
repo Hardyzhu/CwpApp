@@ -124,7 +124,7 @@ mui.plusReady(function(){
 				//加入角色信息
 				if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
 					for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
-						if(userRole=='6'){
+						if(userRole=='13'||userRole=='14'){
 							//已完成并没有转故障
 							if(data.bean.eventProcessStatus=='3'&&data.bean.eventProgress=='3'){
 								document.getElementById('bottom_bar').style.display = 'none';								

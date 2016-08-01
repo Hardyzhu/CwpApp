@@ -7,5 +7,5 @@
  */
 //全局访问路径  
 //var global_url="http://58.96.169.201:28090";
-//var global_url="http://192.168.92.201:28090";
-var global_url="http://58.96.169.201:28090";
+var global_url="http://192.168.92.201:28090";
+//var global_url="http://58.96.169.201:28090";
