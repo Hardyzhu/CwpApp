@@ -130,7 +130,8 @@
 							mui.toast('登录成功!');
 							var obj = data.object;
 							var str = JSON.stringify(obj);
-
+							//清空
+							plus.storage.removeItem("userInfo");
 							plus.storage.setItem("userInfo", str);
 							if(!self){
 								self = plus.webview.currentWebview();
