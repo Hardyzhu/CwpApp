@@ -855,7 +855,9 @@
 			"js/echarts-all.js",
 			"fonts/iconfont.css",
 			"fonts/iconfont.woff",
-			"css/new.css"
+			"css/new.css",
+			"js/energy/energy.js",
+			"css/mui.picker.min.css"
 		],
 		"refer": [
 			"html/energy/energyBuilding.html"
@@ -1185,7 +1187,8 @@
 			"css/mui.min.css",
 			"fonts/demo.css",
 			"css/add.css",
-			"fonts/iconfont.woff"
+			"fonts/iconfont.woff",
+			"js/mui.conf.js"
 		],
 		"refer": [
 			"html/workflow/FaultRepair/orderDetail.html"

@@ -161,11 +161,11 @@
 				var EquipmentUrl = "";
 				for (var i = 0, len = list.length; i < len; i++) {
 					list[i].addEventListener("tap", function() {
-						var state = getState();
-						if(state==-1){
-							mui.toast('请选择处理状态！');
-							return;
-						}
+//						var state = getState();
+//						if(state==-1){
+//							mui.toast('请选择处理状态！');
+//							return;
+//						}
 						EquipmentUrl = this.getAttribute("data-url");
 						if(EquipmentUrl=='lighting.html'||EquipmentUrl=='monitoring.html'){
 							mui.toast('此功能正在开发中....');
@@ -176,9 +176,6 @@
 							id: EquipmentUrl,
 							waiting: {
 								autoShow: false
-							},
-							extras: {
-								bstate: state
 							}
 						});
 					});
