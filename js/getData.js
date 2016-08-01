@@ -41,6 +41,11 @@ var $$ = (function($){
 			//通过状态查询
 			websql.selectPushMsgByStatus(parm,function(res){
 		  		var data = res.responseData;
+		  		if (data.length>0) {
+		  			//渲染图标红点
+		  			self.evalJS(self.parent.tag());
+			  		//document.getElementById("new-mes").style.display="inline";
+			  	}
 		  		var mess = {security:0,alarm:0,order:0};
 			  	//消息分类处理
 			  	for(var i=0;i<data.length;i++){

@@ -24,8 +24,11 @@
 		</header>
 		<!--底部选项栏-->
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item" data-href ="message.html">
-				<span class="mui-icon icon iconfont">&#xe612;</span>
+			<a class="mui-tab-item" data-href ="message.html" >
+				<span class="mui-icon icon iconfont" style="position: relative;">
+					&#xe612;
+					<span id="tips" style="position:absolute;top:0px;right:0px;display:none;width:8px;height:8px;border-radius: 8px;-webkit-border-radius:8px;background:red;"></span>
+				</span>
 				<span class="mui-tab-label">消息</span>
 			</a>
 			<a class="mui-tab-item mui-active" data-href="home.html">
@@ -78,7 +81,12 @@
 					main.append(subpage);
 				}
 				
-				
+				/**
+				 * 操作渲染
+				 */
+				function tag(){
+					document.getElementById('tips').style.display = 'block';
+				}
 				/**
 				 * 子页面切换
 				 */
