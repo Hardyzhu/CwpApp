@@ -107,6 +107,15 @@
 						mui.toast('请输入密码');
 						return
 					}
+					var time = Date.parse(new Date());
+					dataTime = this.getAttribute('data-time');
+					if(!dataTime){
+						this.setAttribute('data-time',time);
+					}else{
+						if(dataTime-time<='1000'){
+							mui.toast('正在登录，请稍后...');
+						}
+					}
 					loginByPhone(uphone, upwd);
 				});
 			});
