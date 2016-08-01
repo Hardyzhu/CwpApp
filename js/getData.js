@@ -257,8 +257,10 @@ var $$ = (function($){
 				});
 				var dealHtml = template('detailTmpl', data);
 				oList.innerHTML = dealHtml;
-				qmask.hide();
+				
 			}
+			
+			qmask.hide();
 		});
 	};
 	//设置样式

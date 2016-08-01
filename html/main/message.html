@@ -165,11 +165,12 @@
 			    for(var i=0;i<aUl.length;i++){
 			    	aUl[i].addEventListener('tap',function(){
 			    		var state = this.getAttribute('data-state');
-			    		var con = this.querySelector('.mesA').innerHTML;
+			    		// 有没有最新消息都可以进入查询
+/*			    		var con = this.querySelector('.mesA').innerHTML;
 			    		if(con==''||con==null){
 			    			mui.toast('暂无最新消息!');
 			    			return;
-			    		}
+			    		}*/
 			    		mui.openWindow({
 							url: 'messageDetail.html',
 							id: 'messageDetail',

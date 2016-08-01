@@ -31,7 +31,7 @@ var DbTableConfig = {
     		args:[]
     	},
     	selectPushMsgByType:{
-    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime from PushMessage where 1=1 and type=? and status=0 order by createTime desc",
+    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime from PushMessage where 1=1 and type=? order by createTime desc",
     		args:["type"]
     	},
     	selectPushMsgByStatus:{
