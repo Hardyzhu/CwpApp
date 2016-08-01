@@ -119,11 +119,13 @@
 								</div>
 								<span class="message-level">
 									{{if warningLevel == 0}}
-									    <span class="scilFont scileLow">低</span>
+									    <span class="scilFont blueColor">低</span>
+									{{else if warningLevel == 1}}
+									    <span class="scilFont yellowColor">中</span>
 									{{else if warningLevel == 2}}
-									    <span class="scilFont scileMiddle">中</span>
-									{{else}}
-									    <span class="scilFont scileHeight">高</span>
+									    <span class="scilFont orangeColor">高</span>							
+									{{else if warningLevel == 3}}
+									    <span class="scilFont redColor">紧急</span>
 									{{/if}}
 								</span>
 							</div>

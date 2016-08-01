@@ -176,7 +176,7 @@ mui.plusReady(function(){
 			}
 			mui.ajax({
 				type: "post",
-				url: "http://192.168.92.227:8010/cwp/front/sh/faultRepairWf!execute",
+				url: global_url+"/cwp/front/sh/faultRepairWf!execute",
 				data: {
 					uid:"startFaultRepair",							
 					eventId:warningEventId,

@@ -79,7 +79,7 @@ mui.plusReady(function(){
 					}else if(inp==2){
 						return '处理中';
 					}else{
-						return '已完成';
+						return '已处理';
 					}
 				});
 				template.helper('toIndexOf',function(inp){

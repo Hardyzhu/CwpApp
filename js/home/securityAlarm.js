@@ -126,7 +126,7 @@ mui.init();
 						}else if(inp==2){
 							return '处理中';
 						}else{
-							return '已恢复';
+							return '已处理';
 						}
 					});
 					var html = template('detailTmpl', data);
