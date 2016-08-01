@@ -45,6 +45,8 @@ var $$ = (function($){
 		  		if (data.length>0) {
 		  			//渲染图标红点
 		  			self.parent().evalJS("document.getElementById('tips').style.display = 'block'");
+			  	}else{
+			  		self.parent().evalJS("document.getElementById('tips').style.display = 'none'");
 			  	}
 		  		var mess = {security:0,alarm:0,order:0};
 			  	//消息分类处理
