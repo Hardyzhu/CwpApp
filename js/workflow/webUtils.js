@@ -97,7 +97,7 @@ window.amGloble={
 })();
 
 (function() {	
-	var serviceName="http://192.168.92.227:8010/cwp";
+	var serviceName="http://58.96.169.201:28090/cwp";
 	var serviceType={POST:"POST",GET:"GET"};
 	
 	var self = amGloble.web = {
