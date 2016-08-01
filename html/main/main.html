@@ -46,12 +46,11 @@
 				mui.init();
 			mui.plusReady(function() {
 				main = plus.webview.currentWebview();
-				var self = plus.webview.currentWebview();
-				var entrance = self.entrance;
+				var entrance = main.entrance;
 				if (entrance === "login") {
-					self.opener().close("none");
+					main.opener().close("none");
 				} else {
-					self.opener().hide("none");
+					main.opener().hide("none");
 				}
 				var title = document.querySelector(".mui-title");
 				// 将子窗口的地址存在数组中，方便进行遍历，创建子窗口；
