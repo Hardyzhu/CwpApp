@@ -114,17 +114,37 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item mui-active" href="#realTime">实时</a>
+					<a class="mui-control-item" href="#realTime">实时</a>
+					<a class="mui-control-item mui-active" href="#alarm">告警</a>
 					<a class="mui-control-item" href="#analysis">统计分析</a>
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 				<div class="mui-slider-group">
-					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content mui-active">
+					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div id="realTimelist" class="mui-scroll">
 								<div class='mui-loading'>
 									<div class='mui-spinner'></div>
 								</div>				
+							</div>
+						</div>
+					</div>
+					<div id="alarm" data-state="alarm" class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+							<div class="mui-scroll">
+								<ul class="mui-col-xs-12 barNav clearfix">
+									<li class="mui-col-xs-3">未处理
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+									<li class="mui-col-xs-3" style="border:none;">与我相关
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+								</ul>
+								<div class="mui-col-xs-12" id="alarmlist">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner"></div>
+									</div>-->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -268,9 +288,9 @@
 						var state = this.getAttribute('data-state');
 						if(state == 'realTime'){
 							getrealTime();//第一次进来加载第一页数据
-						}/*else if(state == 'alarm'){
+						}else if(state == 'alarm'){
 							getalarmTime();
-						}*/else{
+						}else{
 							getanalysisTime();
 						}
 					}
@@ -278,11 +298,11 @@
 				var alarm = document.getElementById('alarm');
 				var analysis = document.getElementById('analysis');
 				document.getElementById('slider').addEventListener('slide', function(e) {
-					/*if (e.detail.slideNumber === 1) {
+					if (e.detail.slideNumber === 1) {
 						if (alarm.querySelector('.mui-loading')) {
 							getalarmTime();
 						}
-					} else */if (e.detail.slideNumber === 1) {
+					} else if (e.detail.slideNumber === 2) {
 						if (analysis.querySelector('.mui-loading')) {
 							getanalysisTime();
 						}

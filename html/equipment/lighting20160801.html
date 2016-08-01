@@ -167,14 +167,17 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider">
 				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item mui-active" href="#air_real_time">
+					<a class="mui-control-item" href="#air_real_time">
 						实时
+					</a>
+					<a class="mui-control-item mui-active" href="#air_alarm">
+						告警
 					</a>
 					<a class="mui-control-item" href="#air_statistical_analysis">
 						统计分析
 					</a>
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 				<div class="mui-slider-group">
 					<div id="air_real_time" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
@@ -238,6 +241,68 @@
                             -->
 							<div>								
 							</div>							
+						</div>
+					</div>
+					<div id="air_alarm" class="mui-slider-item mui-control-content">						
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div>
+								<!--<div class="mui-content-padded searchData">
+									<div class="mui-input-row mui-search">
+										<input type="search" class="mui-input-clear" placeholder="请输入关键字" />
+									</div>
+								</div>-->
+								<!--<ul class="mui-col-xs-12 barNav clearfix">
+									<li class="mui-col-xs-3">未处理
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+									<li class="mui-col-xs-3" style="border:none;">与我相关
+										<span class="mui-icon mui-icon-arrowdown"></span>
+									</li>
+								</ul>-->
+							</div>						
+							
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<div class="mui-col-xs-12 mb5 dataList  list-pannel">
+										<h3  class="list-title">CC-1 2-01
+											<span class="emergency mui-pull-right">							
+											    <span class="scile scileLow"></span>
+												<span class="sileSize sileLow">低</span>							
+											</span>
+										</h3>
+										<div class="mui-col-xs-12 muiDetail list-body">
+											一楼照明系统异常
+										</div>
+										<div class="mui-col-xs-12 muiDetail">					   
+											    <span class="btnState redColor font1rem">未恢复</span>						
+											<span class="Timecolor">2016-04-25 13:01</span>
+											<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
+												查看详情
+												<span class="mui-icon mui-icon-arrowright"></span>
+											</a>
+										</div>
+									</div>
+									<div class="mui-col-xs-12 mb5 dataList  list-pannel">
+										<h3  class="list-title">CC-1 2-01
+											<span class="emergency mui-pull-right">							
+											    <span class="scile scileLow"></span>
+												<span class="sileSize sileLow">低</span>							
+											</span>
+										</h3>
+										<div class="mui-col-xs-12 muiDetail list-body">
+											1号楼地下室照明系统异常
+										</div>
+										<div class="mui-col-xs-12 muiDetail">					   
+											<span class="btnState redColor font1rem">未恢复</span>						
+											<span class="Timecolor">2016-04-25 13:01</span>
+											<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
+												查看详情
+												<span class="mui-icon mui-icon-arrowright"></span>
+											</a>
+										</div>
+									</div>
+								</ul>
+							</div>
 						</div>
 					</div>
 					

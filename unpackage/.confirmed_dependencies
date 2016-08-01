@@ -651,7 +651,8 @@
 			"html/equipment/json/realTime.json",
 			"js/analysisEcharts.js",
 			"js/template.js",
-			"js/mui.conf.js"
+			"js/mui.conf.js",
+			"css/new.css"
 		],
 		"refer": [
 			"html/task/securityDetail.html",
