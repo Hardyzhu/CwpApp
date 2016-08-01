@@ -844,7 +844,8 @@
 					"html/equipment/json/realTime.json",
 					"js/analysisEcharts.js",
 					"js/template.js",
-					"js/mui.conf.js"
+					"js/mui.conf.js",
+					"css/new.css"
 				],
 				"refer": [
 					"html/task/securityDetail.html",
@@ -1049,7 +1050,9 @@
 					"js/echarts-all.js",
 					"fonts/iconfont.css",
 					"css/new.css",
-					"fonts/iconfont.woff"
+					"fonts/iconfont.woff",
+					"js/energy/energy.js",
+					"css/mui.picker.min.css"
 				],
 				"refer": [
 					"html/energy/energyBuilding.html"
@@ -1296,7 +1299,8 @@
 					"css/mui.min.css",
 					"fonts/demo.css",
 					"css/add.css",
-					"fonts/iconfont.woff"
+					"fonts/iconfont.woff",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/workflow/FaultRepair/orderDetail.html"
