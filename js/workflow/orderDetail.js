@@ -14,6 +14,7 @@ var orderNO="20160725143544175003";
 var currenActivitid="";
 var taskId="";
 var localOptions={};
+var eventId="";
 
 mui.ready(function(){
 	var self=this;
@@ -47,8 +48,6 @@ mui.ready(function(){
 			var _self=plus.webview.currentWebview();
 			console.log(_self);
 			orderNO=_self.orderNum;
-			currenActivitid=_self.processInstId;
-			taskId=_self.taskId;
 			
 			localOptions={
 				"businessKey":orderNO,
@@ -80,7 +79,8 @@ mui.ready(function(){
 			curAid:currentAid,
 			processInstId:currenActivitid,
 			taskId:taskId,
-			businessKey:orderNO
+			businessKey:orderNO,
+			eventId:eventId
 		};
 		
 		self.gotoNextPage("orderAudit.html","orderAudit",extras)
@@ -93,6 +93,7 @@ function toPhone(phone){
 }
 	
 function loadDetailInfo(options){
+	var self=this;
 		amGloble.web.AUDIT_HISTORY.exec(options,function(ret){
 		
 		if(ret.result!=undefined && ret.result==0){
@@ -104,6 +105,10 @@ function loadDetailInfo(options){
 				var eventInfoUl=mui("#eventInfoUl");
 				var orderBaseInfoUl=mui("#orderBaseInfoUl");
 				var oPosone = mui('#posoneUl');
+				self.currenActivitid=responData.bean.processInstId;
+				self.taskId=responData.bean.taskId;
+				self.eventId=responData.bean.eventId;
+				
 				
 				var flowOperBar=mui("#flowOperBar")[0];
 				var wrap=mui(".mui-scroll-wrapper")[0];

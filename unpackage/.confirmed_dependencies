@@ -1167,7 +1167,8 @@
 			"css/add.css"
 		],
 		"refer": [
-			"html/workflow/FaultRepair/myAuditList.html"
+			"html/workflow/FaultRepair/myAuditList.html",
+			"html/workflow/FaultRepair/myToDo.html"
 		]
 	},
 	"html/workflow/FaultRepair/myAuditList.html": {
@@ -1182,9 +1183,12 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"fonts/demo.css",
-			"css/add.css"
+			"css/add.css",
+			"fonts/iconfont.woff"
 		],
-		"refer": []
+		"refer": [
+			"html/workflow/FaultRepair/orderDetail.html"
+		]
 	},
 	"html/energy/energyNew.html": {
 		"resources": [
@@ -1201,6 +1205,18 @@
 			"css/common.css",
 			"css/mui.min.css",
 			"fonts/iconfont.woff"
+		]
+	},
+	"html/workflow/FaultRepair/myToDo.html": {
+		"resources": [
+			"js/workflow/myTodo.js",
+			"js/workflow/webUtils.js"
+		]
+	},
+	"html/workflow/FaultRepair/orderDetail.html": {
+		"resources": [
+			"image/phone.png",
+			"js/workflow/orderDetail.js"
 		]
 	}
 }

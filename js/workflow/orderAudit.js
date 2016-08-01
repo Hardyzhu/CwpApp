@@ -3,6 +3,7 @@ var curAid="";
 var processInstId="";
 var taskId="";
 var businessKey="";
+var eventId="";
 
 mui.init(
 	{  
@@ -38,6 +39,7 @@ mui.ready(function(){
 			businessKey=_self.businessKey;
 			taskId=_self.taskId;
 			processInstId=_self.processInstId;
+			eventId=_self.eventId
 		})
 	
 	}else{
@@ -53,7 +55,8 @@ mui.ready(function(){
 				"auditComment":comment,
 				"processInstId":processInstId,
 				"taskId":taskId,
-				"businessKey":businessKey
+				"businessKey":businessKey,
+				"eventId":eventId
 			};
 			console.log(options);
 			switch(curAid){
