@@ -36,6 +36,7 @@ var $$ = (function($){
 		var oMesDate = document.querySelectorAll('.mesDate');                     //推送日期
 		var oMesCon = document.querySelectorAll('.mesCon');                       //推送类容
 		var oMesLevel = document.querySelectorAll('.mesLevel');                   //推送级别
+		var self = plus.webview.currentWebview();
 		parm[arg] = item.toUpperCase();
 		if(arg=='status'){
 			//通过状态查询
@@ -43,8 +44,7 @@ var $$ = (function($){
 		  		var data = res.responseData;
 		  		if (data.length>0) {
 		  			//渲染图标红点
-		  			self.evalJS(self.parent.tag());
-			  		//document.getElementById("new-mes").style.display="inline";
+		  			self.parent().evalJS("document.getElementById('tips').style.display = 'block'");
 			  	}
 		  		var mess = {security:0,alarm:0,order:0};
 			  	//消息分类处理
