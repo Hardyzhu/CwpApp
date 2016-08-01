@@ -49,7 +49,7 @@
 				margin: 15px 15px 0;
 			}
 			
-				.title {
+			.title {
 				margin: 20px 15px 10px;
 				color: #6d6d72;
 				font-size: 15px;
@@ -80,6 +80,7 @@
 			.oa-contact-name {
 				margin-right: 20px;
 			}
+			
 			.oa-contact-name,
 			.oa-contact-position {
 				float: left;
@@ -110,12 +111,12 @@
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<a class="mui-control-item mui-active" href="#realTime">实时</a>
-					<a class="mui-control-item" href="#alarm">告警</a>
+					<!--<a class="mui-control-item mui-active" href="#alarm">告警</a>-->
 					<a class="mui-control-item" href="#analysis">统计分析</a>
 				</div>
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 				<div class="mui-slider-group">
-					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content mui-active">
+					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content  mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div id="realTimelist" class="mui-scroll">
 								<div class='mui-loading'>
@@ -124,9 +125,10 @@
 							</div>
 						</div>
 					</div>
-					<div id="alarm" data-state="alarm" class="mui-slider-item mui-control-content">
+					<!--<div id="alarm" data-state="alarm" class="mui-slider-item mui-control-content">-->
 						<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
 							<div class="mui-scroll">
+								
 								<!--<ul class="mui-col-xs-12 barNav clearfix">
 									<li class="mui-col-xs-3">未处理
 										<span class="mui-icon mui-icon-arrowdown"></span>
@@ -157,7 +159,6 @@
 									</div>									
 								</div>								
 							</div>
-							
 							<div>
 								<div id="item1" class="mui-control-content mui-active">
 									<div id="scroll" class="mui-scroll-wrapper">
@@ -379,8 +380,9 @@
 					}
 				});
 			};
+			
 			//获取统计分析数据
-			function getanalysisTime() { //获取工单列表
+			function getanalysisTime() { 
 				var count = 1;
 				mui.ajax({
 					url:'./json/realTime.json',
