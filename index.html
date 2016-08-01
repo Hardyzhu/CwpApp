@@ -21,26 +21,35 @@
 			mui.plusReady(function() {
 				// 仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
-				var first = plus.storage.getItem("IsFrist");
-				if (first) {
-					//跳转到main页面
-					mui.openWindow({
-						url: "html/main/main.html",
-						id: "main",
-						waiting: {
-							autoShow: false
-						}
-					});
-				} else {
-					//加载app动画
-					mui.openWindow({
-						url: "guide.html",
-						id: "guide",
-						waiting: {
-							autoShow: false
-						}
-					});
-				}
+				
+				//跳转到main页面
+				mui.openWindow({
+					url: "html/login/login.html",
+					id: "login",
+					waiting: {
+						autoShow: false
+					}
+				});
+//				var first = plus.storage.getItem("IsFrist");
+//				if (first) {
+//					//跳转到main页面
+//					mui.openWindow({
+//						url: "html/main/main.html",
+//						id: "main",
+//						waiting: {
+//							autoShow: false
+//						}
+//					});
+//				} else {
+//					//加载app动画
+//					mui.openWindow({
+//						url: "guide.html",
+//						id: "guide",
+//						waiting: {
+//							autoShow: false
+//						}
+//					});
+//				}
 			});
 			
 	
