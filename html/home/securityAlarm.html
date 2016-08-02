@@ -148,7 +148,7 @@
 		</div>
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData goToDel">	
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData goToDel"  data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}">	
 					{{if $value.warningLevel == 0}}
 						<div class="icon iconfont icon-menjinxitong blueColor"></div>
 					{{else if $value.warningLevel == 1}}
@@ -164,10 +164,6 @@
 						{{else}}
 						    	HWZJ201607201154123
 						{{/if}}			
-						<!--<a data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" class="mui-pull-right goToDel list-link-a" href="javascript:void(0);">
-							查看详情
-							<span class="mui-icon mui-icon-arrowright"></span>
-						</a>-->
 					</h3>
 					<div class="mui-col-xs-12 muiDetail">
 						{{$value.eventDescribe}}
