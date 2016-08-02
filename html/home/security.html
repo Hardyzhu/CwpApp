@@ -148,7 +148,7 @@
 		</div>
 		<script id="detailTmpl" type="text/html">
 			{{each beans}}
-				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData goToDel">					
+				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData goToDel"  data-id="{{$value.warningEventId}}" data-uid="{{$value.warningCategoryId}}" >					
 					<div class="icon iconfont {{$value.warningType | nameFormat}} {{$value.warningLevel | colFormat}}"></div>
 					<h3 class="list-title clearfix" style="padding: 0;">							
 						{{if $value.alarmNumber != ""}}

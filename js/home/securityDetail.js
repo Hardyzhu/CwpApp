@@ -210,9 +210,9 @@ mui.plusReady(function(){
 				console.log(data);
 				if(data.returnCode==0){
 					res(warningEventId,warningCategoryId,1,2);
-					mui.toast('抢单成功!');
+					mui.toast('接单成功!');
 				}else{
-					mui.toast('抢单失败!');
+					mui.toast('接单失败!');
 				}						
 				qmask.hide();
 			},
@@ -222,7 +222,7 @@ mui.plusReady(function(){
 				}else if(updateOrDetail==1){
 					mui.toast('查询失败!');
 				}else{
-					mui.toast('抢单失败!');
+					mui.toast('接单失败!');
 				}
 				qmask.hide();
 				return;
@@ -246,7 +246,7 @@ mui.plusReady(function(){
 	mui('#btooTmpl').on('tap', '#accept', function(e) {
 		var dataHtml = this.innerHTML;				
 		if(dataHtml.indexOf("已接单")>-1){
-			mui.toast('该工单已抢单,请勿重复点击！');
+			mui.toast('该工单已接受,请勿重复点击！');
 		}else{
 			order(warningEventId,warningCategoryId,2,2);
 		}
