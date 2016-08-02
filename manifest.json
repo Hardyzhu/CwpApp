@@ -786,7 +786,8 @@
 					"js/analysisEcharts.js",
 					"css/new.css",
 					"js/mui.conf.js",
-					"html/equipment/air_condition.js"
+					"html/equipment/air_condition.js",
+					"css/mui.picker.min.css"
 				],
 				"refer": [
 					"html/equipment/air_subdir/subReal.html",
