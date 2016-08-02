@@ -42,17 +42,23 @@
 //var lineChart = echarts.init(byId('lineChart'));
 //lineChart.setOption(getOption('line'));
 	
-var orderEcharts = echarts.init(document.getElementById('lineChart'));
+var orderEcharts = echarts.init(document.getElementById('analysisEcharts'));
 orderEcharts.setOption({
     legend: {
-        data:['设备数','故障数']
+        data:['设备总数','故障总数']
     },
     color:["#87cefa","#fa7d3c"],
+  	grid: {
+		x: 60,
+		x2: 30,
+		y: 35,
+		y2: 30
+	},
     calculable : true,
     xAxis : [
         {
             type : 'category',
-            data : ['空调','新风','排污泵','门禁']
+            data : ['cc-1','cc-2','cc-3']
         }
     ],
     yAxis : [
@@ -63,14 +69,16 @@ orderEcharts.setOption({
     ],
     series : [
         {
-            name:'设备数',
+            name:'设备总数',
             type:'bar',
-            data:[20, 30, 7, 25]
+            smooth:true,
+            data:[20, 30, 25]
         },
         {
-            name:'故障数',
+            name:'故障总数',
             type:'bar',
-            data:[2, 6, 9, 7]
+            smooth:true,
+            data:[6, 6,  7]
         }
     ]
 });

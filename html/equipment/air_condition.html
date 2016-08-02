@@ -110,12 +110,12 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item mui-active" href="#realTime">实时</a>		
-					<a class="mui-control-item" href="#analysis">统计分析</a>
+					<a class="mui-control-item" href="#realTime">实时</a>		
+					<a class="mui-control-item mui-active" href="#analysis">统计分析</a>
 				</div>
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 				<div class="mui-slider-group">
-					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content  mui-active">
+					<div id="realTime" data-state="realTime" class="mui-slider-item mui-control-content">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div id="realTimelist" class="mui-scroll">
 								<div class='mui-loading'>
@@ -124,49 +124,15 @@
 							</div>
 						</div>
 					</div>
-					<div id="analysis" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">                            
-							<div class="mui-content">
-								<div>
-									<div id="segmentedControl" class="mui-segmented-control">
-										<a class="mui-control-item mui-active" href="#item1">
-											故障统计
-										</a>
-										<a class="mui-control-item" href="#item2">
-											耗电量统计
-										</a>
-									</div>									
-								</div>								
+					<div id="analysis" data-state="analysis" class="mui-slider-item mui-control-content  mui-active">
+						<div id="scroll2" class="mui-scroll-wrapper">      
+							<div class="mui-content" style="margin-top: 0px;">
+								<div class="chart-pannel">
+									<div class="chart" id="analysisEcharts">
+										
+									</div>
+								</div>
 							</div>
-							<div>
-								<div id="item1" class="mui-control-content mui-active">
-									<div id="scroll" class="mui-scroll-wrapper">
-										<div class="mui-scroll">
-											<div class="mui-content" style="margin-top: 0px;">
-												<div class="chart-pannel">
-													<div class="chart" id="lineChart" style="width: 320px;">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>					
-								</div>
-								
-								<div id="item2" class="mui-control-content">
-									<div id="scroll" class="mui-scroll-wrapper">
-										<div class="mui-scroll">
-											<div class="mui-content" style="margin-top: 0px;">
-												<div class="chart-pannel">
-													<div class="chart" id="lineChart2">
-														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>	
-								</div>
-								
-							</div>	
 						</div>
 					</div>
 				</div>
@@ -200,12 +166,7 @@
 		<script src="../../js/analysisEcharts.js"></script>
 		<script src="../../js/mui.conf.js"></script>
 		<script>
-			mui.init({			
-				preloadPages:[{                      //预加载页面
-				    id:'securityDetail',
-				    url:'../task/securityDetail.html'
-				}]
-			});
+			mui.init();
 			mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var isLogin = plus.storage.getItem('userInfo');
@@ -217,9 +178,10 @@
 						var state = this.getAttribute('data-state');
 						if(state == 'realTime'){
 							getrealTime();//第一次进来加载第一页数据
-						}else{
-							getanalysisTime();
 						}
+//						else{
+//							//getanalysisTime();
+//						}
 					}
 				});
 			
@@ -231,9 +193,10 @@
 							getrealTime();
 						}
 					} else if (e.detail.slideNumber === 1) {
-						if (analysis.querySelector('.mui-loading')) {
-							getanalysisTime();
-						}
+//						if (analysis.querySelector('.mui-loading')) {}
+//							console.log("选择统计分析");
+//							getanalysisTime();
+						
 					}
 				});
 			    mui('.mui-scroll-wrapper').scroll({
@@ -282,7 +245,7 @@
 			function getanalysisTime() { 
 				var count = 1;
 				mui.ajax({
-					url:'./json/realTime.json',
+					url:'../json/realTime.json',
 					//url: global_url+"/cwp/front/sh/intebuilding!execute",
 					type: "get",
 					async: true,
@@ -296,6 +259,8 @@
 					dataType: "json",
 					timeout: 10000,
 					success: function(data) {
+						console.log("获取统计分析数据：");
+						console.log(data);
 						var getanalysislist = document.getElementById("analysislist");
 					},
 					error: function(xhr, type, errorThrown) {
