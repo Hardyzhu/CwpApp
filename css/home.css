@@ -1,7 +1,7 @@
 .autoSilder{
 	height:225px;
 }
-#lineChart{
+#lineChart,#eleChart,#faultChart,#noneChart{
 	height:200px;
 }
 .facility{

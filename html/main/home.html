@@ -28,7 +28,7 @@
 	<body>
 		<!--轮播-->
 		<div id="slider" class="mui-slider slider-pannel" >
-			<div class="mui-slider-group mui-slider-loop">
+			<div class="mui-slider-group">
 				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 				<!--<div class="mui-slider-item mui-slider-item-duplicate">
 					<div class="autoSilder">
@@ -38,7 +38,17 @@
 				<!-- 第一张 -->
 				<div class="mui-slider-item">
 					<div class="chart" id="lineChart"></div>
-				</div>			
+				</div>
+				<div class="mui-slider-item">
+					<div class="chart" id="faultChart"></div>
+				</div>
+				<div class="mui-slider-item">
+					<div class="chart" id="eleChart"></div>
+				</div>
+				<div class="mui-slider-item">
+					<div class="chart" id="noneChart"></div>
+				</div>
+				
 				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 				<!--<div class="mui-slider-item mui-slider-item-duplicate hidden">
 					<div class="autoSilder">
@@ -47,10 +57,10 @@
 				</div>-->
 			</div>
 			<div class="mui-slider-indicator">
-				<!--<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator mui-active"></div>
 				<div class="mui-indicator"></div>
 				<div class="mui-indicator"></div>
-				<div class="mui-indicator"></div>-->
+				<div class="mui-indicator"></div>
 			</div>
 		</div>
 		<!--内容-->
@@ -167,13 +177,12 @@
 			//跳转
 			
 			//质量报表
+			
 			var getOption = function(chartType) {
 					var chartOption = chartType == 'pie' ? {
 					calculable: false				
 				} : {
-					legend: {
-						data: ['耗电量'] //图例，表述数据和图形的关联
-					},
+					title: {text: '耗电量',padding: [5,190]},
 					color:['#007aff'],//设置曲线颜色
 					grid: {            //给图表定位
 						x: 60,
@@ -184,7 +193,7 @@
 					tooltip : {    //	气泡提示框
 						trigger: 'axis' //直角坐标系中的一个坐标轴，坐标轴可分为类目型、数值型或时间型
 					},
-					calculable : true,
+					calculable : false,
 					xAxis : [ //直角坐标系中的横轴，通常并默认为类目型
 						{
 							type : 'category',
@@ -223,6 +232,103 @@
 				var url = this.getAttribute('data-url');
 				plus.runtime.openURL(url);
 			},false);*/
+			var eleOption = {
+					title: {text: '用电趋势',padding: [5,180]},
+					color:['#007aff'],//设置曲线颜色
+					grid: {            //给图表定位
+						x: 60,
+						x2: 30,
+						y: 35,
+						y2: 30
+					},
+					tooltip : {    //	气泡提示框
+						trigger: 'axis' //直角坐标系中的一个坐标轴，坐标轴可分为类目型、数值型或时间型
+					},
+					calculable : false,
+					xAxis : [ //直角坐标系中的横轴，通常并默认为类目型
+						{
+							type : 'category',
+							boundaryGap : false,
+							data : ['一月','二月','三月','四月','五月','六月']//加载数据
+						}
+					],
+					yAxis : [  //	直角坐标系中的纵轴，通常并默认为数值型
+						{
+							type : 'value',
+							axisLabel : {//设置纵坐标的单位
+								formatter: '{value} kwh'
+							}
+						}
+					],
+					series : [//数据系列，一个图表可能包含多个系列，每一个系列可能包含多个数据
+						{
+							name:'用电趋势',//所表示的类型
+							type:'line', //图标类型
+							smooth:true,
+							itemStyle: {normal: {areaStyle: {type: 'default'}}},//图表样式设置
+							data:[31, 35, 24, 26, 50, 75]//加载数据
+						}
+					]
+				};
+				var defaultOption = {
+					title: {text: '故障统计',padding: [5,180]},
+					color:['#007aff'],//设置曲线颜色
+					grid: {            //给图表定位
+						x: 60,
+						x2: 30,
+						y: 35,
+						y2: 30
+					},
+					tooltip : {    //	气泡提示框
+						trigger: 'axis' //直角坐标系中的一个坐标轴，坐标轴可分为类目型、数值型或时间型
+					},
+					calculable : false,
+					xAxis : [ //直角坐标系中的横轴，通常并默认为类目型
+						{
+							type : 'category',
+//							boundaryGap : false,
+							data : ['一月','二月','三月','四月','五月','六月']//加载数据
+						}
+					],
+					yAxis : [  //	直角坐标系中的纵轴，通常并默认为数值型
+						{
+							type : 'value',
+							axisLabel : {//设置纵坐标的单位
+								formatter: '{value} 个'
+							}
+						}
+					],
+					series : [//数据系列，一个图表可能包含多个系列，每一个系列可能包含多个数据
+						{
+							name:'故障统计',//所表示的类型
+							type:'bar', //图标类型
+							smooth:true,
+//							itemStyle: {normal: {areaStyle: {type: 'default'}}},//图表样式设置
+							data:[31, 35, 24, 26, 50, 75]//加载数据
+						}
+					]
+				};
+			
+			
+			var item2Show = false,item3Show = false,item4Show = false;//子选项卡是否显示标志
+			document.querySelector('.mui-slider').addEventListener('slide',
+			function(event) {
+				if (event.detail.slideNumber === 1&&!item2Show) {
+					
+    				var faultLineChart = echarts.init(byId('faultChart'));
+					faultLineChart.setOption(defaultOption);
+				    //改变标志位，下次直接显示
+				    item2Show = true;
+				}else if (event.detail.slideNumber === 2&&!item3Show) {
+				    var eleLineChart = echarts.init(byId('eleChart'));
+					eleLineChart.setOption(eleOption);
+				    //改变标志位，下次直接显示
+				    item3Show = true;
+				}else if(event.detail.slideNumber === 3&&!item4Show){
+					var noneLineChart = echarts.init(byId('noneChart'));
+					noneLineChart.setOption(eleOption);
+				}});
+			
 			
 			/**
 			 * 点击事件
