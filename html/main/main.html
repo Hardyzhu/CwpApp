@@ -24,7 +24,7 @@
 		</header>
 		<!--底部选项栏-->
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item" data-href ="message.html" >
+			<a id="defaultTab" class="mui-tab-item" data-href ="message.html" >
 				<span class="mui-icon icon iconfont" style="position: relative;">
 					&#xe612;
 					<span id="tips" style="position:absolute;top:0px;right:0px;display:none;width:8px;height:8px;border-radius: 8px;-webkit-border-radius:8px;background:red;"></span>
@@ -143,6 +143,20 @@
 					});
 				}
 			});
+			
+			
+			//列表切换
+			function goMessage(){
+				var defaultTab = document.getElementById("defaultTab");
+				//模拟首页点击
+				mui.trigger(defaultTab, 'tap');
+				//切换选项卡高亮
+				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				if (defaultTab !== current) {
+					current.classList.remove('mui-active');
+					defaultTab.classList.add('mui-active');
+				}
+			}
 			
 			//退出
 			var first = null;
