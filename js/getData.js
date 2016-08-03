@@ -249,6 +249,9 @@ var $$ = (function($){
 						case '1004001':            //门禁设备
 						  b = "icon-menjinxitong"
 						  break;  
+						default:
+						  b = 'icon-menjinxitong';
+						  break;
 						
 					}
 					if(b!=''||b!=null){

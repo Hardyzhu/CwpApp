@@ -37,14 +37,14 @@
 		<script id="detailTmpl" type="text/html">
 			{{each reslut}}
 				<div class="mui-col-xs-12 mb5 list-pannel clearfix listData" data-id="{{$value.eventId}}" order-no="{{$value.messageNo}}">					
-					<div class="icon iconfont  {{$value.warningType | nameFormat}}  {{$value.messageLevel | colFormat}}"></div>
+					<div class="icon iconfont {{$value.warningType | nameFormat}}  {{$value.messageLevel | colFormat}}"></div>
 					<h3 class="list-title clearfix" style="padding: 0;">							
 						{{if $value.messageNo != ""}}
 							{{$value.messageNo}}
 						{{else}}
 						    HWZJ201607201154123
 						{{/if}}
-						<span class="mui-pull-right" style="padding:2px 6px;color:#FFF;font-size: 1.3rem; background:#0680C9;">{{$value.processAction}}</span>
+						<span class="mui-pull-right" class="alarm-status">{{$value.processAction}}</span>
 					</h3>
 					<div class="mui-col-xs-12 muiDetail">
 						{{$value.content}}

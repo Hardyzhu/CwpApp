@@ -1260,7 +1260,18 @@
 		"resources": [
 			"image/icon-11-3.png",
 			"fonts/iconfont.css",
-			"css/add.css"
+			"css/add.css",
+			"css/new.css",
+			"js/mui.conf.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/getData.js",
+			"js/mask/mask.js",
+			"js/template.js",
+			"js/mask/mask.css",
+			"js/DBUtils.js"
 		]
 	},
 	"html/workflow/FaultRepair/myCreate.html": {

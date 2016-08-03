@@ -151,6 +151,11 @@ h3{
 	height: 20px;
 	margin-top: 4px;
 }
+.alarm-status{
+	padding:0 6px;color:#FFF;font-size: 1.2rem; background:#0680C9;
+	line-height: 24px;
+	margin-top: 2px;
+}
 .redColor{
 	background-color:#DB0100;
 }
