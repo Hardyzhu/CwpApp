@@ -297,6 +297,8 @@ var $$ = (function($){
 					}
 					else if(inp.indexOf("门禁")>-1){
 						b = "icon-menjinxitong";
+					}esle{
+						b = "icon-menjinxitong";
 					}
 //				
 //					switch(inp){                   
@@ -317,9 +319,9 @@ var $$ = (function($){
 //						  break;
 //						
 //					}
-//					if(b!=''||b!=null){
-//						return b;
-//					}
+					if(b!=''||b!=null){
+						return b;
+					}
 				});
 				var dealHtml = template('detailTmpl', data);
 				oList.innerHTML = dealHtml;
