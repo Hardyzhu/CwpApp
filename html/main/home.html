@@ -38,15 +38,19 @@
 				<!-- 第一张 -->
 				<div class="mui-slider-item">
 					<div class="chart" id="lineChart"></div>
+					<p class="mui-slider-title">功耗报表</p>
 				</div>
 				<div class="mui-slider-item">
 					<div class="chart" id="faultChart"></div>
+					<p class="mui-slider-title">工单审批</p>
 				</div>
 				<div class="mui-slider-item">
 					<div class="chart" id="eleChart"></div>
+					<p class="mui-slider-title">安防告警</p>
 				</div>
 				<div class="mui-slider-item">
-					<div class="chart" id="noneChart"></div>
+					<div class="chart" id="securityChart"></div>
+					<p class="mui-slider-title">故障告警</p>
 				</div>
 				
 				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
@@ -56,7 +60,7 @@
 					</div>
 				</div>-->
 			</div>
-			<div class="mui-slider-indicator">
+			<div class="mui-slider-indicator mui-text-right">
 				<div class="mui-indicator mui-active"></div>
 				<div class="mui-indicator"></div>
 				<div class="mui-indicator"></div>
@@ -182,7 +186,9 @@
 					var chartOption = chartType == 'pie' ? {
 					calculable: false				
 				} : {
-					title: {text: '耗电量',padding: [5,190]},
+					legend: {
+                    	data:['耗电量']
+                	},
 					color:['#007aff'],//设置曲线颜色
 					grid: {            //给图表定位
 						x: 60,
@@ -233,46 +239,30 @@
 				plus.runtime.openURL(url);
 			},false);*/
 			var eleOption = {
-					title: {text: '用电趋势',padding: [5,180]},
-					color:['#007aff'],//设置曲线颜色
-					grid: {            //给图表定位
-						x: 60,
-						x2: 30,
-						y: 35,
-						y2: 30
-					},
-					tooltip : {    //	气泡提示框
-						trigger: 'axis' //直角坐标系中的一个坐标轴，坐标轴可分为类目型、数值型或时间型
-					},
+					color:["#e17131","#ffc000","#1111d5"],//设置曲线颜色
+					legend: {
+                    	data:['未处理(共213条)','处理中(共158条)','已处理(共101条)']
+                	},
 					calculable : false,
-					xAxis : [ //直角坐标系中的横轴，通常并默认为类目型
-						{
-							type : 'category',
-							boundaryGap : false,
-							data : ['一月','二月','三月','四月','五月','六月']//加载数据
-						}
-					],
-					yAxis : [  //	直角坐标系中的纵轴，通常并默认为数值型
-						{
-							type : 'value',
-							axisLabel : {//设置纵坐标的单位
-								formatter: '{value} kwh'
-							}
-						}
-					],
-					series : [//数据系列，一个图表可能包含多个系列，每一个系列可能包含多个数据
-						{
-							name:'用电趋势',//所表示的类型
-							type:'line', //图标类型
-							smooth:true,
-							itemStyle: {normal: {areaStyle: {type: 'default'}}},//图表样式设置
-							data:[31, 35, 24, 26, 50, 75]//加载数据
-						}
-					]
+					series : [
+	                    {
+	                        name:'访问来源',
+	                        type:'pie',
+	                        radius : '55%',
+	                        center: ['50%', '60%'],
+	                        data:[
+	                            {value:213, name:'未处理(共213条)'},
+	                            {value:158, name:'处理中(共158条)'},
+	                            {value:101, name:'已处理(共101条)'}
+	                        ]
+	                    }
+	                ]
 				};
 				var defaultOption = {
-					title: {text: '故障统计',padding: [5,180]},
-					color:['#007aff'],//设置曲线颜色
+					legend:{
+						data:['设备数','故障数']
+					},
+					color:['#007aff',"#fa7d3c"],//设置曲线颜色
 					grid: {            //给图表定位
 						x: 60,
 						x2: 30,
@@ -287,7 +277,7 @@
 						{
 							type : 'category',
 //							boundaryGap : false,
-							data : ['一月','二月','三月','四月','五月','六月']//加载数据
+							data : ['空调','新风','排污泵','门禁']//加载数据
 						}
 					],
 					yAxis : [  //	直角坐标系中的纵轴，通常并默认为数值型
@@ -300,15 +290,41 @@
 					],
 					series : [//数据系列，一个图表可能包含多个系列，每一个系列可能包含多个数据
 						{
-							name:'故障统计',//所表示的类型
+							name:'设备数',//所表示的类型
 							type:'bar', //图标类型
 							smooth:true,
 //							itemStyle: {normal: {areaStyle: {type: 'default'}}},//图表样式设置
-							data:[31, 35, 24, 26, 50, 75]//加载数据
+							data:[20, 30, 9, 25]//加载数据
+						},
+						{
+							name:'故障数',//所表示的类型
+							type:'bar', //图标类型
+							smooth:true,
+//							itemStyle: {normal: {areaStyle: {type: 'default'}}},//图表样式设置
+							data:[2, 6, 7, 7]//加载数据
 						}
 					]
 				};
-			
+			var securityOption = {
+					color:["#e17131","#ffc000","#1111d5"],//设置曲线颜色
+					legend: {
+                    	data:['未处理(共35条)','处理中(共23条)','已处理(共52条)']
+                	},
+					calculable : false,
+					series : [
+	                    {
+	                        name:'访问来源',
+	                        type:'pie',
+	                        radius : '55%',
+	                        center: ['50%', '60%'],
+	                        data:[
+	                            {value:35, name:'未处理(共35条)'},
+	                            {value:23, name:'处理中(共23条)'},
+	                            {value:52, name:'已处理(共52条)'}
+	                        ]
+	                    }
+	                ]
+				};
 			
 			var item2Show = false,item3Show = false,item4Show = false;//子选项卡是否显示标志
 			document.querySelector('.mui-slider').addEventListener('slide',
@@ -325,8 +341,8 @@
 				    //改变标志位，下次直接显示
 				    item3Show = true;
 				}else if(event.detail.slideNumber === 3&&!item4Show){
-					var noneLineChart = echarts.init(byId('noneChart'));
-					noneLineChart.setOption(eleOption);
+					var noneLineChart = echarts.init(byId('securityChart'));
+					noneLineChart.setOption(securityOption);
 				}});
 			
 			

@@ -1,7 +1,7 @@
 .autoSilder{
 	height:225px;
 }
-#lineChart,#eleChart,#faultChart,#noneChart{
+#lineChart,#eleChart,#faultChart,#securityChart{
 	height:200px;
 }
 .facility{
@@ -36,4 +36,11 @@
 }
 .Security img{
 	display:block;width:100%;
+}
+.mui-slider .mui-slider-item .mui-slider-title{
+	bottom: -30px;
+	background-color: transparent;
+	color:#000;
+	font-size:1.3em;
+	text-align: center;
 }
