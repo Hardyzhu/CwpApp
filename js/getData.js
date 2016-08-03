@@ -297,7 +297,7 @@ var $$ = (function($){
 					}
 					else if(inp.indexOf("门禁")>-1){
 						b = "icon-menjinxitong";
-					}esle{
+					}else{
 						b = "icon-menjinxitong";
 					}
 //				
