@@ -111,7 +111,7 @@
 			<div class="message-top-pannel">
 				<div class="message-top-box">
 					<div class="message-padding clearfix">
-						<span class="mb5 mr10 icon iconfont icon-menjinxitong mui-pull-left comlogo {{warningLevel | colorFormat}}"></span>
+						<span class="mb5 mr10 icon iconfont   {{warningType | nameFormat}}  mui-pull-left comlogo {{warningLevel | colorFormat}}"></span>
 						<div class="message-info-group mb5">
 							<div class="message-info-list clearfix">
 								<div class="message-add comFont_color">
@@ -173,9 +173,7 @@
 							<span class="mui-pull-right comFont_color">{{applyTime}}</span>
 						</dt>
 						<dd class="comFont_color">
-							设备管理员:黄忠
-							<br/>
-							门禁维修员:曹长彪
+							{{#appPush | noticeName}}
 						</dd>
 					</dl>
 				</div>

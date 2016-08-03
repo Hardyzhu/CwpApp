@@ -85,6 +85,17 @@ mui.plusReady(function(){
 						return '已完成';
 					}
 				});
+				//通知人
+				template.helper('noticeName',function(inp){
+					var roleList=data.bean.appPush;
+					if(roleList!="")
+					{
+						var noticeNameArray=roleList.split(',');
+						noticeName=noticeNameArray[1]+'<br/>'+noticeNameArray[0];
+					}
+					return noticeName;					
+				});
+				
 				template.helper('toIndexOf',function(inp){
 					console.log(inp.length);
 					console.log(inp.lastIndexOf(','));
@@ -95,6 +106,27 @@ mui.plusReady(function(){
 						return inp.replace(/\,/g,'/');
 					}
 					
+				});
+				template.helper('nameFormat',function(inp){
+					var b = '';
+					switch(inp){                   
+						case '1003185':            //空调
+						  b = 'icon-kongdiao';
+						  break;
+						case '1003186':            //新风
+						  b = "icon-tongfeng"
+						  break;
+						case '1003187':            //排污泵
+						  b = "icon-135" 
+						  break;  
+						case '1004001':            //门禁设备
+						  b = "icon-menjinxitong"
+						  break;  
+						
+					}
+					if(b!=''||b!=null){
+						return b;
+					}
 				});
 				template.helper('colorFormat',function(inp){
 					if(inp == 0){
@@ -108,7 +140,7 @@ mui.plusReady(function(){
 					}
 				});
 				template.helper('toState',function(inp){
-					if(inp){
+					if(inp==4){
 						return '转工单';
 					}
 				});
