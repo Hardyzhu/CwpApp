@@ -64,6 +64,7 @@ mui.plusReady(function() {
 		} else {
 			if(dataTime - time <= '1000') {
 				mui.toast('正在登录，请稍后...');
+				return
 			}
 		}
 		loginByPhone(uphone, upwd);
