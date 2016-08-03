@@ -10,13 +10,14 @@ var DbTableConfig = {
     		processAction:"TEXT",
     		messageNo:"TEXT",
     		messageLevel:"TEXT",
+    		warningType:"TEXT",
     		createTime:"TEXT"
     	}
     },
     dao:{
     	addPushMessage:{
-    		sql:"INSERT INTO PushMessage (id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime) values (?,?,?,?,?,?,?,?,?,?)",
-    		args:["id","eventId","title","type","content","status","processAction","messageNo","messageLevel","createTime"]
+    		sql:"INSERT INTO PushMessage (id,eventId,title,type,content,status,processAction,messageNo,messageLevel,warningType,createTime) values (?,?,?,?,?,?,?,?,?,?,?)",
+    		args:["id","eventId","title","type","content","status","processAction","messageNo","messageLevel","warningType","createTime"]
     	},
     	updatePushMessageStatus:{
     		sql:"UPDATE PushMessage SET status=? where id=?",
@@ -31,11 +32,11 @@ var DbTableConfig = {
     		args:[]
     	},
     	selectPushMsgByType:{
-    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime from PushMessage where 1=1 and type=? order by createTime desc",
+    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,warningType,createTime from PushMessage where 1=1 and type=? order by createTime desc",
     		args:["type"]
     	},
     	selectPushMsgByStatus:{
-    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,createTime from PushMessage where 1=1 and status=? order by createTime desc",
+    		sql:"select id,eventId,title,type,content,status,processAction,messageNo,messageLevel,warningType,createTime from PushMessage where 1=1 and status=? order by createTime desc",
     		args:["status"]
     	}
     }
@@ -145,7 +146,7 @@ var websql = (function(document, undefined) {
 	$.insertPushMessage=function(options,callback){
 		if(!this.isEmptyObject(options)){
 			options.id=this.uuid();
-			options.createTime=this.now();
+//			options.createTime=this.now();
 			this.exec(DbTableConfig.dao.addPushMessage,options,callback);
 		}		
 	};

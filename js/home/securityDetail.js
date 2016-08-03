@@ -59,153 +59,156 @@ mui.plusReady(function(){
 			},
 			dataType: "json",
 			timeout: 1000000,
-			success: function(data) {							
-				if(updateOrDetail==1){
-					mui.toast('查询成功!');
-				}else{
-					mui.toast('接受成功!');
-				}
-				var oBtoo = document.getElementById('btooTmpl');
-				var oDeal = document.getElementById('dealTmpl');
-				var oDault = document.getElementById('dataDault');
-				var oPosone = document.getElementById('posoneTmpl');
-				template.helper('toGet',function(inp){
-					if(inp==''||inp==null){
-						return '接单';
-					}else{
-						return '已接单';
-					}
-				});
-				template.helper('dealerFormat',function(inp){
-					if(inp==1){
-						return '未处理';
-					}else if(inp==2){
-						return '处理中';
-					}else{
-						return '已完成';
-					}
-				});
-				//通知人
-				template.helper('noticeName',function(inp){
-					var roleList=data.bean.appPush;
-					if(roleList!="")
-					{
-						var noticeNameArray=roleList.split(',');
-						noticeName=noticeNameArray[1]+'<br/>'+noticeNameArray[0];
-					}
-					return noticeName;					
-				});
-				
-				template.helper('toIndexOf',function(inp){
-					console.log(inp.length);
-					console.log(inp.lastIndexOf(','));
-					if((inp.length-1)==inp.lastIndexOf(',')){
-						var b = inp.substring(0,inp.length-1);	
-						return b.replace(/\,/g,'/');
-					}else{
-						return inp.replace(/\,/g,'/');
-					}
-					
-				});
-				template.helper('nameFormat',function(inp){
-					var b = '';
-					switch(inp){                   
-						case '1003185':            //空调
-						  b = 'icon-kongdiao';
-						  break;
-						case '1003186':            //新风
-						  b = "icon-tongfeng"
-						  break;
-						case '1003187':            //排污泵
-						  b = "icon-135" 
-						  break;  
-						case '1004001':            //门禁设备
-						  b = "icon-menjinxitong"
-						  break;  
-						
-					}
-					if(b!=''||b!=null){
-						return b;
-					}
-				});
-				template.helper('colorFormat',function(inp){
-					if(inp == 0){
-						return 'blueColor';
-					}else if(inp==1){
-						return 'yellowColor';
-					}else if(inp==2){
-						return 'orangeColor';
-					}else{
-						return 'redColor';
-					}
-				});
-				template.helper('toState',function(inp){
-					if(inp==4){
-						return '转工单';
-					}
-				});
-				template.helper('sFormat',function(inp,iAttr){
-					if(inp==null||inp==''){
-						if(iAttr==1){
-							return 'comp';
+			success: function(data) {		
+				if(data.returnCode=="0")
+				{
+						if(updateOrDetail==1){
+							mui.toast('查询成功!');
 						}else{
-							return 'conp';	
+							mui.toast('接受成功!');
 						}
-					}
-				});
-				//加入角色信息
-				if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
-					for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
-						if(userRole=='13'||userRole=='14'){
-							//已完成并没有转故障
-							if(data.bean.eventProcessStatus=='3'&&data.bean.eventProgress=='3'){
-								document.getElementById('bottom_bar').style.display = 'none';								
+						var oBtoo = document.getElementById('btooTmpl');
+						var oDeal = document.getElementById('dealTmpl');
+						var oDault = document.getElementById('dataDault');
+						var oPosone = document.getElementById('posoneTmpl');
+						template.helper('toGet',function(inp){
+							if(inp==''||inp==null){
+								return '接单';
 							}else{
-								var bottomHtml = template('btooTmp', data.bean);
-								oBtoo.innerHTML = '';
-								console.log(bottomHtml);
-								oBtoo.innerHTML = bottomHtml;
-								
-								//防止渲染不好看
-								document.getElementById('bottom_bar').style.visibility = 'visible';
+								return '已接单';
 							}
-						}	
-					}
-				}
-				var dealHtml = template('dealTmp', data.bean);
-				oDeal.innerHTML = dealHtml;
-				//抢单
-				if(data.bean.eventProcessStatus>=2){
-					var posHtml = template('posTpl', data.bean);
-					oPosone.innerHTML = '';
-					oPosone.innerHTML = posHtml;
-				}
-				var daultHtml = template('dataTmpl', data.bean);
-				oDault.innerHTML = '';
-				oDault.innerHTML = daultHtml;
-				//预加载子页面
-				/*mui.fire(reportPage, 'getReport', {
-				    result:data.bean
-				});*/
-				//跳转处理报告
-				mui('#btooTmpl').on('tap', '#goReport', function(e) {
-					var state = this.getAttribute('data-state');
-					if(state==''||state==null){
-						mui.toast('请先接受工单!');
-						return;
-					}
-					mui.openWindow({
-						url: 'securityReport.html',
-						id: 'securityReport',
-						waiting: {
-							autoShow: false
-						},
-						extras: {
-							result: data.bean
+						});
+						template.helper('dealerFormat',function(inp){
+							if(inp==1){
+								return '未处理';
+							}else if(inp==2){
+								return '处理中';
+							}else{
+								return '已完成';
+							}
+						});
+						//通知人
+						template.helper('noticeName',function(inp){
+							var roleList=data.bean.appPush;
+							if(roleList!=""&&roleList!=undefined)
+							{
+								var noticeNameArray=roleList.split(',');
+								noticeName=noticeNameArray[1]+'<br/>'+noticeNameArray[0];
+							}
+							return noticeName;					
+						});
+						
+						template.helper('toIndexOf',function(inp){
+							console.log(inp.length);
+							console.log(inp.lastIndexOf(','));
+							if((inp.length-1)==inp.lastIndexOf(',')){
+								var b = inp.substring(0,inp.length-1);	
+								return b.replace(/\,/g,'/');
+							}else{
+								return inp.replace(/\,/g,'/');
+							}
+							
+						});
+						template.helper('nameFormat',function(inp){
+							var b = '';
+							switch(inp){                   
+								case '1003185':            //空调
+								  b = 'icon-kongdiao';
+								  break;
+								case '1003186':            //新风
+								  b = "icon-tongfeng"
+								  break;
+								case '1003187':            //排污泵
+								  b = "icon-135" 
+								  break;  
+								case '1004001':            //门禁设备
+								  b = "icon-menjinxitong"
+								  break;  
+								
+							}
+							if(b!=''||b!=null){
+								return b;
+							}
+						});
+						template.helper('colorFormat',function(inp){
+							if(inp == 0){
+								return 'blueColor';
+							}else if(inp==1){
+								return 'yellowColor';
+							}else if(inp==2){
+								return 'orangeColor';
+							}else{
+								return 'redColor';
+							}
+						});
+						template.helper('toState',function(inp){
+							if(inp==4){
+								return '转工单';
+							}
+						});
+						template.helper('sFormat',function(inp,iAttr){
+							if(inp==null||inp==''){
+								if(iAttr==1){
+									return 'comp';
+								}else{
+									return 'conp';	
+								}
+							}
+						});
+						//加入角色信息
+						if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
+							for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
+								if(userRole=='13'||userRole=='14'){
+									//已完成并没有转故障
+									if(data.bean.eventProcessStatus=='3'&&data.bean.eventProgress=='3'){
+										document.getElementById('bottom_bar').style.display = 'none';								
+									}else{
+										var bottomHtml = template('btooTmp', data.bean);
+										oBtoo.innerHTML = '';
+										console.log(bottomHtml);
+										oBtoo.innerHTML = bottomHtml;
+										
+										//防止渲染不好看
+										document.getElementById('bottom_bar').style.visibility = 'visible';
+									}
+								}	
+							}
 						}
-					});
-				});
-				qmask.hide();
+						var dealHtml = template('dealTmp', data.bean);
+						oDeal.innerHTML = dealHtml;
+						//抢单
+						if(data.bean.eventProcessStatus>=2){
+							var posHtml = template('posTpl', data.bean);
+							oPosone.innerHTML = '';
+							oPosone.innerHTML = posHtml;
+						}
+						var daultHtml = template('dataTmpl', data.bean);
+						oDault.innerHTML = '';
+						oDault.innerHTML = daultHtml;
+						//预加载子页面
+						/*mui.fire(reportPage, 'getReport', {
+						    result:data.bean
+						});*/
+						//跳转处理报告
+						mui('#btooTmpl').on('tap', '#goReport', function(e) {
+							var state = this.getAttribute('data-state');
+							if(state==''||state==null){
+								mui.toast('请先接受工单!');
+								return;
+							}
+							mui.openWindow({
+								url: 'securityReport.html',
+								id: 'securityReport',
+								waiting: {
+									autoShow: false
+								},
+								extras: {
+									result: data.bean
+								}
+							});
+						});
+						qmask.hide();
+				}
 			},
 			error: function(xhr, type, errorThrown) {
 				if(type=='timeout'){

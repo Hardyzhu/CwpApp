@@ -97,10 +97,8 @@ var $$ = (function($){
 				});
 				if((data instanceof Array)&&(data.length>0)){
 					switch(data[0].type){
-						case 'SECURITY':
-							//alert(JSON.stringify(data));
-							security = data[0];
-							//alert(1);
+						case 'SECURITY':						
+							security = data[0];							
 							var securityTmp = document.getElementById('securityTmp');
 							var secHtml = template('securityTmpl',security);
 							securityTmp.innerHTML = secHtml;
@@ -108,7 +106,36 @@ var $$ = (function($){
 						case 'WARN':
 							//alert(JSON.stringify(data));
 							warn = data[0];
-							//alert(2);
+//							template.helper('nameFormat',function(inp){
+//								var b = '';
+//								switch(inp){                   
+//									case '1003185':            //空调
+//									  b = '空调';
+//									  break;
+//									case '1003186':            //新风
+//									  b = "新风"
+//									  break;
+//									case '1003187':            //排污泵
+//									  b = "排污泵" 
+//									  break;  
+//									case '1004001':            //门禁设备
+//									  b = '门禁'
+//									  break;  
+//									default:
+//									  b = '门禁';
+//									  break;									
+//								}
+//								if(b!=''||b!=null){
+//									return b;
+//								}
+//							});
+							template.helper('isnotNull',function(inp){
+								if(inp==''||inp==null){
+									return '暂无记录';
+								}else{
+									return inp;
+								}
+							});
 							var warnTmp = document.getElementById('warnTmp');
 							var warnHtml = template('warnTmpl',warn);
 							warnTmp.innerHTML = warnHtml;
@@ -133,6 +160,29 @@ var $$ = (function($){
 							break;
 						case 'WARN':
 							//alert(22);
+//							template.helper('nameFormat',function(inp){
+//								var b = '';
+//								switch(inp){                   
+//									case '1003185':            //空调
+//									  b = '空调';
+//									  break;
+//									case '1003186':            //新风
+//									  b = "新风"
+//									  break;
+//									case '1003187':            //排污泵
+//									  b = "排污泵" 
+//									  break;  
+//									case '1004001':            //门禁设备
+//									  b = '门禁'
+//									  break;  
+//									default:
+//									  b = '门禁';
+//									  break;									
+//								}
+//								if(b!=''||b!=null){
+//									return b;
+//								}
+//							});
 							var warnTmp = document.getElementById('warnTmp');
 							var warnHtml = template('warnTmpl',warn);
 							warnTmp.innerHTML = warnHtml;
@@ -200,7 +250,7 @@ var $$ = (function($){
 			});
 		}
 	};
-	//修改方法
+
 	//修改方法
 	$$.updatePushMessageAllStatus = function(arg,item){
 		var parm = {};                          //渲染部分
@@ -233,30 +283,43 @@ var $$ = (function($){
 						return 'redColor';
 					}
 				});
-				//设备图标
+				//设备图标				
 				template.helper('nameFormat',function(inp){
 					var b = '';
-					switch(inp){                   
-						case '1003185':            //空调
-						  b = 'icon-kongdiao';
-						  break;
-						case '1003186':            //新风
-						  b = "icon-tongfeng"
-						  break;
-						case '1003187':            //排污泵
-						  b = "icon-135" 
-						  break;  
-						case '1004001':            //门禁设备
-						  b = "icon-menjinxitong"
-						  break;  
-						default:
-						  b = 'icon-menjinxitong';
-						  break;
-						
+					if(inp.indexOf("空调")>-1){
+						b = 'icon-kongdiao';
 					}
-					if(b!=''||b!=null){
-						return b;
+					else if(inp.indexOf("新风")>-1){
+						b = "icon-tongfeng";
 					}
+					else if(inp.indexOf("排污泵")>-1){
+						 b = "icon-135";
+					}
+					else if(inp.indexOf("门禁")>-1){
+						b = "icon-menjinxitong";
+					}
+//				
+//					switch(inp){                   
+//						case '1003185':            //空调
+//						  b = 'icon-kongdiao';
+//						  break;
+//						case '1003186':            //新风
+//						  b = "icon-tongfeng"
+//						  break;
+//						case '1003187':            //排污泵
+//						  b = "icon-135" 
+//						  break;  
+//						case '1004001':            //门禁设备
+//						  b = "icon-menjinxitong"
+//						  break;  
+//						default:
+//						  b = 'icon-menjinxitong';
+//						  break;
+//						
+//					}
+//					if(b!=''||b!=null){
+//						return b;
+//					}
 				});
 				var dealHtml = template('detailTmpl', data);
 				oList.innerHTML = dealHtml;

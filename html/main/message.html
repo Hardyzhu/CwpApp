@@ -30,9 +30,9 @@
 			}
 			.mesDate,
 			.mesLevel{
-				display:none;
+				/*display:none;
 				opacity: 0;
-				filter:alpha(opacity:0);
+				filter:alpha(opacity:0);*/
 			}
 			#list{
 				margin:5px 0;
@@ -87,26 +87,33 @@
 			</div>
 		</div>
 		<script type="text/html" id="securityTmpl">
-			安防告警消息
-			<span class="mui-pull-right com_detail_color mesDate">{{pushDate}}</span>
-			<p class='mui-ellipsis'>
-				<span class="mesCon">{{content | isnotNull}}</span>
-				<span class="mui-pull-right mesLevel">{{processAction}}</span>
+			<div class="title clearfix">
+				安防告警消息
+				<span class="mui-pull-right com_detail_color mesDate">{{createTime}}</span>
+			</div>			
+			<p class='mui-ellipsis clearfix'>
+				<span class="mesCon mui-pull-left">{{content | isnotNull}}</span>
+				<span class="mui-pull-right mesLevel">{{processAction}}</span>	
 			</p>
+			
 		</script>
 		<script type="text/html" id="warnTmpl">
-			故障告警消息
-			<span class="mui-pull-right com_detail_color mesDate">{{pushDate}}</span>
-			<p class='mui-ellipsis'>
-				<span class="mesCon">{{content | isnotNull}}</span>
+			<div class="title clearfix">
+				故障告警消息
+				<span class="mui-pull-right com_detail_color mesDate">{{createTime}}</span>
+			</div>
+			<p class='mui-ellipsis clearfix'>
+				<span class="mui-pull-left mesCon">{{content | isnotNull}}</span>
 				<span class="mui-pull-right mesLevel">{{processAction}}</span>
 			</p>
 		</script>
 		<script type="text/html" id="orderTmpl">
-			工单待办消息
-			<span class="mui-pull-right com_detail_color mesDate">{{pushDate}}</span>
-			<p class='mui-ellipsis'>
-				<span class="mesCon">{{content | isnotNull}}</span>
+			<div class="title clearfix">
+				工单待办消息
+				<span class="mui-pull-right com_detail_color mesDate">{{createTime}}</span>
+			</div>
+			<p class='mui-ellipsis clearfix'>
+				<span class="mui-pull-left mesCon">{{content | isnotNull}}</span>
 				<span class="mui-pull-right mesLevel">{{processAction}}</span>
 			</p>
 		</script>
@@ -149,6 +156,8 @@
 						}
 					}
 				}
+				
+				
 			});
 			
 			// 监听plusready事件  
@@ -187,7 +196,7 @@
                             break;
                     }
                     // 处理其它数据
-					logoutPushMsg( msg );
+//					logoutPushMsg(msg);
 			    }, false );
 			    // 监听在线消息事件
 			    plus.push.addEventListener( "receive", function( msg ) {
@@ -224,10 +233,9 @@
 			    	});
 			    }
 			    //存储消息
-				function saveMsg(msg){
-					
+				function saveMsg(msg){					
 					var data = eval('('+msg.payload+')');
-				//	alert(JSON.stringify(data));
+					var nowTime=getNowFormatDate();
 					var msgJs={
             			eventId:data.eventId,
 			    		title:msg.title,
@@ -236,6 +244,8 @@
 			    		processAction:data.processAction,
 			    		messageNo:data.messageNo,
 			    		messageLevel:data.messageLevel,
+			    		warningType:data.warningType,
+			    		createTime:nowTime,
 			    		status:'0'
 	            	};
 					//向websql里面新增数据
@@ -248,6 +258,25 @@
 			    	});
 				}
 			}, false );
+			
+			//获取当前的日期时间 格式“yyyy/MM/dd HH:MM:SS”
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "/";
+				var seperator2 = ":";
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if (month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+						+ " " + date.getHours() + seperator2 + date.getMinutes()
+						+ seperator2 + date.getSeconds();
+				return currentdate;
+			}
 		</script>
 	</body>
 </html>
