@@ -18,6 +18,16 @@ mui.init();
 		//循环初始化所有下拉刷新，上拉加载。
 		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 			$(pullRefreshEl).pullToRefresh({
+				down: {
+					callback: function() {
+						var _self = this;
+						setTimeout(function() {
+							var dataList = _self.element.querySelector('.mui-text-center');
+							getProductList($(pullRefreshEl),_self,dataList,index,5,userId,true);
+							_self.endPullDownToRefresh();
+						}, 1000);
+					}
+				},
 				up: {
 					auto:true,
 					callback: function() {
@@ -73,12 +83,17 @@ mui.init();
 		});
 		
 		//渲染数据
-		function getProductList(_elem,_this,obj,index,pageSize,userId) { //获取工单列表
+		function getProductList(_elem,_this,obj,index,pageSize,userId,bool) { //获取工单列表
+			//bool:true 为下拉刷新
 			qmask.show();
+			if(bool){
+				page = 1;
+			}else{
+				var totalLength = obj.querySelectorAll('.listData').length;
+				var page = (totalLength-pageSize)/pageSize;
+				page += 2;
+			}
 			console.log("得到用户ID："+userId);
-			var totalLength = obj.querySelectorAll('.listData').length;
-			var page = (totalLength-pageSize)/pageSize;
-			page += 2;
 			console.log(page);
 			obj.user_id = '';
 			if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
@@ -130,7 +145,13 @@ mui.init();
 						}
 					});
 					var html = template('detailTmpl', data);
-					obj.innerHTML += html;
+					if(bool){
+						obj.innerHTML = '';
+						obj.innerHTML = html;
+					}else{
+						obj.innerHTML += html;
+					}
+					
 					if(data.beans instanceof Array && data.beans.length<5){
 						_this.mark = true;
 						setTimeout(function(){
