@@ -100,6 +100,7 @@ mui.init();
 			
 			console.log(page);
 			obj.user_id = '';
+			var deviceType="";
 			if(JSON.parse(isLogin).role!=""||JSON.parse(isLogin).role!=0){
 				for(var i = 0; i < JSON.parse(isLogin).role.length; i++){
 					if(userRole=='8'||userRole=='4'||userRole=='3'||userRole=='2'){
@@ -118,7 +119,22 @@ mui.init();
 								obj.user_id = userId;
 								break;
 						}
+						deviceType="1004001";
 					}	
+					else if(userRole=='14'){
+						switch(++index){
+							case 1:	
+								obj.user_id = '';
+								break;
+							case 2:		
+								obj.user_id = userId;
+								break;
+							case 3:
+								obj.user_id = userId;
+								break;
+						}
+						deviceType="1003185";
+					}
 				}
 			}
 			console.log(index);
@@ -130,7 +146,7 @@ mui.init();
 					uid: 'c016',
 					currentPage:page,
 					pageSize:pageSize,
-					dictValue:'', 
+					dictValue:deviceType, 
 					eventProcessStatus:index,
 					eventType:1,
 					responseOfficerId:obj.user_id
