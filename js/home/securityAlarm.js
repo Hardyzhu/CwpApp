@@ -117,7 +117,6 @@ mui.init();
 					}	
 				}
 			}
-			console.log(index);
 			mui.ajax({
 				url: global_url+"/cwp/front/sh/warningEvent!execute",
 				type: "post",
@@ -156,9 +155,6 @@ mui.init();
 						_this.mark = true;
 						setTimeout(function(){
 							mui.toast('没有更多数据了!');
-							//_elem.pullRefresh().disablePullupToRefresh();
-							//var tipHtml="<div class=t-norecord><i class='icon iconfont icon-baogaoyichuangjian'></i><p>暂无数据记录</p></div>";
-							//mui(_this).innerHTML = tipHtml;
 						},500);
 						qmask.hide();
 						return;
