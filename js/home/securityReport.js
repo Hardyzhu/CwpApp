@@ -122,8 +122,11 @@ mui.plusReady(function(){
 		var tip = '';
 		if(info.innerHTML=='无偿服务'){
 			tip = '有偿服务';
+			document.getElementById("money").style.display="block";
 		}else{
 			tip = '无偿服务';
+			document.getElementById("money").style.display="none";
+			document.getElementById('lead_money').innerHTML="0.00";
 		}
 		var btnArray = ['取消', '确定'];
 		mui.confirm('是否切换为'+tip, '维修服务', btnArray, function(e) {
