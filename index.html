@@ -22,33 +22,27 @@
 				plus.screen.lockOrientation("portrait-primary");
 				
 				//跳转到main页面
-				mui.openWindow({
-					url: "html/main/main.html",
-					id: "main.html",
-					waiting: {
-						autoShow: false
-					}
-				});
-//				var first = plus.storage.getItem("IsFrist");
-//				if (first) {
-//					//跳转到main页面
-//					mui.openWindow({
-//						url: "html/main/main.html",
-//						id: "main",
-//						waiting: {
-//							autoShow: false
-//						}
-//					});
-//				} else {
-//					//加载app动画
-//					mui.openWindow({
-//						url: "guide.html",
-//						id: "guide",
-//						waiting: {
-//							autoShow: false
-//						}
-//					});
-//				}
+				//var first = plus.storage.getItem("IsFrist");
+				first = false;
+				if (first) {
+					//跳转到main页面
+					mui.openWindow({
+						url: "html/main/main.html",
+						id: "main",
+						waiting: {
+							autoShow: false
+						}
+					});
+				} else {
+					//加载app动画
+					mui.openWindow({
+						url: "guide.html",
+						id: "guide",
+						waiting: {
+							autoShow: false
+						}
+					});
+				}
 			});
 			
 	

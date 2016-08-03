@@ -420,7 +420,9 @@
 					"image/shop03.jpg",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"js/DBUtils.js"
+					"js/DBUtils.js",
+					"image/start.png",
+					"js/getData.js"
 				],
 				"refer": [
 					"html/main/home.html",
