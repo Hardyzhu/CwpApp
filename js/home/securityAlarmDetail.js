@@ -83,16 +83,17 @@ mui.plusReady(function(){
 					}
 				});
 				//通知人
-//				template.helper('noticeName',function(inp){
-//					var roleList=data.bean.appPush;
-//					if(roleList!="")
-//					{
-//						var noticeNameArray=roleList.split(',');
-//						noticeName=noticeNameArray[1]+"<br/>"+noticeNameArray[0];
-//					}
-//					return noticeName;
-//					
-//				});
+
+				template.helper('noticeName',function(inp){
+					var roleList=data.bean.appPush;
+					if(roleList!="")
+					{
+						var noticeNameArray=roleList.split(',');				
+						var noticeName=noticeNameArray[1].split(':')[1];
+					}
+					return noticeName;
+					
+				});
 				template.helper('toIndexOf',function(inp){
 					console.log(inp.length);
 					console.log(inp.lastIndexOf(','));
