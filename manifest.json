@@ -79,7 +79,7 @@
         },
         "NativeObj":{
         	"description": "原生对象"
-        },"Payment":{},"Push":{}
+        },"Payment":{},"Push":{},"Invocation":{}
 	},
 	"plus": {
 		"splashscreen": {
@@ -390,7 +390,9 @@
 					"css/mui.min.css",
 					"js/mui.conf.js",
 					"fonts/iconfont.css",
-					"fonts/iconfont.woff"
+					"fonts/iconfont.woff",
+					"js/push.js",
+					"js/login.js"
 				],
 				"refer": [
 					"html/main/home.html",
@@ -429,11 +431,13 @@
 					"image/mes-01.png",
 					"image/mes-03.png",
 					"js/DBUtils.js",
-					"js/getData.js"
+					"js/getData.js",
+					"js/push.js"
 				],
 				"refer": [
 					"html/task/securityDetail.html",
-					"html/task/messagedetail.html"
+					"html/task/messagedetail.html",
+					"html/main/messageDetail.html"
 				],
 				"priority": 0
 			},
@@ -1322,7 +1326,8 @@
 					"css/mui.min.css",
 					"js/template.js",
 					"fonts/demo.css",
-					"css/add.css"
+					"css/add.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/workflow/FaultRepair/orderAudit.html"
@@ -1338,7 +1343,8 @@
 					"css/mui.min.css",
 					"fonts/demo.css",
 					"css/add.css",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"js/mui.conf.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1356,7 +1362,8 @@
 					"js/template.js",
 					"fonts/demo.css",
 					"fonts/iconfont.woff",
-					"css/add.css"
+					"css/add.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/workflow/FaultRepair/orderDetail.html"
@@ -1376,7 +1383,8 @@
 					"js/template.js",
 					"fonts/demo.css",
 					"fonts/iconfont.woff",
-					"css/add.css"
+					"css/add.css",
+					"js/mui.conf.js"
 				],
 				"refer": [
 					"html/workflow/FaultRepair/orderDetail.html"
@@ -1395,7 +1403,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/template.js",
-					"css/add.css"
+					"css/add.css",
+					"js/mui.conf.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1468,6 +1477,15 @@
 					"css/common.css",
 					"css/mui.min.css",
 					"fonts/iconfont.woff"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/main/messageDetail.html": {
+				"resources": [
+					"image/icon-11-3.png",
+					"fonts/iconfont.css",
+					"css/add.css"
 				],
 				"refer": [],
 				"priority": 0

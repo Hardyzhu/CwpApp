@@ -52,4 +52,5 @@ function gotoNextPage(url,urlId){
 			autoShow: false
 		}
 	});
+	 plus.nativeUI.showWaiting();
 }

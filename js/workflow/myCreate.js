@@ -19,6 +19,15 @@ mui.ready(function(){
 			loadMyToDoList();		
 	});
 
+
+	window.addEventListener('refreshOrderListPage',function(event){
+	  //通过event.detail可获得传递过来的参数内容
+	  plus.nativeUI.showWaiting();
+	  mui.plusReady(function(){
+	  		 plus.webview.currentWebview().reload();
+	  });
+
+	});
 	
 	mui('.mui-scroll-wrapper').scroll({
 		scrollX: false, //是否横向滚动
@@ -27,17 +36,6 @@ mui.ready(function(){
  		bounce: false //是否启用回弹
 	});	
 	
-/*	var options={
-						loginName:"admin",
-						loginPwd:"admin"
-	};
-	
-	amGloble.web.USER_LOGIN.exec(options,function(ret){
-		console.log(ret);
-		
-		localStorage.setItem("userInfo", JSON.stringify(ret.data.object));
-	});*/
-
 });
 
 
@@ -69,6 +67,7 @@ function loadMyToDoList(){
 				mui.toast(responData.returnMessage);
 			}
 		}
+		plus.nativeUI.closeWaiting();
 		
 	});
 	

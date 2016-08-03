@@ -2,9 +2,9 @@ mui.init(
 	{  
 	    beforeback: function() {  
 	    		//获得列表界面的webview  
-			    var orderDetail = plus.webview.currentWebview().opener();  
+			    var orderList = plus.webview.currentWebview().opener();  
 			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
-			    mui.fire(orderDetail, 'refreshOrderDetailPage');  
+			    mui.fire(orderList, 'refreshOrderListPage');  
 			    //返回true，继续页面关闭逻辑  
 			    return true;
 	    }  
@@ -28,8 +28,13 @@ mui.ready(function(){
 	
 	window.addEventListener('refreshOrderDetailPage',function(event){
 	  //通过event.detail可获得传递过来的参数内容
-	  console.log(localOptions);
-	  loadDetailInfo(localOptions);
+/*	  console.log(localOptions);
+	  loadDetailInfo(localOptions);*/
+	 plus.nativeUI.showWaiting();
+	  mui.plusReady(function(){
+	  		 plus.webview.currentWebview().reload();
+	  });
+	  
 	});
 	
 	//调用电话
@@ -99,6 +104,8 @@ function loadDetailInfo(options){
 		if(ret.result!=undefined && ret.result==0){
 			var responData=ret.data;
 			if(responData.returnCode!=undefined && responData.returnCode=="0"){
+				
+				
 				console.log(responData);
 				var dataListUl=mui("#dataDault");
 				var orderInfoUl=mui("#orderInfoUl");
@@ -154,13 +161,14 @@ function loadDetailInfo(options){
 				eventInfoUl[0].innerHTML=eventInfoHmtl;
 				orderBaseInfoUl[0].innerHTML=orderBaseInfoHtml;
 				
-
+				mui(".mui-content")[0].removeAttribute("style");
 					
 			}else if(responData.returnCode=="-9999"){								
 				mui.toast("服务器接口内部错误！");
 			}else{
 				mui.toast("未知异常！");
 			}
+			plus.nativeUI.closeWaiting();
 		}
 	});
 }

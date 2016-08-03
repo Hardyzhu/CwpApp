@@ -19,10 +19,14 @@ mui.ready(function(){
 			loadMyToDoList();		
 	});
 
-	window.addEventListener('refreshOrderDetailPage',function(event){
+	window.addEventListener('refreshOrderListPage',function(event){
 	  //通过event.detail可获得传递过来的参数内容
-	  loadMyToDoList();		
+	  plus.nativeUI.showWaiting();
+	  mui.plusReady(function(){
+	  		 plus.webview.currentWebview().reload();
+	  });
 	});
+	
 	
 	mui('.mui-scroll-wrapper').scroll({
 		scrollX: false, //是否横向滚动
@@ -62,6 +66,7 @@ function loadMyToDoList(){
 				mui.toast(responData.returnMessage);
 			}
 		}
+		plus.nativeUI.closeWaiting();
 		
 	});
 	

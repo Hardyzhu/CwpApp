@@ -32,6 +32,14 @@ mui.ready(function(){
 		}
 	});
 	
+	window.addEventListener('refreshOrderListPage',function(event){
+	  //通过event.detail可获得传递过来的参数内容
+	  plus.nativeUI.showWaiting();
+	  mui.plusReady(function(){
+	  		 plus.webview.currentWebview().reload();
+	  });
+	});
+	
 	mui('.mui-scroll-wrapper').scroll({
 		scrollX: false, //是否横向滚动
 		indicators: true, //是否显示滚动条
@@ -85,6 +93,7 @@ function loadMyToDoList(){
 				mui.toast(responData.returnMessage);
 			}
 		}
+		plus.nativeUI.closeWaiting();
 		
 	});
 	
@@ -111,6 +120,7 @@ function gotoNextPage(url,urlId,extras){
 		},
 		extras:extras
 	});
+	plus.nativeUI.showWaiting();
 }
 
 function loadMyAuditList(){
@@ -140,6 +150,7 @@ function loadMyAuditList(){
 				mui.toast(responData.returnMessage);
 			}
 		}
+		plus.nativeUI.closeWaiting();
 		
 	});
 	
