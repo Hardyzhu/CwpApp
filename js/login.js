@@ -113,11 +113,11 @@ mui.plusReady(function() {
 			success: function(data) {
 				if(data.returnCode == "0" && data.object != "") {
 					var lastLoginUser=plus.storage.getItem("userInfo");
-					var lastLoginUserName="";
+					var lastLoginUserAlias="";
 					if(lastLoginUser!=undefined && lastLoginUser!=null && lastLoginUser!="" ){
-						if(mui.parseJSON(lastLoginUser)!=undefined && mui.parseJSON(lastLoginUser).loginName!=undefined){
-							lastLoginUserName=mui.parseJSON(lastLoginUser).loginName;
-							console.log(lastLoginUserName);
+						if(mui.parseJSON(lastLoginUser)!=undefined && mui.parseJSON(lastLoginUser).userAlias!=undefined){
+							lastLoginUserAlias=mui.parseJSON(lastLoginUser).userAlias;
+							console.log(lastLoginUserAlias);
 						}
 					}
 					
@@ -126,12 +126,12 @@ mui.plusReady(function() {
 					var str = JSON.stringify(obj);
 					plus.storage.removeItem('userInfo');
 					plus.storage.setItem("userInfo", str);
-					
-					if(obj.loginName !=undefined  && obj.loginName!=lastLoginUserName){
-						if(obj.loginName!=null && obj.loginName!=""){
-							bindAlias(obj.loginName);
+					console.log(str);
+					if(obj.userAlias !=undefined  && obj.userAlias!=lastLoginUserAlias){
+						if(obj.userAlias!=null && obj.userAlias!=""){
+							bindAlias(obj.userAlias);
 						}else{
-							console.log("登录名不能为空！");
+							console.log("登录别名不能为空！");
 						}
 						
 					}
