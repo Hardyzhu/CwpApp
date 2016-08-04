@@ -12,4 +12,6 @@
 //阿里云IP
 //var global_url="http://58.96.169.201:28090";
 //中移IP
-var global_url="http://192.168.92.227:8010";
+//var global_url="http://192.168.100.65:20010";
+//本地IP
+var global_url="http://192.168.1.127:8010";
