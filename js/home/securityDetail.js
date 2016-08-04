@@ -286,11 +286,11 @@ mui.plusReady(function(){
 			order(warningEventId,warningCategoryId,2,2);
 		}
 	});
-	//转故障告警
+	//转维修工单
 	mui('#btooTmpl').on('tap', '#goSecurity', function(e) {
 		var Url = this.getAttribute('data-url');
 		mui.openWindow({
-			url: '../home/'+Url,
+			url: '../workflow/FaultRepair/'+Url,
 			id: Url,
 			waiting: {
 				autoShow: false
