@@ -186,7 +186,8 @@ mui.plusReady(function(){
 					serviceType:serviceType,
 					orderDescribe :orderDescribe,
 					userId:JSON.parse(isLogin).userId,
-					serviceBudget:serviceBudget
+					serviceBudget:serviceBudget,
+					planCompleteDate:planCompleteDate
 				},
 				dataType: "json",
 				timeout: 10000,
