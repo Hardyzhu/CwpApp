@@ -38,20 +38,16 @@
 				<!-- 第一张 -->
 				<div class="mui-slider-item">
 					<div class="chart" id="lineChart"></div>
-					<!--<p class="mui-slider-title">功耗报表</p>-->
 				</div>
-				<!--<div class="mui-slider-item">
+				<div class="mui-slider-item">
 					<div class="chart" id="faultChart"></div>
-					<p class="mui-slider-title">工单审批</p>
 				</div>
 				<div class="mui-slider-item">
 					<div class="chart" id="eleChart"></div>
-					<p class="mui-slider-title">安防告警</p>
 				</div>
 				<div class="mui-slider-item">
 					<div class="chart" id="securityChart"></div>
-					<p class="mui-slider-title">故障告警</p>
-				</div>-->
+				</div>
 				
 				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 				<!--<div class="mui-slider-item mui-slider-item-duplicate hidden">
@@ -60,12 +56,12 @@
 					</div>
 				</div>-->
 			</div>
-			<!--<div class="mui-slider-indicator mui-text-right">
+			<div class="mui-slider-indicator">
 				<div class="mui-indicator mui-active"></div>
 				<div class="mui-indicator"></div>
 				<div class="mui-indicator"></div>
 				<div class="mui-indicator"></div>
-			</div>-->
+			</div>
 		</div>
 		<!--内容-->
 		<div class="mui-col-xs-12 mui-text-center clearfix classify button-pannel" id="tablist">
@@ -186,9 +182,14 @@
 					var chartOption = chartType == 'pie' ? {
 					calculable: false				
 				} : {
-					legend: {
-                    	data:['耗电量']
-                	},
+					title : {
+					    text: '功耗报表',
+					    x:'center',
+					    textStyle:{
+					    	fontSize:14,
+					    	fontWeight:'normal'
+					    }
+					},
 					color:['#007aff'],//设置曲线颜色
 					grid: {            //给图表定位
 						x: 60,
@@ -240,16 +241,39 @@
 			},false);*/
 			var eleOption = {
 					color:["#e17131","#ffc000","#1111d5"],//设置曲线颜色
+					title : {
+				        text: '安防告警',
+				        x:'center',
+				        textStyle:{
+					    	fontSize:14,
+					    	fontWeight:'normal'
+					    }
+				    },
+					tooltip : {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
 					legend: {
+						itemGap:5,
+						y:'15%',
                     	data:['未处理(共213条)','处理中(共158条)','已处理(共101条)']
                 	},
 					calculable : false,
+					 
 					series : [
 	                    {
-	                        name:'访问来源',
+	                        name:'安防告警',
 	                        type:'pie',
 	                        radius : '55%',
-	                        center: ['50%', '60%'],
+	                        center: ['50%', '65%'],
+	                        itemStyle : {
+				                normal : {
+				                    labelLine : {
+				                        show : false,
+				                        length:-10
+				                    }
+				                   }
+				            },
 	                        data:[
 	                            {value:213, name:'未处理(共213条)'},
 	                            {value:158, name:'处理中(共158条)'},
@@ -257,16 +281,25 @@
 	                        ]
 	                    }
 	                ]
-				};
-				var defaultOption = {
+				}
+			var defaultOption = {
+					title : {
+					    text: '维修工单',
+					    x:'center',
+					    textStyle:{
+					    	fontSize:14,
+					    	fontWeight:'normal'
+					    }
+					},
 					legend:{
+						y:'13%',
 						data:['设备数','故障数']
 					},
 					color:['#007aff',"#fa7d3c"],//设置曲线颜色
 					grid: {            //给图表定位
 						x: 60,
 						x2: 30,
-						y: 35,
+						y: 50,
 						y2: 30
 					},
 					tooltip : {    //	气泡提示框
@@ -307,30 +340,52 @@
 				};
 			var securityOption = {
 					color:["#e17131","#ffc000","#1111d5"],//设置曲线颜色
+					title : {
+					    text: '故障告警',
+					    x:'center',
+					    textStyle:{
+					    	fontSize:14,
+					    	fontWeight:'normal'
+					    }
+					},
+					tooltip : {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
 					legend: {
+						itemGap:5,
+						y:'15%',
                     	data:['未处理(共35条)','处理中(共23条)','已处理(共52条)']
                 	},
 					calculable : false,
 					series : [
 	                    {
-	                        name:'访问来源',
+	                        name:'故障告警',
 	                        type:'pie',
 	                        radius : '55%',
-	                        center: ['50%', '60%'],
+	                        center: ['50%', '65%'],
+	                       	avoidLabelOverlap: false,
+				            itemStyle : {
+				                normal : {
+				                    labelLine : {
+				                        show : false,
+				                        length:-10
+				                    }
+				                   }
+				            },
 	                        data:[
 	                            {value:35, name:'未处理(共35条)'},
 	                            {value:23, name:'处理中(共23条)'},
 	                            {value:52, name:'已处理(共52条)'}
 	                        ]
 	                    }
-	                ]
+	                ] 
 				};
 			
 			var item2Show = false,item3Show = false,item4Show = false;//子选项卡是否显示标志
 			document.querySelector('.mui-slider').addEventListener('slide',
 			function(event) {
 				if (event.detail.slideNumber === 1&&!item2Show) {
-					
     				var faultLineChart = echarts.init(byId('faultChart'));
 					faultLineChart.setOption(defaultOption);
 				    //改变标志位，下次直接显示
@@ -343,9 +398,10 @@
 				}else if(event.detail.slideNumber === 3&&!item4Show){
 					var noneLineChart = echarts.init(byId('securityChart'));
 					noneLineChart.setOption(securityOption);
+				    item4Show = true;
 				}});
 			
-			
+			mui('.mui-slider').slider({interval:0});
 			/**
 			 * 点击事件
 			 */
